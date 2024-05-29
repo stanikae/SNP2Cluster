@@ -1,0 +1,574 @@
+
+# KLEPP -------------------------------------------------------------------
+
+
+# Baby-germs: KLEPP: DNH
+# hospital="DORA-NGINZA HOSPITAL"
+# path="E:/projects/Baby-Germs/KLEPP/hospitals/DORA-NGINZA/transmission-analysis"
+# aln_path = "E:/projects/Baby-Germs/KLEPP/hospitals/DORA-NGINZA/transmission-analysis/snps.co.snp_sites.aln"
+
+# # # # DORA
+# dates_path = "E:/projects/Baby-Germs/KLEPP/KLEPP/DORA-NGINZA/transmission/DORA_ward.csv"
+# filepath = "E:/projects/Baby-Germs/KLEPP/KLEPP/DORA-NGINZA/DNH/transmission/coreSNPmatrix.co.csv"
+# moltenpath = "E:/projects/Baby-Germs/KLEPP/KLEPP/DORA-NGINZA/DNH/transmission/coreSNPmatrixmolten.csv"
+# mlst_profile = "E:/projects/Baby-Germs/KLEPP/KLEPP/DORA-NGINZA/DNH/transmission/05.mlst.xlsx"
+# out_dir <- "E:/projects/Baby-Germs/KLEPP/KLEPP/DORA-NGINZA/cluster-analysisZ01/clusters"
+# # Transmission network input files
+# path="E:/projects/Baby-Germs/KLEPP/KLEPP/DORA-NGINZA/cluster-analysisZ01/transmission-analysis"
+# aln_path = "E:/projects/Baby-Germs/KLEPP/KLEPP/DORA-NGINZA/transmission/snps.co.snp_sites.aln"
+# snp_dist <- moltenpath
+# core_snps = "E:/projects/Baby-Germs/KLEPP/KLEPP/DORA-NGINZA/transmission/coreSNPmatrix.co.csv"
+
+
+# # # KLERP
+# hospital="KLERKSDORP"
+# dates_path = "E:/projects/Baby-Germs/KLEPP/KLEPP/KLERKSDORP/transmission/KLERKSDORP_ward.csv"
+# filepath = "E:/projects/Baby-Germs/KLEPP/KLEPP/KLERKSDORP/transmission/coreSNPmatrix.co.csv"
+# moltenpath = "E:/projects/Baby-Germs/KLEPP/KLEPP/KLERKSDORP/transmission/coreSNPmatrixmolten.csv"
+# mlst_profile = "E:/projects/Baby-Germs/KLEPP/KLEPP/KLERKSDORP/transmission/05.mlst.xlsx"
+# out_dir <- "E:/projects/Baby-Germs/KLEPP/KLEPP/KLERKSDORP/cluster-analysisZ01/clusters"
+# # Transmission network input files
+# path="E:/projects/Baby-Germs/KLEPP/KLEPP/KLERKSDORP/cluster-analysisZ01/transmission-analysis"
+# aln_path = "E:/projects/Baby-Germs/KLEPP/KLEPP/KLERKSDORP/transmission/snps.co.snp_sites.aln"
+# snp_dist <- moltenpath
+# core_snps = "E:/projects/Baby-Germs/KLEPP/KLEPP/KLERKSDORP/transmission/coreSNPmatrix.co.csv"
+# #
+# # # #
+
+# # MANKWENG
+# dates_path = "E:/projects/Baby-Germs/KLEPP/KLEPP/MANKWENG/transmission/MANKWENG_ward.csv"
+# filepath = "E:/projects/Baby-Germs/KLEPP/KLEPP/MANKWENG/transmission/coreSNPmatrix.co.csv"
+# moltenpath = "E:/projects/Baby-Germs/KLEPP/KLEPP/MANKWENG/transmission/coreSNPmatrixmolten.csv"
+# mlst_profile = "E:/projects/Baby-Germs/KLEPP/KLEPP/MANKWENG/transmission/05.mlst.xlsx"
+# out_dir <- "E:/projects/Baby-Germs/KLEPP/KLEPP/MANKWENG/cluster-analysisZ01/clusters"
+# # Transmission network input files
+# path="E:/projects/Baby-Germs/KLEPP/KLEPP/MANKWENG/cluster-analysisZ01/transmission-analysis"
+# aln_path = "E:/projects/Baby-Germs/KLEPP/KLEPP/MANKWENG/transmission/snps.co.snp_sites.aln"
+# snp_dist <- moltenpath
+# core_snps = "E:/projects/Baby-Germs/KLEPP/KLEPP/MANKWENG/transmission/coreSNPmatrix.co.csv"
+
+
+
+# # QUEEN-NANDI-REGIONAL
+# dates_path = "E:/projects/Baby-Germs/KLEPP/KLEPP/QUEEN-NANDI-REGIONAL/transmission/QUEEN_ward.csv"
+# filepath = "E:/projects/Baby-Germs/KLEPP/KLEPP/QUEEN-NANDI-REGIONAL/transmission/coreSNPmatrix.co.csv"
+# moltenpath = "E:/projects/Baby-Germs/KLEPP/KLEPP/QUEEN-NANDI-REGIONAL/transmission/coreSNPmatrixmolten.csv"
+# mlst_profile = "E:/projects/Baby-Germs/KLEPP/KLEPP/QUEEN-NANDI-REGIONAL/transmission/05.mlst.xlsx"
+# out_dir <- "E:/projects/Baby-Germs/KLEPP/KLEPP/QUEEN-NANDI-REGIONAL/cluster-analysisZ01/clusters"
+# # Transmission network input files
+# path="E:/projects/Baby-Germs/KLEPP/KLEPP/QUEEN-NANDI-REGIONAL/cluster-analysisZ01/transmission-analysis"
+# aln_path = "E:/projects/Baby-Germs/KLEPP/KLEPP/QUEEN-NANDI-REGIONAL/transmission/snps.co.snp_sites.aln"
+# snp_dist <- moltenpath
+# core_snps = "E:/projects/Baby-Germs/KLEPP/KLEPP/QUEEN-NANDI-REGIONAL/transmission/coreSNPmatrix.co.csv"
+
+
+
+
+# # # ROB-FERREIRA
+# dates_path = "E:/projects/Baby-Germs/KLEPP/KLEPP/ROB-FERREIRA/transmission/ROB_ward.csv"
+# filepath = "E:/projects/Baby-Germs/KLEPP/KLEPP/ROB-FERREIRA/transmission/coreSNPmatrix.co.csv"
+# moltenpath = "E:/projects/Baby-Germs/KLEPP/KLEPP/ROB-FERREIRA/transmission/coreSNPmatrixmolten.csv"
+# mlst_profile = "E:/projects/Baby-Germs/KLEPP/KLEPP/ROB-FERREIRA/transmission/05.mlst.xlsx"
+# out_dir <- "E:/projects/Baby-Germs/KLEPP/KLEPP/ROB-FERREIRA/cluster-analysisZ01/clusters"
+# # Transmission network input files
+# path="E:/projects/Baby-Germs/KLEPP/KLEPP/ROB-FERREIRA/cluster-analysisZ01/transmission-analysis"
+# aln_path = "E:/projects/Baby-Germs/KLEPP/KLEPP/ROB-FERREIRA/transmission/snps.co.snp_sites.aln"
+# snp_dist <- moltenpath
+# core_snps = "E:/projects/Baby-Germs/KLEPP/KLEPP/ROB-FERREIRA/transmission/coreSNPmatrix.co.csv"
+
+
+# # TEMBISA
+# dates_path = "E:/projects/Baby-Germs/KLEPP/KLEPP/TEMBISA/transmission/TEMBISA_ward.csv"
+# filepath = "E:/projects/Baby-Germs/KLEPP/KLEPP/TEMBISA/transmission/coreSNPmatrix.co.csv"
+# moltenpath = "E:/projects/Baby-Germs/KLEPP/KLEPP/TEMBISA/transmission/coreSNPmatrixmolten.csv"
+# mlst_profile = "E:/projects/Baby-Germs/KLEPP/KLEPP/TEMBISA/transmission/05.mlst.xlsx"
+# out_dir <- "E:/projects/Baby-Germs/KLEPP/KLEPP/TEMBISA/cluster-analysisZ01/clusters"
+# # Transmission network input files
+# path="E:/projects/Baby-Germs/KLEPP/KLEPP/TEMBISA/cluster-analysisZ01/transmission-analysis"
+# aln_path = "E:/projects/Baby-Germs/KLEPP/KLEPP/TEMBISA/transmission/snps.co.snp_sites.aln"
+# snp_dist <- moltenpath
+# core_snps = "E:/projects/Baby-Germs/KLEPP/KLEPP/TEMBISA/transmission/coreSNPmatrix.co.csv"
+# #
+# # 
+# # 
+# # 
+# # 
+# # # # 1. Sensitivity analysis for Klebsiella
+# # # # ·   SNP <11 + 60 days
+# # # # ·   SNP <20 + 14 days
+# # # # ·   SNP <20 + 60 days
+# # # # ·   SNP and days according to Kats paper
+# # # # .   SNP <=25 + 45 days 
+# # 
+# # # # # KLEP set ST for reference
+# refST=11
+# refDate="2011-01-01"
+# # # # KLEP Get different combinations to use for SNP and EPI days
+# comparisons <- data.frame(snp=c(11,20,20,25,11),days=c(60,14,60,45,14))
+
+
+# ACIBA paths -------------------------------------------------------------
+
+# # # DORA
+# dates_path = "E:/projects/Baby-Germs/ACIBA/downstream-analysis/ACIBA/DORA/transmission/DORA_ward.csv"
+# filepath = "E:/projects/Baby-Germs/ACIBA/downstream-analysis/ACIBA/DORA/transmission/coreSNPmatrix.co.csv"
+# moltenpath = "E:/projects/Baby-Germs/ACIBA/downstream-analysis/ACIBA/DORA/transmission/coreSNPmatrixmolten.csv"
+# mlst_profile = "E:/projects/Baby-Germs/ACIBA/downstream-analysis/ACIBA/DORA/transmission/05.mlst.xlsx"
+# out_dir <- "E:/projects/Baby-Germs/ACIBA/downstream-analysis/ACIBA/DORA/cluster-analysis9/clusters"
+# # Transmission network input files
+# path="E:/projects/Baby-Germs/ACIBA/downstream-analysis/ACIBA/DORA/cluster-analysis9/transmission-analysis"
+# aln_path = "E:/projects/Baby-Germs/ACIBA/downstream-analysis/ACIBA/DORA/transmission/snps.co.snp_sites.aln"
+# snp_dist <- moltenpath
+# core_snps = filepath #"E:/projects/Baby-Germs/KLEPP/KLEPP/DORA-NGINZA/transmission/coreSNPmatrix.co.csv"
+
+
+
+# # # # KLERKSDORP
+# dates_path = "E:/projects/Baby-Germs/ACIBA/downstream-analysis/ACIBA/KLERKSDORP/transmission/KLERKSDORP_ward.csv"
+# filepath = "E:/projects/Baby-Germs/ACIBA/downstream-analysis/ACIBA/KLERKSDORP/transmission/coreSNPmatrix.co.csv"
+# moltenpath = "E:/projects/Baby-Germs/ACIBA/downstream-analysis/ACIBA/KLERKSDORP/transmission/coreSNPmatrixmolten.csv"
+# mlst_profile = "E:/projects/Baby-Germs/ACIBA/downstream-analysis/ACIBA/KLERKSDORP/transmission/05.mlst.xlsx"
+# out_dir <- "E:/projects/Baby-Germs/ACIBA/downstream-analysis/ACIBA/KLERKSDORP/cluster-analysis9/clusters"
+# # Transmission network input files
+# path="E:/projects/Baby-Germs/ACIBA/downstream-analysis/ACIBA/KLERKSDORP/cluster-analysis9/transmission-analysis"
+# aln_path = "E:/projects/Baby-Germs/ACIBA/downstream-analysis/ACIBA/KLERKSDORP/transmission/snps.co.snp_sites.aln"
+# snp_dist <- moltenpath
+# core_snps = filepath #"E:/projects/Baby-Germs/KLEPP/KLEPP/DORA-NGINZA/transmission/coreSNPmatrix.co.csv"
+# 
+
+
+# # # MANKWENG
+# dates_path = "E:/projects/Baby-Germs/ACIBA/downstream-analysis/ACIBA/MANKWENG/transmission/MANKWENG_ward.csv"
+# filepath = "E:/projects/Baby-Germs/ACIBA/downstream-analysis/ACIBA/MANKWENG/transmission/coreSNPmatrix.co.csv"
+# moltenpath = "E:/projects/Baby-Germs/ACIBA/downstream-analysis/ACIBA/MANKWENG/transmission/coreSNPmatrixmolten.csv"
+# mlst_profile = "E:/projects/Baby-Germs/ACIBA/downstream-analysis/ACIBA/MANKWENG/transmission/05.mlst.xlsx"
+# out_dir <- "E:/projects/Baby-Germs/ACIBA/downstream-analysis/ACIBA/MANKWENG/cluster-analysis9/clusters"
+# # Transmission network input files
+# path="E:/projects/Baby-Germs/ACIBA/downstream-analysis/ACIBA/MANKWENG/cluster-analysis9/transmission-analysis"
+# aln_path = "E:/projects/Baby-Germs/ACIBA/downstream-analysis/ACIBA/MANKWENG/transmission/snps.co.snp_sites.aln"
+# snp_dist <- moltenpath
+# core_snps = filepath #"E:/projects/Baby-Germs/KLEPP/KLEPP/DORA-NGINZA/transmission/coreSNPmatrix.co.csv"
+
+
+# # QUEEN
+# dates_path = "E:/projects/Baby-Germs/ACIBA/downstream-analysis/ACIBA/QUEEN/transmission/QUEEN_ward.csv"
+# filepath = "E:/projects/Baby-Germs/ACIBA/downstream-analysis/ACIBA/QUEEN/transmission/coreSNPmatrix.co.csv"
+# moltenpath = "E:/projects/Baby-Germs/ACIBA/downstream-analysis/ACIBA/QUEEN/transmission/coreSNPmatrixmolten.csv"
+# mlst_profile = "E:/projects/Baby-Germs/ACIBA/downstream-analysis/ACIBA/QUEEN/transmission/05.mlst.xlsx"
+# out_dir <- "E:/projects/Baby-Germs/ACIBA/downstream-analysis/ACIBA/QUEEN/cluster-analysis9/clusters"
+# # Transmission network input files
+# path="E:/projects/Baby-Germs/ACIBA/downstream-analysis/ACIBA/QUEEN/cluster-analysis9/transmission-analysis"
+# aln_path = "E:/projects/Baby-Germs/ACIBA/downstream-analysis/ACIBA/QUEEN/transmission/snps.co.snp_sites.aln"
+# snp_dist <- moltenpath
+# core_snps = filepath #"E:/projects/Baby-Germs/KLEPP/KLEPP/DORA-NGINZA/transmission/coreSNPmatrix.co.csv"
+
+
+# # ROB
+# dates_path = "E:/projects/Baby-Germs/ACIBA/downstream-analysis/ACIBA/ROB/transmission/ROB_ward.csv"
+# filepath = "E:/projects/Baby-Germs/ACIBA/downstream-analysis/ACIBA/ROB/transmission/coreSNPmatrix.co.csv"
+# moltenpath = "E:/projects/Baby-Germs/ACIBA/downstream-analysis/ACIBA/ROB/transmission/coreSNPmatrixmolten.csv"
+# mlst_profile = "E:/projects/Baby-Germs/ACIBA/downstream-analysis/ACIBA/ROB/transmission/05.mlst.xlsx"
+# out_dir <- "E:/projects/Baby-Germs/ACIBA/downstream-analysis/ACIBA/ROB/cluster-analysis9/clusters"
+# # Transmission network input files
+# path="E:/projects/Baby-Germs/ACIBA/downstream-analysis/ACIBA/ROB/cluster-analysis9/transmission-analysis"
+# aln_path = "E:/projects/Baby-Germs/ACIBA/downstream-analysis/ACIBA/ROB/transmission/snps.co.snp_sites.aln"
+# snp_dist <- moltenpath
+# core_snps = filepath #"E:/projects/Baby-Germs/KLEPP/KLEPP/DORA-NGINZA/transmission/coreSNPmatrix.co.csv"
+
+# 
+# # TEMBISA
+# dates_path = "E:/projects/Baby-Germs/ACIBA/downstream-analysis/ACIBA/TEMBISA/transmission/TEMBISA_ward.csv"
+# filepath = "E:/projects/Baby-Germs/ACIBA/downstream-analysis/ACIBA/TEMBISA/transmission/coreSNPmatrix.co.csv"
+# moltenpath = "E:/projects/Baby-Germs/ACIBA/downstream-analysis/ACIBA/TEMBISA/transmission/coreSNPmatrixmolten.csv"
+# mlst_profile = "E:/projects/Baby-Germs/ACIBA/downstream-analysis/ACIBA/TEMBISA/transmission/05.mlst.xlsx"
+# out_dir <- "E:/projects/Baby-Germs/ACIBA/downstream-analysis/ACIBA/TEMBISA/cluster-analysis9/clusters"
+# # Transmission network input files
+# path="E:/projects/Baby-Germs/ACIBA/downstream-analysis/ACIBA/TEMBISA/cluster-analysis9/transmission-analysis"
+# aln_path = "E:/projects/Baby-Germs/ACIBA/downstream-analysis/ACIBA/TEMBISA/transmission/snps.co.snp_sites.aln"
+# snp_dist <- moltenpath
+# core_snps = filepath #"E:/projects/Baby-Germs/KLEPP/KLEPP/DORA-NGINZA/transmission/coreSNPmatrix.co.csv"
+# 
+# # 
+# # 
+# # # 1. Sensitivity analysis for ACIBA
+# # New analysis for aciba – SNP <14 + 14 days
+# # SNP cut-off <=10
+# 
+# ACIBA set ST for reference
+# GCF_008632635.1_ASM863263v1_genomic.fna abaumannii_2    46      Pas_cpn60(5)    Pas_fusA(12)    Pas_gltA(11)    Pas_pyrG(2)                                                Pas_recA(14)     Pas_rplB(9)     Pas_rpoB(14)
+# refST=46
+# refDate="2019-09-23"
+# # KLEP Get different combinations to use for SNP and EPI days
+# comparisons <- data.frame(snp=c(10,14,14,20,25),days=c(14,14,60,60,45))
+
+
+
+# STAPH -------------------------------------------------------------------
+# # DORA
+# dates_path = "E:/projects/Baby-Germs/STAAU/downstream-analysis/STAAU/DORA/transmission/DORA_ward.csv"
+# filepath = "E:/projects/Baby-Germs/STAAU/downstream-analysis/STAAU/DORA/transmission/coreSNPmatrix.co.csv"
+# moltenpath = "E:/projects/Baby-Germs/STAAU/downstream-analysis/STAAU/DORA/transmission/coreSNPmatrixmolten.csv"
+# mlst_profile = "E:/projects/Baby-Germs/STAAU/downstream-analysis/STAAU/DORA/transmission/05.mlst.xlsx"
+# out_dir <- "E:/projects/Baby-Germs/STAAU/downstream-analysis/STAAU/DORA/cluster-analysis6/clusters"
+# # Transmission network input files
+# path="E:/projects/Baby-Germs/STAAU/downstream-analysis/STAAU/DORA/cluster-analysis6/transmission-analysis"
+# aln_path = "E:/projects/Baby-Germs/STAAU/downstream-analysis/STAAU/DORA/transmission/snps.co.snp_sites.aln"
+# snp_dist <- moltenpath
+# core_snps = filepath #"E:/projects/Baby-Germs/KLEPP/KLEPP/DORA-NGINZA/transmission/coreSNPmatrix.co.csv"
+
+
+
+# # # # KLERKSDORP
+# dates_path = "E:/projects/Baby-Germs/STAAU/downstream-analysis/STAAU/KLERKSDORP/transmission/KLERKSDORP_ward.csv"
+# filepath = "E:/projects/Baby-Germs/STAAU/downstream-analysis/STAAU/KLERKSDORP/transmission/coreSNPmatrix.co.csv"
+# moltenpath = "E:/projects/Baby-Germs/STAAU/downstream-analysis/STAAU/KLERKSDORP/transmission/coreSNPmatrixmolten.csv"
+# mlst_profile = "E:/projects/Baby-Germs/STAAU/downstream-analysis/STAAU/KLERKSDORP/transmission/05.mlst.xlsx"
+# out_dir <- "E:/projects/Baby-Germs/STAAU/downstream-analysis/STAAU/KLERKSDORP/cluster-analysis6/clusters"
+# # Transmission network input files
+# path="E:/projects/Baby-Germs/STAAU/downstream-analysis/STAAU/KLERKSDORP/cluster-analysis6/transmission-analysis"
+# aln_path = "E:/projects/Baby-Germs/STAAU/downstream-analysis/STAAU/KLERKSDORP/transmission/snps.co.snp_sites.aln"
+# snp_dist <- moltenpath
+# core_snps = filepath #"E:/projects/Baby-Germs/KLEPP/KLEPP/DORA-NGINZA/transmission/coreSNPmatrix.co.csv"
+
+
+
+# # # MANKWENG
+# dates_path = "E:/projects/Baby-Germs/STAAU/downstream-analysis/STAAU/MANKWENG/transmission/MANKWENG_ward.csv"
+# filepath = "E:/projects/Baby-Germs/STAAU/downstream-analysis/STAAU/MANKWENG/transmission/coreSNPmatrix.co.csv"
+# moltenpath = "E:/projects/Baby-Germs/STAAU/downstream-analysis/STAAU/MANKWENG/transmission/coreSNPmatrixmolten.csv"
+# mlst_profile = "E:/projects/Baby-Germs/STAAU/downstream-analysis/STAAU/MANKWENG/transmission/05.mlst.xlsx"
+# out_dir <- "E:/projects/Baby-Germs/STAAU/downstream-analysis/STAAU/MANKWENG/cluster-analysis6/clusters"
+# # Transmission network input files
+# path="E:/projects/Baby-Germs/STAAU/downstream-analysis/STAAU/MANKWENG/cluster-analysis6/transmission-analysis"
+# aln_path = "E:/projects/Baby-Germs/STAAU/downstream-analysis/STAAU/MANKWENG/transmission/snps.co.snp_sites.aln"
+# snp_dist <- moltenpath
+# core_snps = filepath #"E:/projects/Baby-Germs/KLEPP/KLEPP/DORA-NGINZA/transmission/coreSNPmatrix.co.csv"
+
+
+# # QUEEN
+# dates_path = "E:/projects/Baby-Germs/STAAU/downstream-analysis/STAAU/QUEEN/transmission/QUEEN_ward.csv"
+# filepath = "E:/projects/Baby-Germs/STAAU/downstream-analysis/STAAU/QUEEN/transmission/coreSNPmatrix.co.csv"
+# moltenpath = "E:/projects/Baby-Germs/STAAU/downstream-analysis/STAAU/QUEEN/transmission/coreSNPmatrixmolten.csv"
+# mlst_profile = "E:/projects/Baby-Germs/STAAU/downstream-analysis/STAAU/QUEEN/transmission/05.mlst.xlsx"
+# out_dir <- "E:/projects/Baby-Germs/STAAU/downstream-analysis/STAAU/QUEEN/cluster-analysis6/clusters"
+# # Transmission network input files
+# path="E:/projects/Baby-Germs/STAAU/downstream-analysis/STAAU/QUEEN/cluster-analysis6/transmission-analysis"
+# aln_path = "E:/projects/Baby-Germs/STAAU/downstream-analysis/STAAU/QUEEN/transmission/snps.co.snp_sites.aln"
+# snp_dist <- moltenpath
+# core_snps = filepath #"E:/projects/Baby-Germs/KLEPP/KLEPP/DORA-NGINZA/transmission/coreSNPmatrix.co.csv"
+
+
+# # ROB
+# dates_path = "E:/projects/Baby-Germs/STAAU/downstream-analysis/STAAU/ROB/transmission/ROB_ward.csv"
+# filepath = "E:/projects/Baby-Germs/STAAU/downstream-analysis/STAAU/ROB/transmission/coreSNPmatrix.co.csv"
+# moltenpath = "E:/projects/Baby-Germs/STAAU/downstream-analysis/STAAU/ROB/transmission/coreSNPmatrixmolten.csv"
+# mlst_profile = "E:/projects/Baby-Germs/STAAU/downstream-analysis/STAAU/ROB/transmission/05.mlst.xlsx"
+# out_dir <- "E:/projects/Baby-Germs/STAAU/downstream-analysis/STAAU/ROB/cluster-analysis6/clusters"
+# # Transmission network input files
+# path="E:/projects/Baby-Germs/STAAU/downstream-analysis/STAAU/ROB/cluster-analysis6/transmission-analysis"
+# aln_path = "E:/projects/Baby-Germs/STAAU/downstream-analysis/STAAU/ROB/transmission/snps.co.snp_sites.aln"
+# snp_dist <- moltenpath
+# core_snps = filepath #"E:/projects/Baby-Germs/KLEPP/KLEPP/DORA-NGINZA/transmission/coreSNPmatrix.co.csv"
+
+
+# # TEMBISA
+# dates_path = "E:/projects/Baby-Germs/STAAU/downstream-analysis/STAAU/TEMBISA/transmission/TEMBISA_ward.csv"
+# filepath = "E:/projects/Baby-Germs/STAAU/downstream-analysis/STAAU/TEMBISA/transmission/coreSNPmatrix.co.csv"
+# moltenpath = "E:/projects/Baby-Germs/STAAU/downstream-analysis/STAAU/TEMBISA/transmission/coreSNPmatrixmolten.csv"
+# mlst_profile = "E:/projects/Baby-Germs/STAAU/downstream-analysis/STAAU/TEMBISA/transmission/05.mlst.xlsx"
+# out_dir <- "E:/projects/Baby-Germs/STAAU/downstream-analysis/STAAU/TEMBISA/cluster-analysis6/clusters"
+# # Transmission network input files
+# path="E:/projects/Baby-Germs/STAAU/downstream-analysis/STAAU/TEMBISA/cluster-analysis6/transmission-analysis"
+# aln_path = "E:/projects/Baby-Germs/STAAU/downstream-analysis/STAAU/TEMBISA/transmission/snps.co.snp_sites.aln"
+# snp_dist <- moltenpath
+# core_snps = filepath #"E:/projects/Baby-Germs/KLEPP/KLEPP/DORA-NGINZA/transmission/coreSNPmatrix.co.csv"
+
+
+# # 1. Sensitivity analysis for Klebsiella
+# # ·   SNP <11 + 60 days
+# # ·   SNP <20 + 14 days
+# # ·   SNP <20 + 60 days
+# # ·   SNP and days according to Kats paper
+# # .   SNP <=25 + 45 days 
+
+
+# refST=8
+# #
+# # # Get different combinations to use for SNP and EPI days
+# refDate="2014-01-30"
+# comparisons <- data.frame(snp=c(11,20,20,25,11),days=c(60,14,60,45,14))
+# #
+# #
+
+
+# ECOLI -------------------------------------------------------------------
+
+# # # DORA
+# dates_path = "E:/projects/Baby-Germs/ECOLI/downstream-analysis/ECOLI/DORA/transmission/DORA_ward.csv"
+# filepath = "E:/projects/Baby-Germs/ECOLI/downstream-analysis/ECOLI/DORA/transmission/coreSNPmatrix.co.csv"
+# moltenpath = "E:/projects/Baby-Germs/ECOLI/downstream-analysis/ECOLI/DORA/transmission/coreSNPmatrixmolten.csv"
+# mlst_profile = "E:/projects/Baby-Germs/ECOLI/downstream-analysis/ECOLI/DORA/transmission/05.mlst.xlsx"
+# out_dir <- "E:/projects/Baby-Germs/ECOLI/downstream-analysis/ECOLI/DORA/cluster-analysis2/clusters"
+# # Transmission network input files
+# path="E:/projects/Baby-Germs/ECOLI/downstream-analysis/ECOLI/DORA/cluster-analysis2/transmission-analysis"
+# aln_path = "E:/projects/Baby-Germs/ECOLI/downstream-analysis/ECOLI/DORA/transmission/snps.co.snp_sites.aln"
+# snp_dist <- moltenpath
+# core_snps = filepath #"E:/projects/Baby-Germs/KLEPP/KLEPP/DORA-NGINZA/transmission/coreSNPmatrix.co.csv"
+# 
+
+
+# # # # KLERKSDORP
+# dates_path = "E:/projects/Baby-Germs/ECOLI/downstream-analysis/ECOLI/KLERKSDORP/transmission/KLERKSDORP_ward.csv"
+# filepath = "E:/projects/Baby-Germs/ECOLI/downstream-analysis/ECOLI/KLERKSDORP/transmission/coreSNPmatrix.co.csv"
+# moltenpath = "E:/projects/Baby-Germs/ECOLI/downstream-analysis/ECOLI/KLERKSDORP/transmission/coreSNPmatrixmolten.csv"
+# mlst_profile = "E:/projects/Baby-Germs/ECOLI/downstream-analysis/ECOLI/KLERKSDORP/transmission/05.mlst.xlsx"
+# out_dir <- "E:/projects/Baby-Germs/ECOLI/downstream-analysis/ECOLI/KLERKSDORP/cluster-analysis2/clusters"
+# # Transmission network input files
+# path="E:/projects/Baby-Germs/ECOLI/downstream-analysis/ECOLI/KLERKSDORP/cluster-analysis2/transmission-analysis"
+# aln_path = "E:/projects/Baby-Germs/ECOLI/downstream-analysis/ECOLI/KLERKSDORP/transmission/snps.co.snp_sites.aln"
+# snp_dist <- moltenpath
+# core_snps = filepath #"E:/projects/Baby-Germs/KLEPP/KLEPP/DORA-NGINZA/transmission/coreSNPmatrix.co.csv"
+
+
+
+# # # MANKWENG
+# dates_path = "E:/projects/Baby-Germs/ECOLI/downstream-analysis/ECOLI/MANKWENG/transmission/MANKWENG_ward.csv"
+# filepath = "E:/projects/Baby-Germs/ECOLI/downstream-analysis/ECOLI/MANKWENG/transmission/coreSNPmatrix.co.csv"
+# moltenpath = "E:/projects/Baby-Germs/ECOLI/downstream-analysis/ECOLI/MANKWENG/transmission/coreSNPmatrixmolten.csv"
+# mlst_profile = "E:/projects/Baby-Germs/ECOLI/downstream-analysis/ECOLI/MANKWENG/transmission/05.mlst.xlsx"
+# out_dir <- "E:/projects/Baby-Germs/ECOLI/downstream-analysis/ECOLI/MANKWENG/cluster-analysis2/clusters"
+# # Transmission network input files
+# path="E:/projects/Baby-Germs/ECOLI/downstream-analysis/ECOLI/MANKWENG/cluster-analysis2/transmission-analysis"
+# aln_path = "E:/projects/Baby-Germs/ECOLI/downstream-analysis/ECOLI/MANKWENG/transmission/snps.co.snp_sites.aln"
+# snp_dist <- moltenpath
+# core_snps = filepath #"E:/projects/Baby-Germs/KLEPP/KLEPP/DORA-NGINZA/transmission/coreSNPmatrix.co.csv"
+# 
+
+# # QUEEN
+# dates_path = "E:/projects/Baby-Germs/ECOLI/downstream-analysis/ECOLI/QUEEN/transmission/QUEEN_ward.csv"
+# filepath = "E:/projects/Baby-Germs/ECOLI/downstream-analysis/ECOLI/QUEEN/transmission/coreSNPmatrix.co.csv"
+# moltenpath = "E:/projects/Baby-Germs/ECOLI/downstream-analysis/ECOLI/QUEEN/transmission/coreSNPmatrixmolten.csv"
+# mlst_profile = "E:/projects/Baby-Germs/ECOLI/downstream-analysis/ECOLI/QUEEN/transmission/05.mlst.xlsx"
+# out_dir <- "E:/projects/Baby-Germs/ECOLI/downstream-analysis/ECOLI/QUEEN/cluster-analysis2/clusters"
+# # Transmission network input files
+# path="E:/projects/Baby-Germs/ECOLI/downstream-analysis/ECOLI/QUEEN/cluster-analysis2/transmission-analysis"
+# aln_path = "E:/projects/Baby-Germs/ECOLI/downstream-analysis/ECOLI/QUEEN/transmission/snps.co.snp_sites.aln"
+# snp_dist <- moltenpath
+# core_snps = filepath #"E:/projects/Baby-Germs/KLEPP/KLEPP/DORA-NGINZA/transmission/coreSNPmatrix.co.csv"
+
+
+# # ROB
+# dates_path = "E:/projects/Baby-Germs/ECOLI/downstream-analysis/ECOLI/ROB/transmission/ROB_ward.csv"
+# filepath = "E:/projects/Baby-Germs/ECOLI/downstream-analysis/ECOLI/ROB/transmission/coreSNPmatrix.co.csv"
+# moltenpath = "E:/projects/Baby-Germs/ECOLI/downstream-analysis/ECOLI/ROB/transmission/coreSNPmatrixmolten.csv"
+# mlst_profile = "E:/projects/Baby-Germs/ECOLI/downstream-analysis/ECOLI/ROB/transmission/05.mlst.xlsx"
+# out_dir <- "E:/projects/Baby-Germs/ECOLI/downstream-analysis/ECOLI/ROB/cluster-analysis2/clusters"
+# # Transmission network input files
+# path="E:/projects/Baby-Germs/ECOLI/downstream-analysis/ECOLI/ROB/cluster-analysis2/transmission-analysis"
+# aln_path = "E:/projects/Baby-Germs/ECOLI/downstream-analysis/ECOLI/ROB/transmission/snps.co.snp_sites.aln"
+# snp_dist <- moltenpath
+# core_snps = filepath #"E:/projects/Baby-Germs/KLEPP/KLEPP/DORA-NGINZA/transmission/coreSNPmatrix.co.csv"
+
+
+# # TEMBISA
+# dates_path = "E:/projects/Baby-Germs/ECOLI/downstream-analysis/ECOLI/TEMBISA/transmission/TEMBISA_ward.csv"
+# filepath = "E:/projects/Baby-Germs/ECOLI/downstream-analysis/ECOLI/TEMBISA/transmission/coreSNPmatrix.co.csv"
+# moltenpath = "E:/projects/Baby-Germs/ECOLI/downstream-analysis/ECOLI/TEMBISA/transmission/coreSNPmatrixmolten.csv"
+# mlst_profile = "E:/projects/Baby-Germs/ECOLI/downstream-analysis/ECOLI/TEMBISA/transmission/05.mlst.xlsx"
+# out_dir <- "E:/projects/Baby-Germs/ECOLI/downstream-analysis/ECOLI/TEMBISA/cluster-analysis2/clusters"
+# # Transmission network input files
+# path="E:/projects/Baby-Germs/ECOLI/downstream-analysis/ECOLI/TEMBISA/cluster-analysis2/transmission-analysis"
+# aln_path = "E:/projects/Baby-Germs/ECOLI/downstream-analysis/ECOLI/TEMBISA/transmission/snps.co.snp_sites.aln"
+# snp_dist <- moltenpath
+# core_snps = filepath #"E:/projects/Baby-Germs/KLEPP/KLEPP/DORA-NGINZA/transmission/coreSNPmatrix.co.csv"
+
+
+# # Ecoli ref ST
+# refST=11
+# # # # Get different combinations to use for SNP and EPI days
+# refDate="2018-06-08"
+# comparisons <- data.frame(snp=c(11,20,20,25,11),days=c(60,14,60,45,14))
+# # #
+# # #
+
+# FAECAlis -------------------------------------------------------------------
+
+# # # DORA
+# dates_path = "E:/projects/Baby-Germs/FAECA/downstream-analysis/FAECA/DORA/transmission/DORA_ward.csv"
+# filepath = "E:/projects/Baby-Germs/FAECA/downstream-analysis/FAECA/DORA/transmission/coreSNPmatrix.co.csv"
+# moltenpath = "E:/projects/Baby-Germs/FAECA/downstream-analysis/FAECA/DORA/transmission/coreSNPmatrixmolten.csv"
+# mlst_profile = "E:/projects/Baby-Germs/FAECA/downstream-analysis/FAECA/DORA/transmission/05.mlst.xlsx"
+# out_dir <- "E:/projects/Baby-Germs/FAECA/downstream-analysis/FAECA/DORA/cluster-analysis2/clusters"
+# # Transmission network input files
+# path="E:/projects/Baby-Germs/FAECA/downstream-analysis/FAECA/DORA/cluster-analysis2/transmission-analysis"
+# aln_path = "E:/projects/Baby-Germs/FAECA/downstream-analysis/FAECA/DORA/transmission/snps.co.snp_sites.aln"
+# snp_dist <- moltenpath
+# core_snps = filepath #"E:/projects/Baby-Germs/KLEPP/KLEPP/DORA-NGINZA/transmission/coreSNPmatrix.co.csv"
+
+
+
+# # # # KLERKSDORP
+# dates_path = "E:/projects/Baby-Germs/FAECA/downstream-analysis/FAECA/KLERKSDORP/transmission/KLERKSDORP_ward.csv"
+# filepath = "E:/projects/Baby-Germs/FAECA/downstream-analysis/FAECA/KLERKSDORP/transmission/coreSNPmatrix.co.csv"
+# moltenpath = "E:/projects/Baby-Germs/FAECA/downstream-analysis/FAECA/KLERKSDORP/transmission/coreSNPmatrixmolten.csv"
+# mlst_profile = "E:/projects/Baby-Germs/FAECA/downstream-analysis/FAECA/KLERKSDORP/transmission/05.mlst.xlsx"
+# out_dir <- "E:/projects/Baby-Germs/FAECA/downstream-analysis/FAECA/KLERKSDORP/cluster-analysis2/clusters"
+# # Transmission network input files
+# path="E:/projects/Baby-Germs/FAECA/downstream-analysis/FAECA/KLERKSDORP/cluster-analysis2/transmission-analysis"
+# aln_path = "E:/projects/Baby-Germs/FAECA/downstream-analysis/FAECA/KLERKSDORP/transmission/snps.co.snp_sites.aln"
+# snp_dist <- moltenpath
+# core_snps = filepath #"E:/projects/Baby-Germs/KLEPP/KLEPP/DORA-NGINZA/transmission/coreSNPmatrix.co.csv"
+# 
+
+
+# # # MANKWENG
+# dates_path = "E:/projects/Baby-Germs/FAECA/downstream-analysis/FAECA/MANKWENG/transmission/MANKWENG_ward.csv"
+# filepath = "E:/projects/Baby-Germs/FAECA/downstream-analysis/FAECA/MANKWENG/transmission/coreSNPmatrix.co.csv"
+# moltenpath = "E:/projects/Baby-Germs/FAECA/downstream-analysis/FAECA/MANKWENG/transmission/coreSNPmatrixmolten.csv"
+# mlst_profile = "E:/projects/Baby-Germs/FAECA/downstream-analysis/FAECA/MANKWENG/transmission/05.mlst.xlsx"
+# out_dir <- "E:/projects/Baby-Germs/FAECA/downstream-analysis/FAECA/MANKWENG/cluster-analysis2/clusters"
+# # Transmission network input files
+# path="E:/projects/Baby-Germs/FAECA/downstream-analysis/FAECA/MANKWENG/cluster-analysis2/transmission-analysis"
+# aln_path = "E:/projects/Baby-Germs/FAECA/downstream-analysis/FAECA/MANKWENG/transmission/snps.co.snp_sites.aln"
+# snp_dist <- moltenpath
+# core_snps = filepath #"E:/projects/Baby-Germs/KLEPP/KLEPP/DORA-NGINZA/transmission/coreSNPmatrix.co.csv"
+
+
+# # QUEEN
+# dates_path = "E:/projects/Baby-Germs/FAECA/downstream-analysis/FAECA/QUEEN/transmission/QUEEN_ward.csv"
+# filepath = "E:/projects/Baby-Germs/FAECA/downstream-analysis/FAECA/QUEEN/transmission/coreSNPmatrix.co.csv"
+# moltenpath = "E:/projects/Baby-Germs/FAECA/downstream-analysis/FAECA/QUEEN/transmission/coreSNPmatrixmolten.csv"
+# mlst_profile = "E:/projects/Baby-Germs/FAECA/downstream-analysis/FAECA/QUEEN/transmission/05.mlst.xlsx"
+# out_dir <- "E:/projects/Baby-Germs/FAECA/downstream-analysis/FAECA/QUEEN/cluster-analysis2/clusters"
+# # Transmission network input files
+# path="E:/projects/Baby-Germs/FAECA/downstream-analysis/FAECA/QUEEN/cluster-analysis2/transmission-analysis"
+# aln_path = "E:/projects/Baby-Germs/FAECA/downstream-analysis/FAECA/QUEEN/transmission/snps.co.snp_sites.aln"
+# snp_dist <- moltenpath
+# core_snps = filepath #"E:/projects/Baby-Germs/KLEPP/KLEPP/DORA-NGINZA/transmission/coreSNPmatrix.co.csv"
+
+
+# # ROB
+# dates_path = "E:/projects/Baby-Germs/FAECA/downstream-analysis/FAECA/ROB/transmission/ROB_ward.csv"
+# filepath = "E:/projects/Baby-Germs/FAECA/downstream-analysis/FAECA/ROB/transmission/coreSNPmatrix.co.csv"
+# moltenpath = "E:/projects/Baby-Germs/FAECA/downstream-analysis/FAECA/ROB/transmission/coreSNPmatrixmolten.csv"
+# mlst_profile = "E:/projects/Baby-Germs/FAECA/downstream-analysis/FAECA/ROB/transmission/05.mlst.xlsx"
+# out_dir <- "E:/projects/Baby-Germs/FAECA/downstream-analysis/FAECA/ROB/cluster-analysis2/clusters"
+# # Transmission network input files
+# path="E:/projects/Baby-Germs/FAECA/downstream-analysis/FAECA/ROB/cluster-analysis2/transmission-analysis"
+# aln_path = "E:/projects/Baby-Germs/FAECA/downstream-analysis/FAECA/ROB/transmission/snps.co.snp_sites.aln"
+# snp_dist <- moltenpath
+# core_snps = filepath #"E:/projects/Baby-Germs/KLEPP/KLEPP/DORA-NGINZA/transmission/coreSNPmatrix.co.csv"
+
+
+# # TEMBISA
+# dates_path = "E:/projects/Baby-Germs/FAECA/downstream-analysis/FAECA/TEMBISA/transmission/TEMBISA_ward.csv"
+# filepath = "E:/projects/Baby-Germs/FAECA/downstream-analysis/FAECA/TEMBISA/transmission/coreSNPmatrix.co.csv"
+# moltenpath = "E:/projects/Baby-Germs/FAECA/downstream-analysis/FAECA/TEMBISA/transmission/coreSNPmatrixmolten.csv"
+# mlst_profile = "E:/projects/Baby-Germs/FAECA/downstream-analysis/FAECA/TEMBISA/transmission/05.mlst.xlsx"
+# out_dir <- "E:/projects/Baby-Germs/FAECA/downstream-analysis/FAECA/TEMBISA/cluster-analysis2/clusters"
+# # Transmission network input files
+# path="E:/projects/Baby-Germs/FAECA/downstream-analysis/FAECA/TEMBISA/cluster-analysis2/transmission-analysis"
+# aln_path = "E:/projects/Baby-Germs/FAECA/downstream-analysis/FAECA/TEMBISA/transmission/snps.co.snp_sites.aln"
+# snp_dist <- moltenpath
+# core_snps = filepath #"E:/projects/Baby-Germs/KLEPP/KLEPP/DORA-NGINZA/transmission/coreSNPmatrix.co.csv"
+# 
+# #
+# # E.FAECAlis ref ST
+# refST=68
+# # # # Get different combinations to use for SNP and EPI days
+# refDate="2013-05-14"
+# comparisons <- data.frame(snp=c(11,20,20,25,11),days=c(60,14,60,45,14))
+# # #
+# # #
+
+
+
+# FAECium -------------------------------------------------------------------
+
+# # # DORA
+# dates_path = "E:/projects/Baby-Germs/FAECI/downstream-analysis/FAECI/DORA/transmission/DORA_ward.csv"
+# filepath = "E:/projects/Baby-Germs/FAECI/downstream-analysis/FAECI/DORA/transmission/coreSNPmatrix.co.csv"
+# moltenpath = "E:/projects/Baby-Germs/FAECI/downstream-analysis/FAECI/DORA/transmission/coreSNPmatrixmolten.csv"
+# mlst_profile = "E:/projects/Baby-Germs/FAECI/downstream-analysis/FAECI/DORA/transmission/05.mlst.xlsx"
+# out_dir <- "E:/projects/Baby-Germs/FAECI/downstream-analysis/FAECI/DORA/cluster-analysis2/clusters"
+# # Transmission network input files
+# path="E:/projects/Baby-Germs/FAECI/downstream-analysis/FAECI/DORA/cluster-analysis2/transmission-analysis"
+# aln_path = "E:/projects/Baby-Germs/FAECI/downstream-analysis/FAECI/DORA/transmission/snps.co.snp_sites.aln"
+# snp_dist <- moltenpath
+# core_snps = filepath #"E:/projects/Baby-Germs/KLEPP/KLEPP/DORA-NGINZA/transmission/coreSNPmatrix.co.csv"
+
+
+
+# # # # KLERKSDORP
+# dates_path = "E:/projects/Baby-Germs/FAECI/downstream-analysis/FAECI/KLERKSDORP/transmission/KLERKSDORP_ward.csv"
+# filepath = "E:/projects/Baby-Germs/FAECI/downstream-analysis/FAECI/KLERKSDORP/transmission/coreSNPmatrix.co.csv"
+# moltenpath = "E:/projects/Baby-Germs/FAECI/downstream-analysis/FAECI/KLERKSDORP/transmission/coreSNPmatrixmolten.csv"
+# mlst_profile = "E:/projects/Baby-Germs/FAECI/downstream-analysis/FAECI/KLERKSDORP/transmission/05.mlst.xlsx"
+# out_dir <- "E:/projects/Baby-Germs/FAECI/downstream-analysis/FAECI/KLERKSDORP/cluster-analysis2/clusters"
+# # Transmission network input files
+# path="E:/projects/Baby-Germs/FAECI/downstream-analysis/FAECI/KLERKSDORP/cluster-analysis2/transmission-analysis"
+# aln_path = "E:/projects/Baby-Germs/FAECI/downstream-analysis/FAECI/KLERKSDORP/transmission/snps.co.snp_sites.aln"
+# snp_dist <- moltenpath
+# core_snps = filepath #"E:/projects/Baby-Germs/KLEPP/KLEPP/DORA-NGINZA/transmission/coreSNPmatrix.co.csv"
+# 
+
+
+# # # MANKWENG
+# dates_path = "E:/projects/Baby-Germs/FAECI/downstream-analysis/FAECI/MANKWENG/transmission/MANKWENG_ward.csv"
+# filepath = "E:/projects/Baby-Germs/FAECI/downstream-analysis/FAECI/MANKWENG/transmission/coreSNPmatrix.co.csv"
+# moltenpath = "E:/projects/Baby-Germs/FAECI/downstream-analysis/FAECI/MANKWENG/transmission/coreSNPmatrixmolten.csv"
+# mlst_profile = "E:/projects/Baby-Germs/FAECI/downstream-analysis/FAECI/MANKWENG/transmission/05.mlst.xlsx"
+# out_dir <- "E:/projects/Baby-Germs/FAECI/downstream-analysis/FAECI/MANKWENG/cluster-analysis2/clusters"
+# # Transmission network input files
+# path="E:/projects/Baby-Germs/FAECI/downstream-analysis/FAECI/MANKWENG/cluster-analysis2/transmission-analysis"
+# aln_path = "E:/projects/Baby-Germs/FAECI/downstream-analysis/FAECI/MANKWENG/transmission/snps.co.snp_sites.aln"
+# snp_dist <- moltenpath
+# core_snps = filepath #"E:/projects/Baby-Germs/KLEPP/KLEPP/DORA-NGINZA/transmission/coreSNPmatrix.co.csv"
+
+
+# # QUEEN
+# dates_path = "E:/projects/Baby-Germs/FAECI/downstream-analysis/FAECI/QUEEN/transmission/QUEEN_ward.csv"
+# filepath = "E:/projects/Baby-Germs/FAECI/downstream-analysis/FAECI/QUEEN/transmission/coreSNPmatrix.co.csv"
+# moltenpath = "E:/projects/Baby-Germs/FAECI/downstream-analysis/FAECI/QUEEN/transmission/coreSNPmatrixmolten.csv"
+# mlst_profile = "E:/projects/Baby-Germs/FAECI/downstream-analysis/FAECI/QUEEN/transmission/05.mlst.xlsx"
+# out_dir <- "E:/projects/Baby-Germs/FAECI/downstream-analysis/FAECI/QUEEN/cluster-analysis2/clusters"
+# # Transmission network input files
+# path="E:/projects/Baby-Germs/FAECI/downstream-analysis/FAECI/QUEEN/cluster-analysis2/transmission-analysis"
+# aln_path = "E:/projects/Baby-Germs/FAECI/downstream-analysis/FAECI/QUEEN/transmission/snps.co.snp_sites.aln"
+# snp_dist <- moltenpath
+# core_snps = filepath #"E:/projects/Baby-Germs/KLEPP/KLEPP/DORA-NGINZA/transmission/coreSNPmatrix.co.csv"
+
+
+# # ROB
+# dates_path = "E:/projects/Baby-Germs/FAECI/downstream-analysis/FAECI/ROB/transmission/ROB_ward.csv"
+# filepath = "E:/projects/Baby-Germs/FAECI/downstream-analysis/FAECI/ROB/transmission/coreSNPmatrix.co.csv"
+# moltenpath = "E:/projects/Baby-Germs/FAECI/downstream-analysis/FAECI/ROB/transmission/coreSNPmatrixmolten.csv"
+# mlst_profile = "E:/projects/Baby-Germs/FAECI/downstream-analysis/FAECI/ROB/transmission/05.mlst.xlsx"
+# out_dir <- "E:/projects/Baby-Germs/FAECI/downstream-analysis/FAECI/ROB/cluster-analysis2/clusters"
+# # Transmission network input files
+# path="E:/projects/Baby-Germs/FAECI/downstream-analysis/FAECI/ROB/cluster-analysis2/transmission-analysis"
+# aln_path = "E:/projects/Baby-Germs/FAECI/downstream-analysis/FAECI/ROB/transmission/snps.co.snp_sites.aln"
+# snp_dist <- moltenpath
+# core_snps = filepath #"E:/projects/Baby-Germs/KLEPP/KLEPP/DORA-NGINZA/transmission/coreSNPmatrix.co.csv"
+
+
+# # TEMBISA
+# dates_path = "E:/projects/Baby-Germs/FAECI/downstream-analysis/FAECI/TEMBISA/transmission/TEMBISA_ward.csv"
+# filepath = "E:/projects/Baby-Germs/FAECI/downstream-analysis/FAECI/TEMBISA/transmission/coreSNPmatrix.co.csv"
+# moltenpath = "E:/projects/Baby-Germs/FAECI/downstream-analysis/FAECI/TEMBISA/transmission/coreSNPmatrixmolten.csv"
+# mlst_profile = "E:/projects/Baby-Germs/FAECI/downstream-analysis/FAECI/TEMBISA/transmission/05.mlst.xlsx"
+# out_dir <- "E:/projects/Baby-Germs/FAECI/downstream-analysis/FAECI/TEMBISA/cluster-analysis2/clusters"
+# # Transmission network input files
+# path="E:/projects/Baby-Germs/FAECI/downstream-analysis/FAECI/TEMBISA/cluster-analysis2/transmission-analysis"
+# aln_path = "E:/projects/Baby-Germs/FAECI/downstream-analysis/FAECI/TEMBISA/transmission/snps.co.snp_sites.aln"
+# snp_dist <- moltenpath
+# core_snps = filepath #"E:/projects/Baby-Germs/KLEPP/KLEPP/DORA-NGINZA/transmission/coreSNPmatrix.co.csv"
+# 
+# # 
+# # # FAECI ref ST
+# refST=78
+# # # # # Get different combinations to use for SNP and EPI days
+# refDate="2020-02-05" #Feb 5, 2020
+# comparisons <- data.frame(snp=c(11,20,20,25,11),days=c(60,14,60,45,14))
+# # # #
+# # #
