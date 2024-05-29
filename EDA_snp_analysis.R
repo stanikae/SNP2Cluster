@@ -280,8 +280,7 @@ for(i in 1:nrow(comparisons)){
 
   plotDF <- datesJoin %>% 
     left_join(clusterSet3, by="sampleID") %>% 
-    dplyr::rename("Epiweek"=epiyearweek) %>%    #20240529
-    # dplyr::rename("Epiweek"=epiyearweek.x) %>% 
+    dplyr::rename("Epiweek"=epiyearweek) %>%
     ungroup() %>%
     group_by(Epiweek) %>%
     distinct(sampleID, .keep_all = TRUE) %>%
@@ -292,6 +291,27 @@ for(i in 1:nrow(comparisons)){
     dplyr::mutate(id=dplyr::row_number()) %>%
     left_join(mlst,by=c("sampleID"="FILE")) %>%
     dplyr::rename("Cases_count"=n_cases) #%>% print(n=40)
+  
+  
+  # clusterSet3 <- clusterSet3 %>%
+  #   dplyr::select("sampleID","Days","SNPs","Clusters","Cluster_Cases_count")
+  # 
+  # plotDF <- datesJoin %>% 
+  #   left_join(clusterSet3, by="sampleID") %>% 
+  #   dplyr::rename("Epiweek"=epiyearweek) %>%    #20240529
+  #   # dplyr::rename("Epiweek"=epiyearweek.x) %>%
+  #   dplyr::filter(Facility_code == "H2") %>%
+  #   ungroup() %>%
+  #   group_by(Epiweek) %>%
+  #   distinct(sampleID, .keep_all = TRUE) %>%
+  #   dplyr::mutate(n_cases=n()) %>%
+  #   ungroup() %>%
+  #   dplyr::arrange(TakenDate) %>%
+  #   mutate(denserank = data.table::rleid(TakenDate)) %>%
+  #   dplyr::mutate(id=dplyr::row_number()) %>%
+  #   left_join(mlst,by=c("sampleID"="FILE")) %>%
+  #   dplyr::rename("Cases_count"=n_cases) #%>% print(n=40)
+  
   
   plotDF$Epiweek = factor(plotDF$Epiweek, levels=unique(plotDF$Epiweek)[plotDF$id], ordered = T)
   plotDF$Cases_count = dplyr::coalesce(plotDF$Cases_count,1)
@@ -309,7 +329,7 @@ for(i in 1:nrow(comparisons)){
   vis_dat(plotDF)
   
   px1 <- plotDF %>% group_by(WardType,Epiweek) %>% dplyr::mutate(count=n())
-  # px1 <- plotDF %>% group_by(Facility_code.x,Epiweek) %>% dplyr::mutate(count=n())
+  px1 <- plotDF %>% group_by(Facility_code.x,Epiweek) %>% dplyr::mutate(count=n())
   
   p1 <- ggplot(px1, 
          aes(x = Epiweek,
