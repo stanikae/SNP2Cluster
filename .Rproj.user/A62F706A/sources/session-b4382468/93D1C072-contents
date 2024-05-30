@@ -30,7 +30,7 @@ for(i in 1:nrow(comparisons)){
   snpco=20
   daysco=21
 
-
+  # set work directory for SNP-EPI clusters
   work_dir <- paste0(out_dir,"_SNPcutoff",snpco,"_Days",daysco)
   
   
@@ -89,10 +89,10 @@ for(i in 1:nrow(comparisons)){
   # # Richael's data
   # vec_incl_filt <- c("FILE","SEX","Facility code","type_vaccine","Serotype","Sampling_date","GPSC")
   # mx <- read_csv(dates_path, col_names = F) %>% ncol()
-  # datesDF <- read_csv(dates_path, col_names = T) %>% 
-  #   # dplyr::select(all_of(mx),1,2,3,4) 
+  # datesDF <- read_csv(dates_path, col_names = T) %>%
+  #   # dplyr::select(all_of(mx),1,2,3,4)
   #   dplyr::select(any_of(vec_incl_filt))
-  # names(datesDF) <- c("sampleID","SeX","Facility_code","Vaccine_type","Serotype","TakenDate","GPSC") 
+  # names(datesDF) <- c("sampleID","SeX","Facility_code","Vaccine_type","Serotype","TakenDate","GPSC")
   # # datesDF$Ward <- dplyr::coalesce(datesDF$Ward,"UNKNOWN")
   # # datesDF$WardType <- dplyr::coalesce(datesDF$WardType,"UNKNOWN")
   # 
@@ -292,25 +292,25 @@ for(i in 1:nrow(comparisons)){
     left_join(mlst,by=c("sampleID"="FILE")) %>%
     dplyr::rename("Cases_count"=n_cases) #%>% print(n=40)
   
-  
-  # clusterSet3 <- clusterSet3 %>%
-  #   dplyr::select("sampleID","Days","SNPs","Clusters","Cluster_Cases_count")
-  # 
-  # plotDF <- datesJoin %>% 
-  #   left_join(clusterSet3, by="sampleID") %>% 
-  #   dplyr::rename("Epiweek"=epiyearweek) %>%    #20240529
-  #   # dplyr::rename("Epiweek"=epiyearweek.x) %>%
-  #   dplyr::filter(Facility_code == "H2") %>%
-  #   ungroup() %>%
-  #   group_by(Epiweek) %>%
-  #   distinct(sampleID, .keep_all = TRUE) %>%
-  #   dplyr::mutate(n_cases=n()) %>%
-  #   ungroup() %>%
-  #   dplyr::arrange(TakenDate) %>%
-  #   mutate(denserank = data.table::rleid(TakenDate)) %>%
-  #   dplyr::mutate(id=dplyr::row_number()) %>%
-  #   left_join(mlst,by=c("sampleID"="FILE")) %>%
-  #   dplyr::rename("Cases_count"=n_cases) #%>% print(n=40)
+
+  clusterSet3 <- clusterSet3 %>%
+    dplyr::select("sampleID","Days","SNPs","Clusters","Cluster_Cases_count")
+
+  plotDF <- datesJoin %>%
+    left_join(clusterSet3, by="sampleID") %>%
+    dplyr::rename("Epiweek"=epiyearweek) %>%    #20240529
+    # dplyr::rename("Epiweek"=epiyearweek.x) %>%
+    # dplyr::filter(Facility_code == "H2") %>%
+    ungroup() %>%
+    group_by(Epiweek) %>%
+    distinct(sampleID, .keep_all = TRUE) %>%
+    dplyr::mutate(n_cases=n()) %>%
+    ungroup() %>%
+    dplyr::arrange(TakenDate) %>%
+    mutate(denserank = data.table::rleid(TakenDate)) %>%
+    dplyr::mutate(id=dplyr::row_number()) %>%
+    left_join(mlst,by=c("sampleID"="FILE")) %>%
+    dplyr::rename("Cases_count"=n_cases) #%>% print(n=40)
   
   
   plotDF$Epiweek = factor(plotDF$Epiweek, levels=unique(plotDF$Epiweek)[plotDF$id], ordered = T)
@@ -318,6 +318,62 @@ for(i in 1:nrow(comparisons)){
   plotDF$Cases_count = as.factor(plotDF$Cases_count)
   plotDF$Clusters = as.factor(plotDF$Clusters)
   plotDF$ST = as.factor(plotDF$ST)
+
+  # create scatter plots
+  st_list <- list()
+  if(transmission_type == "community"){
+    
+    st_vec <- levels(plotDF$ST)
+    for(i in seq_along(st_vec)){
+      st_val <- st_vec[[i]]
+      
+      
+      st_df <- plotDF %>%
+        dplyr::filter(ST %in% st_val)
+      
+      if(nrow(st_df)>=2){
+        st_list[[i]] <- st_df
+        
+        if(sum(st_df$Cluster_Cases_count, na.rm = T) > 0){
+          px1 <- st_df %>% 
+            group_by(Facility_code,Epiweek) %>% 
+            dplyr::mutate(count=n())
+          
+          p1 <- ggplot(px1, 
+                       aes(x = Epiweek,
+                           y = Facility_code , #WardType, #Clusters,
+                           # y = count, #,
+                           color=Clusters,
+                           shape = ST #WardType
+                       )) +
+            geom_point(alpha = .9, size=4,position=position_jitter(h=0.07,w=0.15)) + 
+            # scale_fill_brewer(palette = "Dark2") +
+            labs(title = paste0("Clusters based on Epi definition: SNPs <= ",snpco," + ",daysco,"-day window"),
+                 y = "Facility code",
+                 x = "Epiweek") +
+            theme_bw() +
+            # scale_y_continuous(breaks = ~round(unique(pretty(.)))) +
+            theme(panel.grid.major = element_blank(),
+                  panel.grid.minor = element_blank()) +
+            theme(axis.title = element_text(size = 15)) +
+            theme(axis.text = element_text(size = 12)) +
+            theme(axis.text.x = element_text(angle=90,size=12,vjust = 0.5, hjust = 1)) 
+          
+          
+          ggsave(file.path(work_dir,paste0("Scatterplot.ST.",st_val,date_var,".png")),p1,width = 10, height = 8)
+        }
+        
+        
+        
+      }else{
+        next
+      }
+    }
+  }
+  
+  
+  
+  
 
   
   
@@ -336,7 +392,7 @@ for(i in 1:nrow(comparisons)){
              y = ST, #WardType, #Clusters,
              # y = count, #,
              color=Clusters,
-             shape = Facility_code.x #WardType
+             shape = Facility_code #WardType
              )) +
     geom_point(alpha = .9, size=4,position=position_jitter(h=0.07,w=0.15)) + 
     # scale_fill_brewer(palette = "Dark2") +
