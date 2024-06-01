@@ -85,19 +85,19 @@ for(i in 1:nrow(comparisons)){
   datesDF$Ward <- dplyr::coalesce(datesDF$Ward,"UNKNOWN")
   datesDF$WardType <- dplyr::coalesce(datesDF$WardType,"UNKNOWN")
   
-  
-  # # Richael's data
-  # vec_incl_filt <- c("FILE","SEX","Facility code","type_vaccine","Serotype","Sampling_date","GPSC")
-  # mx <- read_csv(dates_path, col_names = F) %>% ncol()
-  # datesDF <- read_csv(dates_path, col_names = T) %>%
-  #   # dplyr::select(all_of(mx),1,2,3,4)
-  #   dplyr::select(any_of(vec_incl_filt))
-  # names(datesDF) <- c("sampleID","SeX","Facility_code","Vaccine_type","Serotype","TakenDate","GPSC")
-  # # datesDF$Ward <- dplyr::coalesce(datesDF$Ward,"UNKNOWN")
-  # # datesDF$WardType <- dplyr::coalesce(datesDF$WardType,"UNKNOWN")
-  # 
-  # # Fix dates - optional 2024-05-29
-  # datesDF$TakenDate <- lubridate::mdy(datesDF$TakenDate)
+
+  # Richael's data
+  vec_incl_filt <- c("FILE","SEX","Facility code","type_vaccine","Serotype","Sampling_date","GPSC")
+  mx <- read_csv(dates_path, col_names = F) %>% ncol()
+  datesDF <- read_csv(dates_path, col_names = T) %>%
+    # dplyr::select(all_of(mx),1,2,3,4)
+    dplyr::select(any_of(vec_incl_filt))
+  names(datesDF) <- c("sampleID","SeX","Facility_code","Vaccine_type","Serotype","TakenDate","GPSC")
+  # datesDF$Ward <- dplyr::coalesce(datesDF$Ward,"UNKNOWN")
+  # datesDF$WardType <- dplyr::coalesce(datesDF$WardType,"UNKNOWN")
+
+  # Fix dates - optional 2024-05-29
+  datesDF$TakenDate <- lubridate::mdy(datesDF$TakenDate)
   
   
   epiwkDF <- datesDF %>% 
@@ -154,111 +154,29 @@ for(i in 1:nrow(comparisons)){
   
   
   
-  # get core SNP clusters
-  res_list <- get_core_snp_clusters(m=mat, max=sigNN+2, dates=datesJoin, snpco=snpco, orig=T)
+
+# get core SNP clusters ---------------------------------------------------
+
+  core_snp_results_list <- run_core_snp_cluster_analysis()
   
-  snpClust <- res_list[[1]]
+  snpClust <- core_snp_results_list[[1]]
+  snpClustID <- core_snp_results_list[[2]] 
+  df2mat <- core_snp_results_list[[3]]
+  vec_keep_names <- core_snp_results_list[[4]] 
+  mat_optimal_centres <- core_snp_results_list[[5]]
   
-  if(!exists('snpClust')){
-    next
-  }
-  # if(exists('snpClust') && is.na(snpClust)){next}
-  
-  if(nrow(snpClust) == 0){
-    next
-  }#else if(is.na(snpClust)){next}
-  
-  
-  # create matrix for heatmap
-  snpClustID <- snpClust %>%
-    mutate(km_cluster=as.character(km_cluster),
-           cluster=as.character(cluster)) %>%
-    dplyr::select(2,3) %>%
-    distinct(.,.keep_all = T) 
-  
-  vec_keep_names <- snpClust %>% pull(name) %>% unique() 
-  # mat_optimal_centres <- res.km$centers[,colnames(res.km$centers) %in% vec_keep_names]
-  centers_mat <- res_list[[2]]$centers
-  
-  # if(is.na(centers_mat)){next}
-  
-  mat_optimal_centres <- centers_mat[,colnames(centers_mat) %in% vec_keep_names]
-  # mat_optimal_centres <- mat_optimal_centres[! rownames(mat_optimal_centres) %in% vec_excl,]
-  
-  df2mat <- as.data.frame(mat_optimal_centres) %>%
-    rownames_to_column(var = "rowID") %>%
-    inner_join(snpClustID, by=c("rowID"="km_cluster")) %>%
-    column_to_rownames(var = "cluster") %>%
-    dplyr::select(-rowID)
   
 
-  
-  # calculate SNP-Epi clusters -- new approach as suggested by Lili-CHARM
-  
-  vec_clust <- snpClust %>% pull(cluster) %>% unique()
-  
-  episnp_list = list()
-  for(k in vec_clust){
-    episnp_list[[k]] <- snpClust %>% dplyr::filter(cluster %in% k) %>%
-      inner_join(datesDF, by=c("name"="sampleID")) %>%
-      dplyr::arrange(TakenDate) %>%
-      mutate(ID2 = dplyr::lead(name,1)) %>% 
-      mutate(Date2 = dplyr::lead(TakenDate,1)) %>% 
-      dplyr::select(name,ID2,TakenDate,Date2,everything()) %>%
-      mutate(Days = as.numeric(difftime(Date2,TakenDate,units = "days"))) %>%
-      mutate(epicumsum = if_else(Days <= daysco,1,0)) %>%
-      mutate(epicumsum = if_else(is.na(epicumsum),0,epicumsum)) %>%
-      ungroup() %>%
-      inner_join(mdf,by=c("name"="X1","ID2"="X2")) %>%
-      mutate(CG = data.table::rleid(epicumsum)) %>%
-      dplyr::filter(epicumsum != 0) #%>%
-      # print(n=40)
-    
-  }
-  
-  
-  # # Richael's data modifications      #20240529
-  # # names(epiwkDF)[1] <- "name"
-  # episnp_list = list()
-  # for(k in vec_clust){
-  #   episnp_list[[k]] <- snpClust %>% dplyr::filter(cluster %in% k) %>%
-  #     inner_join(epiwkDF, by=c("name"="sampleID")) %>%
-  #     dplyr::arrange(TakenDate) %>%
-  #     mutate(ID2 = dplyr::lead(name,1)) %>% 
-  #     mutate(Date2 = dplyr::lead(TakenDate,1)) %>% 
-  #     dplyr::select(name,ID2,TakenDate,Date2,everything()) %>%
-  #     mutate(Days = as.numeric(difftime(Date2,TakenDate,units = "days"))) %>%
-  #     mutate(epicumsum = if_else(Days <= daysco,1,0)) %>%
-  #     mutate(epicumsum = if_else(is.na(epicumsum),0,epicumsum)) %>%
-  #     ungroup() %>%
-  #     inner_join(mdf,by=c("name"="X1","ID2"="X2")) %>%
-  #     mutate(CG = data.table::rleid(epicumsum)) %>%
-  #     dplyr::filter(epicumsum != 0) #%>%
-  #   # print(n=40)
-  #   
-  # }
-  
-  
-  
+# calculate SNP-Epi clusters - new approach as suggested by Lili-CHARM -------
+
   excl_vec <- c("TakenDate","Date2","epicumsum","CG","num","name","cluster","km_cluster",
                 "Hospital","Ward","WardType")
   
-  clusterSet3 <- bind_rows(episnp_list) %>%
-    mutate(num = as.numeric(paste0(cluster,CG))) %>%
-    mutate(Clusters = data.table::rleid(num)) %>%
-    ungroup() %>%
-    pivot_longer(cols = c(name,ID2),values_to = "sampleID") %>%
-    # select(! all_of(excl_vec)) %>%  #20240529
-    select(! any_of(excl_vec)) %>%
-    group_by(Clusters) %>%
-    dplyr::rename("SNPs"=X3) %>%
-    distinct(sampleID, .keep_all = TRUE) %>%
-    dplyr::mutate(n_clusters=n()) %>%
-    mutate(Clusters=as.factor(as.character(Clusters))) %>%
-    dplyr::rename("Cluster_Cases_count"=n_clusters)
+  
+  clusterSet3 <- calculate_SNP_Epi_clusters(snpClust=snpClust,epiwkDF=epiwkDF,mdf=mdf,excl_vec=excl_vec)
   
   
-  if(nrow(clusterSet3) == 0){ next }
+  
   
   ############################################################################
   
@@ -276,189 +194,120 @@ for(i in 1:nrow(comparisons)){
     mutate(CG = data.table::rleid(epicumsum)) %>%
     dplyr::filter(epicumsum != 0)
  
-   
 
-  plotDF <- datesJoin %>% 
-    left_join(clusterSet3, by="sampleID") %>% 
-    dplyr::rename("Epiweek"=epiyearweek) %>%
-    ungroup() %>%
-    group_by(Epiweek) %>%
-    distinct(sampleID, .keep_all = TRUE) %>%
-    dplyr::mutate(n_cases=n()) %>%
-    ungroup() %>%
-    dplyr::arrange(TakenDate) %>%
-    mutate(denserank = data.table::rleid(TakenDate)) %>%
-    dplyr::mutate(id=dplyr::row_number()) %>%
-    left_join(mlst,by=c("sampleID"="FILE")) %>%
-    dplyr::rename("Cases_count"=n_cases) #%>% print(n=40)
-  
 
-  clusterSet3 <- clusterSet3 %>%
-    dplyr::select("sampleID","Days","SNPs","Clusters","Cluster_Cases_count")
-
-  plotDF <- datesJoin %>%
-    left_join(clusterSet3, by="sampleID") %>%
-    dplyr::rename("Epiweek"=epiyearweek) %>%    #20240529
-    # dplyr::rename("Epiweek"=epiyearweek.x) %>%
-    # dplyr::filter(Facility_code == "H2") %>%
-    ungroup() %>%
-    group_by(Epiweek) %>%
-    distinct(sampleID, .keep_all = TRUE) %>%
-    dplyr::mutate(n_cases=n()) %>%
-    ungroup() %>%
-    dplyr::arrange(TakenDate) %>%
-    mutate(denserank = data.table::rleid(TakenDate)) %>%
-    dplyr::mutate(id=dplyr::row_number()) %>%
-    left_join(mlst,by=c("sampleID"="FILE")) %>%
-    dplyr::rename("Cases_count"=n_cases) #%>% print(n=40)
-  
-  
-  plotDF$Epiweek = factor(plotDF$Epiweek, levels=unique(plotDF$Epiweek)[plotDF$id], ordered = T)
-  plotDF$Cases_count = dplyr::coalesce(plotDF$Cases_count,1)
-  plotDF$Cases_count = as.factor(plotDF$Cases_count)
-  plotDF$Clusters = as.factor(plotDF$Clusters)
-  plotDF$ST = as.factor(plotDF$ST)
-
-  # create scatter plots
-  st_list <- list()
-  if(transmission_type == "community"){
-    
-    st_vec <- levels(plotDF$ST)
-    for(i in seq_along(st_vec)){
-      st_val <- st_vec[[i]]
-      
-      
-      st_df <- plotDF %>%
-        dplyr::filter(ST %in% st_val)
-      
-      if(nrow(st_df)>=2){
-        st_list[[i]] <- st_df
-        
-        if(sum(st_df$Cluster_Cases_count, na.rm = T) > 0){
-          px1 <- st_df %>% 
-            group_by(Facility_code,Epiweek) %>% 
-            dplyr::mutate(count=n())
-          
-          p1 <- ggplot(px1, 
-                       aes(x = Epiweek,
-                           y = Facility_code , #WardType, #Clusters,
-                           # y = count, #,
-                           color=Clusters,
-                           shape = ST #WardType
-                       )) +
-            geom_point(alpha = .9, size=4,position=position_jitter(h=0.07,w=0.15)) + 
-            # scale_fill_brewer(palette = "Dark2") +
-            labs(title = paste0("Clusters based on Epi definition: SNPs <= ",snpco," + ",daysco,"-day window"),
-                 y = "Facility code",
-                 x = "Epiweek") +
-            theme_bw() +
-            # scale_y_continuous(breaks = ~round(unique(pretty(.)))) +
-            theme(panel.grid.major = element_blank(),
-                  panel.grid.minor = element_blank()) +
-            theme(axis.title = element_text(size = 15)) +
-            theme(axis.text = element_text(size = 12)) +
-            theme(axis.text.x = element_text(angle=90,size=12,vjust = 0.5, hjust = 1)) 
-          
-          
-          ggsave(file.path(work_dir,paste0("Scatterplot.ST.",st_val,date_var,".png")),p1,width = 10, height = 8)
-        }
-        
-        
-        
-      }else{
-        next
-      }
-    }
-  }
-  
-  
-  
-  
+# Create scatter plots ----------------------------------------------------
 
   
+  scatter_plots_cmb_list <- list()
+  scatter_plots_cmb_list <- create_scatter_plots(datesJoin,clusterSet3,mlst,transmission_type="community")
   
- # Plot bar plot and scatterplot - epicurves -------------------------------
   
-  library(visdat)
-  # library(ggnewscale)
-  # vis_dat(airquality)
-  vis_dat(plotDF)
   
-  px1 <- plotDF %>% group_by(WardType,Epiweek) %>% dplyr::mutate(count=n())
-  px1 <- plotDF %>% group_by(Facility_code.x,Epiweek) %>% dplyr::mutate(count=n())
-  
-  p1 <- ggplot(px1, 
-         aes(x = Epiweek,
-             y = ST, #WardType, #Clusters,
-             # y = count, #,
-             color=Clusters,
-             shape = Facility_code #WardType
-             )) +
-    geom_point(alpha = .9, size=4,position=position_jitter(h=0.07,w=0.15)) + 
-    # scale_fill_brewer(palette = "Dark2") +
-    labs(title = paste0("Clusters based on Epi definition: SNPs <= ",snpco," + ",daysco,"-day window"),
-         y = "Sequence Types",
-         x = "Epiweek") +
-    theme_bw() +
-    # scale_y_continuous(breaks = ~round(unique(pretty(.)))) +
-    theme(panel.grid.major = element_blank(),
-          panel.grid.minor = element_blank()) +
-    theme(axis.title = element_text(size = 15)) +
-    theme(axis.text = element_text(size = 12)) +
-    theme(axis.text.x = element_text(angle=90,size=12,vjust = 0.5, hjust = 1)) 
-  # +
-  #   guides(color = guide_colorbar(title = "Horsepower"),
-  #          shape = guide_legend(title = "Weight"), size = guide_legend(title = "Gear")
-  #   )
-   
-  
+  # save scatter plots to file
   ggsave(file.path(work_dir,paste0("Scatterplot.",date_var,".png")),p1,width = 10, height = 8)
   
   
   
-  # # px <- plotDF %>% 
-  # #   naniar::bind_shadow()
-  # px1 <- px1 %>% mutate(ST = if_else(!is.na(Clusters),ST,NA))
-  # st_shape <- length(levels(px1$ST))
-  # # jitter <- position_jitter(width = 0.1, height = 0.2)
-  # p2 <- ggplot(px1,aes(x = Epiweek,
-  #                     fill = Clusters)) +
-  #   geom_bar() +
-  #   # ggnewscale::new_scale_color() +
-  #   # scale_fill_brewer(palette = "Dark2")
-  #   geom_point(aes(x=Epiweek,y=count,shape=ST),color="black",size = 4) + #, position=jitter #position=position_jitter(h=0.0,w=0.5)
-  #   # scale_color_manual(values = c("blue", "green","khaki")) +
-  #   scale_shape_manual(values=c(seq(2,length.out=st_shape)))+
-  #   # scale_color_manual(values=c('#999999','#E69F00', '#56B4E9'))+
-  #   # scale_size_manual(values=c(2,3,4))
-  #   labs(title = paste0("Clusters based on Epi definition: SNPs <= ",snpco," + ",daysco,"-day window"),
-  #        y = "Counts",
-  #        x = "Epiweek") +
-  #  
-  #   theme_bw() +
-  #   scale_y_continuous(breaks = ~round(unique(pretty(.)))) +
-  #   theme(panel.grid.major = element_blank(),
-  #         panel.grid.minor = element_blank()) +
-  #   theme(axis.title = element_text(size = 15)) +
-  #   theme(axis.text = element_text(size = 12)) +
-  #   theme(axis.text.x = element_text(angle=90,size=12,vjust = 0.5, hjust = 1)) 
-  # 
-  # 
-  # ggsave(file.path(work_dir,paste0("Barplot_epicurve.",date_var,".png")),p2,width = 10, height = 8)
-  # 
-  
   incl_vec2 <- c("sampleID", "Hospital","Ward","WardType","TakenDate","Epiweek","Days","SNPs", "Clusters","ST")
   
   metadf <- plotDF %>%
-  # metadf <- px1 %>%
+    # metadf <- px1 %>%
     ungroup() %>%
     dplyr::select(-epiweek) %>%
     add_row(sampleID="reference",Hospital=NA,Ward=NA,WardType=NA,TakenDate=as.Date(refDate),Epiweek=NA,ST=as.factor(refST)) %>%
     dplyr::select(all_of(incl_vec2)) %>% distinct(sampleID,.keep_all = TRUE) %>%
-    column_to_rownames(var = "sampleID") 
+    column_to_rownames(var = "sampleID")
   
   
+  metadf <- plotDF %>%
+    # metadf <- px1 %>%
+    ungroup() %>%
+    column_to_rownames(var = "sampleID")
   
+  
+ # # Plot bar plot and scatterplot - epicurves -------------------------------
+ #  
+ #  library(visdat)
+ #  # library(ggnewscale)
+ #  # vis_dat(airquality)
+ #  vis_dat(plotDF)
+ #  
+ #  px1 <- plotDF %>% group_by(WardType,Epiweek) %>% dplyr::mutate(count=n())
+ #  px1 <- plotDF %>% group_by(Facility_code.x,Epiweek) %>% dplyr::mutate(count=n())
+ #  
+ #  p1 <- ggplot(px1, 
+ #         aes(x = Epiweek,
+ #             y = ST, #WardType, #Clusters,
+ #             # y = count, #,
+ #             color=Clusters,
+ #             shape = WardType
+ #             )) +
+ #    geom_point(alpha = .9, size=4,position=position_jitter(h=0.07,w=0.15)) + 
+ #    # scale_fill_brewer(palette = "Dark2") +
+ #    labs(title = paste0("Clusters based on Epi definition: SNPs <= ",snpco," + ",daysco,"-day window"),
+ #         y = "Sequence Types",
+ #         x = "Epiweek") +
+ #    theme_bw() +
+ #    # scale_y_continuous(breaks = ~round(unique(pretty(.)))) +
+ #    theme(panel.grid.major = element_blank(),
+ #          panel.grid.minor = element_blank()) +
+ #    theme(axis.title = element_text(size = 15)) +
+ #    theme(axis.text = element_text(size = 12)) +
+ #    theme(axis.text.x = element_text(angle=90,size=12,vjust = 0.5, hjust = 1)) 
+ #  # +
+ #  #   guides(color = guide_colorbar(title = "Horsepower"),
+ #  #          shape = guide_legend(title = "Weight"), size = guide_legend(title = "Gear")
+ #  #   )
+ #   
+ #  
+ #  ggsave(file.path(work_dir,paste0("Scatterplot.",date_var,".png")),p1,width = 10, height = 8)
+ #  
+ #  
+ #  
+ #  # # px <- plotDF %>% 
+ #  # #   naniar::bind_shadow()
+ #  # px1 <- px1 %>% mutate(ST = if_else(!is.na(Clusters),ST,NA))
+ #  # st_shape <- length(levels(px1$ST))
+ #  # # jitter <- position_jitter(width = 0.1, height = 0.2)
+ #  # p2 <- ggplot(px1,aes(x = Epiweek,
+ #  #                     fill = Clusters)) +
+ #  #   geom_bar() +
+ #  #   # ggnewscale::new_scale_color() +
+ #  #   # scale_fill_brewer(palette = "Dark2")
+ #  #   geom_point(aes(x=Epiweek,y=count,shape=ST),color="black",size = 4) + #, position=jitter #position=position_jitter(h=0.0,w=0.5)
+ #  #   # scale_color_manual(values = c("blue", "green","khaki")) +
+ #  #   scale_shape_manual(values=c(seq(2,length.out=st_shape)))+
+ #  #   # scale_color_manual(values=c('#999999','#E69F00', '#56B4E9'))+
+ #  #   # scale_size_manual(values=c(2,3,4))
+ #  #   labs(title = paste0("Clusters based on Epi definition: SNPs <= ",snpco," + ",daysco,"-day window"),
+ #  #        y = "Counts",
+ #  #        x = "Epiweek") +
+ #  #  
+ #  #   theme_bw() +
+ #  #   scale_y_continuous(breaks = ~round(unique(pretty(.)))) +
+ #  #   theme(panel.grid.major = element_blank(),
+ #  #         panel.grid.minor = element_blank()) +
+ #  #   theme(axis.title = element_text(size = 15)) +
+ #  #   theme(axis.text = element_text(size = 12)) +
+ #  #   theme(axis.text.x = element_text(angle=90,size=12,vjust = 0.5, hjust = 1)) 
+ #  # 
+ #  # 
+ #  # ggsave(file.path(work_dir,paste0("Barplot_epicurve.",date_var,".png")),p2,width = 10, height = 8)
+ #  # 
+  
+  # incl_vec2 <- c("sampleID", "Hospital","Ward","WardType","TakenDate","Epiweek","Days","SNPs", "Clusters","ST")
+  # 
+  # metadf <- plotDF %>%
+  # # metadf <- px1 %>%
+  #   ungroup() %>%
+  #   dplyr::select(-epiweek) %>%
+  #   add_row(sampleID="reference",Hospital=NA,Ward=NA,WardType=NA,TakenDate=as.Date(refDate),Epiweek=NA,ST=as.factor(refST)) %>%
+  #   dplyr::select(all_of(incl_vec2)) %>% distinct(sampleID,.keep_all = TRUE) %>%
+  #   column_to_rownames(var = "sampleID") 
+  # 
+  # 
+  # 
   
   
 
@@ -485,8 +334,23 @@ for(i in 1:nrow(comparisons)){
       dplyr::rename("Core.SNP.clusters"=cluster)
     
     
+    
+    maxP <-   c(
+      RColorBrewer::brewer.pal(12,'Paired'),
+      RColorBrewer::brewer.pal(12,'Set3')
+    )
+    
+    
+    maxX <-   c(
+      RColorBrewer::brewer.pal(9,'Set1'),
+      RColorBrewer::brewer.pal(8,'Dark2'),
+      RColorBrewer::brewer.pal(2,"Accent")
+    )
+    
     # vec_incl_filt <- c("Hospital","WardType","ST","Core.SNP.clusters","SNP.Epi.Clusters")
-    vec_excl_filt <- c("km_cluster","Days","SNPs", "Cluster_Cases_count")
+    # vec_excl_filt <- c("km_cluster","Days","SNPs", "Cluster_Cases_count")
+    vec_excl_filt <- c("TakenDate","epiyear","epiweek", "epiyearweek","km_cluster",
+                       "Serotype", "GPSC","Days","SNPs", "Cluster_Cases_count")
     
     if(nrow(clusterSet3) != 0){
       episnpclust <- clusterSet3 %>%
@@ -495,14 +359,15 @@ for(i in 1:nrow(comparisons)){
         dplyr::rename("SNP.Epi.Clusters" = Clusters)
       
       annotDF_subset2 <- annotDF_subset2 %>%
-        left_join(episnpclust,by=c("name"="sampleID")) 
+        left_join(episnpclust,by=c("name"="sampleID")) %>%
+        dplyr::select(!any_of(vec_excl_filt))
       
       
       n5 <- annotDF_subset2 %>% pull(SNP.Epi.Clusters) %>% dplyr::n_distinct()
-      col5 <- brewer.pal(n5,"Paired")
+      col5 <- maxX[1:n5]#brewer.pal(n5,"Paired")
       names(col5) <- annotDF_subset2 %>% pull(SNP.Epi.Clusters) %>% unique()
       
-       
+
     }
     
     annotDF_subset2 <- annotDF_subset2 %>%
@@ -514,37 +379,37 @@ for(i in 1:nrow(comparisons)){
   }
   
 
-  # display.brewer.all()
-  # order annotDf based on mat colnames
-  maxP <-   c(
-    RColorBrewer::brewer.pal(12,'Paired'),
-    RColorBrewer::brewer.pal(12,'Set3')
-  )
-  
+  # # display.brewer.all()
+  # # order annotDf based on mat colnames
   # maxP <-   c(
-  #   RColorBrewer::brewer.pal(11,'RdYlBu'),
-  #   RColorBrewer::brewer.pal(11,'BrBG')
+  #   RColorBrewer::brewer.pal(12,'Paired'),
+  #   RColorBrewer::brewer.pal(12,'Set3')
+  # )
+  # 
+  # # maxP <-   c(
+  # #   RColorBrewer::brewer.pal(11,'RdYlBu'),
+  # #   RColorBrewer::brewer.pal(11,'BrBG')
+  # # )
+  # 
+  # 
+  # maxX <-   c(
+  #   RColorBrewer::brewer.pal(9,'Set1'),
+  #   RColorBrewer::brewer.pal(8,'Dark2')
   # )
   
   
-  maxX <-   c(
-    RColorBrewer::brewer.pal(9,'Set1'),
-    RColorBrewer::brewer.pal(8,'Dark2')
-  )
-  
-  
-  n1 <- annotDF_subset2 %>% pull(Hospital) %>% dplyr::n_distinct()
+  n1 <- annotDF_subset2 %>% pull(Facility_code) %>% dplyr::n_distinct()
   col1 <- brewer.pal(n1,"Set3")
-  names(col1) <- annotDF_subset2 %>% pull(Hospital) %>% unique()
+  names(col1) <- annotDF_subset2 %>% pull(Facility_code) %>% unique()
   
   
-  n2 <- annotDF_subset2 %>% pull(WardType) %>% dplyr::n_distinct()
+  n2 <- annotDF_subset2 %>% pull(Vaccine_type) %>% dplyr::n_distinct()
   col2 <- brewer.pal(n2,"YlGnBu")
-  names(col2) <- annotDF_subset2 %>% pull(WardType) %>% unique()
+  names(col2) <- annotDF_subset2 %>% pull(Vaccine_type) %>% unique()
   
   
   n3 <- annotDF_subset2 %>% pull(ST) %>% dplyr::n_distinct()
-  col3 <- brewer.pal(n3,"Accent")
+  col3 <- maxP[1:n3] #brewer.pal(n3,"Accent")
   names(col3) <- annotDF_subset2 %>% pull(ST) %>% unique()
   
   
@@ -553,9 +418,9 @@ for(i in 1:nrow(comparisons)){
   names(col4) <- annotDF_subset2 %>% pull(Core.SNP.clusters) %>% unique()
   
   
-  n5 <- annotDF_subset2 %>% pull(SNP.Epi.Clusters) %>% dplyr::n_distinct()
-  col5 <- brewer.pal(n5,"Paired")
-  names(col5) <- annotDF_subset2 %>% pull(SNP.Epi.Clusters) %>% unique()
+  # n5 <- annotDF_subset2 %>% pull(SNP.Epi.Clusters) %>% dplyr::n_distinct()
+  # col5 <- brewer.pal(n5,"Paired")
+  # names(col5) <- annotDF_subset2 %>% pull(SNP.Epi.Clusters) %>% unique()
   
   
   
@@ -563,8 +428,8 @@ for(i in 1:nrow(comparisons)){
     colAnnot2 <- ComplexHeatmap::HeatmapAnnotation(
       df = annotDF_subset2, annotation_height = 7,
       annotation_name_gp = gpar(fontsize = 7),
-      col = list(Hospital = col1[! is.na(names(col1))], #c("DORA NGINZA HOSPITAL" = "#8DD3C7"),
-                 WardType = col2[! is.na(names(col2))],
+      col = list(Facility_code = col1[! is.na(names(col1))], #c("DORA NGINZA HOSPITAL" = "#8DD3C7"),
+                 Vaccine_type = col2[! is.na(names(col2))],
                  ST = col3[! is.na(names(col3))],
                  Core.SNP.clusters = col4[! is.na(names(col4))],
                  SNP.Epi.Clusters = col5[! is.na(names(col5))]
@@ -629,7 +494,7 @@ for(i in 1:nrow(comparisons)){
                                  
   )
   
-  tidyHeatmap::save_pdf(p61,file.path(work_dir,paste0("coreSNP-clusters_heatmap.",date_var,".pdf")),width = 10, height = 5, units = "in")
+ tidyHeatmap::save_pdf(p61,file.path(work_dir,paste0("coreSNP-clusters_heatmap.",date_var,".pdf")),width = 10, height = 5, units = "in")
   # centers (i.e., the average of each variable for each cluster):
   
   
@@ -749,8 +614,9 @@ for(i in 1:nrow(comparisons)){
   setwd(path_dir)
   # create date_file
   date_file <- read_csv(dates_path, col_names = F) %>% dplyr::select(all_of(mx),1,2,3,4)
+  date_file <- datesDF
   names(date_file)[1] <- "ID"
-  names(date_file)[5] <- "Collectiondate"
+  names(date_file)[6] <- "Collectiondate"
   
   # date_file <- date_file %>% 
   #   add_row(ID="reference",X2=NA,X3=NA,Collectiondate=as_date("2011-01-01"))
@@ -758,9 +624,12 @@ for(i in 1:nrow(comparisons)){
   
   
   # get mlst profile
-  mlst <- read_excel(mlst_profile) %>% 
-    dplyr::select(1,2,3) %>% 
-    filter(FILE %in% date_file$ID) #%>% print(n=35)
+  # mlst <- read_excel(mlst_profile) %>% 
+  #   dplyr::select(1,2,3) %>% 
+  #   filter(FILE %in% date_file$ID) #%>% print(n=35)
+  
+  
+  mlst <- mlst %>% dplyr::filter(FILE %in% date_file$ID)
   
   # mlst <- mlst %>% add_row(FILE = "reference", SCHEME = "kpneumoniae", ST=as.character(refST))
   
@@ -769,7 +638,8 @@ for(i in 1:nrow(comparisons)){
   if(file.exists(cluster_file_epi_snps)){
     clsters <- read_excel(cluster_file_epi_snps) %>% 
       dplyr::filter(sampleID != "reference") %>%
-      dplyr::select(1,2) %>%
+      # dplyr::select(1,2) %>%
+      dplyr::select(4,1) %>%
       dplyr::rename("names"=sampleID) %>%
       dplyr::rename("cluster"=Clusters)
   }
@@ -814,7 +684,7 @@ for(i in 1:nrow(comparisons)){
   snpDistMat <- read_csv(core_snps)
   names(snpDistMat)[1] <- "names"
   snpDistMat$names <- as.character(snpDistMat$names)
-  snpDistMat <- snpDistMat %>% filter(names != "reference") %>% dplyr::select(-reference)
+  # snpDistMat <- snpDistMat %>% filter(names != "reference") %>% dplyr::select(-reference)
   snpDistMat <- as.matrix(column_to_rownames(snpDistMat,var="names"))
   
   
@@ -830,7 +700,7 @@ for(i in 1:nrow(comparisons)){
   # Transmission tree reconstruction using SeqTrack -------------------------
   
   # Perform transmission network analysis per ST
-  vec_sts <- mlst %>% distinct(ST) %>% pull(ST)
+  vec_sts <- mlst %>% dplyr::filter(ST != "NOVEL") %>% distinct(ST) %>% pull(ST) 
   countm <- 1
   for(st in seq_along(vec_sts)){
     m <- vec_sts[st]
@@ -843,17 +713,26 @@ for(i in 1:nrow(comparisons)){
       dplyr::filter(ID %in% m_ids) %>%
       arrange(Collectiondate) %>% pull(ID)
     
-    dates_vec <- date_file %>% 
-      dplyr::filter(ID %in% m_ids) %>%
-      arrange(Collectiondate) %>% 
-      mutate(Collectiondate=as.POSIXct(Collectiondate)) %>%
-      pull(Collectiondate)
+   
     
     row_idx <- match(aln_names,rownames(snpDistMat))
     col_idx <- match(aln_names,colnames(snpDistMat))
     m_mat <- snpDistMat[row_idx,col_idx]
     
+    if(! all(aln_names %in% colnames(m_mat))){
+      idx_vec <- which(!aln_names %in% colnames(m_mat))
+      aln_names <- aln_names[! seq_along(aln_names) %in% idx_vec]
+    }
+      
+    dates_vec <- date_file %>% 
+      dplyr::filter(ID %in% aln_names) %>%
+      arrange(Collectiondate) %>% 
+      mutate(Collectiondate=as.POSIXct(Collectiondate)) %>%
+      pull(Collectiondate)
+    
     # run seqTrack
+    m_mat <- m_mat[,! is.na(colnames(m_mat))]
+    m_mat <- m_mat[! is.na(rownames(m_mat)),]
     res <- seqTrack(m_mat, aln_names, dates_vec) #, best="min", annot=T)
     
     res$ances[is.na(res$ances)] <- res$id[which(is.na(res$ances))]
@@ -890,10 +769,10 @@ for(i in 1:nrow(comparisons)){
     
     
     
-    date_file <- date_file %>% #group_by(X3) %>% dplyr::count()
-      mutate(shape=case_when(X3 == "neonatal" ~ "circle",
-                             X3 == "other" ~ "box",
-                             TRUE ~ "database")) #%>% print(n=40)
+    # date_file <- date_file %>% #group_by(X3) %>% dplyr::count()
+    #   mutate(shape=case_when(X3 == "neonatal" ~ "circle",
+    #                          X3 == "other" ~ "box",
+    #                          TRUE ~ "database")) #%>% print(n=40)
     
     
     # create nodes
@@ -904,8 +783,8 @@ for(i in 1:nrow(comparisons)){
     
     # add MLST profile to NODES
     nodes <- nodes %>% 
-      left_join(mlst, by=c("label" = "FILE" )) %>%
-      dplyr::select(-SCHEME) 
+      left_join(mlst, by=c("label" = "FILE" )) #%>%
+      # dplyr::select(-SCHEME) 
     
     
     # names(nodes)[which(names(nodes) == "ST")] <- "group"
@@ -1037,24 +916,25 @@ for(i in 1:nrow(comparisons)){
   cluster_file = file.path(work_dir,paste("Core-SNP-Clusters",date_var,"xlsx",sep = "."))
   
   # # prepare data matrix
-  date_file <- read_csv(dates_path, col_names = F) %>% dplyr::select(all_of(mx),1,2,3,4)
-  names(date_file)[1] <- "ID"
-  names(date_file)[5] <- "Collectiondate"
-  date_file <- date_file %>% arrange(Collectiondate)
+  # date_file <- read_csv(dates_path, col_names = F) %>% dplyr::select(all_of(mx),1,2,3,4)
+  # names(date_file)[1] <- "ID"
+  # names(date_file)[5] <- "Collectiondate"
+  # date_file <- date_file %>% arrange(Collectiondate)
+  date_file <- date_file
   
   # aln_names <- date_file %>% 
   #   dplyr::filter(ID %in% m_ids) %>%
   #   arrange(Collectiondate) %>% pull(ID)
   
   # get SNP matrix
-  snpDistMat <- read_csv(core_snps)
-  names(snpDistMat)[1] <- "names"
-  snpDistMat$names <- as.character(snpDistMat$names)
-  snpDistMat <- snpDistMat %>% filter(names != "reference") %>% dplyr::select(-reference)
-  snpDistMat <- as.matrix(column_to_rownames(snpDistMat,var="names"))
-  # row_idx <- match(aln_names,rownames(snpDistMat))
-  # col_idx <- match(aln_names,colnames(snpDistMat))
-  # core_mat <- snpDistMat[row_idx,col_idx]
+  # snpDistMat <- read_csv(core_snps)
+  # names(snpDistMat)[1] <- "names"
+  # snpDistMat$names <- as.character(snpDistMat$names)
+  # snpDistMat <- snpDistMat %>% filter(names != "reference") %>% dplyr::select(-reference)
+  # snpDistMat <- as.matrix(column_to_rownames(snpDistMat,var="names"))
+  # # row_idx <- match(aln_names,rownames(snpDistMat))
+  # # col_idx <- match(aln_names,colnames(snpDistMat))
+  # # core_mat <- snpDistMat[row_idx,col_idx]
   core_mat <- snpDistMat
   
   
@@ -1083,7 +963,7 @@ for(i in 1:nrow(comparisons)){
       # dplyr::filter(sil_width >= 0.5) %>%
       dplyr::select(1,2)
   }
-  
+  # graph.adjacency depreciated now to use graph_from_adjacency_matrix()
   mst_out <- ape::mst(core_mat)
   g <- graph.adjacency(mst_out, mode="undirected", weighted=TRUE)
   mst_edges <- as_data_frame(g, what="edges")  %>% dplyr::rename("name1"=from,

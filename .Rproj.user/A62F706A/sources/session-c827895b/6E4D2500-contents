@@ -1,0 +1,252 @@
+# if(x < 500) { stop("Not enough observations in 'x': n < 500")}
+
+run_core_snp_cluster_analysis <- function(){
+  core_snp_results_list <- list()
+  # get core SNP clusters
+  res_list <- get_core_snp_clusters(m=mat, max=sigNN+2, dates=datesJoin, snpco=snpco, orig=T)
+  
+  snpClust <- res_list[[1]]
+  
+  if(!exists('snpClust')){
+    return(NA)
+  }
+  # if(exists('snpClust') && is.na(snpClust)){next}
+  
+  if(nrow(snpClust) == 0){
+    return(NA)
+  }#else if(is.na(snpClust)){next}
+  
+  
+  # create matrix for heatmap
+  snpClustID <- snpClust %>%
+    mutate(km_cluster=as.character(km_cluster),
+           cluster=as.character(cluster)) %>%
+    dplyr::select(2,3) %>%
+    distinct(.,.keep_all = T) 
+  
+  vec_keep_names <- snpClust %>% pull(name) %>% unique() 
+  # mat_optimal_centres <- res.km$centers[,colnames(res.km$centers) %in% vec_keep_names]
+  centers_mat <- res_list[[2]]$centers
+  
+  # if(is.na(centers_mat)){next}
+  
+  mat_optimal_centres <- centers_mat[,colnames(centers_mat) %in% vec_keep_names]
+  # mat_optimal_centres <- mat_optimal_centres[! rownames(mat_optimal_centres) %in% vec_excl,]
+  
+  df2mat <- as.data.frame(mat_optimal_centres) %>%
+    rownames_to_column(var = "rowID") %>%
+    inner_join(snpClustID, by=c("rowID"="km_cluster")) %>%
+    column_to_rownames(var = "cluster") %>%
+    dplyr::select(-rowID)
+  
+  
+  core_snp_results_list[[1]] <- snpClust
+  core_snp_results_list[[2]] <- snpClustID
+  core_snp_results_list[[3]] <- df2mat
+  core_snp_results_list[[4]]<- vec_keep_names
+  # core_snp_results_list[[1]] <- snpClust
+  
+  return(core_snp_results_list)
+}
+
+
+
+
+core_snp_results_list <- run_core_snp_cluster_analysis()
+
+snpClust <- core_snp_results_list[[1]]
+snpClustID <- core_snp_results_list[[2]] 
+df2mat <- core_snp_results_list[[3]]
+
+
+# calculate SNP-Epi clusters -- new approach as suggested by Lili-CHARM
+excl_vec <- c("TakenDate","Date2","epicumsum","CG","num","name","cluster","km_cluster",
+              "Hospital","Ward","WardType")
+
+calculate_SNP_Epi_clusters <- function(snpClust,epiwkDF,mdf,excl_vec){
+  
+  vec_clust <- snpClust %>% pull(cluster) %>% unique()
+  
+  episnp_list = list()
+  for(k in vec_clust){
+    episnp_list[[k]] <- snpClust %>% dplyr::filter(cluster %in% k) %>%
+      inner_join(epiwkDF, by=c("name"="sampleID")) %>%
+      dplyr::arrange(TakenDate) %>%
+      mutate(ID2 = dplyr::lead(name,1)) %>%
+      mutate(Date2 = dplyr::lead(TakenDate,1)) %>%
+      dplyr::select(name,ID2,TakenDate,Date2,everything()) %>%
+      mutate(Days = as.numeric(difftime(Date2,TakenDate,units = "days"))) %>%
+      mutate(epicumsum = if_else(Days <= daysco,1,0)) %>%
+      mutate(epicumsum = if_else(is.na(epicumsum),0,epicumsum)) %>%
+      ungroup() %>%
+      inner_join(mdf,by=c("name"="X1","ID2"="X2")) %>%
+      mutate(CG = data.table::rleid(epicumsum)) %>%
+      dplyr::filter(epicumsum != 0) #%>%
+    # print(n=40)
+    
+  }
+  
+  
+  
+  # excl_vec <- c("TakenDate","Date2","epicumsum","CG","num","name","cluster","km_cluster",
+  #               "Hospital","Ward","WardType")
+  
+  clusterSet3 <- bind_rows(episnp_list) %>%
+    mutate(num = as.numeric(paste0(cluster,CG))) %>%
+    mutate(Clusters = data.table::rleid(num)) %>%
+    ungroup() %>%
+    pivot_longer(cols = c(name,ID2),values_to = "sampleID") %>%
+    # select(! all_of(excl_vec)) %>%  #20240529
+    select(! any_of(excl_vec)) %>%
+    group_by(Clusters) %>%
+    dplyr::rename("SNPs"=X3) %>%
+    distinct(sampleID, .keep_all = TRUE) %>%
+    dplyr::mutate(n_clusters=n()) %>%
+    mutate(Clusters=as.factor(as.character(Clusters))) %>%
+    dplyr::rename("Cluster_Cases_count"=n_clusters)
+  
+  
+  
+  clusterSet3 <- clusterSet3 %>%
+    dplyr::select("sampleID","Days","SNPs","Clusters","Cluster_Cases_count")
+  
+  if(nrow(clusterSet3) == 0){ 
+    return(NA) 
+  }else{
+      return(clusterSet3)
+    }
+  
+}
+
+
+
+clusterSet3 <- calculate_SNP_Epi_clusters(snpClust=snpClust,epiwkDF=epiwkDF,mdf=mdf,excl_vec=excl_vec)
+
+
+create_scatter_plots <- function(datesJoin,clusterSet3,mlst,transmission_type="hospital"){
+  
+  scatter_plots_list <- list()
+  
+  plotDF <- datesJoin %>% 
+    left_join(clusterSet3, by="sampleID") %>% 
+    dplyr::rename("Epiweek"=epiyearweek) %>%
+    ungroup() %>%
+    group_by(Epiweek) %>%
+    distinct(sampleID, .keep_all = TRUE) %>%
+    dplyr::mutate(n_cases=n()) %>%
+    ungroup() %>%
+    dplyr::arrange(TakenDate) %>%
+    mutate(denserank = data.table::rleid(TakenDate)) %>%
+    dplyr::mutate(id=dplyr::row_number()) %>%
+    left_join(mlst,by=c("sampleID"="FILE")) %>%
+    dplyr::rename("Cases_count"=n_cases)
+  
+  plotDF$Epiweek = factor(plotDF$Epiweek, levels=unique(plotDF$Epiweek)[plotDF$id], ordered = T)
+  plotDF$Cases_count = dplyr::coalesce(plotDF$Cases_count,1)
+  plotDF$Cases_count = as.factor(plotDF$Cases_count)
+  plotDF$Clusters = as.factor(plotDF$Clusters)
+  plotDF$ST = as.factor(plotDF$ST)
+  
+  
+  
+  # create scatter plots
+  st_list <- list()
+  st_final_list <- list()
+  scatter_plots <- list()
+  scatter_plots_cmb_list <- list()
+  if(transmission_type == "community"){
+    
+    st_vec <- levels(plotDF$ST)
+    for(i in seq_along(st_vec)){
+      st_val <- st_vec[[i]]
+      
+      
+      st_df <- plotDF %>%
+        dplyr::filter(ST %in% st_val)
+      
+      if(nrow(st_df)>=2){
+        st_list[[i]] <- st_df
+        
+        if(sum(st_df$Cluster_Cases_count, na.rm = T) > 0){
+          cluster_n <-st_df %>% dplyr::filter(!is.na(Clusters)) %>% dplyr::summarise(n())
+          if(cluster_n >= 2){
+            st_final_list[[i]] <- st_df
+            px1 <- st_df %>% 
+              group_by(Facility_code,Epiweek) %>% 
+              dplyr::mutate(count=n())
+            
+            p1 <- ggplot(px1, 
+                         aes(x = Epiweek,
+                             y = Facility_code , #WardType, #Clusters,
+                             # y = count, #,
+                             color=Clusters,
+                             shape = ST #WardType
+                         )) +
+              geom_point(alpha = .9, size=4,position=position_jitter(h=0.07,w=0.15)) + 
+              # scale_fill_brewer(palette = "Dark2") +
+              labs(title = paste0("Clusters based on Epi definition: SNPs <= ",snpco," + ",daysco,"-day window"),
+                   y = "Facility code",
+                   x = "Epiweek") +
+              theme_bw() +
+              # scale_y_continuous(breaks = ~round(unique(pretty(.)))) +
+              theme(panel.grid.major = element_blank(),
+                    panel.grid.minor = element_blank()) +
+              theme(axis.title = element_text(size = 15)) +
+              theme(axis.text = element_text(size = 12)) +
+              theme(axis.text.x = element_text(angle=90,size=12,vjust = 0.5, hjust = 1)) 
+            
+            
+            #ggsave(file.path(work_dir,paste0("Scatterplot.ST.",st_val,date_var,".png")),p1,width = 10, height = 8)
+             
+            scatter_plots[[i]] <- p1
+          }
+          
+        }
+        
+      }else{
+        next
+      }
+    }
+  }else{
+    px1 <- plotDF %>% group_by(WardType,Epiweek) %>% dplyr::mutate(count=n())
+    
+    p1 <- ggplot(px1, 
+                 aes(x = Epiweek,
+                     y = ST, #WardType, #Clusters,
+                     # y = count, #,
+                     color=Clusters,
+                     shape = WardType
+                 )) +
+      geom_point(alpha = .9, size=4,position=position_jitter(h=0.07,w=0.15)) + 
+      # scale_fill_brewer(palette = "Dark2") +
+      labs(title = paste0("Clusters based on Epi definition: SNPs <= ",snpco," + ",daysco,"-day window"),
+           y = "Sequence Types",
+           x = "Epiweek") +
+      theme_bw() +
+      # scale_y_continuous(breaks = ~round(unique(pretty(.)))) +
+      theme(panel.grid.major = element_blank(),
+            panel.grid.minor = element_blank()) +
+      theme(axis.title = element_text(size = 15)) +
+      theme(axis.text = element_text(size = 12)) +
+      theme(axis.text.x = element_text(angle=90,size=12,vjust = 0.5, hjust = 1)) 
+    
+    scatter_plots[[i]] <- p1
+  }
+  
+  
+  scatter_plots_list[[1]] <- plotDF
+  scatter_plots_cmb_list <- c(scatter_plots_list, scatter_plots)
+  # scatter_plots_list[[2]] <- 
+  
+  return(scatter_plots_cmb_list)
+  
+}
+
+scatter_plots_cmb_list <- list()
+scatter_plots_cmb_list <- create_scatter_plots(datesJoin,clusterSet3,mlst,transmission_type="community")
+
+
+
+# save scatter plots to file
+ggsave(file.path(work_dir,paste0("Scatterplot.",date_var,".png")),p1,width = 10, height = 8)
+
