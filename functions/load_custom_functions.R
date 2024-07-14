@@ -95,8 +95,10 @@ connect_samples <- function(x){
 
 # Function 02 -------------------------------------------------------------
 
+# Only use actual value of sigN for K -- now adding 2 directly to sigNN in main script -- 2024-07-13
 
-get_core_snp_clusters <- function(m=mat, max=sigNN+2, dates=NULL, snpco=snpco, orig=TRUE){
+# get_core_snp_clusters <- function(m=mat, k=sigN, max=sigNN, dates=NULL, snpco=snpco, orig=TRUE){
+get_core_snp_clusters <- function(m, k, max, dates=NULL, snpco, orig=TRUE){
   library(factoextra)
   
   if(nrow(m)<= max){
@@ -106,6 +108,7 @@ get_core_snp_clusters <- function(m=mat, max=sigNN+2, dates=NULL, snpco=snpco, o
   # calculate kmeans and group closely related samples
   res.km <- eclust(m, 
                    FUNcluster = "kmeans",
+                   k=k,
                    k.max = max,
                    nboot = 500,
                    nstart = 25) #nstart = 25,
@@ -561,7 +564,7 @@ drw_network <- function(nodes,edges,b=1,st,type="Core"){
 run_core_snp_cluster_analysis <- function(){
   core_snp_results_list <- list()
   # get core SNP clusters
-  res_list <- get_core_snp_clusters(m=mat, max=sigNN+2, dates=datesJoin, snpco=snpco, orig=T)
+  res_list <- get_core_snp_clusters(m=mat, k=sigN, max=sigNN, dates=datesJoin, snpco=snpco, orig=T)
   
   snpClust <- res_list[[1]]
   
@@ -669,7 +672,7 @@ calculate_SNP_Epi_clusters <- function(snpClust,epiwkDF,mdf,excl_vec){
 
 # Function 07 -------------------------------------------------------------
 
-create_scatter_plots <- function(datesJoin,clusterSet3,mlst,transmission_type="hospital"){
+create_scatter_plots <- function(datesJoin,clusterSet3,mlst,transmission_type="facility"){
   
   scatter_plots_list <- list()
   
@@ -684,7 +687,7 @@ create_scatter_plots <- function(datesJoin,clusterSet3,mlst,transmission_type="h
     dplyr::arrange(TakenDate) %>%
     mutate(denserank = data.table::rleid(TakenDate)) %>%
     dplyr::mutate(id=dplyr::row_number()) %>%
-    left_join(mlst,by=c("sampleID"="FILE")) %>%
+    # left_join(mlst,by=c("sampleID"="FILE")) %>%
     dplyr::rename("Cases_count"=n_cases)
   
   plotDF$Epiweek = factor(plotDF$Epiweek, levels=unique(plotDF$Epiweek)[plotDF$id], ordered = T)
@@ -765,29 +768,56 @@ create_scatter_plots <- function(datesJoin,clusterSet3,mlst,transmission_type="h
       }
     }
   }else{
-    px1 <- plotDF %>% group_by(WardType,Epiweek) %>% dplyr::mutate(count=n())
+    if(all(c("WardType","Epiweek") %in% colnames(plotDF))){
+      px1 <- plotDF %>% group_by(WardType,Epiweek) %>% dplyr::mutate(count=n())
+      
+      p1 <- ggplot(px1, 
+                   aes(x = Epiweek,
+                       y = ST, #WardType, #Clusters,
+                       # y = count, #,
+                       color=Clusters,
+                       shape = WardType
+                   )) +
+        geom_point(alpha = .9, size=4,position=position_jitter(h=0.07,w=0.15)) + 
+        # scale_fill_brewer(palette = "Dark2") +
+        labs(title = paste0("Clusters based on Epi definition: SNPs <= ",snpco," + ",daysco,"-day window"),
+             y = "Sequence Types",
+             x = "Epiweek") +
+        theme_bw() +
+        # scale_y_continuous(breaks = ~round(unique(pretty(.)))) +
+        theme(panel.grid.major = element_blank(),
+              panel.grid.minor = element_blank()) +
+        theme(axis.title = element_text(size = 15)) +
+        theme(axis.text = element_text(size = 12)) +
+        theme(axis.text.x = element_text(angle=90,size=12,vjust = 0.5, hjust = 1)) 
+      
+    }else{
+      px1 <- plotDF %>% group_by(Epiweek) %>% dplyr::mutate(count=n())
+      
+      p1 <- ggplot(px1, 
+                   aes(x = Epiweek,
+                       y = ST, 
+                       color=Clusters,
+                       # shape = WardType
+                   )) +
+        geom_point(alpha = .9, size=4,position=position_jitter(h=0.07,w=0.15)) + 
+        # scale_fill_brewer(palette = "Dark2") +
+        labs(title = paste0("Clusters based on Epi definition: SNPs <= ",snpco," + ",daysco,"-day window"),
+             y = "Sequence Types",
+             x = "Epiweek") +
+        theme_bw() +
+        # scale_y_continuous(breaks = ~round(unique(pretty(.)))) +
+        theme(panel.grid.major = element_blank(),
+              panel.grid.minor = element_blank()) +
+        theme(axis.title = element_text(size = 15)) +
+        theme(axis.text = element_text(size = 12)) +
+        theme(axis.text.x = element_text(angle=90,size=12,vjust = 0.5, hjust = 1)) 
+    }
     
-    p1 <- ggplot(px1, 
-                 aes(x = Epiweek,
-                     y = ST, #WardType, #Clusters,
-                     # y = count, #,
-                     color=Clusters,
-                     shape = WardType
-                 )) +
-      geom_point(alpha = .9, size=4,position=position_jitter(h=0.07,w=0.15)) + 
-      # scale_fill_brewer(palette = "Dark2") +
-      labs(title = paste0("Clusters based on Epi definition: SNPs <= ",snpco," + ",daysco,"-day window"),
-           y = "Sequence Types",
-           x = "Epiweek") +
-      theme_bw() +
-      # scale_y_continuous(breaks = ~round(unique(pretty(.)))) +
-      theme(panel.grid.major = element_blank(),
-            panel.grid.minor = element_blank()) +
-      theme(axis.title = element_text(size = 15)) +
-      theme(axis.text = element_text(size = 12)) +
-      theme(axis.text.x = element_text(angle=90,size=12,vjust = 0.5, hjust = 1)) 
     
-    scatter_plots[[i]] <- p1
+   
+    
+    scatter_plots[[1]] <- p1
   }
   
   
