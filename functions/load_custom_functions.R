@@ -469,7 +469,7 @@ drw_network <- function(nodes,edges,b=1,st,type="Core"){
   # if(all(is.na(nodes$group))){
   #   next
   # }
-  
+  nodes$group <- as.character(nodes$group)
   nodes$group[is.na(nodes$group)] <- "bg"
   
   st=as.name(st)
@@ -480,7 +480,7 @@ drw_network <- function(nodes,edges,b=1,st,type="Core"){
   y=length(clr)
   groupname=unique(nodes$group)[order(unique(nodes$group))]
   
-  if(any(groupname == "bg")){
+  if(any(groupname == "bg", na.rm = T)){
     groupname<-groupname[groupname != "bg"]
     len <- length(groupname) # if reference is included
   }else{
@@ -571,7 +571,18 @@ run_core_snp_cluster_analysis <- function(){
   if(!exists('snpClust')){
     return(NA)
   }
-  # if(exists('snpClust') && is.na(snpClust)){next}
+  
+  # if(exists('snpClust') && is.na(snpClust)){return(NA)}
+  if(exists('snpClust')){
+    if(length(snpClust) == 1 && is.na(snpClust)){
+      # print("Hello")
+      return(NA)
+    }
+  }
+  
+  # if(is.na(snpClust)){
+  #   return(NA)
+  # }
   
   if(nrow(snpClust) == 0){
     return(NA)

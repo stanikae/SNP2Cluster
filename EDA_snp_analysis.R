@@ -21,9 +21,9 @@ source(file.path(data_paths,"Richael_s_pneumo.R"))
 
 # Set SNP cut-off and EPI-days
 # Run all steps using loop
-for(i in 1:nrow(comparisons)){
-  snpco=comparisons[i,1]
-  daysco=comparisons[i,2]
+# for(i in 1:nrow(comparisons)){
+  # snpco=comparisons[i,1]
+  # daysco=comparisons[i,2]
 
   # }
 
@@ -61,7 +61,17 @@ for(i in 1:nrow(comparisons)){
   
   # Fix dates - optional 2024-05-29
   # 
-  datesDF$TakenDate <- lubridate::mdy(datesDF$TakenDate)
+  if(lubri_fmt == "mdy"){
+    datesDF$TakenDate <- lubridate::mdy(datesDF$TakenDate)
+  }else if(lubri_fmt == "dmy"){
+    datesDF$TakenDate <- lubridate::dmy(datesDF$TakenDate)
+  }else if((lubri_fmt == "ydm")){
+    datesDF$TakenDate <- lubridate::ydm(datesDF$TakenDate)
+  }else{
+    datesDF$TakenDate <- lubridate::ymd(datesDF$TakenDate)
+  }
+  #  to add more options
+  # as.integer(difftime(max(datesDF$TakenDate),min(datesDF$TakenDate),  unit="days"))
   
   
   epiwkDF <- datesDF %>% 
@@ -75,29 +85,18 @@ for(i in 1:nrow(comparisons)){
   #   group_by(WardType)
   
   
-
-  # set work directory for SNP-EPI clusters
-  work_dir <- paste0(out_dir,"_SNPcutoff",snpco,"_Days",daysco)
-  
-  
-  if (! dir.exists(work_dir)){
-    dir.create(work_dir,recursive = T)
-  }
-  
-  setwd(work_dir)
-  
   # Get snp pairwise data
   if(! file.exists(filepath)){
     # next
     stop("Provide path to the SNP distance matrix in the config file")
   }
   
-  df <- read_csv(file = filepath)
-  names(df)[1] <- "names"
-  df$names <- as.character(df$names)
+  snpdist_df <- read_csv(file = filepath)
+  names(snpdist_df)[1] <- "names"
+  snpdist_df$names <- as.character(snpdist_df$names)
   
   
-  # mat <- as.matrix(column_to_rownames(df,var="names"))
+  # mat <- as.matrix(column_to_rownames(snpdist_df,var="names"))
   # str(mat)
   # 
   # # scale data
@@ -162,13 +161,27 @@ for(i in 1:nrow(comparisons)){
   for(i in seq_along(facility_vec)){
     fc_val <- facility_vec[[i]]
     
+    print("Starting analysis of")
     
     fc_df_01 <- fc_df %>%
       dplyr::filter(get({{main_var}}) %in% fc_val)
     
+    fc_size <- fc_df_01 %>% group_by(Groups_var)%>% summarise(cnt=n()) %>% pull(cnt)
+    
+    if(fc_size <= 2){
+      next
+    }
+    # set work directory for SNP-EPI clusters
+    work_dir <- file.path(out_dir,fc_val,paste0("cluster-analysis","_SNPcutoff",snpco,"_Days",daysco))
+    if (! dir.exists(work_dir)){
+      dir.create(work_dir,recursive = T)
+    }
+    setwd(work_dir)
+    
+    
     # Convert SNP-dist df to matrix
     fc_samples_vec <- fc_df_01$sampleID %>% unique()
-    fc_df_02 <- df %>% 
+    fc_df_02 <- snpdist_df %>% 
       dplyr::select("names",any_of(fc_samples_vec)) %>%
       dplyr::filter(names %in% fc_samples_vec)
     
@@ -221,6 +234,10 @@ for(i in 1:nrow(comparisons)){
     datesJoin <- fc_df_01
     
     core_snp_results_list <- run_core_snp_cluster_analysis()
+    
+    if(length(core_snp_results_list) ==1 && is.na(core_snp_results_list)){ 
+      next
+    }
     
     snpClust <- core_snp_results_list[[1]]
     snpClustID <- core_snp_results_list[[2]] 
@@ -336,7 +353,8 @@ for(i in 1:nrow(comparisons)){
         
         annotDF_subset2 <- annotDF_subset2 %>%
           left_join(episnpclust,by=c("name"="sampleID")) %>%
-          dplyr::select(any_of(vec_incl_filt_hm))
+          dplyr::select(any_of(vec_incl_filt_hm)) #%>%
+          # tibble::column_to_rownames(var = "name")
         
         
         n5 <- annotDF_subset2 %>% pull(SNP.Epi.Clusters) %>% dplyr::n_distinct()
@@ -353,6 +371,13 @@ for(i in 1:nrow(comparisons)){
     # }else{
     #   next
     # }
+      
+      trans_type <- str_to_sentence(transmission_type)
+      annotDF_subset2 <- annotDF_subset2 %>%
+        column_to_rownames(var = "name") %>%
+        dplyr::rename(!!trans_type := Groups_var)
+      
+        # dplyr::select(! any_of(vec_excl_filt))
     
     
     # # display.brewer.all()
@@ -374,15 +399,17 @@ for(i in 1:nrow(comparisons)){
     # )
     
       # if(nrow(clusterSet3) != 0){
-    n1 <- annotDF_subset2 %>% pull(Groups_var) %>% dplyr::n_distinct()
+    n1 <- annotDF_subset2 %>% pull(trans_type) %>% dplyr::n_distinct()
     col1 <- brewer.pal(n1,"Set3")
-    names(col1) <- annotDF_subset2 %>% pull(Groups_var) %>% unique()
+    names(col1) <- annotDF_subset2 %>% pull(trans_type) %>% unique()
     
     
-    # n2 <- annotDF_subset2 %>% pull(Vaccine_type) %>% dplyr::n_distinct()
-    # col2 <- brewer.pal(n2,"YlGnBu")
-    # names(col2) <- annotDF_subset2 %>% pull(Vaccine_type) %>% unique()
-    
+    if(any(names(annotDF_subset2) == "WardType")){
+      n2 <- annotDF_subset2 %>% pull(WardType) %>% dplyr::n_distinct()
+      col2 <- maxX[1:n2]  #brewer.pal(n2,"YlGnBu")
+      names(col2) <- annotDF_subset2 %>% pull(WardType) %>% unique()
+    }
+   
     
     n3 <- annotDF_subset2 %>% pull(ST) %>% dplyr::n_distinct()
     col3 <- maxP[1:n3] #brewer.pal(n3,"Accent")
@@ -401,19 +428,36 @@ for(i in 1:nrow(comparisons)){
     
     
     if (any(names(annotDF_subset2) == "SNP.Epi.Clusters")){
-      colAnnot2 <- ComplexHeatmap::HeatmapAnnotation(
-        df = annotDF_subset2, annotation_height = 7,
-        annotation_name_gp = gpar(fontsize = 7),
-        col = list(Groups_var = col1[! is.na(names(col1))], #c("DORA NGINZA HOSPITAL" = "#8DD3C7"),
-                   # Vaccine_type = col2[! is.na(names(col2))],
-                   ST = col3[! is.na(names(col3))],
-                   Core.SNP.clusters = col4[! is.na(names(col4))],
-                   SNP.Epi.Clusters = col5[! is.na(names(col5))]
-                   # Ward = annotDF$Ward
+      if(any(names(annotDF_subset2) == "WardType")){
+        colAnnot2 <- ComplexHeatmap::HeatmapAnnotation(
+          df = annotDF_subset2, annotation_height = 7,
+          annotation_name_gp = gpar(fontsize = 7),
+          col = list(trans_type = col1[! is.na(names(col1))], #c("DORA NGINZA HOSPITAL" = "#8DD3C7"),
+                     WardType = col2[! is.na(names(col2))],
+                     ST = col3[! is.na(names(col3))],
+                     Core.SNP.clusters = col4[! is.na(names(col4))],
+                     SNP.Epi.Clusters = col5[! is.na(names(col5))]
+                     # Ward = annotDF$Ward
+          )
+          ,border = TRUE
+          ,simple_anno_size = unit(0.4, "cm")
         )
-        ,border = TRUE
-        ,simple_anno_size = unit(0.4, "cm")
-      )
+      }else{
+        colAnnot2 <- ComplexHeatmap::HeatmapAnnotation(
+          df = annotDF_subset2, annotation_height = 7,
+          annotation_name_gp = gpar(fontsize = 7),
+          col = list(trans_type = col1[! is.na(names(col1))], #c("DORA NGINZA HOSPITAL" = "#8DD3C7"),
+                     # Vaccine_type = col2[! is.na(names(col2))],
+                     ST = col3[! is.na(names(col3))],
+                     Core.SNP.clusters = col4[! is.na(names(col4))],
+                     SNP.Epi.Clusters = col5[! is.na(names(col5))]
+                     # Ward = annotDF$Ward
+          )
+          ,border = TRUE
+          ,simple_anno_size = unit(0.4, "cm")
+        )
+      }
+    
     }else{
       colAnnot2 <- ComplexHeatmap::HeatmapAnnotation(
         df = annotDF_subset2, annotation_height = 7,
@@ -571,23 +615,420 @@ for(i in 1:nrow(comparisons)){
       }
     }
     
+
+    # Transmission network analysis -------------------------------------------
+
+    # create outdir
+    path_dir <- paste0(path,"_SNPcutoff",snpco,"_Days",daysco)
+    if (! dir.exists(path_dir)){
+      dir.create(path_dir,recursive = T)
+    }
+    
+    setwd(path_dir)
+    
+    clusterDF # Core-SNP clusters
+    datesJoin # Dates and other metadata
+    
+    date_file <- datesJoin
+    names(date_file)[1] <- "ID"
+    names(date_file)[2] <- "Collectiondate"
+    
+    date_file <- date_file %>% arrange(Collectiondate)
+    
+    # Get Core SNP clusters
+    if(nrow(clusterDF) != 0){
+      coreSNPs <- clusterDF
+    }
+    
+    # Get SNP-EPI clusters 
+    if(nrow(clusterSet3) != 0){
+      clsters <- clusterSet3 %>%
+        dplyr::select(4,1) %>%
+        dplyr::rename("names"=sampleID) %>%
+        dplyr::rename("cluster"=Clusters)
+    }
     
     
+    # Get SNP matrix
+    snpDistMat <- snpdist_df 
+    snpDistMat$names <- as.character(snpDistMat$names)
+    # snpDistMat <- snpDistMat %>% filter(names != "reference") %>% dplyr::select(-reference)
+    snpDistMat <- as.matrix(column_to_rownames(snpDistMat,var="names"))
+    
+    
+    # subset(snpDistMat,snpDistMat[,1]<100)
+    
+    names(date_file) <- str_replace_all(names(date_file)," ","_")
+    date_file$Collectiondate <- ymd(date_file$Collectiondate)
+    dates <- as.Date(date_file$Collectiondate)
+    range(dates)
+    days <- as.integer(difftime(dates, min(dates), unit="days"))
+    
+    
+    
+    # Transmission tree reconstruction using SeqTrack -------------------------
+    
+    # Perform transmission network analysis per ST
+    vec_sts <- date_file %>% dplyr::filter(! is.na(ST)) %>% pull(ST)
+    countm <- 1
+    for(st in seq_along(vec_sts)){
+      m <- vec_sts[st]
+      m_ids <- mlst %>% filter(ST==m) %>% pull(FILE)
+      
+      if(length(m_ids) < 3){
+        next
+      }
+      aln_names <- date_file %>% 
+        dplyr::filter(ID %in% m_ids) %>%
+        arrange(Collectiondate) %>% pull(ID)
+      
+      
+      
+      row_idx <- match(aln_names,rownames(snpDistMat))
+      col_idx <- match(aln_names,colnames(snpDistMat))
+      m_mat <- snpDistMat[row_idx,col_idx]
+      
+      if(! all(aln_names %in% colnames(m_mat))){
+        idx_vec <- which(!aln_names %in% colnames(m_mat))
+        aln_names <- aln_names[! seq_along(aln_names) %in% idx_vec]
+      }
+      
+      dates_vec <- date_file %>% 
+        dplyr::filter(ID %in% aln_names) %>%
+        arrange(Collectiondate) %>% 
+        mutate(Collectiondate=as.POSIXct(Collectiondate)) %>%
+        pull(Collectiondate)
+      
+      # run seqTrack
+      m_mat <- m_mat[,! is.na(colnames(m_mat))]
+      m_mat <- m_mat[! is.na(rownames(m_mat)),]
+      res <- seqTrack(m_mat, aln_names, dates_vec) #, best="min", annot=T)
+      
+      res$ances[is.na(res$ances)] <- res$id[which(is.na(res$ances))]
+      # rownames_to_column(res,var = "name1")
+      # rownames(res)[order(match(res$id,res$ances))]
+      res$name1 <- rownames(res)
+      res$name2 <- rownames(res)[res$ances]
+      
+      # add SNPs (pairwise snps)
+      # res <- res %>% inner_join(snpDist, by=(c("name1" = "X1","name2" ="X2") ))
+      # res<-column_to_rownames(res,"name1")
+      # names(res)[names(res)=="X3"] <- "SNPs"
+      names(res)[names(res)=="weight"] <- "SNPs"
+      res$color <- ifelse(res$SNPs>snpco,"grey","green")
+      # # Only include SNPs that meet the cut off in snpco
+      # res <- filter(res,SNPs <= 100)
+      
+      #create edges df
+      res1 <-  res %>% dplyr::filter(! rownames(res) == "reference") # Exclude reference 
+      edges <- res1 %>% 
+        dplyr::select(ances, id, SNPs, everything()) %>%
+        dplyr::rename(from=ances) %>%
+        dplyr::rename(to=id)
+      
+      edges <- mutate(edges, width = SNPs/5 + 1)
+      edges <- edges %>% select(-width)
+      # label <- edges$SNPs
+      # edges$label <- label
+      edges$label <- edges$SNPs
+      edges$label <- as.character(edges$label)
+      # edges$from[is.na(edges$from)] <- 29
+      edges$from <- as.integer(edges$from)
+      
+      
+      
+      
+      # date_file <- date_file %>% #group_by(X3) %>% dplyr::count()
+      #   mutate(shape=case_when(X3 == "neonatal" ~ "circle",
+      #                          X3 == "other" ~ "box",
+      #                          TRUE ~ "database")) #%>% print(n=40)
+      
+      
+      # create nodes
+      nodes <- res %>%
+        #rowid_to_column("test") %>%
+        rownames_to_column("label") %>%
+        dplyr::select(id, label)
+      
+      # # add MLST profile to NODES
+      # nodes <- nodes %>% 
+      #   left_join(mlst, by=c("label" = "FILE" )) #%>%
+      # # dplyr::select(-SCHEME) 
+      
+      
+      # names(nodes)[which(names(nodes) == "ST")] <- "group"
+      
+      len <- nrow(res1)
+      
+      # nodes <- select(nodes,-shape)
+      # nodes <- data.frame(nodes, shape=c(rep('circle',len),'ellipse'))
+      
+      # add MLST profile to NODES
+      nodes <- left_join(nodes,date_file,by=c("label"="ID")) %>%
+        dplyr::distinct(id, .keep_all = TRUE)
+      
+      # Set IDs not in a cluster to background color ----------------------------
+      
+      # if(file.exists(cluster_file)){
+      if(nrow(coreSNPs) != 0){
+        ntwrk_out_list <- list()
+        c_nodes <- nodes %>%
+          left_join(coreSNPs, by=c("label" = "sampleID" ))
+        
+        # Core-SNP clusters
+        names(c_nodes)[which(names(c_nodes) == "coreSNPcluster")] <- "vari"
+        
+        # run function that generates network graph
+        if(all(is.na(c_nodes$vari))){
+          next
+        }
+        ntwrk_out_list <- drw_network(nodes=c_nodes,edges,b=countm,m,type="Core")
+        ntwrk <- ntwrk_out_list[[1]]
+        # save network graph to file
+        ntwrk %>% visSave(file = paste(path_dir,
+                                       paste0(fc_val,".CoreSNPclusters","_ST",m,"_SNPcutoff",snpco,"_Days",daysco,".html"),
+                                       sep = "/"))
+        
+        
+        fnodes <- ntwrk_out_list[[2]]
+        write.xlsx(fnodes, paste(path_dir,paste0("CoreSNPclusters","_ST",m,"_SNPcutoff",snpco,"_Days",daysco,".xlsx"),sep = "/"), overwrite = T, asTable = T)
+        
+        # set color number
+        countl <- unique(fnodes$group)[order(unique(fnodes$group))] != "bg"
+        countn <- sum(as.numeric(countl))
+        countm <- countm+countn
+        ntwrk <- NULL
+        fnodes <- NULL
+      }
+      
+      
+      
+      
+      # SNP-Epi Clusters
+      # if(file.exists(cluster_file_epi_snps)){
+      if(nrow(clsters) != 0){
+        ntwrk_out_list <- list()
+        e_nodes <- nodes %>%
+          left_join(clsters, by=c("label" = "names" ))
+        
+        names(e_nodes)[which(names(e_nodes) == "cluster")] <- "vari"
+        
+        # run function that generates network graph
+        if(all(is.na(e_nodes$vari))){
+          next
+        }
+        ntwrk_out_list <- drw_network(nodes=e_nodes,edges,b=countm,m,type="Epi")
+        ntwrk <- ntwrk_out_list[[1]]
+        # save network graph to file
+        ntwrk %>% visSave(file = paste(path_dir,
+                                       paste0("SNP-Epi-clusters","_ST",m,"_SNPcutoff",snpco,"_Days",daysco,".html"),
+                                       sep = "/"))
+        
+        # # write data to file
+        # nodes$X1 <- dplyr::coalesce(nodes$X1,"UNKNOWN")
+        # nodes$X2 <- dplyr::coalesce(nodes$X2,"UNKNOWN")
+        # nodes$X3 <- dplyr::coalesce(nodes$X3,"UNKNOWN")
+        fnodes <- ntwrk_out_list[[2]]
+        write.xlsx(fnodes, paste(path_dir,paste0("SNP-Epi-clusters","_ST",m,"_SNPcutoff",snpco,"_Days",daysco,".xlsx"),sep = "/"), overwrite = T, asTable = T)
+        
+        # set color number
+        countl <- unique(fnodes$group)[order(unique(fnodes$group))] != "bg"
+        countn <- sum(as.numeric(countl))
+        countm <- countm+countn
+        ntwrk <- NULL
+        fnodes <- NULL
+      }
+      
+    }
     
     
   }
-
+}
   
 
 
-  
-  
+    # # Minimum spanning tree ---------------------------------------------------
+    # 
+    # library(ape)
+    # library(visNetwork)
+    # library(networkD3)
+    # library(igraph)
+    # 
+    # mst_dir <- file.path(dirname(out_dir),paste0("minimum-spanning-tree","_SNPcutoff",snpco,"_Days",daysco))
+    # 
+    # if(! dir.exists(mst_dir)){
+    #   dir.create(path = mst_dir, recursive = T)
+    # }
+    # 
+    # # get paths for cluster files
+    # cluster_file = file.path(work_dir,paste("Core-SNP-Clusters",date_var,"xlsx",sep = "."))
+    # date_file <- date_file
+    # core_mat <- snpDistMat
+    # 
+    # 
+    # if(exists('date_file')){
+    #   aln_names <- date_file %>% 
+    #     arrange(Collectiondate) %>% pull(ID)
+    # }else{
+    #   stopifnot("MST Mandatory df not available")
+    # }
+    # 
+    # 
+    # dates_vec <- date_file %>% 
+    #   arrange(Collectiondate) %>% 
+    #   mutate(Collectiondate=as.POSIXct(Collectiondate)) %>%
+    #   pull(Collectiondate)
+    # 
+    # 
+    # 
+    # 
+    # # Get Core SNP clusters
+    # if(file.exists(cluster_file)){
+    #   clsters <- read_excel(cluster_file) %>%
+    #     dplyr::rename("names"=sampleID,
+    #                   "cluster"=coreSNPcluster) %>%
+    #     dplyr::filter(names != "reference") %>%
+    #     # dplyr::filter(sil_width >= 0.5) %>%
+    #     dplyr::select(1,2)
+    # }
+    # # graph.adjacency depreciated now to use graph_from_adjacency_matrix()
+    # mst_out <- ape::mst(core_mat)
+    # g <- graph.adjacency(mst_out, mode="undirected", weighted=TRUE)
+    # mst_edges <- as_data_frame(g, what="edges")  %>% dplyr::rename("name1"=from,
+    #                                                                "name2"=to) 
+    # 
+    # mst_nodes <- as_data_frame(g, what="vertices") 
+    # mst_nodes <- mst_nodes %>% mutate(id=1:nrow(mst_nodes)) %>%
+    #   dplyr::select(2,1) %>% 
+    #   mutate(id=as.integer(id),
+    #          label=name) %>%
+    #   inner_join(mlst,by=c("name"="FILE"))%>%
+    #   dplyr::rename("group"=ST)
+    # 
+    # if(exists('clsters') && is.data.frame(get('clsters'))){
+    #   mst_nodes <- mst_nodes %>%
+    #     dplyr::left_join(clsters,by=c("name"="names")) %>% # 2023-09-30
+    #     dplyr::rename("ST"=group,"group"=cluster)
+    # }
+    # 
+    # if(exists('epiwkDF') && is.data.frame(get('epiwkDF'))){
+    #   mst_nodes <- mst_nodes %>% 
+    #     inner_join(epiwkDF,by=c("name"="sampleID")) %>%
+    #     mutate(shape=case_when(WardType == "neonatal" ~ "circle",
+    #                            WardType == "other" ~ "box",
+    #                            TRUE ~ "diamond"))
+    # }else{
+    #   mst_nodes <- mst_nodes %>% 
+    #     inner_join(datesDF,by=c("name"="sampleID")) 
+    # }
+    # 
+    # 
+    # mst_edges <- mst_edges %>%
+    #   mutate(from=mst_nodes$id[match(mst_edges$name1,mst_nodes$name)],
+    #          to=mst_nodes$id[match(mst_edges$name2,mst_nodes$name)]) %>%
+    #   dplyr::select(4,5,3,1,2) %>%
+    #   mutate(from=as.integer(from),
+    #          to=as.integer(to)) %>%
+    #   inner_join(mdf,by=c("name1"="X1","name2"="X2")) %>%
+    #   dplyr::rename("label"=X3) %>%
+    #   mutate(label=as.character(label))
+    # 
+    # 
+    # 
+    # nodes <- mst_nodes
+    # edges <- mst_edges
+    # 
+    # vz <-visNetwork(nodes,edges)
+    # visEdges(vz,arrows = NULL,font = list(align="top",size=24))
+    # 
+    # 
+    # # vz %>%
+    # #   visEdges(arrows = NULL,font = list(align="top",size=24)) %>%
+    # #   visInteraction(navigation = "zoom") %>%
+    # #   visInteraction(navigation = "drag") %>%
+    # #     visOptions(highlightNearest = TRUE) %>%
+    # #   visOptions(collapse = list(enabled = TRUE, keepCoord = TRUE, clusterOptions = list(shape = "circle")))
+    # 
+    # 
+    # 
+    # # unique(nodes$group)[order(unique(nodes$group))]
+    # groupname=unique(nodes$group)[order(unique(nodes$group))]
+    # groupname[is.na(groupname)] <- "bg"
+    # nodes$group[is.na(nodes$group)] <- "bg"
+    # 
+    # clr = c("#ABC2E8","#FFF338","#FFA0A0","#82CD47","#525FE1","#98EECC","#F29727","#D3D04F","#10A19D","#B04759","#D09CFA","#B9E9FC",
+    #         "#FFE7A0","#FF6969","#00FFCA","#ECF2FF","#E86A33","#569DAA","#FFE5CA","#FA9884","#A6BB8D","#C8B6A6","#8B1874","#FF78C4")
+    # 
+    # 
+    # 
+    # if(any(groupname == "bg")){
+    #   groupname<-groupname[groupname != "bg"]
+    #   len <- length(groupname) # if reference is included
+    # }else{
+    #   len <- length(groupname)
+    # }
+    # 
+    # 
+    # assign_colors <- data.frame(groupname=groupname, 
+    #                             color=clr[1:len])
+    # 
+    # 
+    # # add background color
+    # library(glue)
+    # bg_row <- c(groupname="bg",color="#F8F4EA")
+    # assign_colors <- rbind(assign_colors,bg_row)
+    # 
+    # gl_code <- list()
+    # 
+    # for (i in 1:nrow(assign_colors)){
+    #   # print(i)
+    #   gn <- as.character(assign_colors[i,1])
+    #   cl <- as.character(assign_colors[i,2])
+    #   gl_code[[i]] <- glue('visGroups(groupname = "{gn}",color = "{cl}", shadow = list(enabled = TRUE))')
+    # }
+    # 
+    # 
+    # code_app <- glue(paste(gl_code,collapse = ' %>% '))
+    # 
+    # vz_groups <- assign_colors %>% pull(1)
+    # 
+    # ntwk_code <- glue('visNetwork(nodes, edges, height = "1000px", width = "100%",
+    #               main = paste0("Minimum spanning tree showing core SNP clusters"),
+    #               footer = "*Numbers on edges represent SNP differences between connecting nodes (isolates)") %>%
+    #               visNodes(font="12px arial black") %>%
+    #               visEdges(arrows = NULL,font = list(align="inside",size=20), label=F) %>%
+    #               {code_app} %>%
+    #               visLegend(main = "Core.SNP.Clusters",width = 0.1, position = "right") %>%
+    #               visClusteringByGroup(groups = vz_groups, label = "cluster : ") %>%
+    #               visHierarchicalLayout() %>%
+    #               visLayout(randomSeed = 12)')
+    # 
+    # #font = list(align="inside",size=20)
+    # 
+    # network <- eval(parse(text=ntwk_code))
+    # # Export
+    # network %>% visSave(file = paste(mst_dir,
+    #                                  paste0("minimum_spanning_tree","_SNPcutoff",snpco,"_Days",daysco,".html"),
+    #                                  sep = "/"))
+    # 
+    # 
+    # # Save data files
+    # nodesDF <- nodes #%>%
+    # #dplyr::rename("ST"=group)
+    # 
+    # write.xlsx(nodesDF,file = file.path(mst_dir,
+    #                                     paste0("minimum_spanning_tree_data","_SNPcutoff",snpco,"_Days",daysco,".xlsx")), overwrite = T)
+    # 
+    # 
+    # 
+    # 
+    
+    
+    
+    
 
+# END ---------------------------------------------------------------------
 
-  
-  
-  
-  ############################################################################
   
   
  
@@ -688,501 +1129,501 @@ for(i in 1:nrow(comparisons)){
 
   
   
-  # Transmission network analysis -------------------------------------------
-  
-  # # get paths for cluster files
-  cluster_file = file.path(work_dir,paste("Core-SNP-Clusters",date_var,"xlsx",sep = "."))
-  cluster_file_epi_snps = file.path(work_dir,paste("Clusters-SNPs-Epi-Definition",date_var,"xlsx",sep = "."))
-  
-  # create outdir
-  path_dir <- paste0(path,"_SNPcutoff",snpco,"_Days",daysco)
-  if (! dir.exists(path_dir)){
-    dir.create(path_dir,recursive = T)
-  }
-  
-  setwd(path_dir)
-  # create date_file
-  date_file <- read_csv(dates_path, col_names = F) %>% dplyr::select(all_of(mx),1,2,3,4)
-  date_file <- datesDF
-  names(date_file)[1] <- "ID"
-  names(date_file)[6] <- "Collectiondate"
-  
-  # date_file <- date_file %>% 
-  #   add_row(ID="reference",X2=NA,X3=NA,Collectiondate=as_date("2011-01-01"))
-  date_file <- date_file %>% arrange(Collectiondate)
-  
-  
-  # get mlst profile
-  # mlst <- read_excel(mlst_profile) %>% 
-  #   dplyr::select(1,2,3) %>% 
-  #   filter(FILE %in% date_file$ID) #%>% print(n=35)
-  
-  
-  mlst <- mlst %>% dplyr::filter(FILE %in% date_file$ID)
-  
-  # mlst <- mlst %>% add_row(FILE = "reference", SCHEME = "kpneumoniae", ST=as.character(refST))
-  
-  
-  # add SNP-EPI clusters file
-  if(file.exists(cluster_file_epi_snps)){
-    clsters <- read_excel(cluster_file_epi_snps) %>% 
-      dplyr::filter(sampleID != "reference") %>%
-      # dplyr::select(1,2) %>%
-      dplyr::select(4,1) %>%
-      dplyr::rename("names"=sampleID) %>%
-      dplyr::rename("cluster"=Clusters)
-  }
-  
-  
-  
-  # Get Core SNP clusters
-  if(file.exists(cluster_file)){
-    coreSNPs <- read_excel(cluster_file)
-    # coreSNP_list <- get_core_snp_clusters(m=mat, max=sigNN+2, dates=datesJoin, snpco=snpco, orig=T)
-    # coreSNPs <- coreSNP_list[[1]] %>% 
-    #   dplyr::filter(cluster != "reference") %>%
-    #   dplyr::select(1,2) %>%
-    #   dplyr::rename("sampleID"=name) %>%
-    #   dplyr::rename("coreSNPcluster"=cluster)
-  }
-
-  
-  
-  # get SNP distance matrix (molten format)
-  snpDist <- read_csv(file.path(snp_dist),col_names = F)
-  # snpDist <- filter(snpDist, X3<=100) %>% #X1!=X2)
-  #     dplyr::filter(X1 != "reference") %>%
-  #     dplyr::filter(X2 != "reference")
-  
-  # snpDist %>% pivot_wider()
+  # # Transmission network analysis -------------------------------------------
   # 
-  # mdf_vec1 <- snpDist %>% pull(X1) %>% unique()
-  # mdf_vec2 <- snpDist %>% pull(X2) %>% unique()
-  # mdf_vec <- c(mdf_vec1,mdf_vec2) %>% sort() %>% unique()
-  # # # # # filter
-  # mat1 <- snpDistMat[,colnames(snpDistMat) %in% mdf_vec]
-  # mat <- mat1[rownames(mat1) %in% mdf_vec,]
-  
-  
-  
-  # # Get SNP alignment file
-  # dna <- adegenet::fasta2DNAbin(file = file.path(aln_path))
-  
-  
-  # get SNP matrix
-  snpDistMat <- read_csv(core_snps)
-  names(snpDistMat)[1] <- "names"
-  snpDistMat$names <- as.character(snpDistMat$names)
-  # snpDistMat <- snpDistMat %>% filter(names != "reference") %>% dplyr::select(-reference)
-  snpDistMat <- as.matrix(column_to_rownames(snpDistMat,var="names"))
-  
-  
-  # subset(snpDistMat,snpDistMat[,1]<100)
-  
-  names(date_file) <- str_replace_all(names(date_file)," ","_")
-  date_file$Collectiondate <- ymd(date_file$Collectiondate)
-  dates <- as.Date(date_file$Collectiondate)
-  range(dates)
-  days <- as.integer(difftime(dates, min(dates), unit="days"))
-  
-  
-  # Transmission tree reconstruction using SeqTrack -------------------------
-  
-  # Perform transmission network analysis per ST
-  vec_sts <- mlst %>% dplyr::filter(ST != "NOVEL") %>% distinct(ST) %>% pull(ST) 
-  countm <- 1
-  for(st in seq_along(vec_sts)){
-    m <- vec_sts[st]
-    m_ids <- mlst %>% filter(ST==m) %>% pull(FILE)
-    
-    if(length(m_ids) < 3){
-      next
-    }
-    aln_names <- date_file %>% 
-      dplyr::filter(ID %in% m_ids) %>%
-      arrange(Collectiondate) %>% pull(ID)
-    
-   
-    
-    row_idx <- match(aln_names,rownames(snpDistMat))
-    col_idx <- match(aln_names,colnames(snpDistMat))
-    m_mat <- snpDistMat[row_idx,col_idx]
-    
-    if(! all(aln_names %in% colnames(m_mat))){
-      idx_vec <- which(!aln_names %in% colnames(m_mat))
-      aln_names <- aln_names[! seq_along(aln_names) %in% idx_vec]
-    }
-      
-    dates_vec <- date_file %>% 
-      dplyr::filter(ID %in% aln_names) %>%
-      arrange(Collectiondate) %>% 
-      mutate(Collectiondate=as.POSIXct(Collectiondate)) %>%
-      pull(Collectiondate)
-    
-    # run seqTrack
-    m_mat <- m_mat[,! is.na(colnames(m_mat))]
-    m_mat <- m_mat[! is.na(rownames(m_mat)),]
-    res <- seqTrack(m_mat, aln_names, dates_vec) #, best="min", annot=T)
-    
-    res$ances[is.na(res$ances)] <- res$id[which(is.na(res$ances))]
-    # rownames_to_column(res,var = "name1")
-    # rownames(res)[order(match(res$id,res$ances))]
-    res$name1 <- rownames(res)
-    res$name2 <- rownames(res)[res$ances]
-    
-    # add SNPs (pairwise snps)
-    # res <- res %>% inner_join(snpDist, by=(c("name1" = "X1","name2" ="X2") ))
-    # res<-column_to_rownames(res,"name1")
-    # names(res)[names(res)=="X3"] <- "SNPs"
-    names(res)[names(res)=="weight"] <- "SNPs"
-    res$color <- ifelse(res$SNPs>snpco,"grey","green")
-    # # Only include SNPs that meet the cut off in snpco
-    # res <- filter(res,SNPs <= 100)
-    
-    #create edges df
-    res1 <-  res %>% dplyr::filter(! rownames(res) == "reference") # Exclude reference 
-    edges <- res1 %>% 
-      dplyr::select(ances, id, SNPs, everything()) %>%
-      dplyr::rename(from=ances) %>%
-      dplyr::rename(to=id)
-    
-    edges <- mutate(edges, width = SNPs/5 + 1)
-    edges <- edges %>% select(-width)
-    # label <- edges$SNPs
-    # edges$label <- label
-    edges$label <- edges$SNPs
-    edges$label <- as.character(edges$label)
-    # edges$from[is.na(edges$from)] <- 29
-    edges$from <- as.integer(edges$from)
-    
-    
-    
-    
-    # date_file <- date_file %>% #group_by(X3) %>% dplyr::count()
-    #   mutate(shape=case_when(X3 == "neonatal" ~ "circle",
-    #                          X3 == "other" ~ "box",
-    #                          TRUE ~ "database")) #%>% print(n=40)
-    
-    
-    # create nodes
-    nodes <- res %>%
-      #rowid_to_column("test") %>%
-      rownames_to_column("label") %>%
-      dplyr::select(id, label)
-    
-    # add MLST profile to NODES
-    nodes <- nodes %>% 
-      left_join(mlst, by=c("label" = "FILE" )) #%>%
-      # dplyr::select(-SCHEME) 
-    
-    
-    # names(nodes)[which(names(nodes) == "ST")] <- "group"
-    
-    len <- nrow(res1)
-    
-    # nodes <- select(nodes,-shape)
-    # nodes <- data.frame(nodes, shape=c(rep('circle',len),'ellipse'))
-    nodes <- left_join(nodes,date_file,by=c("label"="ID")) %>%
-      dplyr::distinct(id, .keep_all = TRUE)
-  
-    # Set IDs not in a cluster to background color ----------------------------
-    
-    if(file.exists(cluster_file)){
-      ntwrk_out_list <- list()
-      c_nodes <- nodes %>%
-        left_join(coreSNPs, by=c("label" = "sampleID" ))
-      
-      # Core-SNP clusters
-      names(c_nodes)[which(names(c_nodes) == "coreSNPcluster")] <- "vari"
-      
-      # run function that generates network graph
-      if(all(is.na(c_nodes$vari))){
-        next
-      }
-      ntwrk_out_list <- drw_network(nodes=c_nodes,edges,b=countm,m,type="Core")
-      ntwrk <- ntwrk_out_list[[1]]
-      # save network graph to file
-      ntwrk %>% visSave(file = paste(path_dir,
-                                     paste0("CoreSNPclusters","_ST",m,"_SNPcutoff",snpco,"_Days",daysco,".html"),
-                                     sep = "/"))
-      
-  
-      fnodes <- ntwrk_out_list[[2]]
-      write.xlsx(fnodes, paste(path_dir,paste0("CoreSNPclusters","_ST",m,"_SNPcutoff",snpco,"_Days",daysco,".xlsx"),sep = "/"), overwrite = T, asTable = T)
-      
-      # set color number
-      countl <- unique(fnodes$group)[order(unique(fnodes$group))] != "bg"
-      countn <- sum(as.numeric(countl))
-      countm <- countm+countn
-      ntwrk <- NULL
-      fnodes <- NULL
-    }
-    
-    
-    
-    
-    # SNP-Epi Clusters
-    if(file.exists(cluster_file_epi_snps)){
-      ntwrk_out_list <- list()
-      e_nodes <- nodes %>%
-        left_join(clsters, by=c("label" = "names" ))
-      
-      names(e_nodes)[which(names(e_nodes) == "cluster")] <- "vari"
-      
-      # run function that generates network graph
-      if(all(is.na(e_nodes$vari))){
-        next
-      }
-      ntwrk_out_list <- drw_network(nodes=e_nodes,edges,b=countm,m,type="Epi")
-      ntwrk <- ntwrk_out_list[[1]]
-      # save network graph to file
-      ntwrk %>% visSave(file = paste(path_dir,
-                                     paste0("SNP-Epi-clusters","_ST",m,"_SNPcutoff",snpco,"_Days",daysco,".html"),
-                                     sep = "/"))
-      
-      # # write data to file
-      # nodes$X1 <- dplyr::coalesce(nodes$X1,"UNKNOWN")
-      # nodes$X2 <- dplyr::coalesce(nodes$X2,"UNKNOWN")
-      # nodes$X3 <- dplyr::coalesce(nodes$X3,"UNKNOWN")
-      fnodes <- ntwrk_out_list[[2]]
-      write.xlsx(fnodes, paste(path_dir,paste0("SNP-Epi-clusters","_ST",m,"_SNPcutoff",snpco,"_Days",daysco,".xlsx"),sep = "/"), overwrite = T, asTable = T)
-      
-      # set color number
-      countl <- unique(fnodes$group)[order(unique(fnodes$group))] != "bg"
-      countn <- sum(as.numeric(countl))
-      countm <- countm+countn
-      ntwrk <- NULL
-      fnodes <- NULL
-    }
-    
-    
-    # if(any(names(nodes) == "vari")){
-    #   names(nodes)[which(names(nodes) == "vari")] <- "group"
-    # }
-    # 
-    # 
-    # if(all(is.na(nodes$group))){
-    #   next
-    # }
-    # 
-    # nodes$group[is.na(nodes$group)] <- "bg"
-    
-    # # run function that generates network graph
-    # ntwrk <- drw_network(nodes,edges,b=countm,m,type="Core")
-    # # save network graph to file
-    # ntwrk %>% visSave(file = paste(path_dir,
-    #                                paste0("CoreSNPclusters","_ST",m,"_SNPcutoff",snpco,"_Days",daysco,".html"),
-    #                                sep = "/"))
-    
-    # # write data to file
-    # nodes$X1 <- dplyr::coalesce(nodes$X1,"UNKNOWN")
-    # nodes$X2 <- dplyr::coalesce(nodes$X2,"UNKNOWN")
-    # nodes$X3 <- dplyr::coalesce(nodes$X3,"UNKNOWN")
-    # 
-    # write.xlsx(nodes, paste(path_dir,paste0("CoreSNPclusters","_ST",m,"_SNPcutoff",snpco,"_Days",daysco,".xlsx"),sep = "/"), overwrite = T, asTable = T)
-    # 
-    # # set color number
-    # countl <- unique(nodes$group)[order(unique(nodes$group))] != "bg"
-    # countn <- sum(as.numeric(countl))
-    # countm <- countm+countn
-    # ntwrk <- NULL
-  }
-  
-  # Minimum spanning tree ---------------------------------------------------
-  
-  library(ape)
-  library(visNetwork)
-  library(networkD3)
-  library(igraph)
-  
-  mst_dir <- file.path(dirname(out_dir),paste0("minimum-spanning-tree","_SNPcutoff",snpco,"_Days",daysco))
-  
-  if(! dir.exists(mst_dir)){
-    dir.create(path = mst_dir, recursive = T)
-  }
-  
-  # get paths for cluster files
-  cluster_file = file.path(work_dir,paste("Core-SNP-Clusters",date_var,"xlsx",sep = "."))
-  
-  # # prepare data matrix
+  # # # get paths for cluster files
+  # cluster_file = file.path(work_dir,paste("Core-SNP-Clusters",date_var,"xlsx",sep = "."))
+  # cluster_file_epi_snps = file.path(work_dir,paste("Clusters-SNPs-Epi-Definition",date_var,"xlsx",sep = "."))
+  # 
+  # # create outdir
+  # path_dir <- paste0(path,"_SNPcutoff",snpco,"_Days",daysco)
+  # if (! dir.exists(path_dir)){
+  #   dir.create(path_dir,recursive = T)
+  # }
+  # 
+  # setwd(path_dir)
+  # # create date_file
   # date_file <- read_csv(dates_path, col_names = F) %>% dplyr::select(all_of(mx),1,2,3,4)
+  # date_file <- datesDF
   # names(date_file)[1] <- "ID"
-  # names(date_file)[5] <- "Collectiondate"
+  # names(date_file)[6] <- "Collectiondate"
+  # 
+  # # date_file <- date_file %>% 
+  # #   add_row(ID="reference",X2=NA,X3=NA,Collectiondate=as_date("2011-01-01"))
   # date_file <- date_file %>% arrange(Collectiondate)
-  date_file <- date_file
-  
-  # aln_names <- date_file %>% 
-  #   dplyr::filter(ID %in% m_ids) %>%
-  #   arrange(Collectiondate) %>% pull(ID)
-  
-  # get SNP matrix
+  # 
+  # 
+  # # get mlst profile
+  # # mlst <- read_excel(mlst_profile) %>% 
+  # #   dplyr::select(1,2,3) %>% 
+  # #   filter(FILE %in% date_file$ID) #%>% print(n=35)
+  # 
+  # 
+  # mlst <- mlst %>% dplyr::filter(FILE %in% date_file$ID)
+  # 
+  # # mlst <- mlst %>% add_row(FILE = "reference", SCHEME = "kpneumoniae", ST=as.character(refST))
+  # 
+  # 
+  # # add SNP-EPI clusters file
+  # if(file.exists(cluster_file_epi_snps)){
+  #   clsters <- read_excel(cluster_file_epi_snps) %>% 
+  #     dplyr::filter(sampleID != "reference") %>%
+  #     # dplyr::select(1,2) %>%
+  #     dplyr::select(4,1) %>%
+  #     dplyr::rename("names"=sampleID) %>%
+  #     dplyr::rename("cluster"=Clusters)
+  # }
+  # 
+  # 
+  # 
+  # # Get Core SNP clusters
+  # if(file.exists(cluster_file)){
+  #   coreSNPs <- read_excel(cluster_file)
+  #   # coreSNP_list <- get_core_snp_clusters(m=mat, max=sigNN+2, dates=datesJoin, snpco=snpco, orig=T)
+  #   # coreSNPs <- coreSNP_list[[1]] %>% 
+  #   #   dplyr::filter(cluster != "reference") %>%
+  #   #   dplyr::select(1,2) %>%
+  #   #   dplyr::rename("sampleID"=name) %>%
+  #   #   dplyr::rename("coreSNPcluster"=cluster)
+  # }
+  # 
+  # 
+  # 
+  # # get SNP distance matrix (molten format)
+  # snpDist <- read_csv(file.path(snp_dist),col_names = F)
+  # # snpDist <- filter(snpDist, X3<=100) %>% #X1!=X2)
+  # #     dplyr::filter(X1 != "reference") %>%
+  # #     dplyr::filter(X2 != "reference")
+  # 
+  # # snpDist %>% pivot_wider()
+  # # 
+  # # mdf_vec1 <- snpDist %>% pull(X1) %>% unique()
+  # # mdf_vec2 <- snpDist %>% pull(X2) %>% unique()
+  # # mdf_vec <- c(mdf_vec1,mdf_vec2) %>% sort() %>% unique()
+  # # # # # # filter
+  # # mat1 <- snpDistMat[,colnames(snpDistMat) %in% mdf_vec]
+  # # mat <- mat1[rownames(mat1) %in% mdf_vec,]
+  # 
+  # 
+  # 
+  # # # Get SNP alignment file
+  # # dna <- adegenet::fasta2DNAbin(file = file.path(aln_path))
+  # 
+  # 
+  # # get SNP matrix
   # snpDistMat <- read_csv(core_snps)
   # names(snpDistMat)[1] <- "names"
   # snpDistMat$names <- as.character(snpDistMat$names)
-  # snpDistMat <- snpDistMat %>% filter(names != "reference") %>% dplyr::select(-reference)
+  # # snpDistMat <- snpDistMat %>% filter(names != "reference") %>% dplyr::select(-reference)
   # snpDistMat <- as.matrix(column_to_rownames(snpDistMat,var="names"))
-  # # row_idx <- match(aln_names,rownames(snpDistMat))
-  # # col_idx <- match(aln_names,colnames(snpDistMat))
-  # # core_mat <- snpDistMat[row_idx,col_idx]
-  core_mat <- snpDistMat
+  # 
+  # 
+  # # subset(snpDistMat,snpDistMat[,1]<100)
+  # 
+  # names(date_file) <- str_replace_all(names(date_file)," ","_")
+  # date_file$Collectiondate <- ymd(date_file$Collectiondate)
+  # dates <- as.Date(date_file$Collectiondate)
+  # range(dates)
+  # days <- as.integer(difftime(dates, min(dates), unit="days"))
+  # 
+  # 
+  # # Transmission tree reconstruction using SeqTrack -------------------------
+  # 
+  # # Perform transmission network analysis per ST
+  # vec_sts <- mlst %>% dplyr::filter(ST != "NOVEL") %>% distinct(ST) %>% pull(ST) 
+  # countm <- 1
+  # for(st in seq_along(vec_sts)){
+  #   m <- vec_sts[st]
+  #   m_ids <- mlst %>% filter(ST==m) %>% pull(FILE)
+  #   
+  #   if(length(m_ids) < 3){
+  #     next
+  #   }
+  #   aln_names <- date_file %>% 
+  #     dplyr::filter(ID %in% m_ids) %>%
+  #     arrange(Collectiondate) %>% pull(ID)
+  #   
+  #  
+  #   
+  #   row_idx <- match(aln_names,rownames(snpDistMat))
+  #   col_idx <- match(aln_names,colnames(snpDistMat))
+  #   m_mat <- snpDistMat[row_idx,col_idx]
+  #   
+  #   if(! all(aln_names %in% colnames(m_mat))){
+  #     idx_vec <- which(!aln_names %in% colnames(m_mat))
+  #     aln_names <- aln_names[! seq_along(aln_names) %in% idx_vec]
+  #   }
+  #     
+  #   dates_vec <- date_file %>% 
+  #     dplyr::filter(ID %in% aln_names) %>%
+  #     arrange(Collectiondate) %>% 
+  #     mutate(Collectiondate=as.POSIXct(Collectiondate)) %>%
+  #     pull(Collectiondate)
+  #   
+  #   # run seqTrack
+  #   m_mat <- m_mat[,! is.na(colnames(m_mat))]
+  #   m_mat <- m_mat[! is.na(rownames(m_mat)),]
+  #   res <- seqTrack(m_mat, aln_names, dates_vec) #, best="min", annot=T)
+  #   
+  #   res$ances[is.na(res$ances)] <- res$id[which(is.na(res$ances))]
+  #   # rownames_to_column(res,var = "name1")
+  #   # rownames(res)[order(match(res$id,res$ances))]
+  #   res$name1 <- rownames(res)
+  #   res$name2 <- rownames(res)[res$ances]
+  #   
+  #   # add SNPs (pairwise snps)
+  #   # res <- res %>% inner_join(snpDist, by=(c("name1" = "X1","name2" ="X2") ))
+  #   # res<-column_to_rownames(res,"name1")
+  #   # names(res)[names(res)=="X3"] <- "SNPs"
+  #   names(res)[names(res)=="weight"] <- "SNPs"
+  #   res$color <- ifelse(res$SNPs>snpco,"grey","green")
+  #   # # Only include SNPs that meet the cut off in snpco
+  #   # res <- filter(res,SNPs <= 100)
+  #   
+  #   #create edges df
+  #   res1 <-  res %>% dplyr::filter(! rownames(res) == "reference") # Exclude reference 
+  #   edges <- res1 %>% 
+  #     dplyr::select(ances, id, SNPs, everything()) %>%
+  #     dplyr::rename(from=ances) %>%
+  #     dplyr::rename(to=id)
+  #   
+  #   edges <- mutate(edges, width = SNPs/5 + 1)
+  #   edges <- edges %>% select(-width)
+  #   # label <- edges$SNPs
+  #   # edges$label <- label
+  #   edges$label <- edges$SNPs
+  #   edges$label <- as.character(edges$label)
+  #   # edges$from[is.na(edges$from)] <- 29
+  #   edges$from <- as.integer(edges$from)
+  #   
+  #   
+  #   
+  #   
+  #   # date_file <- date_file %>% #group_by(X3) %>% dplyr::count()
+  #   #   mutate(shape=case_when(X3 == "neonatal" ~ "circle",
+  #   #                          X3 == "other" ~ "box",
+  #   #                          TRUE ~ "database")) #%>% print(n=40)
+  #   
+  #   
+  #   # create nodes
+  #   nodes <- res %>%
+  #     #rowid_to_column("test") %>%
+  #     rownames_to_column("label") %>%
+  #     dplyr::select(id, label)
+  #   
+  #   # add MLST profile to NODES
+  #   nodes <- nodes %>% 
+  #     left_join(mlst, by=c("label" = "FILE" )) #%>%
+  #     # dplyr::select(-SCHEME) 
+  #   
+  #   
+  #   # names(nodes)[which(names(nodes) == "ST")] <- "group"
+  #   
+  #   len <- nrow(res1)
+  #   
+  #   # nodes <- select(nodes,-shape)
+  #   # nodes <- data.frame(nodes, shape=c(rep('circle',len),'ellipse'))
+  #   nodes <- left_join(nodes,date_file,by=c("label"="ID")) %>%
+  #     dplyr::distinct(id, .keep_all = TRUE)
+  # 
+  #   # Set IDs not in a cluster to background color ----------------------------
+  #   
+  #   if(file.exists(cluster_file)){
+  #     ntwrk_out_list <- list()
+  #     c_nodes <- nodes %>%
+  #       left_join(coreSNPs, by=c("label" = "sampleID" ))
+  #     
+  #     # Core-SNP clusters
+  #     names(c_nodes)[which(names(c_nodes) == "coreSNPcluster")] <- "vari"
+  #     
+  #     # run function that generates network graph
+  #     if(all(is.na(c_nodes$vari))){
+  #       next
+  #     }
+  #     ntwrk_out_list <- drw_network(nodes=c_nodes,edges,b=countm,m,type="Core")
+  #     ntwrk <- ntwrk_out_list[[1]]
+  #     # save network graph to file
+  #     ntwrk %>% visSave(file = paste(path_dir,
+  #                                    paste0("CoreSNPclusters","_ST",m,"_SNPcutoff",snpco,"_Days",daysco,".html"),
+  #                                    sep = "/"))
+  #     
+  # 
+  #     fnodes <- ntwrk_out_list[[2]]
+  #     write.xlsx(fnodes, paste(path_dir,paste0("CoreSNPclusters","_ST",m,"_SNPcutoff",snpco,"_Days",daysco,".xlsx"),sep = "/"), overwrite = T, asTable = T)
+  #     
+  #     # set color number
+  #     countl <- unique(fnodes$group)[order(unique(fnodes$group))] != "bg"
+  #     countn <- sum(as.numeric(countl))
+  #     countm <- countm+countn
+  #     ntwrk <- NULL
+  #     fnodes <- NULL
+  #   }
+  #   
+  #   
+  #   
+  #   
+  #   # SNP-Epi Clusters
+  #   if(file.exists(cluster_file_epi_snps)){
+  #     ntwrk_out_list <- list()
+  #     e_nodes <- nodes %>%
+  #       left_join(clsters, by=c("label" = "names" ))
+  #     
+  #     names(e_nodes)[which(names(e_nodes) == "cluster")] <- "vari"
+  #     
+  #     # run function that generates network graph
+  #     if(all(is.na(e_nodes$vari))){
+  #       next
+  #     }
+  #     ntwrk_out_list <- drw_network(nodes=e_nodes,edges,b=countm,m,type="Epi")
+  #     ntwrk <- ntwrk_out_list[[1]]
+  #     # save network graph to file
+  #     ntwrk %>% visSave(file = paste(path_dir,
+  #                                    paste0("SNP-Epi-clusters","_ST",m,"_SNPcutoff",snpco,"_Days",daysco,".html"),
+  #                                    sep = "/"))
+  #     
+  #     # # write data to file
+  #     # nodes$X1 <- dplyr::coalesce(nodes$X1,"UNKNOWN")
+  #     # nodes$X2 <- dplyr::coalesce(nodes$X2,"UNKNOWN")
+  #     # nodes$X3 <- dplyr::coalesce(nodes$X3,"UNKNOWN")
+  #     fnodes <- ntwrk_out_list[[2]]
+  #     write.xlsx(fnodes, paste(path_dir,paste0("SNP-Epi-clusters","_ST",m,"_SNPcutoff",snpco,"_Days",daysco,".xlsx"),sep = "/"), overwrite = T, asTable = T)
+  #     
+  #     # set color number
+  #     countl <- unique(fnodes$group)[order(unique(fnodes$group))] != "bg"
+  #     countn <- sum(as.numeric(countl))
+  #     countm <- countm+countn
+  #     ntwrk <- NULL
+  #     fnodes <- NULL
+  #   }
+  #   
+  #   
+  #   # if(any(names(nodes) == "vari")){
+  #   #   names(nodes)[which(names(nodes) == "vari")] <- "group"
+  #   # }
+  #   # 
+  #   # 
+  #   # if(all(is.na(nodes$group))){
+  #   #   next
+  #   # }
+  #   # 
+  #   # nodes$group[is.na(nodes$group)] <- "bg"
+  #   
+  #   # # run function that generates network graph
+  #   # ntwrk <- drw_network(nodes,edges,b=countm,m,type="Core")
+  #   # # save network graph to file
+  #   # ntwrk %>% visSave(file = paste(path_dir,
+  #   #                                paste0("CoreSNPclusters","_ST",m,"_SNPcutoff",snpco,"_Days",daysco,".html"),
+  #   #                                sep = "/"))
+  #   
+  #   # # write data to file
+  #   # nodes$X1 <- dplyr::coalesce(nodes$X1,"UNKNOWN")
+  #   # nodes$X2 <- dplyr::coalesce(nodes$X2,"UNKNOWN")
+  #   # nodes$X3 <- dplyr::coalesce(nodes$X3,"UNKNOWN")
+  #   # 
+  #   # write.xlsx(nodes, paste(path_dir,paste0("CoreSNPclusters","_ST",m,"_SNPcutoff",snpco,"_Days",daysco,".xlsx"),sep = "/"), overwrite = T, asTable = T)
+  #   # 
+  #   # # set color number
+  #   # countl <- unique(nodes$group)[order(unique(nodes$group))] != "bg"
+  #   # countn <- sum(as.numeric(countl))
+  #   # countm <- countm+countn
+  #   # ntwrk <- NULL
+  # }
+  # 
+  # # Minimum spanning tree ---------------------------------------------------
+  # 
+  # library(ape)
+  # library(visNetwork)
+  # library(networkD3)
+  # library(igraph)
+  # 
+  # mst_dir <- file.path(dirname(out_dir),paste0("minimum-spanning-tree","_SNPcutoff",snpco,"_Days",daysco))
+  # 
+  # if(! dir.exists(mst_dir)){
+  #   dir.create(path = mst_dir, recursive = T)
+  # }
+  # 
+  # # get paths for cluster files
+  # cluster_file = file.path(work_dir,paste("Core-SNP-Clusters",date_var,"xlsx",sep = "."))
+  # 
+  # # # prepare data matrix
+  # # date_file <- read_csv(dates_path, col_names = F) %>% dplyr::select(all_of(mx),1,2,3,4)
+  # # names(date_file)[1] <- "ID"
+  # # names(date_file)[5] <- "Collectiondate"
+  # # date_file <- date_file %>% arrange(Collectiondate)
+  # date_file <- date_file
+  # 
+  # # aln_names <- date_file %>% 
+  # #   dplyr::filter(ID %in% m_ids) %>%
+  # #   arrange(Collectiondate) %>% pull(ID)
+  # 
+  # # get SNP matrix
+  # # snpDistMat <- read_csv(core_snps)
+  # # names(snpDistMat)[1] <- "names"
+  # # snpDistMat$names <- as.character(snpDistMat$names)
+  # # snpDistMat <- snpDistMat %>% filter(names != "reference") %>% dplyr::select(-reference)
+  # # snpDistMat <- as.matrix(column_to_rownames(snpDistMat,var="names"))
+  # # # row_idx <- match(aln_names,rownames(snpDistMat))
+  # # # col_idx <- match(aln_names,colnames(snpDistMat))
+  # # # core_mat <- snpDistMat[row_idx,col_idx]
+  # core_mat <- snpDistMat
+  # 
+  # 
+  # if(exists('date_file')){
+  #   aln_names <- date_file %>% 
+  #     arrange(Collectiondate) %>% pull(ID)
+  # }else{
+  #   stopifnot("MST Mandatory df not available")
+  # }
+  # 
+  # 
+  # dates_vec <- date_file %>% 
+  #   arrange(Collectiondate) %>% 
+  #   mutate(Collectiondate=as.POSIXct(Collectiondate)) %>%
+  #   pull(Collectiondate)
+  # 
+  # 
+  # 
+  # 
+  # # Get Core SNP clusters
+  # if(file.exists(cluster_file)){
+  #   clsters <- read_excel(cluster_file) %>%
+  #     dplyr::rename("names"=sampleID,
+  #                   "cluster"=coreSNPcluster) %>%
+  #     dplyr::filter(names != "reference") %>%
+  #     # dplyr::filter(sil_width >= 0.5) %>%
+  #     dplyr::select(1,2)
+  # }
+  # # graph.adjacency depreciated now to use graph_from_adjacency_matrix()
+  # mst_out <- ape::mst(core_mat)
+  # g <- graph.adjacency(mst_out, mode="undirected", weighted=TRUE)
+  # mst_edges <- as_data_frame(g, what="edges")  %>% dplyr::rename("name1"=from,
+  #                                                                "name2"=to) 
+  # 
+  # mst_nodes <- as_data_frame(g, what="vertices") 
+  # mst_nodes <- mst_nodes %>% mutate(id=1:nrow(mst_nodes)) %>%
+  #   dplyr::select(2,1) %>% 
+  #   mutate(id=as.integer(id),
+  #          label=name) %>%
+  #   inner_join(mlst,by=c("name"="FILE"))%>%
+  #   dplyr::rename("group"=ST)
+  # 
+  # if(exists('clsters') && is.data.frame(get('clsters'))){
+  #   mst_nodes <- mst_nodes %>%
+  #     dplyr::left_join(clsters,by=c("name"="names")) %>% # 2023-09-30
+  #     dplyr::rename("ST"=group,"group"=cluster)
+  # }
+  # 
+  # if(exists('epiwkDF') && is.data.frame(get('epiwkDF'))){
+  #   mst_nodes <- mst_nodes %>% 
+  #     inner_join(epiwkDF,by=c("name"="sampleID")) %>%
+  #     mutate(shape=case_when(WardType == "neonatal" ~ "circle",
+  #                            WardType == "other" ~ "box",
+  #                            TRUE ~ "diamond"))
+  # }else{
+  #   mst_nodes <- mst_nodes %>% 
+  #     inner_join(datesDF,by=c("name"="sampleID")) 
+  # }
+  # 
+  # 
+  # mst_edges <- mst_edges %>%
+  #   mutate(from=mst_nodes$id[match(mst_edges$name1,mst_nodes$name)],
+  #          to=mst_nodes$id[match(mst_edges$name2,mst_nodes$name)]) %>%
+  #   dplyr::select(4,5,3,1,2) %>%
+  #   mutate(from=as.integer(from),
+  #          to=as.integer(to)) %>%
+  #   inner_join(mdf,by=c("name1"="X1","name2"="X2")) %>%
+  #   dplyr::rename("label"=X3) %>%
+  #   mutate(label=as.character(label))
+  # 
+  # 
+  # 
+  # nodes <- mst_nodes
+  # edges <- mst_edges
+  # 
+  # vz <-visNetwork(nodes,edges)
+  # visEdges(vz,arrows = NULL,font = list(align="top",size=24))
+  # 
+  # 
+  # # vz %>%
+  # #   visEdges(arrows = NULL,font = list(align="top",size=24)) %>%
+  # #   visInteraction(navigation = "zoom") %>%
+  # #   visInteraction(navigation = "drag") %>%
+  # #     visOptions(highlightNearest = TRUE) %>%
+  # #   visOptions(collapse = list(enabled = TRUE, keepCoord = TRUE, clusterOptions = list(shape = "circle")))
+  # 
+  # 
+  # 
+  # # unique(nodes$group)[order(unique(nodes$group))]
+  # groupname=unique(nodes$group)[order(unique(nodes$group))]
+  # groupname[is.na(groupname)] <- "bg"
+  # nodes$group[is.na(nodes$group)] <- "bg"
+  # 
+  # clr = c("#ABC2E8","#FFF338","#FFA0A0","#82CD47","#525FE1","#98EECC","#F29727","#D3D04F","#10A19D","#B04759","#D09CFA","#B9E9FC",
+  #         "#FFE7A0","#FF6969","#00FFCA","#ECF2FF","#E86A33","#569DAA","#FFE5CA","#FA9884","#A6BB8D","#C8B6A6","#8B1874","#FF78C4")
+  # 
+  # 
+  # 
+  # if(any(groupname == "bg")){
+  #   groupname<-groupname[groupname != "bg"]
+  #   len <- length(groupname) # if reference is included
+  # }else{
+  #   len <- length(groupname)
+  # }
+  # 
+  # 
+  # assign_colors <- data.frame(groupname=groupname, 
+  #                             color=clr[1:len])
+  # 
+  # 
+  # # add background color
+  # library(glue)
+  # bg_row <- c(groupname="bg",color="#F8F4EA")
+  # assign_colors <- rbind(assign_colors,bg_row)
+  # 
+  # gl_code <- list()
+  # 
+  # for (i in 1:nrow(assign_colors)){
+  #   # print(i)
+  #   gn <- as.character(assign_colors[i,1])
+  #   cl <- as.character(assign_colors[i,2])
+  #   gl_code[[i]] <- glue('visGroups(groupname = "{gn}",color = "{cl}", shadow = list(enabled = TRUE))')
+  # }
+  # 
+  # 
+  # code_app <- glue(paste(gl_code,collapse = ' %>% '))
+  # 
+  # vz_groups <- assign_colors %>% pull(1)
+  # 
+  # ntwk_code <- glue('visNetwork(nodes, edges, height = "1000px", width = "100%",
+  #                 main = paste0("Minimum spanning tree showing core SNP clusters"),
+  #                 footer = "*Numbers on edges represent SNP differences between connecting nodes (isolates)") %>%
+  #                 visNodes(font="12px arial black") %>%
+  #                 visEdges(arrows = NULL,font = list(align="inside",size=20), label=F) %>%
+  #                 {code_app} %>%
+  #                 visLegend(main = "Core.SNP.Clusters",width = 0.1, position = "right") %>%
+  #                 visClusteringByGroup(groups = vz_groups, label = "cluster : ") %>%
+  #                 visHierarchicalLayout() %>%
+  #                 visLayout(randomSeed = 12)')
+  # 
+  # #font = list(align="inside",size=20)
+  # 
+  # network <- eval(parse(text=ntwk_code))
+  # # Export
+  # network %>% visSave(file = paste(mst_dir,
+  #                                  paste0("minimum_spanning_tree","_SNPcutoff",snpco,"_Days",daysco,".html"),
+  #                                  sep = "/"))
+  # 
+  # 
+  # # Save data files
+  # nodesDF <- nodes #%>%
+  #   #dplyr::rename("ST"=group)
+  # 
+  # write.xlsx(nodesDF,file = file.path(mst_dir,
+  #                                     paste0("minimum_spanning_tree_data","_SNPcutoff",snpco,"_Days",daysco,".xlsx")), overwrite = T)
+  # 
   
   
-  if(exists('date_file')){
-    aln_names <- date_file %>% 
-      arrange(Collectiondate) %>% pull(ID)
-  }else{
-    stopifnot("MST Mandatory df not available")
-  }
-  
-  
-  dates_vec <- date_file %>% 
-    arrange(Collectiondate) %>% 
-    mutate(Collectiondate=as.POSIXct(Collectiondate)) %>%
-    pull(Collectiondate)
-  
-  
-  
-  
-  # Get Core SNP clusters
-  if(file.exists(cluster_file)){
-    clsters <- read_excel(cluster_file) %>%
-      dplyr::rename("names"=sampleID,
-                    "cluster"=coreSNPcluster) %>%
-      dplyr::filter(names != "reference") %>%
-      # dplyr::filter(sil_width >= 0.5) %>%
-      dplyr::select(1,2)
-  }
-  # graph.adjacency depreciated now to use graph_from_adjacency_matrix()
-  mst_out <- ape::mst(core_mat)
-  g <- graph.adjacency(mst_out, mode="undirected", weighted=TRUE)
-  mst_edges <- as_data_frame(g, what="edges")  %>% dplyr::rename("name1"=from,
-                                                                 "name2"=to) 
-  
-  mst_nodes <- as_data_frame(g, what="vertices") 
-  mst_nodes <- mst_nodes %>% mutate(id=1:nrow(mst_nodes)) %>%
-    dplyr::select(2,1) %>% 
-    mutate(id=as.integer(id),
-           label=name) %>%
-    inner_join(mlst,by=c("name"="FILE"))%>%
-    dplyr::rename("group"=ST)
-  
-  if(exists('clsters') && is.data.frame(get('clsters'))){
-    mst_nodes <- mst_nodes %>%
-      dplyr::left_join(clsters,by=c("name"="names")) %>% # 2023-09-30
-      dplyr::rename("ST"=group,"group"=cluster)
-  }
-  
-  if(exists('epiwkDF') && is.data.frame(get('epiwkDF'))){
-    mst_nodes <- mst_nodes %>% 
-      inner_join(epiwkDF,by=c("name"="sampleID")) %>%
-      mutate(shape=case_when(WardType == "neonatal" ~ "circle",
-                             WardType == "other" ~ "box",
-                             TRUE ~ "diamond"))
-  }else{
-    mst_nodes <- mst_nodes %>% 
-      inner_join(datesDF,by=c("name"="sampleID")) 
-  }
-  
-  
-  mst_edges <- mst_edges %>%
-    mutate(from=mst_nodes$id[match(mst_edges$name1,mst_nodes$name)],
-           to=mst_nodes$id[match(mst_edges$name2,mst_nodes$name)]) %>%
-    dplyr::select(4,5,3,1,2) %>%
-    mutate(from=as.integer(from),
-           to=as.integer(to)) %>%
-    inner_join(mdf,by=c("name1"="X1","name2"="X2")) %>%
-    dplyr::rename("label"=X3) %>%
-    mutate(label=as.character(label))
-  
-  
-  
-  nodes <- mst_nodes
-  edges <- mst_edges
-  
-  vz <-visNetwork(nodes,edges)
-  visEdges(vz,arrows = NULL,font = list(align="top",size=24))
-  
-  
-  # vz %>%
-  #   visEdges(arrows = NULL,font = list(align="top",size=24)) %>%
-  #   visInteraction(navigation = "zoom") %>%
-  #   visInteraction(navigation = "drag") %>%
-  #     visOptions(highlightNearest = TRUE) %>%
-  #   visOptions(collapse = list(enabled = TRUE, keepCoord = TRUE, clusterOptions = list(shape = "circle")))
-  
-  
-  
-  # unique(nodes$group)[order(unique(nodes$group))]
-  groupname=unique(nodes$group)[order(unique(nodes$group))]
-  groupname[is.na(groupname)] <- "bg"
-  nodes$group[is.na(nodes$group)] <- "bg"
-  
-  clr = c("#ABC2E8","#FFF338","#FFA0A0","#82CD47","#525FE1","#98EECC","#F29727","#D3D04F","#10A19D","#B04759","#D09CFA","#B9E9FC",
-          "#FFE7A0","#FF6969","#00FFCA","#ECF2FF","#E86A33","#569DAA","#FFE5CA","#FA9884","#A6BB8D","#C8B6A6","#8B1874","#FF78C4")
-  
-  
-  
-  if(any(groupname == "bg")){
-    groupname<-groupname[groupname != "bg"]
-    len <- length(groupname) # if reference is included
-  }else{
-    len <- length(groupname)
-  }
-  
-  
-  assign_colors <- data.frame(groupname=groupname, 
-                              color=clr[1:len])
-  
-  
-  # add background color
-  library(glue)
-  bg_row <- c(groupname="bg",color="#F8F4EA")
-  assign_colors <- rbind(assign_colors,bg_row)
-  
-  gl_code <- list()
-  
-  for (i in 1:nrow(assign_colors)){
-    # print(i)
-    gn <- as.character(assign_colors[i,1])
-    cl <- as.character(assign_colors[i,2])
-    gl_code[[i]] <- glue('visGroups(groupname = "{gn}",color = "{cl}", shadow = list(enabled = TRUE))')
-  }
-  
-  
-  code_app <- glue(paste(gl_code,collapse = ' %>% '))
-  
-  vz_groups <- assign_colors %>% pull(1)
-  
-  ntwk_code <- glue('visNetwork(nodes, edges, height = "1000px", width = "100%",
-                  main = paste0("Minimum spanning tree showing core SNP clusters"),
-                  footer = "*Numbers on edges represent SNP differences between connecting nodes (isolates)") %>%
-                  visNodes(font="12px arial black") %>%
-                  visEdges(arrows = NULL,font = list(align="inside",size=20), label=F) %>%
-                  {code_app} %>%
-                  visLegend(main = "Core.SNP.Clusters",width = 0.1, position = "right") %>%
-                  visClusteringByGroup(groups = vz_groups, label = "cluster : ") %>%
-                  visHierarchicalLayout() %>%
-                  visLayout(randomSeed = 12)')
-  
-  #font = list(align="inside",size=20)
-  
-  network <- eval(parse(text=ntwk_code))
-  # Export
-  network %>% visSave(file = paste(mst_dir,
-                                   paste0("minimum_spanning_tree","_SNPcutoff",snpco,"_Days",daysco,".html"),
-                                   sep = "/"))
-  
-  
-  # Save data files
-  nodesDF <- nodes #%>%
-    #dplyr::rename("ST"=group)
-  
-  write.xlsx(nodesDF,file = file.path(mst_dir,
-                                      paste0("minimum_spanning_tree_data","_SNPcutoff",snpco,"_Days",daysco,".xlsx")), overwrite = T)
-  
-  
-  
-}
+# }
 
 
 
