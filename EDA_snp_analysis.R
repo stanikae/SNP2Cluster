@@ -15,7 +15,8 @@ source(file.path(src_path,"functions","load_custom_functions.R"))
 
 # Data load ---------------------------------------------------------------
 data_paths <- file.path(src_path,"conf")
-source(file.path(data_paths,"Richael_s_pneumo.R"))
+# source(file.path(data_paths,"Richael_s_pneumo.R"))
+source(file.path(data_paths,"BabyGERMS_kpn_temb.R"))
 
 # START ANALYSIS ----------------------------------------------------------
 
@@ -35,27 +36,29 @@ source(file.path(data_paths,"Richael_s_pneumo.R"))
   # The first 3 columns should have the following - in the order specified below:
   #   1. sample_id
   #   2. collection_date
-  #   3. facility_name/hospital_name/community codes/regions/metros
-  #   4. Ward_name (or ward type) if 3 is hospital
+  #   3. facility_name/hospital_name/community codes/regions/metros (Var_00)
+  #   4. Ward_name (or ward type) if 3 is hospital (Var_01)
   
-  # # get BabyGERMS metadata
-  # # metdata now included in the dates file: 2023-05-01
-  # mx <- read_csv(dates_path, col_names = F) %>% ncol()
-  # datesDF <- read_csv(dates_path, col_names = F) %>% dplyr::select(all_of(mx),1,2,3,4)
-  # names(datesDF) <- c("sampleID","TakenDate","Hospital","WardType","Ward") 
-  # datesDF$Ward <- dplyr::coalesce(datesDF$Ward,"UNKNOWN")
-  # datesDF$WardType <- dplyr::coalesce(datesDF$WardType,"UNKNOWN")
-  
-  
-  # Richael's data
-  vec_incl_filt <- c("FILE","Sampling_date","Facility code","NAMEFACSCH","SEX","type_vaccine","Serotype","GPSC")
+  # get BabyGERMS metadata
+  # metdata now included in the dates file: 2023-05-01
   mx <- read_csv(dates_path, col_names = F) %>% ncol()
-  datesDF <- read_csv(dates_path, col_names = T) %>%
-    # dplyr::select(all_of(mx),1,2,3,4)
-    dplyr::select(any_of(vec_incl_filt))
+  datesDF <- read_csv(dates_path, col_names = F) %>% dplyr::select(all_of(mx),4,1,3,2) #,1,2,3,4)
+  names(datesDF) <- c("sampleID","TakenDate","Hospital","WardType","Ward")
+  datesDF$Ward <- dplyr::coalesce(datesDF$Ward,"UNKNOWN")
+  datesDF$WardType <- dplyr::coalesce(datesDF$WardType,"UNKNOWN")
   
   
-  names(datesDF) <- c("sampleID","TakenDate","Groups_var","Facility_name","SeX","Vaccine_type","Serotype","GPSC")
+  # # Richael's data
+  # vec_incl_filt <- c("FILE","Sampling_date","Facility code","NAMEFACSCH","SEX","type_vaccine","Serotype","GPSC")
+  # mx <- read_csv(dates_path, col_names = F) %>% ncol()
+  # datesDF <- read_csv(dates_path, col_names = T) %>%
+  #   # dplyr::select(all_of(mx),1,2,3,4)
+  #   dplyr::select(any_of(vec_incl_filt))
+  
+  
+  # names(datesDF) <- c("sampleID","TakenDate","Var_00","Facility_name","SeX","Vaccine_type","Serotype","GPSC")
+  names(datesDF) <- c("sampleID","TakenDate","Var_00","Var_01","Ward")
+  
   # datesDF$Ward <- dplyr::coalesce(datesDF$Ward,"UNKNOWN")
   # datesDF$WardType <- dplyr::coalesce(datesDF$WardType,"UNKNOWN")
   
@@ -121,7 +124,7 @@ source(file.path(data_paths,"Richael_s_pneumo.R"))
   
   
   # Add ST info to the metadata data frame
-  incl_vec <- c("sampleID","Hospital","Groups_var","WardType","ST")
+  incl_vec <- c("sampleID","Hospital","Var_00","Var_01","WardType","ST")
   # incl_vec <- c(1,2,3,4)
   
   annotDF01 <- epiwkDF %>%
@@ -139,14 +142,14 @@ source(file.path(data_paths,"Richael_s_pneumo.R"))
   ##### RUN CORE SNP ANALYSIS HERE - 2023-09-27 ###############################
   # Run core analysis per facility/community/hospital
   
-  if(any(colnames(fc_df_01)=="WardType")){
-    datesJoin <- epiwkDF %>% group_by(WardType)
+  if(any(colnames(epiwkDF)=="Var_01")){
+    datesJoin <- epiwkDF %>% group_by(Var_01)
   }else{
     datesJoin <- epiwkDF
   }
   
   
-  fc_colnames <- c("sampleID","TakenDate","Groups_var","WardType"
+  fc_colnames <- c("sampleID","TakenDate","Var_00","Var_01"
                    ,"ST","epiyear","epiweek","epiyearweek")
   fc_df <- datesJoin %>%
     left_join(mlst,by=c("sampleID"="FILE")) %>%
@@ -156,17 +159,17 @@ source(file.path(data_paths,"Richael_s_pneumo.R"))
   main_var <- names(fc_df)[3]
   facility_vec <- fc_df[[main_var]] %>% unique()
   
-  # fc_df %>% group_by(Groups_var) %>% summarise(count=n())
+  # fc_df %>% group_by(Var_00) %>% summarise(count=n())
   
   for(i in seq_along(facility_vec)){
     fc_val <- facility_vec[[i]]
     
-    print("Starting analysis of")
+    print(paste0("Starting analysis of: ",fc_val))
     
     fc_df_01 <- fc_df %>%
       dplyr::filter(get({{main_var}}) %in% fc_val)
     
-    fc_size <- fc_df_01 %>% group_by(Groups_var)%>% summarise(cnt=n()) %>% pull(cnt)
+    fc_size <- fc_df_01 %>% group_by(Var_00)%>% summarise(cnt=n()) %>% pull(cnt)
     
     if(fc_size <= 2){
       next
@@ -186,7 +189,7 @@ source(file.path(data_paths,"Richael_s_pneumo.R"))
       dplyr::filter(names %in% fc_samples_vec)
     
     mat <- as.matrix(column_to_rownames(fc_df_02,var="names"))
-    str(mat)
+    # str(mat)
     
     # scale data
     mat <- scale(mat)
@@ -231,11 +234,21 @@ source(file.path(data_paths,"Richael_s_pneumo.R"))
     
     
     # get core SNP clusters ---------------------------------------------------
-    datesJoin <- fc_df_01
+    # datesJoin <- fc_df_01
+    if(any(colnames(fc_df_01)=="Var_01")){
+      datesJoin <- fc_df_01 %>% group_by(Var_01)
+    }else{
+      datesJoin <- fc_df_01
+    }
     
     core_snp_results_list <- run_core_snp_cluster_analysis()
     
     if(length(core_snp_results_list) ==1 && is.na(core_snp_results_list)){ 
+      snpClust <- NULL
+      snpClustID <- NULL
+      df2mat <- NULL
+      vec_keep_names <- NULL
+      mat_optimal_centres <- NULL
       next
     }
     
@@ -249,7 +262,7 @@ source(file.path(data_paths,"Richael_s_pneumo.R"))
     # calculate SNP-Epi clusters - new approach as suggested by Lili-CHARM -------
     
     excl_vec <- c("TakenDate","Date2","epicumsum","CG","num","name","cluster","km_cluster",
-                  "Hospital","Ward","WardType")
+                  "Hospital","Ward","Var_01")
     
     
     clusterSet3 <- calculate_SNP_Epi_clusters(snpClust=snpClust,epiwkDF=fc_df_01,mdf=mdf,excl_vec=excl_vec)
@@ -285,13 +298,13 @@ source(file.path(data_paths,"Richael_s_pneumo.R"))
     
     
     
-    incl_vec2 <- c("sampleID", "Groups_var" ,"Hospital","Ward","WardType","TakenDate","Epiweek","Days","SNPs", "Clusters","ST")
+    incl_vec2 <- c("sampleID", "Var_00" ,"Hospital","Ward","Var_01","TakenDate","Epiweek","Days","SNPs", "Clusters","ST")
 
     metadf <- plotDF %>%
       # metadf <- px1 %>%
       ungroup() %>%
       dplyr::select(-epiweek) %>%
-      # add_row(sampleID="reference",Hospital=NA,Ward=NA,WardType=NA,TakenDate=as.Date(refDate),Epiweek=NA,ST=as.factor(refST)) %>%
+      # add_row(sampleID="reference",Var_00=NA,Ward=NA,Var_01=NA,TakenDate=as.Date(refDate),Epiweek=NA,ST=as.factor(refST)) %>%
       dplyr::select(any_of(incl_vec2)) %>% distinct(sampleID,.keep_all = TRUE) %>%
       column_to_rownames(var = "sampleID")
     
@@ -315,8 +328,10 @@ source(file.path(data_paths,"Richael_s_pneumo.R"))
       # annotDF_subset <- annotDF_subset %>% tibble::column_to_rownames(var="sampleID")
       annotDF_subset3 <- annotDF_subset[rownames(annotDF_subset) %in% vec_keep_names,]
       annotDF_subset3 <- annotDF_subset3[order(match(rownames(annotDF_subset3), colnames(mat_snp))), ,drop = FALSE]
-      
-      
+    
+    }else{
+      next
+    }
       annotDF_subset2 <- annotDF_subset3 %>%
         mutate(name=rownames(.)) %>%
         mutate(ST=as.numeric(as.character(ST))) %>%
@@ -342,7 +357,7 @@ source(file.path(data_paths,"Richael_s_pneumo.R"))
       # vec_excl_filt <- c("TakenDate","epiyear","epiweek", "epiyearweek","km_cluster",
                          # "Serotype", "GPSC","Days","SNPs", "Cluster_Cases_count")
       
-      vec_incl_filt_hm <- c("Groups_var","Hospital","WardType","ST",
+      vec_incl_filt_hm <- c("Var_00","Hospital","Var_01","ST",
                             "name","Core.SNP.clusters","SNP.Epi.Clusters")
       
       if(nrow(clusterSet3) != 0){
@@ -375,7 +390,7 @@ source(file.path(data_paths,"Richael_s_pneumo.R"))
       trans_type <- str_to_sentence(transmission_type)
       annotDF_subset2 <- annotDF_subset2 %>%
         column_to_rownames(var = "name") %>%
-        dplyr::rename(!!trans_type := Groups_var)
+        dplyr::rename(!!trans_type := Var_00)
       
         # dplyr::select(! any_of(vec_excl_filt))
     
@@ -404,10 +419,10 @@ source(file.path(data_paths,"Richael_s_pneumo.R"))
     names(col1) <- annotDF_subset2 %>% pull(trans_type) %>% unique()
     
     
-    if(any(names(annotDF_subset2) == "WardType")){
-      n2 <- annotDF_subset2 %>% pull(WardType) %>% dplyr::n_distinct()
+    if(any(names(annotDF_subset2) == "Var_01")){
+      n2 <- annotDF_subset2 %>% pull(Var_01) %>% dplyr::n_distinct()
       col2 <- maxX[1:n2]  #brewer.pal(n2,"YlGnBu")
-      names(col2) <- annotDF_subset2 %>% pull(WardType) %>% unique()
+      names(col2) <- annotDF_subset2 %>% pull(Var_01) %>% unique()
     }
    
     
@@ -428,7 +443,8 @@ source(file.path(data_paths,"Richael_s_pneumo.R"))
     
     
     if (any(names(annotDF_subset2) == "SNP.Epi.Clusters")){
-      if(any(names(annotDF_subset2) == "WardType")){
+      if(any(names(annotDF_subset2) == "Var_01")){
+        annotDF_subset2 <- annotDF_subset2 %>% dplyr::rename("WardType" = Var_01)
         colAnnot2 <- ComplexHeatmap::HeatmapAnnotation(
           df = annotDF_subset2, annotation_height = 7,
           annotation_name_gp = gpar(fontsize = 7),
@@ -517,6 +533,7 @@ source(file.path(data_paths,"Richael_s_pneumo.R"))
     tidyHeatmap::save_pdf(p61,file.path(work_dir,paste0(fc_val,".coreSNP-clusters_heatmap.",date_var,".pdf")),width = 10, height = 5, units = "in")
     # centers (i.e., the average of each variable for each cluster):
     
+    annotDF_subset2 <- NULL
     
     # Write data to file ------------------------------------------------------
     # write EPI+SNP cluster data to file
@@ -531,7 +548,7 @@ source(file.path(data_paths,"Richael_s_pneumo.R"))
     
     
     # write MLST profile to file
-    incl_vec2 <- c("sampleID","Groups_var","Hospital","Ward","WardType","TakenDate","Epiweek","ST","Clusters")
+    incl_vec2 <- c("sampleID","Var_00","Hospital","Ward","WardType","TakenDate","Epiweek","ST","Clusters")
     outDF <- plotDF %>% 
       dplyr::select(-ST)%>%
       inner_join(mlst,by=c("sampleID"="FILE")) %>% dplyr::select(any_of(incl_vec2))
@@ -619,15 +636,16 @@ source(file.path(data_paths,"Richael_s_pneumo.R"))
     # Transmission network analysis -------------------------------------------
 
     # create outdir
-    path_dir <- paste0(path,"_SNPcutoff",snpco,"_Days",daysco)
+    path_dir <- file.path(dirname(work_dir),paste0("transmission-analysis","_SNPcutoff",snpco,"_Days",daysco))
+      #paste0(path,"_SNPcutoff",snpco,"_Days",daysco)
     if (! dir.exists(path_dir)){
       dir.create(path_dir,recursive = T)
     }
     
     setwd(path_dir)
     
-    clusterDF # Core-SNP clusters
-    datesJoin # Dates and other metadata
+    # clusterDF # Core-SNP clusters
+    # datesJoin # Dates and other metadata
     
     date_file <- datesJoin
     names(date_file)[1] <- "ID"
@@ -669,11 +687,11 @@ source(file.path(data_paths,"Richael_s_pneumo.R"))
     # Transmission tree reconstruction using SeqTrack -------------------------
     
     # Perform transmission network analysis per ST
-    vec_sts <- date_file %>% dplyr::filter(! is.na(ST)) %>% pull(ST)
+    vec_sts <- date_file %>% dplyr::filter(! is.na(ST)) %>% pull(ST) %>% unique()
     countm <- 1
     for(st in seq_along(vec_sts)){
       m <- vec_sts[st]
-      m_ids <- mlst %>% filter(ST==m) %>% pull(FILE)
+      m_ids <- date_file %>% filter(ST==m) %>% pull(ID) %>% unique()
       
       if(length(m_ids) < 3){
         next
@@ -842,7 +860,7 @@ source(file.path(data_paths,"Richael_s_pneumo.R"))
     }
     
     
-  }
+  
 }
   
 

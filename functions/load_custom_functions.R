@@ -232,7 +232,7 @@ get_core_snp_clusters <- function(m, k, max, dates=NULL, snpco, orig=TRUE){
         # dplyr::rename("clst"=snpcumsum2) 
         dplyr::rename("clst"=snpcumsum)
       
-      if(length(keep_df2$SNPs[keep_df2$SNPs == 0])>=3){
+      if(length(keep_df2$SNPs[keep_df2$SNPs == 0])>=3){ 
         
         if(orig){
           df_filtx <- keep_df2 %>%
@@ -398,9 +398,9 @@ get_core_snp_clusters <- function(m, k, max, dates=NULL, snpco, orig=TRUE){
         
         # maxV=max(keep_df3$Clusters) 
         
-      }else{
-        next
-      }
+      }#else{ 
+       # next
+      #}
       
       if(any(names(keep_df2) == "Clusters")){
         # if(! is.null(keep_df3)){
@@ -779,15 +779,15 @@ create_scatter_plots <- function(datesJoin,clusterSet3,mlst,transmission_type="f
       }
     }
   }else{
-    if(all(c("WardType","Epiweek") %in% colnames(plotDF))){
-      px1 <- plotDF %>% group_by(WardType,Epiweek) %>% dplyr::mutate(count=n())
+    if(all(c("Var_01","Epiweek") %in% colnames(plotDF))){
+      px1 <- plotDF %>% group_by(Var_01,Epiweek) %>% dplyr::mutate(count=n())
       
       p1 <- ggplot(px1, 
                    aes(x = Epiweek,
                        y = ST, #WardType, #Clusters,
                        # y = count, #,
                        color=Clusters,
-                       shape = WardType
+                       shape = Var_01
                    )) +
         geom_point(alpha = .9, size=4,position=position_jitter(h=0.07,w=0.15)) + 
         # scale_fill_brewer(palette = "Dark2") +
