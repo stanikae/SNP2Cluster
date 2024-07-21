@@ -296,7 +296,7 @@ source(file.path(data_paths,"BabyGERMS_kpn_temb.R"))
     plotDF <- scatter_plots_cmb_list[[1]]
     p1 <- scatter_plots_cmb_list[[2]]
     # save scatter plots to file
-    ggsave(file.path(work_dir,paste0(fc_val,",scatterplot.",date_var,".png")),
+    ggsave(file.path(work_dir,paste0(fc_val,".scatterplot.",date_var,".png")),
            p1,
            width = 10, 
            height = 8)

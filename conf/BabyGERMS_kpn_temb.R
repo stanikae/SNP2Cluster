@@ -22,8 +22,8 @@ out_dir <- "D:/Terra-Informatix/baby-germs/KLEPP/TEMBISA/clusters"
 # transmission_type = "facility" # Facility level analysis will be performed per facility. Facility can be a school, hopsital etc
 transmission_type = "hospital" # Hospital level analysis will be performed per hospital. Ward information should be provided
 # transmission_type = "community" # Community level analysis will be performed by ST
-snpco=11  # set SNP cut-off     (Set to 20 by default)
-daysco=14 # Set number of days (set to 14 by default)
+snpco=25#11  # set SNP cut-off     (Set to 20 by default)
+daysco=45#60 #14 # Set number of days (set to 14 by default)
 
 
 # # Transmission network input files
