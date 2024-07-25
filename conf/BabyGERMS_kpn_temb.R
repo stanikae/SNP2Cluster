@@ -17,13 +17,20 @@ moltenpath = "E:/projects/Baby-Germs/KLEPP/KLEPP/TEMBISA/transmission/coreSNPmat
 mlst_profile = "E:/projects/Baby-Germs/KLEPP/KLEPP/TEMBISA/transmission/05.mlst.xlsx"
 out_dir <- "D:/Terra-Informatix/baby-germs/KLEPP/TEMBISA/clusters"
 
+# DORA
+# dates_path = "E:/projects/Baby-Germs/KLEPP/KLEPP/DORA-NGINZA/transmission/DORA_ward.csv"
+# filepath = "E:/projects/Baby-Germs/KLEPP/KLEPP/DORA-NGINZA/DNH/transmission/coreSNPmatrix.co.csv"
+# moltenpath = "E:/projects/Baby-Germs/KLEPP/KLEPP/DORA-NGINZA/DNH/transmission/coreSNPmatrixmolten.csv"
+# mlst_profile = "E:/projects/Baby-Germs/KLEPP/KLEPP/DORA-NGINZA/DNH/transmission/05.mlst.xlsx"
+# out_dir <- "D:/Terra-Informatix/baby-germs/KLEPP/DORA-NGINZA/clusters"
+
 
 # Type of transmission dynamics (Community vs Facility vs Hospital)
 # transmission_type = "facility" # Facility level analysis will be performed per facility. Facility can be a school, hopsital etc
 transmission_type = "hospital" # Hospital level analysis will be performed per hospital. Ward information should be provided
 # transmission_type = "community" # Community level analysis will be performed by ST
-snpco=25#11  # set SNP cut-off     (Set to 20 by default)
-daysco=45#60 #14 # Set number of days (set to 14 by default)
+snpco=11  # set SNP cut-off     (Set to 20 by default)
+daysco=5 # Set number of days (set to 14 by default)
 
 
 # # Transmission network input files
