@@ -959,7 +959,7 @@ calculate_SNP_Epi_clusters <- function(snpClust,epiwkDF,mdf,excl_vec){
     dplyr::select("sampleID","Days","SNPs","Clusters","Cluster_Cases_count")
   
   if(nrow(clusterSet3) == 0){ 
-    return(NA) 
+    return(NULL) 
   }else{
     return(clusterSet3)
   }

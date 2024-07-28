@@ -289,6 +289,9 @@ source(file.path(data_paths,"BabyGERMS_kpn_temb.R"))
     
     # Create scatter plots ----------------------------------------------------
     
+    if(!is.null(clusterSet3)){
+      #stop("Provide path to the SNP distance matrix in the config file")
+    
     
     scatter_plots_cmb_list <- list()
     scatter_plots_cmb_list <- create_scatter_plots(datesJoin,clusterSet3,mlst,transmission_type="facility")
@@ -313,7 +316,7 @@ source(file.path(data_paths,"BabyGERMS_kpn_temb.R"))
       dplyr::select(any_of(incl_vec2)) %>% distinct(sampleID,.keep_all = TRUE) %>%
       column_to_rownames(var = "sampleID")
     
-    
+    }
     # metadf <- plotDF %>%
     #   # metadf <- px1 %>%
     #   ungroup() %>%
@@ -365,7 +368,8 @@ source(file.path(data_paths,"BabyGERMS_kpn_temb.R"))
       vec_incl_filt_hm <- c("Var_00","Hospital","Var_01","ST",
                             "name","Core.SNP.clusters","SNP.Epi.Clusters")
       
-      if(nrow(clusterSet3) != 0){
+      # if(nrow(clusterSet3) != 0){
+      if(!is.null(clusterSet3)){
         episnpclust <- clusterSet3 %>%
           mutate(Clusters=as.numeric(as.character(Clusters))) %>%
           # mutate(ST=as.numeric(as.character(ST))) #%>%
@@ -542,7 +546,8 @@ source(file.path(data_paths,"BabyGERMS_kpn_temb.R"))
     
     # Write data to file ------------------------------------------------------
     # write EPI+SNP cluster data to file
-    if(nrow(clusterSet3) != 0){
+    # if(nrow(clusterSet3) != 0){
+    if(!is.null(clusterSet3)){
       snpepiDF <- clusterSet3 %>% dplyr::select(4,3,2,1)
       openxlsx::write.xlsx(snpepiDF, 
                            file.path(work_dir,
@@ -664,7 +669,8 @@ source(file.path(data_paths,"BabyGERMS_kpn_temb.R"))
     }
     
     # Get SNP-EPI clusters 
-    if(nrow(clusterSet3) != 0){
+    # if(nrow(clusterSet3) != 0){
+    if(!is.null(clusterSet3)){
       clsters <- clusterSet3 %>%
         dplyr::select(4,1) %>%
         dplyr::rename("names"=sampleID) %>%

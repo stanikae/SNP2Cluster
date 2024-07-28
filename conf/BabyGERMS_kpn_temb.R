@@ -9,28 +9,88 @@
 
 ################################### SET PARAMETERS HERE ########################################
 
-# BabyGERMS
-# # TEMBISA
-dates_path = "E:/projects/Baby-Germs/KLEPP/KLEPP/TEMBISA/transmission/TEMBISA_ward.csv"
-filepath = "E:/projects/Baby-Germs/KLEPP/KLEPP/TEMBISA/transmission/coreSNPmatrix.co.csv"
-moltenpath = "E:/projects/Baby-Germs/KLEPP/KLEPP/TEMBISA/transmission/coreSNPmatrixmolten.csv"
-mlst_profile = "E:/projects/Baby-Germs/KLEPP/KLEPP/TEMBISA/transmission/05.mlst.xlsx"
-out_dir <- "D:/Terra-Informatix/baby-germs/KLEPP/TEMBISA/clusters"
 
-# DORA
+
+# Baby GERMS Study --------------------------------------------------------------
+
+# KLEBS paths -------------------------------------------------------------------
+# # TEMBISA
+# dates_path = "E:/projects/Baby-Germs/KLEPP/KLEPP/TEMBISA/transmission/TEMBISA_ward.csv"
+# filepath = "E:/projects/Baby-Germs/KLEPP/KLEPP/TEMBISA/transmission/coreSNPmatrix.co.csv"
+# moltenpath = "E:/projects/Baby-Germs/KLEPP/KLEPP/TEMBISA/transmission/coreSNPmatrixmolten.csv"
+# mlst_profile = "E:/projects/Baby-Germs/KLEPP/KLEPP/TEMBISA/transmission/05.mlst.xlsx"
+# out_dir <- "D:/Terra-Informatix/baby-germs/KLEPP/TEMBISA/clusters"
+
+# # DORA
 # dates_path = "E:/projects/Baby-Germs/KLEPP/KLEPP/DORA-NGINZA/transmission/DORA_ward.csv"
 # filepath = "E:/projects/Baby-Germs/KLEPP/KLEPP/DORA-NGINZA/DNH/transmission/coreSNPmatrix.co.csv"
 # moltenpath = "E:/projects/Baby-Germs/KLEPP/KLEPP/DORA-NGINZA/DNH/transmission/coreSNPmatrixmolten.csv"
 # mlst_profile = "E:/projects/Baby-Germs/KLEPP/KLEPP/DORA-NGINZA/DNH/transmission/05.mlst.xlsx"
 # out_dir <- "D:/Terra-Informatix/baby-germs/KLEPP/DORA-NGINZA/clusters"
 
+# hospital="KLERKSDORP"
+# dates_path = "E:/projects/Baby-Germs/KLEPP/KLEPP/KLERKSDORP/transmission/KLERKSDORP_ward.csv"
+# filepath = "E:/projects/Baby-Germs/KLEPP/KLEPP/KLERKSDORP/transmission/coreSNPmatrix.co.csv"
+# moltenpath = "E:/projects/Baby-Germs/KLEPP/KLEPP/KLERKSDORP/transmission/coreSNPmatrixmolten.csv"
+# mlst_profile = "E:/projects/Baby-Germs/KLEPP/KLEPP/KLERKSDORP/transmission/05.mlst.xlsx"
+# out_dir <- "D:/Terra-Informatix/baby-germs/KLEPP/KLERKSDORP/clusters"
+
+# # MANKWENG
+# dates_path = "E:/projects/Baby-Germs/KLEPP/KLEPP/MANKWENG/transmission/MANKWENG_ward.csv"
+# filepath = "E:/projects/Baby-Germs/KLEPP/KLEPP/MANKWENG/transmission/coreSNPmatrix.co.csv"
+# moltenpath = "E:/projects/Baby-Germs/KLEPP/KLEPP/MANKWENG/transmission/coreSNPmatrixmolten.csv"
+# mlst_profile = "E:/projects/Baby-Germs/KLEPP/KLEPP/MANKWENG/transmission/05.mlst.xlsx"
+# out_dir <- "D:/Terra-Informatix/baby-germs/KLEPP/MANKWENG/clusters"
+
+# # QUEEN-NANDI-REGIONAL
+# dates_path = "E:/projects/Baby-Germs/KLEPP/KLEPP/QUEEN-NANDI-REGIONAL/transmission/QUEEN_ward.csv"
+# filepath = "E:/projects/Baby-Germs/KLEPP/KLEPP/QUEEN-NANDI-REGIONAL/transmission/coreSNPmatrix.co.csv"
+# moltenpath = "E:/projects/Baby-Germs/KLEPP/KLEPP/QUEEN-NANDI-REGIONAL/transmission/coreSNPmatrixmolten.csv"
+# mlst_profile = "E:/projects/Baby-Germs/KLEPP/KLEPP/QUEEN-NANDI-REGIONAL/transmission/05.mlst.xlsx"
+# out_dir <- "D:/Terra-Informatix/baby-germs/KLEPP/QUEEN-NANDI-REGIONAL/clusters"
+
+# # # ROB-FERREIRA
+# dates_path = "E:/projects/Baby-Germs/KLEPP/KLEPP/ROB-FERREIRA/transmission/ROB_ward.csv"
+# filepath = "E:/projects/Baby-Germs/KLEPP/KLEPP/ROB-FERREIRA/transmission/coreSNPmatrix.co.csv"
+# moltenpath = "E:/projects/Baby-Germs/KLEPP/KLEPP/ROB-FERREIRA/transmission/coreSNPmatrixmolten.csv"
+# mlst_profile = "E:/projects/Baby-Germs/KLEPP/KLEPP/ROB-FERREIRA/transmission/05.mlst.xlsx"
+# out_dir <- "D:/Terra-Informatix/baby-germs/KLEPP/ROB-FERREIRA/clusters"
+
+
+# ACIBA paths -------------------------------------------------------------
+# # # DORA
+# dates_path = "E:/projects/Baby-Germs/ACIBA/downstream-analysis/ACIBA/DORA/transmission/DORA_ward.csv"
+# filepath = "E:/projects/Baby-Germs/ACIBA/downstream-analysis/ACIBA/DORA/transmission/coreSNPmatrix.co.csv"
+# moltenpath = "E:/projects/Baby-Germs/ACIBA/downstream-analysis/ACIBA/DORA/transmission/coreSNPmatrixmolten.csv"
+# mlst_profile = "E:/projects/Baby-Germs/ACIBA/downstream-analysis/ACIBA/DORA/transmission/05.mlst.xlsx"
+# out_dir <- "D:/Terra-Informatix/baby-germs/ACIBA/DORA-NGINZA/clusters"
+
+
+
+# STAPH paths -------------------------------------------------------------------
+# # DORA
+# dates_path = "E:/projects/Baby-Germs/STAAU/downstream-analysis/STAAU/DORA/transmission/DORA_ward.csv"
+# filepath = "E:/projects/Baby-Germs/STAAU/downstream-analysis/STAAU/DORA/transmission/coreSNPmatrix.co.csv"
+# moltenpath = "E:/projects/Baby-Germs/STAAU/downstream-analysis/STAAU/DORA/transmission/coreSNPmatrixmolten.csv"
+# mlst_profile = "E:/projects/Baby-Germs/STAAU/downstream-analysis/STAAU/DORA/transmission/05.mlst.xlsx"
+# out_dir <- "E:/projects/Baby-Germs/STAAU/downstream-analysis/STAAU/DORA/cluster-analysis6/clusters"
+
+
+# # QUEEN
+dates_path = "E:/projects/Baby-Germs/STAAU/downstream-analysis/STAAU/QUEEN/transmission/QUEEN_ward.csv"
+filepath = "E:/projects/Baby-Germs/STAAU/downstream-analysis/STAAU/QUEEN/transmission/coreSNPmatrix.co.csv"
+moltenpath = "E:/projects/Baby-Germs/STAAU/downstream-analysis/STAAU/QUEEN/transmission/coreSNPmatrixmolten.csv"
+mlst_profile = "E:/projects/Baby-Germs/STAAU/downstream-analysis/STAAU/QUEEN/transmission/05.mlst.xlsx"
+out_dir <- "D:/Terra-Informatix/baby-germs/STAAU/QUEEN-NANDI-REGIONAL/clusters"
+
+
 
 # Type of transmission dynamics (Community vs Facility vs Hospital)
 # transmission_type = "facility" # Facility level analysis will be performed per facility. Facility can be a school, hopsital etc
 transmission_type = "hospital" # Hospital level analysis will be performed per hospital. Ward information should be provided
 # transmission_type = "community" # Community level analysis will be performed by ST
-snpco=11  # set SNP cut-off     (Set to 20 by default)
-daysco=5 # Set number of days (set to 14 by default)
+snpco=25  # set SNP cut-off     (Set to 20 by default)
+daysco=45 # Set number of days (set to 14 by default)
 
 
 # # Transmission network input files
@@ -38,6 +98,24 @@ daysco=5 # Set number of days (set to 14 by default)
 # aln_path = "E:/projects/Baby-Germs/KLEPP/KLEPP/TEMBISA/transmission/snps.co.snp_sites.aln"
 # snp_dist <- moltenpath
 # core_snps = "E:/projects/Baby-Germs/KLEPP/KLEPP/TEMBISA/transmission/coreSNPmatrix.co.csv"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # collection date format
 lubri_fmt <- "ymd" # options include: dym, dmy, ymd, ydm, etc.. -- based on the lubridate package
