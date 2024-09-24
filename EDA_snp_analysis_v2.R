@@ -16,8 +16,8 @@ source(file.path(src_path,"functions","load_custom_functions.R"))
 # Data load ---------------------------------------------------------------
 data_paths <- file.path(src_path,"conf")
 # source(file.path(data_paths,"Richael_s_pneumo.R"))
-source(file.path(data_paths,"BabyGERMS_kpn_temb.R"))
-
+# source(file.path(data_paths,"BabyGERMS_kpn_temb.R"))
+source(file.path(data_paths,"Thabo_p_aerogenosa.R"))
 # START ANALYSIS ----------------------------------------------------------
 
 # Set SNP cut-off and EPI-days
@@ -36,7 +36,7 @@ source(file.path(data_paths,"BabyGERMS_kpn_temb.R"))
   # The first 3 columns should have the following - in the order specified below:
   #   1. sample_id
   #   2. collection_date
-  #   3. facility_name/hospital_name/community codes/regions/metros (Var_00)
+  #   3. facility_name/hospital_name/community codes/regions/metros (Main_var)
   #   4. Ward_name (or ward type) if 3 is hospital (Var_01)
   
   # get BabyGERMS metadata
@@ -56,36 +56,27 @@ source(file.path(data_paths,"BabyGERMS_kpn_temb.R"))
   #   dplyr::select(any_of(vec_incl_filt))
   
   
+  # Thabo's metadata
+  # metdata now included in the dates file: 2023-05-01
+  var_sel <- c("sampleid","biosample","collection_year","collection_date","Country")
+  # var_sel <- c("biosample","collection_year","Country")
+  mx <- read_excel(dates_path) %>% dplyr::filter(Host=="Human") %>% ncol()
+  datesDF <- read_excel(dates_path) %>% 
+    dplyr::filter(Host=="Human") %>% 
+    dplyr::select(any_of(var_sel)) #%>%
+    # dplyr::filter(collection_date != "Missing")
+  
+  datesDF <- dplyr::select(datesDF,sampleid,collection_date,Country,collection_year,biosample)
+  
+  names(datesDF) <- c("sampleID","TakenDate",Var_01,"Year","biosample") #,"Var_01","Ward")
+  
+  
   # names(datesDF) <- c("sampleID","TakenDate","Var_00","Facility_name","SeX","Vaccine_type","Serotype","GPSC")
-  names(datesDF) <- c("sampleID","TakenDate","Var_00","Var_01","Ward")
+  names(datesDF) <- c("sampleID","TakenDate",Main_var,Var_01,"Ward")
   
   # datesDF$Ward <- dplyr::coalesce(datesDF$Ward,"UNKNOWN")
   # datesDF$WardType <- dplyr::coalesce(datesDF$WardType,"UNKNOWN")
   
-  # Fix dates - optional 2024-05-29
-  # 
-  if(lubri_fmt == "mdy"){
-    datesDF$TakenDate <- lubridate::mdy(datesDF$TakenDate)
-  }else if(lubri_fmt == "dmy"){
-    datesDF$TakenDate <- lubridate::dmy(datesDF$TakenDate)
-  }else if((lubri_fmt == "ydm")){
-    datesDF$TakenDate <- lubridate::ydm(datesDF$TakenDate)
-  }else{
-    datesDF$TakenDate <- lubridate::ymd(datesDF$TakenDate)
-  }
-  #  to add more options
-  # as.integer(difftime(max(datesDF$TakenDate),min(datesDF$TakenDate),  unit="days"))
-  
-  
-  epiwkDF <- datesDF %>% 
-    # dplyr::select(1,4,5) %>% 
-    mutate(epiyear = lubridate::epiyear(datesDF$TakenDate)) %>%
-    mutate(epiweek = lubridate::epiweek(datesDF$TakenDate)) %>%
-    mutate(epiyearweek = paste(epiyear,epiweek,sep=".")) #%>% print()
-  
-  
-  # datesJoin <- epiwkDF %>%  # To make more generic 20240529
-  #   group_by(WardType)
   
   
   # Get snp pairwise data
@@ -123,32 +114,83 @@ source(file.path(data_paths,"BabyGERMS_kpn_temb.R"))
   #   #dplyr::filter(X3<= snpco & X1 != X2) %>% print(n=40)
   
   
+  
   # Add ST info to the metadata data frame
-  incl_vec <- c("sampleID","Hospital","Var_00","Var_01","WardType","ST")
-  # incl_vec <- c(1,2,3,4)
+  st_remove <- c("ST")
+  incl_vec <- c("sampleID","Hospital",Main_var,Var_01,"WardType","biosample","ST")
   
-  annotDF01 <- epiwkDF %>%
-    left_join(mlst,by=c("sampleID"="FILE")) %>%
-    mutate(ST=as.numeric(as.character(ST))) %>%
-    dplyr::select(any_of(incl_vec)) %>%
-    tibble::column_to_rownames(var = "sampleID")
+  if(clust_type == "Core"){
+    epiwkDF <- datesDF
+    
+    annotDF01 <- epiwkDF %>%
+      dplyr::select(!any_of(st_remove)) %>%
+      left_join(mlst,by=c("sampleID"="FILE")) %>%
+      mutate(ST=as.numeric(as.character(ST))) %>%
+      dplyr::select(any_of(incl_vec)) %>%
+      tibble::column_to_rownames(var = "sampleID")
+    
+  }else{
+    # Fix dates - optional 2024-05-29
+    # 
+    if(lubri_fmt == "mdy"){
+      datesDF$TakenDate <- lubridate::mdy(datesDF$TakenDate)
+    }else if(lubri_fmt == "dmy"){
+      datesDF$TakenDate <- lubridate::dmy(datesDF$TakenDate)
+    }else if((lubri_fmt == "ydm")){
+      datesDF$TakenDate <- lubridate::ydm(datesDF$TakenDate)
+    }else{
+      datesDF$TakenDate <- lubridate::ymd(datesDF$TakenDate)
+    }
+    #  to add more options
+    # as.integer(difftime(max(datesDF$TakenDate),min(datesDF$TakenDate),  unit="days"))
+    
+    
+    epiwkDF <- datesDF %>% 
+      # dplyr::select(1,4,5) %>% 
+      mutate(epiyear = lubridate::epiyear(datesDF$TakenDate)) %>%
+      mutate(epiweek = lubridate::epiweek(datesDF$TakenDate)) %>%
+      mutate(epiyearweek = paste(epiyear,epiweek,sep=".")) #%>% print()
+    
+    
+    # datesJoin <- epiwkDF %>%  # To make more generic 20240529
+    #   group_by(WardType)
+    
+    # # Add ST info to the metadata data frame
+    # incl_vec <- c("sampleID","Hospital",Main_var,"Var_01","WardType","ST")
+    # incl_vec <- c(1,2,3,4)
+    
+    annotDF01 <- epiwkDF %>%
+      left_join(mlst,by=c("sampleID"="FILE")) %>%
+      mutate(ST=as.numeric(as.character(ST))) %>%
+      dplyr::select(any_of(incl_vec)) %>%
+      tibble::column_to_rownames(var = "sampleID")
+    
+    # mutate(Clusters=as.numeric(as.character(Clusters))) %>%
+    # dplyr::rename("SNP.Epi.Clusters" = Clusters)
+    
+  }
   
-  # mutate(Clusters=as.numeric(as.character(Clusters))) %>%
-  # dplyr::rename("SNP.Epi.Clusters" = Clusters)
+
 
   annotDF_subset <- annotDF01
   
   ##### RUN CORE SNP ANALYSIS HERE - 2023-09-27 ###############################
   # Run core analysis per facility/community/hospital
   
-  if(any(colnames(epiwkDF)=="Var_01")){
-    datesJoin <- epiwkDF %>% group_by(Var_01)
-    fc_colnames <- c("sampleID","TakenDate","Var_00","Var_01"
-                     ,"ST","epiyear","epiweek","epiyearweek")
+  if(! exists("Main_var")){
+    # next
+    stop("Define main variable in the config file")
+  }
+  
+  
+  if(any(colnames(epiwkDF)==Var_01)){
+    datesJoin <- epiwkDF %>% group_by(.datVar_01)
+    fc_colnames <- c("sampleID","TakenDate",Main_var,Var_01,
+                     "ST","epiyear","epiweek","epiyearweek")
   }else{
     datesJoin <- epiwkDF
-    fc_colnames <- c("sampleID","TakenDate","Var_00","ST"
-                     ,"epiyear","epiweek","epiyearweek")
+    fc_colnames <- c("sampleID","TakenDate",Main_var,"ST",
+                     "epiyear","epiweek","epiyearweek","biosample")
   }
   
   
@@ -158,7 +200,7 @@ source(file.path(data_paths,"BabyGERMS_kpn_temb.R"))
     mutate(ST=as.numeric(as.character(ST))) %>%
     dplyr::select(any_of(fc_colnames))
 
-  main_var <- "Var_00" #names(fc_df)[3]
+  main_var <- Main_var #names(fc_df)[3]
   facility_vec <- fc_df[[main_var]] %>% unique()
   
   # fc_df %>% group_by(Var_00) %>% summarise(count=n())
@@ -171,7 +213,7 @@ source(file.path(data_paths,"BabyGERMS_kpn_temb.R"))
     fc_df_01 <- fc_df %>%
       dplyr::filter(get({{main_var}}) %in% fc_val)
     
-    fc_size <- fc_df_01 %>% group_by(Var_00)%>% summarise(cnt=n()) %>% pull(cnt)
+    fc_size <- fc_df_01 %>% group_by(.data[[Main_var]])%>% summarise(cnt=n()) %>% pull(cnt)
     
     if(fc_size <= 2){
       next
@@ -206,9 +248,9 @@ source(file.path(data_paths,"BabyGERMS_kpn_temb.R"))
     # Enhanced k-means clustering ---------------------------------------------
     # Step 01: Get K
     # 2023-06-03: Now using silhouette optimal cluster calculation based on kmeans
-    kmx <- nrow(mat) - 1
+    kmx <- nrow(mat) - 2
     
-    if(nrow(mat)>10){
+    if(nrow(mat)>15){
       p4 <- fviz_nbclust(mat, kmeans , method= 'silhouette',nboot = 500)
     }else{
       p4 <- fviz_nbclust(mat, kmeans, k.max = kmx, method= 'silhouette',nboot = 500)
@@ -240,8 +282,8 @@ source(file.path(data_paths,"BabyGERMS_kpn_temb.R"))
     
     # get core SNP clusters ---------------------------------------------------
     # datesJoin <- fc_df_01
-    if(any(colnames(fc_df_01)=="Var_01")){
-      datesJoin <- fc_df_01 %>% group_by(Var_01)
+    if(any(colnames(fc_df_01)==Var_01)){
+      datesJoin <- fc_df_01 %>% group_by(.data[[Var_01]])
     }else{
       datesJoin <- fc_df_01
     }
@@ -265,26 +307,28 @@ source(file.path(data_paths,"BabyGERMS_kpn_temb.R"))
     
     
     # calculate SNP-Epi clusters - new approach as suggested by Lili-CHARM -------
-    
-    excl_vec <- c("TakenDate","Date2","epicumsum","CG","num","name","cluster","km_cluster",
-                  "Hospital","Ward","Var_01")
-    
-    
-    clusterSet3 <- calculate_SNP_Epi_clusters(snpClust=snpClust,epiwkDF=fc_df_01,mdf=mdf,excl_vec=excl_vec)
-    
-    
-    # datesClusterDF <- datesJoin %>%
-    #   dplyr::select(sampleID,TakenDate) %>%
-    #   arrange(TakenDate) %>%
-    #   mutate(ID2 = dplyr::lead(sampleID,1)) %>%
-    #   mutate(Date2 = dplyr::lead(TakenDate,1)) %>%
-    #   dplyr::select(sampleID,ID2,TakenDate,Date2,everything()) %>%
-    #   mutate(Days = as.numeric(difftime(Date2,TakenDate,units = "days"))) %>%
-    #   mutate(epicumsum = if_else(Days <= daysco,1,0)) %>%
-    #   mutate(epicumsum = if_else(is.na(epicumsum),0,epicumsum)) %>%
-    #   ungroup() %>%
-    #   mutate(CG = data.table::rleid(epicumsum)) %>%
-    #   dplyr::filter(epicumsum != 0)
+    if(clust_type == "Transmission"){
+      
+      excl_vec <- c("TakenDate","Date2","epicumsum","CG","num","name","cluster","km_cluster",
+                    "Hospital","Ward",Var_01)
+      
+      clusterSet3 <- calculate_SNP_Epi_clusters(snpClust=snpClust,epiwkDF=fc_df_01,mdf=mdf,excl_vec=excl_vec)
+      
+      
+      # datesClusterDF <- datesJoin %>%
+      #   dplyr::select(sampleID,TakenDate) %>%
+      #   arrange(TakenDate) %>%
+      #   mutate(ID2 = dplyr::lead(sampleID,1)) %>%
+      #   mutate(Date2 = dplyr::lead(TakenDate,1)) %>%
+      #   dplyr::select(sampleID,ID2,TakenDate,Date2,everything()) %>%
+      #   mutate(Days = as.numeric(difftime(Date2,TakenDate,units = "days"))) %>%
+      #   mutate(epicumsum = if_else(Days <= daysco,1,0)) %>%
+      #   mutate(epicumsum = if_else(is.na(epicumsum),0,epicumsum)) %>%
+      #   ungroup() %>%
+      #   mutate(CG = data.table::rleid(epicumsum)) %>%
+      #   dplyr::filter(epicumsum != 0)
+    }
+   
     
     
     # Create scatter plots ----------------------------------------------------
@@ -294,7 +338,7 @@ source(file.path(data_paths,"BabyGERMS_kpn_temb.R"))
     
     
     scatter_plots_cmb_list <- list()
-    scatter_plots_cmb_list <- create_scatter_plots(datesJoin,clusterSet3,mlst,transmission_type="facility")
+    scatter_plots_cmb_list <- create_scatter_plots(datesJoin,clusterSet3,mlst,transmission_type=Main_var)
     
     plotDF <- scatter_plots_cmb_list[[1]]
     p1 <- scatter_plots_cmb_list[[2]]
@@ -306,7 +350,7 @@ source(file.path(data_paths,"BabyGERMS_kpn_temb.R"))
     
     
     
-    incl_vec2 <- c("sampleID", "Var_00" ,"Hospital","Ward","Var_01","TakenDate","Epiweek","Days","SNPs", "Clusters","ST")
+    incl_vec2 <- c("sampleID", Main_var ,"Hospital","Ward",Var_01,"TakenDate","Epiweek","Days","SNPs", "Clusters","ST")
 
     metadf <- plotDF %>%
       # metadf <- px1 %>%
@@ -340,53 +384,65 @@ source(file.path(data_paths,"BabyGERMS_kpn_temb.R"))
     }else{
       next
     }
-      annotDF_subset2 <- annotDF_subset3 %>%
-        mutate(name=rownames(.)) %>%
-        mutate(ST=as.numeric(as.character(ST))) %>%
-        inner_join(snpClust, by="name") %>%
-        dplyr::rename("Core.SNP.clusters"=cluster)
+    
+    
+    annotDF_subset2 <- annotDF_subset3 %>%
+      mutate(name=rownames(.)) %>%
+      # mutate(ST=as.numeric(as.character({{Main_var}}))) %>%
+      inner_join(snpClust, by="name") %>%
+      dplyr::rename("Core.SNP.clusters"=cluster)
+    
+    if(any(names(annotDF_subset3) == 'ST')){
+      annotDF_subset2 <- annotDF_subset2 %>%
+        mutate(ST=as.numeric(as.character(ST)))
+      
+      # Set colors for ST
+      n3 <- annotDF_subset2 %>% pull(ST) %>% dplyr::n_distinct()
+      col3 <- maxX[1:n3]#brewer.pal(n5,"Paired")
+      names(col3) <- annotDF_subset2 %>% pull(ST) %>% unique()
+    }
       
       
       
-      maxP <-   c(
-        RColorBrewer::brewer.pal(12,'Paired'),
-        RColorBrewer::brewer.pal(12,'Set3')
-      )
+    maxP <-   c(
+      RColorBrewer::brewer.pal(12,'Paired'),
+      RColorBrewer::brewer.pal(12,'Set3')
+    )
+    
+    
+    maxX <-   c(
+      RColorBrewer::brewer.pal(9,'Set1'),
+      RColorBrewer::brewer.pal(8,'Dark2'),
+      RColorBrewer::brewer.pal(2,"Accent")
+    )
+    
+    # vec_incl_filt <- c("Hospital","WardType","ST","Core.SNP.clusters","SNP.Epi.Clusters")
+    # vec_excl_filt <- c("km_cluster","Days","SNPs", "Cluster_Cases_count")
+    # vec_excl_filt <- c("TakenDate","epiyear","epiweek", "epiyearweek","km_cluster",
+    # "Serotype", "GPSC","Days","SNPs", "Cluster_Cases_count")
+    
+    vec_incl_filt_hm <- c(Main_var,"Hospital",Var_01,"ST",
+                          "name","Core.SNP.clusters","SNP.Epi.Clusters")
+    
+    # if(nrow(clusterSet3) != 0){
+    if(!is.null(clusterSet3)){
+      episnpclust <- clusterSet3 %>%
+        mutate(Clusters=as.numeric(as.character(Clusters))) %>%
+        # mutate(ST=as.numeric(as.character(ST))) #%>%
+        dplyr::rename("SNP.Epi.Clusters" = Clusters)
+      
+      annotDF_subset2 <- annotDF_subset2 %>%
+        left_join(episnpclust,by=c("name"="sampleID")) %>%
+        dplyr::select(any_of(vec_incl_filt_hm)) #%>%
+      # tibble::column_to_rownames(var = "name")
       
       
-      maxX <-   c(
-        RColorBrewer::brewer.pal(9,'Set1'),
-        RColorBrewer::brewer.pal(8,'Dark2'),
-        RColorBrewer::brewer.pal(2,"Accent")
-      )
+      n5 <- annotDF_subset2 %>% pull(SNP.Epi.Clusters) %>% dplyr::n_distinct()
+      col5 <- maxX[1:n5]#brewer.pal(n5,"Paired")
+      names(col5) <- annotDF_subset2 %>% pull(SNP.Epi.Clusters) %>% unique()
       
-      # vec_incl_filt <- c("Hospital","WardType","ST","Core.SNP.clusters","SNP.Epi.Clusters")
-      # vec_excl_filt <- c("km_cluster","Days","SNPs", "Cluster_Cases_count")
-      # vec_excl_filt <- c("TakenDate","epiyear","epiweek", "epiyearweek","km_cluster",
-                         # "Serotype", "GPSC","Days","SNPs", "Cluster_Cases_count")
       
-      vec_incl_filt_hm <- c("Var_00","Hospital","Var_01","ST",
-                            "name","Core.SNP.clusters","SNP.Epi.Clusters")
-      
-      # if(nrow(clusterSet3) != 0){
-      if(!is.null(clusterSet3)){
-        episnpclust <- clusterSet3 %>%
-          mutate(Clusters=as.numeric(as.character(Clusters))) %>%
-          # mutate(ST=as.numeric(as.character(ST))) #%>%
-          dplyr::rename("SNP.Epi.Clusters" = Clusters)
-        
-        annotDF_subset2 <- annotDF_subset2 %>%
-          left_join(episnpclust,by=c("name"="sampleID")) %>%
-          dplyr::select(any_of(vec_incl_filt_hm)) #%>%
-          # tibble::column_to_rownames(var = "name")
-        
-        
-        n5 <- annotDF_subset2 %>% pull(SNP.Epi.Clusters) %>% dplyr::n_distinct()
-        col5 <- maxX[1:n5]#brewer.pal(n5,"Paired")
-        names(col5) <- annotDF_subset2 %>% pull(SNP.Epi.Clusters) %>% unique()
-        
-        
-      }
+    }
       
     #   annotDF_subset2 <- annotDF_subset2 %>%
     #     column_to_rownames(var = "name") %>%
@@ -396,12 +452,12 @@ source(file.path(data_paths,"BabyGERMS_kpn_temb.R"))
     #   next
     # }
       
-      trans_type <- str_to_sentence(transmission_type)
-      annotDF_subset2 <- annotDF_subset2 %>%
-        column_to_rownames(var = "name") %>%
-        dplyr::rename(!!trans_type := Var_00)
-      
-        # dplyr::select(! any_of(vec_excl_filt))
+    trans_type <- str_to_sentence(transmission_type)
+    annotDF_subset2 <- annotDF_subset2 %>%
+      column_to_rownames(var = "name") %>%
+      dplyr::rename(!!trans_type := Main_var)
+    
+    # dplyr::select(! any_of(vec_excl_filt))
     
     
     # # display.brewer.all()
@@ -428,16 +484,17 @@ source(file.path(data_paths,"BabyGERMS_kpn_temb.R"))
     names(col1) <- annotDF_subset2 %>% pull(trans_type) %>% unique()
     
     
-    if(any(names(annotDF_subset2) == "Var_01")){
+    if(any(names(annotDF_subset2) == Var_01)){
       n2 <- annotDF_subset2 %>% pull(Var_01) %>% dplyr::n_distinct()
       col2 <- maxX[1:n2]  #brewer.pal(n2,"YlGnBu")
       names(col2) <- annotDF_subset2 %>% pull(Var_01) %>% unique()
     }
-   
     
-    n3 <- annotDF_subset2 %>% pull(ST) %>% dplyr::n_distinct()
-    col3 <- maxP[1:n3] #brewer.pal(n3,"Accent")
-    names(col3) <- annotDF_subset2 %>% pull(ST) %>% unique()
+    
+    
+    # n3 <- annotDF_subset2 %>% pull(Main_var) %>% dplyr::n_distinct()
+    # col3 <- maxP[1:n3] #brewer.pal(n3,"Accent")
+    # names(col3) <- annotDF_subset2 %>% pull(Main_var) %>% unique()
     
     
     n4 <- annotDF_subset2 %>% pull(Core.SNP.clusters) %>% dplyr::n_distinct()
@@ -451,14 +508,18 @@ source(file.path(data_paths,"BabyGERMS_kpn_temb.R"))
     
     
     
+    cols_hm <- c(trans_type,Var_01,"ST","Core.SNP.clusters","SNP.Epi.Clusters")
+    annotDF_subset2 <- annotDF_subset2 %>%
+      dplyr::select(any_of(cols_hm))
+    
     if (any(names(annotDF_subset2) == "SNP.Epi.Clusters")){
-      if(any(names(annotDF_subset2) == "Var_01")){
-        annotDF_subset2 <- annotDF_subset2 %>% dplyr::rename("WardType" = Var_01)
+      if(any(names(annotDF_subset2) == Var_01)){
+        annotDF_subset2 <- annotDF_subset2 #%>% dplyr::rename("WardType" = Var_01)
         colAnnot2 <- ComplexHeatmap::HeatmapAnnotation(
           df = annotDF_subset2, annotation_height = 7,
           annotation_name_gp = gpar(fontsize = 7),
           col = list(trans_type = col1[! is.na(names(col1))], #c("DORA NGINZA HOSPITAL" = "#8DD3C7"),
-                     WardType = col2[! is.na(names(col2))],
+                     Var_01 = col2[! is.na(names(col2))],
                      ST = col3[! is.na(names(col3))],
                      Core.SNP.clusters = col4[! is.na(names(col4))],
                      SNP.Epi.Clusters = col5[! is.na(names(col5))]
@@ -487,8 +548,8 @@ source(file.path(data_paths,"BabyGERMS_kpn_temb.R"))
       colAnnot2 <- ComplexHeatmap::HeatmapAnnotation(
         df = annotDF_subset2, annotation_height = 7,
         annotation_name_gp = gpar(fontsize = 7),
-        col = list(Hospital = col1[! is.na(names(col1))], 
-                   WardType = col2[! is.na(names(col2))],
+        col = list(trans_type = col1[! is.na(names(col1))], 
+                   # WardType = col2[! is.na(names(col2))],
                    ST = col3[! is.na(names(col3))],
                    Core.SNP.clusters = col4[! is.na(names(col4))]
                    # SNP.Epi.Clusters = col5[! is.na(names(col5))]
@@ -558,16 +619,28 @@ source(file.path(data_paths,"BabyGERMS_kpn_temb.R"))
     
     
     # write MLST profile to file
-    incl_vec2 <- c("sampleID","Var_00","Hospital","Ward","WardType","TakenDate","Epiweek","ST","Clusters")
-    outDF <- plotDF %>% 
-      dplyr::select(-ST)%>%
-      inner_join(mlst,by=c("sampleID"="FILE")) %>% dplyr::select(any_of(incl_vec2))
-    # names(mlst) <- c("sampleid","ST")
+    st_remove <- c("ST")
+    incl_vec2 <- c("sampleID",Main_var,"Hospital","Ward","WardType","TakenDate","Epiweek","ST","Clusters")
+    
+    if(clust_type == "Transmission"){
+      outDF <- plotDF %>% 
+        dplyr::select(!any_of(st_remove)) %>%
+        inner_join(mlst,by=c("sampleID"="FILE")) %>% dplyr::select(any_of(incl_vec2))
+      # names(mlst) <- c("sampleid","ST")
+     
+    }else{
+      outDF <- fc_df_01 %>%
+        dplyr::select(!any_of(st_remove)) %>%
+        inner_join(mlst,by=c("sampleID"="FILE")) %>% 
+        left_join(snpClust,by=c("sampleID"="name"))
+        # dplyr::select(any_of(incl_vec2))
+      
+    }
+   
     openxlsx::write.xlsx(outDF, 
                          file.path(work_dir,
                                    paste(fc_val,"MLST_profile",date_var,"xlsx",sep = ".")),
                          overwrite = T)
-    
     
     
     
@@ -644,7 +717,9 @@ source(file.path(data_paths,"BabyGERMS_kpn_temb.R"))
     
 
     # Transmission network analysis -------------------------------------------
-
+    if(clust_type == "Core"){
+      next
+    }
     # create outdir
     path_dir <- file.path(dirname(work_dir),paste0("transmission-analysis","_SNPcutoff",snpco,"_Days",daysco))
       #paste0(path,"_SNPcutoff",snpco,"_Days",daysco)
@@ -694,7 +769,9 @@ source(file.path(data_paths,"BabyGERMS_kpn_temb.R"))
     days <- as.integer(difftime(dates, min(dates), unit="days"))
     
     
-    
+    if(clust_type == "Core"){
+      next
+    }
     # Transmission tree reconstruction using SeqTrack -------------------------
     
     # Perform transmission network analysis per ST

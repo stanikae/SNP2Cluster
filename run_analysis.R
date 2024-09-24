@@ -2,7 +2,8 @@
 
 
 # conf file
-source("~/GitHub/SNP2Cluster/conf/BabyGERMS_kpn_temb.R")
+# source("~/GitHub/SNP2Cluster/conf/BabyGERMS_kpn_temb.R")
+source("~/GitHub/SNP2Cluster/conf/Thabo_p_aerogenosa.R")
 
 
 # clear env
