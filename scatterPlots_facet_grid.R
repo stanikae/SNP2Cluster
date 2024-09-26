@@ -2,7 +2,7 @@ library(tidyverse)
 library(readxl)
 library(openxlsx)
 library(readr)
-path <- "E:/projects/Baby-Germs/KLEPP/KLEPP"
+# path <- "E:/projects/Baby-Germs/KLEPP/KLEPP"
 # path <- "E:/projects/Baby-Germs/ACIBA/downstream-analysis/ACIBA"
 # path <- "E:/projects/Baby-Germs/STAAU/downstream-analysis/STAAU"
 # path <- "E:/projects/Baby-Germs/ECOLI/downstream-analysis/ECOLI"
@@ -13,14 +13,24 @@ path <- "E:/projects/Baby-Germs/KLEPP/KLEPP"
 
 # path <- "D:/Terra-Informatix/baby-germs/KLEPP"
 
+
+# path <- "D:/Terra-Informatix/baby-germs/KLEPP"
+# path <- "D:/Terra-Informatix/baby-germs/ACIBA"
+path <- "D:/Terra-Informatix/baby-germs/STAAU"
+
+
 paths <- list.files(path = path, recursive = T, pattern = "metadata.csv",
-           full.names = T)
+           full.names = T) 
+
+
 
 # KLEPP
 # paths <- paths[str_detect(paths,"cluster-analysisZ01")]
-paths <- paths[str_detect(paths,"clusters-Z03")]
+# paths <- paths[str_detect(paths,"clusters-Z03")]
+# paths <- paths[str_detect(paths,"clusters2409")]
 # ACIBA
 # paths <- paths[str_detect(paths,"cluster-analysis9")]
+paths <- paths[str_detect(paths,"clusters2409")]
 # STAAU
 # paths <- paths[str_detect(paths,"cluster-analysis6")]
 # ECOLI
@@ -44,26 +54,27 @@ cmd_df <-map_dfr(dat_list, ~.x %>%
 # mutate(across(c(1,2,3,4,6,7,11,12,13,14,15),.fns = as.character))
 
 
-write_csv(cmd_df, file.path(path,"klepp_metadata.csv") )
+# write_csv(cmd_df, file.path(path,"klepp_metadata.csv") )
 # write_csv(cmd_df, file.path(path,"aciba_metadata.csv") )
-# write_csv(cmd_df, file.path(path,"staau_metadata.csv") )
+write_csv(cmd_df, file.path(path,"staau_metadata.csv") )
 # write_csv(cmd_df, file.path(path,"ecoli_metadata.csv") )
 # write_csv(cmd_df, file.path(path,"faeca_metadata.csv") )
 # write_csv(cmd_df, file.path(path,"faeci_metadata.csv") )
 
 # get_scatter <- function(df,hospital){
 
-names(cmd_df)[str_detect(names(cmd_df),"Var_00")] <- "Hospital"
+# names(cmd_df)[str_detect(names(cmd_df),"Var_00")] <- "Hospital"
+
 hosp_vec <- cmd_df %>% pull(Hospital) %>% unique()
 # hosp_vec <- cmd_df %>% pull(Var_00) %>% unique()
 
 year_id <- lubridate::year(cmd_df$TakenDate)
 week_id <- lubridate::week(cmd_df$TakenDate)
 
-cmd_df$Epiweek <- paste(year_id,week_id,sep = ".")
+# cmd_df$Epiweek <- paste(year_id,week_id,sep = ".")
 
 # Ward	WardType	
-epi_vars <- c("sampleid",	"Hospital",	"TakenDate",	"Epiweek",	"ST")
+epi_vars <- c("sampleid",	"Hospital",	"WardType","TakenDate",	"Epiweek",	"ST")
 snp_epi <- names(cmd_df)[str_detect(names(cmd_df),"SNP.EPI.cluster")]
 
 sel_vec <- c(epi_vars,snp_epi)

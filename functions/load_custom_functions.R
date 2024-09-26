@@ -1035,7 +1035,7 @@ create_scatter_plots <- function(datesJoin,clusterSet3,mlst,transmission_type="f
             
             p1 <- ggplot(px1, 
                          aes(x = Epiweek,
-                             y = Facility_code , #WardType, #Clusters,
+                             y = .data[[Var_01]], #Facility_code , #WardType, #Clusters,
                              # y = count, #,
                              color=Clusters,
                              shape = ST #WardType
@@ -1066,15 +1066,15 @@ create_scatter_plots <- function(datesJoin,clusterSet3,mlst,transmission_type="f
       }
     }
   }else{
-    if(all(c("Var_01","Epiweek") %in% colnames(plotDF))){
-      px1 <- plotDF %>% group_by(Var_01,Epiweek) %>% dplyr::mutate(count=n())
+    if(all(c(Var_01,"Epiweek") %in% colnames(plotDF))){
+      px1 <- plotDF %>% group_by(.data[[Var_01]],Epiweek) %>% dplyr::mutate(count=n())
       
       p1 <- ggplot(px1, 
                    aes(x = Epiweek,
                        y = ST, #WardType, #Clusters,
                        # y = count, #,
                        color=Clusters,
-                       shape = Var_01
+                       shape = .data[[Var_01]]
                    )) +
         geom_point(alpha = .9, size=4,position=position_jitter(h=0.07,w=0.15)) + 
         # scale_fill_brewer(palette = "Dark2") +
