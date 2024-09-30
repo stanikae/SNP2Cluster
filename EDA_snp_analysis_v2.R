@@ -261,6 +261,10 @@ source(file.path(src_path,"functions","load_custom_functions.R"))
     # 2023-06-03: Now using silhouette optimal cluster calculation based on kmeans
     kmx <- nrow(mat) - 2
     
+    if(kmx < 2){
+      next
+    }
+    
     if(nrow(mat)>15){
       p4 <- fviz_nbclust(mat, kmeans , method= 'silhouette',nboot = 500)
     }else{

@@ -86,7 +86,54 @@ names(datesDF)[1] <- "sampleID"
 # }
 
 
-# STAAU
+# # STAAU
+# comparisons <- data.frame(snp=c(11,20,20,25,11),days=c(60,14,60,45,14))
+# for(i in 1:nrow(comparisons)){
+#   snpco=comparisons[i,1]
+#   daysco=comparisons[i,2]
+#   
+#   source("~/GitHub/SNP2Cluster/conf/BabyGERMS_kpn_temb.R")
+#   
+#   source("~/GitHub/SNP2Cluster/EDA_snp_analysis_v2.R")
+#   
+#   # rm(list=ls())
+#   src_path <- file.path("C:/Users/Stanfordk/Documents/GitHub/SNP2Cluster")
+#   setwd(src_path)
+# }
+
+# Ecoli
+# comparisons <- data.frame(snp=c(11,20,20,25,11),days=c(60,14,60,45,14))
+# for(i in 1:nrow(comparisons)){
+#   snpco=comparisons[i,1]
+#   daysco=comparisons[i,2]
+#   
+#   source("~/GitHub/SNP2Cluster/conf/BabyGERMS_kpn_temb.R")
+#   
+#   source("~/GitHub/SNP2Cluster/EDA_snp_analysis_v2.R")
+#   
+#   # rm(list=ls())
+#   src_path <- file.path("C:/Users/Stanfordk/Documents/GitHub/SNP2Cluster")
+#   setwd(src_path)
+# }
+
+
+
+# # FAECAlis
+# comparisons <- data.frame(snp=c(11,20,20,25,11),days=c(60,14,60,45,14))
+# for(i in 1:nrow(comparisons)){
+#   snpco=comparisons[i,1]
+#   daysco=comparisons[i,2]
+# 
+#   source("~/GitHub/SNP2Cluster/conf/BabyGERMS_kpn_temb.R")
+# 
+#   source("~/GitHub/SNP2Cluster/EDA_snp_analysis_v2.R")
+# 
+#   # rm(list=ls())
+#   src_path <- file.path("C:/Users/Stanfordk/Documents/GitHub/SNP2Cluster")
+#   setwd(src_path)
+# }
+
+# FAECium
 comparisons <- data.frame(snp=c(11,20,20,25,11),days=c(60,14,60,45,14))
 for(i in 1:nrow(comparisons)){
   snpco=comparisons[i,1]
@@ -100,6 +147,5 @@ for(i in 1:nrow(comparisons)){
   src_path <- file.path("C:/Users/Stanfordk/Documents/GitHub/SNP2Cluster")
   setwd(src_path)
 }
-
 
 # Could you do Aciba @Dora Nginza and Staph @Queen Nandi next?
