@@ -1,4 +1,18 @@
 
+# NOTES -------------------------------------------------------------------
+
+# The first 3 columns of the metadata file (dates_path) should have the following - 
+# in the order specified below:
+#   1. sample_id
+#   2. collection_date
+#   3. facility_name/hospital_name/community codes/regions/metros
+#   4. Ward_name (or ward type) if 3 is hospital or any other variable
+
+
+
+# Set paths to files ------------------------------------------------------
+
+
 # # Thabo-UP P. aeroginosa
 dates_path = "E:/projects/Thabo-ST242/ST242-20230904/metadata_file2.xlsx"
 filepath = "E:/projects/Thabo-ST242/ST242-20230904/snpdist/coreSNPmatrix.co.csv"
@@ -12,18 +26,20 @@ out_dir <- "E:/projects/Thabo-ST242/ST242-20230904/cluster-analysis/clusters"
 # core_snps = filepath
 
 
-
-# # # # Richael - S pneumoniae
-# dates_path = "D:/Terra-Informatix/Richael-Ghana/Spneumo-WGS/Metatdata-02_STs.csv"
-# filepath = "D:/Terra-Informatix/Richael-Ghana/Spneumo-WGS/snps.coresites.01.SNPmatrix.csv"
-# moltenpath = "D:/Terra-Informatix/Richael-Ghana/Spneumo-WGS/snps.coresites.01.SNPmatrixmolten.csv"
-# mlst_profile = "D:/Terra-Informatix/Richael-Ghana/Spneumo-WGS/Metatdata-02_STs.csv"
-# out_dir <- "D:/Terra-Informatix/Richael-Ghana/Spneumo-WGS/clusters-04"
+# Define variables --------------------------------------------------------
 
 Main_var = "ST"
-Var_01 = "Country"
 # Possible values for Main_var based on provided metadata
   # Community, Hospital, Facility
+
+Var_01 = "Country"
+# Possible values for Var_01 can be:
+# Ward, WardType, Facilities within a community (if Main_var == "Community")
+
+
+Var_02 = "collection_year"
+# Specify name of column with collection dates
+
 clust_type = "Core" # Core or Transmission
 
 if(clust_type == "Transmission"){
@@ -34,11 +50,6 @@ if(clust_type == "Transmission"){
   snpco=20  # set SNP cut-off     (Set to 20 by default)
   daysco=60 # Set number of days (set to 14 by default)
   
-  # # Transmission network input files
-  # path="D:/Terra-Informatix/Richael-Ghana/Spneumo-WGS/transmission-analysis"
-  # aln_path = "D:/Terra-Informatix/Richael-Ghana/Spneumo-WGS/snps.coresites.01.snp_sites.aln"
-  # snp_dist <- moltenpath
-  # core_snps = filepath
 }else{
   transmission_type = Main_var # Value for Main_var
   snpco=20  # set SNP cut-off     (Set to 20 by default)
@@ -47,19 +58,17 @@ if(clust_type == "Transmission"){
 
 
 
+# Specify format of collection dates --------------------------------------
+
+lubri_fmt <- "mdy" 
 # collection date format
-lubri_fmt <- "mdy" # options include: dym, dmy, ymd, ydm, etc.. -- based on the lubridate package
+# options include: dym, dmy, ymd, ydm, etc.. -- based on the lubridate package
 
 refDate="1800-01-01"
 refST=NA
-# NOTES
 
-# The first 3 columns of the metadata file (dates_path) should have the following - 
-# in the order specified below:
-#   1. sample_id
-#   2. collection_date
-#   3. facility_name/hospital_name/community codes/regions/metros
-#   4. Ward_name (or ward type) if 3 is hospital or any other variable
+
+
 
 # 
 # 

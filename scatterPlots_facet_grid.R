@@ -13,12 +13,12 @@ library(readr)
 # path <- "D:/Terra-Informatix/baby-germs/KLEPP"
 
 
-# path <- "D:/Terra-Informatix/baby-germs/KLEPP"
+path <- "D:/Terra-Informatix/baby-germs/KLEPP"
 # path <- "D:/Terra-Informatix/baby-germs/ACIBA"
 # path <- "D:/Terra-Informatix/baby-germs/STAAU"
 # path <- "D:/Terra-Informatix/baby-germs/ECOLI"
 # path <- "D:/Terra-Informatix/baby-germs/FAECA"
-path <- "D:/Terra-Informatix/baby-germs/FAECI"
+# path <- "D:/Terra-Informatix/baby-germs/FAECI"
 
 
 paths <- list.files(path = path, recursive = T, pattern = "metadata.csv",
@@ -32,10 +32,10 @@ if(length(paths) == 0) {
 # KLEPP
 # paths <- paths[str_detect(paths,"cluster-analysisZ01")]
 # paths <- paths[str_detect(paths,"clusters-Z03")]
-# paths <- paths[str_detect(paths,"clusters2409")]
+# paths <- paths[str_detect(paths,"clusters3009")]
 # ACIBA
 # paths <- paths[str_detect(paths,"cluster-analysis9")]
-paths <- paths[str_detect(paths,"clusters2409")]
+paths <- paths[str_detect(paths,"clusters3009")]
 # STAAU
 # paths <- paths[str_detect(paths,"cluster-analysis6")]
 # ECOLI
@@ -59,12 +59,12 @@ cmd_df <-map_dfr(dat_list, ~.x %>%
 # mutate(across(c(1,2,3,4,6,7,11,12,13,14,15),.fns = as.character))
 
 
-# write_csv(cmd_df, file.path(path,"klepp_metadata.csv") )
+write_csv(cmd_df, file.path(path,"klepp_metadata.csv") )
 # write_csv(cmd_df, file.path(path,"aciba_metadata.csv") )
 # write_csv(cmd_df, file.path(path,"staau_metadata.csv") )
 # write_csv(cmd_df, file.path(path,"ecoli_metadata.csv") )
 # write_csv(cmd_df, file.path(path,"faeca_metadata.csv") )
-write_csv(cmd_df, file.path(path,"faeci_metadata.csv") )
+# write_csv(cmd_df, file.path(path,"faeci_metadata.csv") )
 
 # get_scatter <- function(df,hospital){
 

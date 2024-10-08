@@ -27,31 +27,31 @@ clsters=NULL
 # klepp_clusters <- file.path("C:/Users/Stanfordk/Documents/Terra-Info/KLEPP") # KLEPP
 # ast_path <- file.path(klepp_clusters,"amr_aciba.xlsx") # ACIBA
 
-# "D:/Terra-Informatix/baby-germs/KLEPP/TEMBISA/clusters2409"
+# "D:/Terra-Informatix/baby-germs/KLEPP/TEMBISA/clusters3009"
 # path to work directory
-# wkdir <- file.path("D:/Terra-Informatix/baby-germs/KLEPP")
+wkdir <- file.path("D:/Terra-Informatix/baby-germs/KLEPP")
 # wkdir <- file.path("D:/Terra-Informatix/baby-germs/ACIBA")
 # wkdir <- file.path("D:/Terra-Informatix/baby-germs/STAAU")
 # wkdir <- file.path("D:/Terra-Informatix/baby-germs/ECOLI")
-wkdir <- file.path("D:/Terra-Informatix/baby-germs/FAECI")
+# wkdir <- file.path("D:/Terra-Informatix/baby-germs/FAECI")
 # wkdir <- file.path("D:/Terra-Informatix/baby-germs/FAECA")
 
 # Path to metadata
-# klepp_clusters <- file.path("E:/projects/Baby-Germs/KLEPP") # KLEPP
+klepp_clusters <- file.path("E:/projects/Baby-Germs/KLEPP") # KLEPP
 # klepp_clusters <- file.path("E:/projects/Baby-Germs/ACIBA") # ACIBA
 # klepp_clusters <- file.path("E:/projects/Baby-Germs/STAAU") # STAAU
 # klepp_clusters <- file.path("E:/projects/Baby-Germs/ECOLI") # ECOLI
-klepp_clusters <- file.path("E:/projects/Baby-Germs/FAECI") # FAECI
+# klepp_clusters <- file.path("E:/projects/Baby-Germs/FAECI") # FAECI
 # klepp_clusters <- file.path("E:/projects/Baby-Germs/FAECA") # FAECA
 
 
 # ASTs and predicted AMR files
 # raw_ast_path <- file.path("E:/projects/Baby-Germs/ACIBA/downstream-analysis/ACIBA/amr_aciba.xlsx")
-# ast_path <- file.path(klepp_clusters,"MDRO_profiles.xlsx") # KLEPP
+ast_path <- file.path(klepp_clusters,"MDRO_profiles.xlsx") # KLEPP
 # ast_path <- file.path(klepp_clusters,"amr_aciba.xlsx") # ACIBA
 # ast_path <- file.path(klepp_clusters,"amr_profiles.xlsx") # STAAU
 # ast_path <- list.files(klepp_clusters,pattern="amr_ecoli.xlsx", recursive = T, full.names = T) # ECOLI
-ast_path <- list.files(klepp_clusters,pattern="^amr_efaecium.xlsx", recursive = T, full.names = T) # FAECI
+# ast_path <- list.files(klepp_clusters,pattern="^amr_efaecium.xlsx", recursive = T, full.names = T) # FAECI
 # ast_path <- list.files(klepp_clusters,pattern="^amr_efaecalis.xlsx", recursive = T, full.names = T) # FAECA
 
 dirs_vec <- list.dirs(path = klepp_clusters)
@@ -146,7 +146,7 @@ dirs_vec = vector()
 dirs_vec <- list.files(path = wkdir, #klepp_clusters, 
            include.dirs = T, 
            full.names = T, 
-           pattern = "clusters2409", #"clusters-Z02", #"cluster-analysisZ01", 
+           pattern = "clusters3009", #"clusters-Z02", #"cluster-analysisZ01", 
            recursive = T)
 
 
