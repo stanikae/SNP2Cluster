@@ -970,7 +970,7 @@ calculate_SNP_Epi_clusters <- function(snpClust,epiwkDF,mdf,excl_vec){
 
 # Function 07 -------------------------------------------------------------
 
-create_scatter_plots <- function(datesJoin,clusterSet3,mlst,transmission_type="facility"){
+create_scatter_plots <- function(datesJoin,clusterSet3,mlst,transmission_lvl){
   
   scatter_plots_list <- list()
   
@@ -1001,7 +1001,7 @@ create_scatter_plots <- function(datesJoin,clusterSet3,mlst,transmission_type="f
   st_final_list <- list()
   scatter_plots <- list()
   scatter_plots_cmb_list <- list()
-  if(transmission_type == "community"){
+  if(toupper(transmission_lvl) == toupper("Community")){
     
     st_vec <- levels(plotDF$ST)
     st_vec <- st_vec[! str_detect(st_vec,"NOVEL")]
@@ -1030,7 +1030,7 @@ create_scatter_plots <- function(datesJoin,clusterSet3,mlst,transmission_type="f
           if(cluster_n >= 2){
             st_final_list[[i]] <- st_df
             px1 <- st_df %>% 
-              group_by(Facility_code,Epiweek) %>% 
+              group_by(across(all_of(Var_01)),Epiweek) %>% 
               dplyr::mutate(count=n())
             
             p1 <- ggplot(px1, 
@@ -1043,7 +1043,7 @@ create_scatter_plots <- function(datesJoin,clusterSet3,mlst,transmission_type="f
               geom_point(alpha = .9, size=4,position=position_jitter(h=0.07,w=0.15)) + 
               # scale_fill_brewer(palette = "Dark2") +
               labs(title = paste0("Clusters based on Epi definition: SNPs <= ",snpco," + ",daysco,"-day window"),
-                   y = "Facility code",
+                   y = Var_01, #"Facility code",
                    x = "Epiweek") +
               theme_bw() +
               # scale_y_continuous(breaks = ~round(unique(pretty(.)))) +
@@ -1054,7 +1054,7 @@ create_scatter_plots <- function(datesJoin,clusterSet3,mlst,transmission_type="f
               theme(axis.text.x = element_text(angle=90,size=12,vjust = 0.5, hjust = 1)) 
             
             
-            ggsave(file.path(work_dir,paste0("Scatterplot.ST.",st_val,date_var,".png")),p1,width = 10, height = 8)
+            ggsave(file.path(work_dir,paste0("Scatterplot.ST.",st_val,".",date_var,".png")),p1,width = 10, height = 8)
             
             scatter_plots[[i]] <- p1
           }
@@ -1064,6 +1064,7 @@ create_scatter_plots <- function(datesJoin,clusterSet3,mlst,transmission_type="f
       }else{
         next
       }
+      
     }
   }else{
     if(all(c(Var_01,"Epiweek") %in% colnames(plotDF))){

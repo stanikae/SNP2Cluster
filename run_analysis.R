@@ -23,7 +23,8 @@ setwd(src_path)
 
 # source("~/GitHub/SNP2Cluster/conf/BabyGERMS_kpn_temb.R")
 # source("~/GitHub/SNP2Cluster/conf/Thabo_p_aerogenosa.R")
-source("~/GitHub/SNP2Cluster/conf/Richael_s_pneumo.R")
+# source("~/GitHub/SNP2Cluster/conf/Richael_s_pneumo.R")
+source("~/GitHub/SNP2Cluster/conf/Richael_s_pneumo_community.R")
 
 
 # Read data into data frames ----------------------------------------------
@@ -58,7 +59,7 @@ source("~/GitHub/SNP2Cluster/conf/Richael_s_pneumo.R")
 var_order <- c(Main_var,Var_01,Var_02)
 
 datesDF <- read_csv(dates_path, col_names = T) %>%
-  dplyr::select(1,any_of(var_order)) 
+  dplyr::select(1,any_of(var_order))
 
 names(datesDF)[1] <- "sampleID"
 # names(datesDF)[names(datesDF) %in% Var_02]
@@ -66,17 +67,20 @@ names(datesDF)[1] <- "sampleID"
 val1 <- which(names(datesDF) %in% Var_02)
 names(datesDF)[val1] <- "TakenDate"
 Var_02 <- "TakenDate"
+
+
 # Run main program --------------------------------------------------------
 
+# Richael-Ghana
 
-
+# Community-based analysis
 comparisons <- data.frame(snp=c(20),days=c(45))
 for(i in 1:nrow(comparisons)){
   snpco=comparisons[i,1]
   daysco=comparisons[i,2]
   
   # # Richael
-  source("~/GitHub/SNP2Cluster/conf/Richael_s_pneumo.R")
+  source("~/GitHub/SNP2Cluster/conf/Richael_s_pneumo_community.R")
   var_order <- c(Main_var,Var_01,Var_02)
   
   datesDF <- read_csv(dates_path, col_names = T) %>%
@@ -95,6 +99,33 @@ for(i in 1:nrow(comparisons)){
   src_path <- file.path("C:/Users/Stanfordk/Documents/GitHub/SNP2Cluster")
   setwd(src_path)
 }
+
+# # Facility level analysis
+# comparisons <- data.frame(snp=c(20),days=c(45))
+# for(i in 1:nrow(comparisons)){
+#   snpco=comparisons[i,1]
+#   daysco=comparisons[i,2]
+#   
+#   # # Richael
+#   source("~/GitHub/SNP2Cluster/conf/Richael_s_pneumo.R")
+#   var_order <- c(Main_var,Var_01,Var_02)
+#   
+#   datesDF <- read_csv(dates_path, col_names = T) %>%
+#     dplyr::select(1,any_of(var_order)) 
+#   
+#   names(datesDF)[1] <- "sampleID"
+#   # names(datesDF)[names(datesDF) %in% Var_02]
+#   
+#   val1 <- which(names(datesDF) %in% Var_02)
+#   names(datesDF)[val1] <- "TakenDate"
+#   Var_02 <- "TakenDate"
+#   
+#   source("~/GitHub/SNP2Cluster/EDA_snp_analysis_v2.R")
+#   
+#   # rm(list=ls())
+#   src_path <- file.path("C:/Users/Stanfordk/Documents/GitHub/SNP2Cluster")
+#   setwd(src_path)
+# }
 
 
 

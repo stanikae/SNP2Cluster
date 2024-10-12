@@ -223,13 +223,13 @@ source(file.path(src_path,"functions","load_custom_functions.R"))
     }
     # set work directory for SNP-EPI clusters
     fc_dir <- str_replace_all(fc_val," ","_")
-    if(clust_type == "Transmission"){
+    if(any(toupper(c("Transmission","Community")) %in% toupper(clust_type))){
       work_dir <- file.path(out_dir,fc_dir,
                             paste0("cluster-analysis","_SNPcutoff",snpco,"_Days",daysco))
      
     }else{
       work_dir <- file.path(out_dir,fc_dir,
-                            paste0("cluster-analysis","_SNPcutoff",snpco,"_Days"))
+                            paste0("cluster-analysis","_SNPcutoff",snpco))
     }
   
     if (! dir.exists(work_dir)){
@@ -322,7 +322,7 @@ source(file.path(src_path,"functions","load_custom_functions.R"))
     
     
     # calculate SNP-Epi clusters - new approach as suggested by Lili-CHARM -------
-    if(clust_type == "Transmission"){
+    if(toupper(clust_type) == toupper("Transmission")){
       
       excl_vec <- c("Date2","epicumsum","CG","num","name","cluster","km_cluster",
                     "Hospital","Ward")
@@ -347,14 +347,13 @@ source(file.path(src_path,"functions","load_custom_functions.R"))
     
     
     # Create scatter plots ----------------------------------------------------
-    
     if(exists("clusterSet3")){
       if(!is.null(clusterSet3)){
         #stop("Provide path to the SNP distance matrix in the config file")
         
         
         scatter_plots_cmb_list <- list()
-        scatter_plots_cmb_list <- create_scatter_plots(datesJoin,clusterSet3,mlst,transmission_type=Main_var)
+        scatter_plots_cmb_list <- create_scatter_plots(datesJoin,clusterSet3,mlst,transmission_lvl=trans_lvl)
         
         plotDF <- scatter_plots_cmb_list[[1]]
         p1 <- scatter_plots_cmb_list[[2]]
@@ -474,10 +473,10 @@ source(file.path(src_path,"functions","load_custom_functions.R"))
     #   next
     # }
       
-    trans_type <- str_to_sentence(transmission_type)
+    m_variable <- str_to_sentence(Main_var)
     annotDF_subset2 <- annotDF_subset2 %>%
       column_to_rownames(var = "name") %>%
-      dplyr::rename(!!trans_type := Main_var)
+      dplyr::rename(!!m_variable := Main_var)
     
     # dplyr::select(! any_of(vec_excl_filt))
     
@@ -501,9 +500,9 @@ source(file.path(src_path,"functions","load_custom_functions.R"))
     # )
     
       # if(nrow(clusterSet3) != 0){
-    n1 <- annotDF_subset2 %>% pull(trans_type) %>% dplyr::n_distinct()
+    n1 <- annotDF_subset2 %>% pull(m_variable) %>% dplyr::n_distinct()
     col1 <- brewer.pal(n1,"Set3")
-    names(col1) <- annotDF_subset2 %>% pull(trans_type) %>% unique()
+    names(col1) <- annotDF_subset2 %>% pull(m_variable) %>% unique()
     
     
     if(any(names(annotDF_subset2) == Var_01)){
@@ -541,7 +540,7 @@ source(file.path(src_path,"functions","load_custom_functions.R"))
     
     
     
-    cols_hm <- c(trans_type,Var_01,"ST","Core.SNP.clusters","SNP.Epi.Clusters")
+    cols_hm <- c(m_variable,Var_01,"ST","Core.SNP.clusters","SNP.Epi.Clusters")
     annotDF_subset2 <- annotDF_subset2 %>%
       dplyr::select(any_of(cols_hm))
     
@@ -551,7 +550,7 @@ source(file.path(src_path,"functions","load_custom_functions.R"))
         colAnnot2 <- ComplexHeatmap::HeatmapAnnotation(
           df = annotDF_subset2, annotation_height = 7,
           annotation_name_gp = gpar(fontsize = 7),
-          col = list(trans_type = col1[! is.na(names(col1))], #c("DORA NGINZA HOSPITAL" = "#8DD3C7"),
+          col = list(m_variable = col1[! is.na(names(col1))], #c("DORA NGINZA HOSPITAL" = "#8DD3C7"),
                      Var_01 = col2[! is.na(names(col2))],
                      ST = col3[! is.na(names(col3))],
                      Core.SNP.clusters = col4[! is.na(names(col4))],
@@ -565,7 +564,7 @@ source(file.path(src_path,"functions","load_custom_functions.R"))
         colAnnot2 <- ComplexHeatmap::HeatmapAnnotation(
           df = annotDF_subset2, annotation_height = 7,
           annotation_name_gp = gpar(fontsize = 7),
-          col = list(trans_type = col1[! is.na(names(col1))], #c("DORA NGINZA HOSPITAL" = "#8DD3C7"),
+          col = list(m_variable = col1[! is.na(names(col1))], #c("DORA NGINZA HOSPITAL" = "#8DD3C7"),
                      # Vaccine_type = col2[! is.na(names(col2))],
                      ST = col3[! is.na(names(col3))],
                      Core.SNP.clusters = col4[! is.na(names(col4))],
@@ -581,7 +580,7 @@ source(file.path(src_path,"functions","load_custom_functions.R"))
       colAnnot2 <- ComplexHeatmap::HeatmapAnnotation(
         df = annotDF_subset2, annotation_height = 7,
         annotation_name_gp = gpar(fontsize = 7),
-        col = list(trans_type = col1[! is.na(names(col1))], 
+        col = list(m_variable = col1[! is.na(names(col1))], 
                    # WardType = col2[! is.na(names(col2))],
                    ST = col3[! is.na(names(col3))],
                    Core.SNP.clusters = col4[! is.na(names(col4))]
