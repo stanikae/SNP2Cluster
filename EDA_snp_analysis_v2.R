@@ -1,6 +1,6 @@
 
 # Set-up the environment --------------------------------------------------
-src_path <- file.path(getwd())
+# src_path <- file.path(getwd())
 # src_path <- file.path("C:/Users/Stanfordk/Documents/GitHub/SNP2Cluster")
 source(file.path(src_path,"scripts","pacman_install_packages.R"))
 
