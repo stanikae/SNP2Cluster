@@ -1,0 +1,27 @@
+{
+    "id": "7DBC1A0D",
+    "path": "~/GitHub/SNP2Cluster/conf/KPN_Temb_BabyGERMS_config.R",
+    "project_path": "conf/KPN_Temb_BabyGERMS_config.R",
+    "type": "r_source",
+    "hash": "1351987980",
+    "contents": "",
+    "dirty": false,
+    "created": 1720982769004.0,
+    "source_on_save": true,
+    "relative_order": 11,
+    "properties": {
+        "tempName": "Untitled2",
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "62,15",
+        "scrollLine": "29"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1728837426,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1728837426156,
+    "read_only": false,
+    "read_only_alternatives": []
+}

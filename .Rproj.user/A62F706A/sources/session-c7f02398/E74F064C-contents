@@ -1,0 +1,105 @@
+# Accessing databases/tables in the SDW via RStudio -----------------------
+# Date:           2024-09-30
+# Prepared by:    Stan Kwenda
+
+
+
+# First set-up your ODBC drivers for Netezza ------------------------------
+
+# 
+
+
+# Install pacman ----------------------------------------------------------
+
+if (!require("pacman", quietly = TRUE)){
+  install.packages("pacman")
+  library(pacman)
+}
+
+
+
+# Install required packages -----------------------------------------------
+
+pacman::p_load(
+  tidyverse,
+  dbplyr,
+  dplyr,
+  readxl,         
+  remotes,       
+  ggplot2,
+  lubridate,
+  openxlsx,
+  glue,
+  readr,
+  DBI
+)
+
+
+
+
+# Establish connection to NZ (SDW) ----------------------------------------
+
+library(DBI)
+con <- dbConnect(odbc::odbc(), dsn = "NZSQL", timeout = 10)
+# con <- dbConnect(odbc::odbc(), dsn="NZ_CHARM", timeout = 10)
+
+
+# Specify the name of table(s) on NZ --------------------------------------
+
+nz_tbl <- "VW_CHARM_AMS_DASHBOARD_DATA"            # replace with name of table you want to load
+nz_schema <- "admin"                               # replace with correct schema e.g. "stanfordk" 
+nz_db <- "SANDBOX_CHARM"                          # replace with name of database e.g. "CDW_PROD" 
+
+
+char_code <- paste(nz_db,nz_schema,nz_tbl, sep = ".")
+# sql_code <- glue_sql('{char_code}', .con=con)
+
+# tbl_dbplyr <-
+#   tbl(con, dbplyr::ident_q('"CDW_PROD"."ADMIN"."LKP_CODED_COMMENTS"')) #case sensitive
+
+
+
+# tbl_dbplyr <-
+#   tbl(con, dbplyr::sql('select * from CDW_PROD.ADMIN.LKP_CODED_COMMENTS')) 
+
+
+# Read table into a dbplyr object (e.g. List) ---------------------------
+
+
+tbl_dbplyr <- tbl(con, dbplyr::sql(paste0("select * from ",char_code)))
+
+# tbl_dbplyr <-
+#   tbl(con, dbplyr::sql('select * from cdw_prod.admin.LKP_CODED_COMMENTS')) 
+
+
+
+# Get total number of rows
+# Use any of the dplyr verbs (commands)
+tbl_dbplyr %>%
+  summarise(total = n())
+
+
+
+# To get underlying SQL query use show_query()
+tbl_dbplyr %>%
+  summarise(total = n()) %>% 
+  show_query()
+
+
+# Can aggregate data use normal R code e.g. tidyverse dplyr
+tbl_dbplyr %>%
+  mutate(test_item_count = if_else(is.na(TEST_ITEM_CODE),0,1)) %>%
+  summarise(test_item_codes = sum(test_item_count, na.rm = F))
+
+
+
+# Load dbplyr object into e.g. a data frame (tibble)  ---------------------
+
+tbl_df <- tbl_dbplyr %>%
+  collect()
+
+
+# Perform downstream operations using normal R code -----------------------------------
+head(tbl_df)
+tail(tbl_df)
+

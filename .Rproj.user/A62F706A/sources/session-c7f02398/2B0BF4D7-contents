@@ -1,0 +1,137 @@
+# # Get Core SNP clusters
+# if(file.exists(cluster_file)){
+#   clsters <- read_excel(cluster_file) %>%
+#     dplyr::rename("names"=sampleID,
+#                   "cluster"=coreSNPcluster) %>%
+#     dplyr::filter(names != "reference") %>%
+#     # dplyr::filter(sil_width >= 0.5) %>%
+#     dplyr::select(1,2)
+# }
+# # graph.adjacency depreciated now to use graph_from_adjacency_matrix()
+# mst_out <- ape::mst(core_mat)
+# g <- graph.adjacency(mst_out, mode="undirected", weighted=TRUE)
+# mst_edges <- as_data_frame(g, what="edges")  %>% dplyr::rename("name1"=from,
+#                                                                "name2"=to) 
+# 
+# mst_nodes <- as_data_frame(g, what="vertices") 
+# mst_nodes <- mst_nodes %>% mutate(id=1:nrow(mst_nodes)) %>%
+#   dplyr::select(2,1) %>% 
+#   mutate(id=as.integer(id),
+#          label=name) %>%
+#   inner_join(mlst,by=c("name"="FILE"))%>%
+#   dplyr::rename("group"=ST)
+# 
+# if(exists('clsters') && is.data.frame(get('clsters'))){
+#   mst_nodes <- mst_nodes %>%
+#     dplyr::left_join(clsters,by=c("name"="names")) %>% # 2023-09-30
+#     dplyr::rename("ST"=group,"group"=cluster)
+# }
+# 
+# if(exists('epiwkDF') && is.data.frame(get('epiwkDF'))){
+#   mst_nodes <- mst_nodes %>% 
+#     inner_join(epiwkDF,by=c("name"="sampleID")) %>%
+#     mutate(shape=case_when(WardType == "neonatal" ~ "circle",
+#                            WardType == "other" ~ "box",
+#                            TRUE ~ "diamond"))
+# }else{
+#   mst_nodes <- mst_nodes %>% 
+#     inner_join(datesDF,by=c("name"="sampleID")) 
+# }
+# 
+# 
+# mst_edges <- mst_edges %>%
+#   mutate(from=mst_nodes$id[match(mst_edges$name1,mst_nodes$name)],
+#          to=mst_nodes$id[match(mst_edges$name2,mst_nodes$name)]) %>%
+#   dplyr::select(4,5,3,1,2) %>%
+#   mutate(from=as.integer(from),
+#          to=as.integer(to)) %>%
+#   inner_join(mdf,by=c("name1"="X1","name2"="X2")) %>%
+#   dplyr::rename("label"=X3) %>%
+#   mutate(label=as.character(label))
+# 
+# 
+# 
+# nodes <- mst_nodes
+# edges <- mst_edges
+# 
+# vz <-visNetwork(nodes,edges)
+# visEdges(vz,arrows = NULL,font = list(align="top",size=24))
+# 
+# 
+# # vz %>%
+# #   visEdges(arrows = NULL,font = list(align="top",size=24)) %>%
+# #   visInteraction(navigation = "zoom") %>%
+# #   visInteraction(navigation = "drag") %>%
+# #     visOptions(highlightNearest = TRUE) %>%
+# #   visOptions(collapse = list(enabled = TRUE, keepCoord = TRUE, clusterOptions = list(shape = "circle")))
+# 
+# 
+# 
+# # unique(nodes$group)[order(unique(nodes$group))]
+# groupname=unique(nodes$group)[order(unique(nodes$group))]
+# groupname[is.na(groupname)] <- "bg"
+# nodes$group[is.na(nodes$group)] <- "bg"
+# 
+# clr = c("#ABC2E8","#FFF338","#FFA0A0","#82CD47","#525FE1","#98EECC","#F29727","#D3D04F","#10A19D","#B04759","#D09CFA","#B9E9FC",
+#         "#FFE7A0","#FF6969","#00FFCA","#ECF2FF","#E86A33","#569DAA","#FFE5CA","#FA9884","#A6BB8D","#C8B6A6","#8B1874","#FF78C4")
+# 
+# 
+# 
+# if(any(groupname == "bg")){
+#   groupname<-groupname[groupname != "bg"]
+#   len <- length(groupname) # if reference is included
+# }else{
+#   len <- length(groupname)
+# }
+# 
+# 
+# assign_colors <- data.frame(groupname=groupname, 
+#                             color=clr[1:len])
+# 
+# 
+# # add background color
+# library(glue)
+# bg_row <- c(groupname="bg",color="#F8F4EA")
+# assign_colors <- rbind(assign_colors,bg_row)
+# 
+# gl_code <- list()
+# 
+# for (i in 1:nrow(assign_colors)){
+#   # print(i)
+#   gn <- as.character(assign_colors[i,1])
+#   cl <- as.character(assign_colors[i,2])
+#   gl_code[[i]] <- glue('visGroups(groupname = "{gn}",color = "{cl}", shadow = list(enabled = TRUE))')
+# }
+# 
+# 
+# code_app <- glue(paste(gl_code,collapse = ' %>% '))
+# 
+# vz_groups <- assign_colors %>% pull(1)
+# 
+# ntwk_code <- glue('visNetwork(nodes, edges, height = "1000px", width = "100%",
+#                 main = paste0("Minimum spanning tree showing core SNP clusters"),
+#                 footer = "*Numbers on edges represent SNP differences between connecting nodes (isolates)") %>%
+#                 visNodes(font="12px arial black") %>%
+#                 visEdges(arrows = NULL,font = list(align="inside",size=20), label=F) %>%
+#                 {code_app} %>%
+#                 visLegend(main = "Core.SNP.Clusters",width = 0.1, position = "right") %>%
+#                 visClusteringByGroup(groups = vz_groups, label = "cluster : ") %>%
+#                 visHierarchicalLayout() %>%
+#                 visLayout(randomSeed = 12)')
+# 
+# #font = list(align="inside",size=20)
+# 
+# network <- eval(parse(text=ntwk_code))
+# # Export
+# network %>% visSave(file = paste(mst_dir,
+#                                  paste0("minimum_spanning_tree","_SNPcutoff",snpco,"_Days",daysco,".html"),
+#                                  sep = "/"))
+# 
+# 
+# # Save data files
+# nodesDF <- nodes #%>%
+#   #dplyr::rename("ST"=group)
+# 
+# write.xlsx(nodesDF,file = file.path(mst_dir,
+#                                     paste0("minimum_spanning_tree_data","_SNPcutoff",snpco,"_Days",daysco,".xlsx")), overwrite = T)
+# 
