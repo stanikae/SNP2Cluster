@@ -53,3 +53,12 @@ lubri_fmt <- "ymd"
 
 ```
 **3. Set additional parameters in the execution file**
+
+```
+
+```
+
+**4. Run the analysis**
+```
+source("run_analysis.R")
+```
