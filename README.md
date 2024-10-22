@@ -1,4 +1,4 @@
-[![DOI](https://sandbox.zenodo.org/badge/807615693.svg)](https://handle.stage.datacite.org/10.5072/zenodo.120781)
+
 
 # SNP2Cluster
 
