@@ -50,3 +50,4 @@ lubri_fmt <- "ymd"
 # options include: dym, dmy, ymd, ydm, etc.. -- based on the lubridate package
 
 ```
+**3. Set additional parameters in the execution file**
