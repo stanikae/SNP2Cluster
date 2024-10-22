@@ -90,3 +90,4 @@ source("run_analysis.R")
 ```
 
 ## Reference (Citation)
+Kwenda, S., Shuping, L., Mashau, R., Ismail, H., & Govender, N. P. (2024). SNP2Cluster: A core SNP-based clustering method for enhanced transmission cluster detection in outbreak scenarios (v0.5.3). Zenodo. https://doi.org/10.5281/zenodo.13976253
