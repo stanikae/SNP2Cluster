@@ -23,3 +23,19 @@ Closely-related isolates are initially grouped together in clusters based on an 
 If MLST profiles and epidemiological data are provided, the final transmission clusters are generated in the context of sequence types and epidemiological timeline **Transmission clusters**. Publication-ready graphs are automatically generated for visualization of the integrated SNP/Epi transmission clusters, including a heat-map, minimum-spanning tree and scatter plots.
 
 ## Usage
+**The following variables should be defined in the configuration file as well**
+
+```
+Main_var = ""   # Mandatory main variable e.g. Hospital or Facility etc.
+Var_01 =  ""    # Optional second variable e.g. Ward_name, Ward_type etc. 
+Var_02 = ""     # Mandatory variable for specimen collection dates
+clust_type = "" # "Core" or "Transmission"
+snpco = 20      # set SNP cut-off     (Set to 20 by default)
+
+if(clust_type == "Transmission"){
+  trans_lvl = "Facility" #"Community" # Community or "Facility" #Default 
+                         # facility
+  daysco = 45 # Time interval in days (Default: 45 days)
+}
+
+```
