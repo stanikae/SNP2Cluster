@@ -42,6 +42,7 @@ if(clust_type == "Transmission"){
 
 ```
 **2. Specify format of collection dates in the epi data file**
+  _Save the configuration file in the **conf folder**_
 ```
 # Specify format of collection dates --------------------------------------
 
