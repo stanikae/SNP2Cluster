@@ -41,7 +41,7 @@ if(clust_type == "Transmission"){
 }
 
 ```
-**2.**
+**2. Specify format of collection dates in the epi data file**
 ```
 # Specify format of collection dates --------------------------------------
 
