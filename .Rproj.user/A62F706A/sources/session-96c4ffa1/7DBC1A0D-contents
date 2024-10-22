@@ -36,19 +36,17 @@
 
 # Set paths to files ------------------------------------------------------
 
-# # # TEMBISA # cite Rindi's paper here
-dates_path = "E:/projects/Baby-Germs/KLEPP/KLEPP/TEMBISA/transmission/TEMBISA_ward.csv"
-filepath = "E:/projects/Baby-Germs/KLEPP/KLEPP/TEMBISA/transmission/coreSNPmatrix.co.csv"
-moltenpath = "E:/projects/Baby-Germs/KLEPP/KLEPP/TEMBISA/transmission/coreSNPmatrixmolten.csv"
-mlst_profile = "E:/projects/Baby-Germs/KLEPP/KLEPP/TEMBISA/transmission/05.mlst.xlsx"
-out_dir <- "D:/Terra-Informatix/baby-germs/KLEPP/TEMBISA/Example001"
+dates_path = ""
+filepath = ""
+moltenpath = ""
+mlst_profile = ""
+out_dir <- ""
 
 # Define variables --------------------------------------------------------
 
-# Facility level analysis
-Main_var = "Hospital"
-Var_01 =  "WardType"
-Var_02 = "TakenDate"
+Main_var = ""
+Var_01 =  ""
+Var_02 = ""
 clust_type = "Transmission" # Core or Transmission
 snpco = 20 # set SNP cut-off     (Set to 20 by default)
 

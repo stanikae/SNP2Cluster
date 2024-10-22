@@ -1,26 +1,26 @@
 {
-    "id": "93D1C072",
-    "path": "~/GitHub/SNP2Cluster/EDA_snp_analysis_v2.R",
-    "project_path": "EDA_snp_analysis_v2.R",
+    "id": "90123D79",
+    "path": "~/GitHub/SNP2Cluster/prepare_metadata_file.R",
+    "project_path": "prepare_metadata_file.R",
     "type": "r_source",
     "hash": "0",
     "contents": "",
     "dirty": false,
-    "created": 1716987519882.0,
+    "created": 1725827655381.0,
     "source_on_save": false,
-    "relative_order": 1,
+    "relative_order": 13,
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "177,2",
-        "scrollLine": "141"
+        "cursorPosition": "59,0",
+        "scrollLine": "33"
     },
     "folds": "",
-    "lastKnownWriteTime": 1728837341,
+    "lastKnownWriteTime": 1729116139,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1728837341665,
+    "last_content_update": 1729116139329,
     "read_only": false,
     "read_only_alternatives": []
 }
