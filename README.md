@@ -17,6 +17,8 @@ To perform enhanced transmission cluster analysis, paths to the following inform
   3. Multi-locus sequence type (MLST) profiles
   4. Epidemiological data
 
-Closely-related isolates are initially grouped together in clusters based on an enhanced K-means clustering method that employs a silhouette score and 500 bootstraps to determine the optimal K (which defines the maximum number of clusters) **K-means clusters**. Custom R functions are applied to each pre-grouped cluster to generate SNP cluster chains based on the provided SNP cut-off to make a SNP cluster, and resetting when SNP threshold is exceeded to make the next cluster. Each isolate is only assigned once to a cluster. 
+Closely-related isolates are initially grouped together in clusters based on an enhanced K-means clustering method that employs a silhouette score and 500 bootstraps to determine the optimal K (which defines the maximum number of clusters) **K-means clusters**. Custom R functions are applied to each pre-grouped cluster to generate SNP cluster chains based on the provided SNP cut-off to make a SNP cluster, and resetting when SNP threshold is exceeded to make the next cluster. Each isolate is only assigned once to a cluster **Core SNP cluster analysis**. 
 
-If MLST profiles and epidemiological data are provided, the final transmission clusters are generated in the context of sequence types and epidemiological timeline. Publication-ready graphs are automatically generated for visualization of the integrated SNP/Epi transmission clusters, including a heat-map, minimum-spanning tree and scatter plots.
+If MLST profiles and epidemiological data are provided, the final transmission clusters are generated in the context of sequence types and epidemiological timeline **Transmission clusters**. Publication-ready graphs are automatically generated for visualization of the integrated SNP/Epi transmission clusters, including a heat-map, minimum-spanning tree and scatter plots.
+
+## Usage
