@@ -42,6 +42,9 @@ out_dir <- ""      # Output directory
 ```
 # Define variables --------------------------------------------------------
 
+# The first column of the metadata file (dates_path) should have the sample_ids
+# The other variables such as Facility, collection dates etc should be assigned to the variables below:
+
 Main_var = ""   # Mandatory main variable e.g. Hospital or Facility etc.
 Var_01 =  ""    # Optional second variable e.g. Ward_name, Ward_type etc. 
 Var_02 = ""     # Mandatory variable for specimen collection dates
