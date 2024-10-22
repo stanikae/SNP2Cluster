@@ -55,6 +55,18 @@ lubri_fmt <- "ymd"
 **3. Set additional parameters in the execution file**
 
 ```
+# Override the defaults for snp threshold and days interval and provide your preferred in intervals
+snpco=20
+daysco=45
+
+# Optionally a vector of SNP threshols can be provided together with matching
+# day intervals in a second vector if you want to perform multiple comparisons
+
+# snpco=c(11,20,20,25,11)
+# snpco=c(60,14,60,45,14)
+
+conf_file="example_config.R"       # provide name of the configuration file saved in the conf folder
+source(paste0("./conf/",conf_file))
 
 ```
 
@@ -62,3 +74,5 @@ lubri_fmt <- "ymd"
 ```
 source("run_analysis.R")
 ```
+
+## Reference (Citation)
