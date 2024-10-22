@@ -23,7 +23,19 @@ Closely-related isolates are initially grouped together in clusters based on an 
 If MLST profiles and epidemiological data are provided, the final transmission clusters are generated in the context of sequence types and epidemiological timeline **Transmission clusters**. Publication-ready graphs are automatically generated for visualization of the integrated SNP/Epi transmission clusters, including a heat-map, minimum-spanning tree and scatter plots.
 
 ## Parameter setting and usage
-**1. The following variables should be defined in the configuration file as well**
+**1. Provide paths to the input files**
+
+```
+# Set paths to files ------------------------------------------------------
+
+dates_path = ""    # Epidemiological data file including collection dates and facility information
+filepath = ""      # Pairwise single nucleotide polymorphism (SNP) distance matrix
+mlst_profile = ""  # Multi-locus sequence type (MLST) profiles
+out_dir <- ""      # Output directory
+
+```
+
+**2. The following variables should be defined in the configuration file as well**
 
 ```
 # Define variables --------------------------------------------------------
@@ -41,7 +53,7 @@ if(clust_type == "Transmission"){
 }
 
 ```
-**2. Specify format of collection dates in the epi data file**
+**3. Specify format of collection dates in the epi data file**
 
   _Save the configuration file in the **conf folder**_
 ```
@@ -52,7 +64,7 @@ lubri_fmt <- "ymd"
 # options include: dym, dmy, ymd, ydm, etc.. -- based on the lubridate package
 
 ```
-**3. Set additional parameters in the execution file**
+**4. Set additional parameters in the execution file**
 
 ```
 # Override the defaults for snp threshold and days interval and provide your preferred in intervals
