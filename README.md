@@ -12,10 +12,11 @@ SNP2Cluster is a K-means clustering-based method that identifies transmission cl
   
 ## Methods overview
 To perform enhanced transmission cluster analysis, paths to the following information/data sources should be provided in a configuration file: 
-  1. Pairwise single nucleotide polymorphism (SNP) distance matrix 
-  2. SNP cut-off and interval between specimen collection dates (defaults: 20 SNPs and 14 days), 
+  1. Epidemiological data file including collection dates and facility 
+     information
+  2. Pairwise single nucleotide polymorphism (SNP) distance matrix 
   3. Multi-locus sequence type (MLST) profiles
-  4. Epidemiological data
+  4. Output directory
 
 Closely-related isolates are initially grouped together in clusters based on an enhanced K-means clustering method that employs a silhouette score and 500 bootstraps to determine the optimal K (which defines the maximum number of clusters) **K-means clusters**. Custom R functions are applied to each pre-grouped cluster to generate SNP cluster chains based on the provided SNP cut-off to make a SNP cluster, and resetting when SNP threshold is exceeded to make the next cluster. Each isolate is only assigned once to a cluster **Core SNP cluster analysis**. 
 
