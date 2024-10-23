@@ -75,6 +75,7 @@ lubri_fmt <- "ymd"
 
 _* **Override the defaults for snp threshold and days interval and provide your preferred in intervals**_
 ```
+rm(list=ls())
 snpco=20    # Preferred SNP threshold
 daysco=45   # Time interval in days
 
