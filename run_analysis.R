@@ -1,4 +1,9 @@
-library(tidyverse)
+# First install tidyverse
+
+if (!require("tidyverse", quietly = TRUE)){
+  install.packages("tidyverse")
+  library(tidyverse)
+}
 
 # NOTES -------------------------------------------------------------------
 rm(list=ls())
