@@ -29,7 +29,7 @@ If MLST profiles and epidemiological data are provided, the final transmission c
 ## Parameter setting and usage
 **1. Provide paths to the input files**
 
-> Refer to the example-input folder to see examples of input files
+> Refer to the **example-input** folder to see examples of input files
 
 ```
 # Set paths to files ------------------------------------------------------
