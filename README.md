@@ -27,17 +27,17 @@ Closely-related isolates are initially grouped together in clusters based on an 
 If MLST profiles and epidemiological data are provided, the final transmission clusters are generated in the context of sequence types and epidemiological timeline **Transmission clusters**. Publication-ready graphs are automatically generated for visualization of the integrated SNP/Epi transmission clusters, including a heat-map, minimum-spanning tree and scatter plots.
 
 ## Parameter setting and usage
-**1. Provide paths to the input files**
+**1. Provide paths to the input files in the configuration file - refer to the config_file_template in the conf folder**
 
 > Refer to the **example-data** folder to see examples of input files
 
 ```
 # Set paths to files ------------------------------------------------------
 
-dates_path = ""    # Epidemiological data file including collection dates and facility information
-filepath = ""      # Pairwise single nucleotide polymorphism (SNP) distance matrix
-mlst_profile = ""  # Multi-locus sequence type (MLST) profiles
-out_dir <- ""      # Output directory
+dates_path = "./example-data/example_metadata.csv"     # Epidemiological data file including collection dates and facility information
+filepath = "./example-data/coreSNPmatrix.co.csv"       # Pairwise single nucleotide polymorphism (SNP) distance matrix
+mlst_profile = "./example-data/05.mlst.xlsx"           # Multi-locus sequence type (MLST) profiles
+out_dir <- "./example-output"                          # Output directory
 
 ```
 
@@ -73,11 +73,12 @@ lubri_fmt <- "ymd"
 
 ```
 
->  __Save the configuration file in the _conf folder___
+>  _Save the configuration file in the **conf folder**__
+
 
 **4. Set additional parameters in the execution file**
 
-_* **Override the defaults for snp threshold and days interval and provide your preferred in intervals**_
+_**a. Override the defaults for snp threshold and days interval and provide your preferred in intervals**_
 ```
 rm(list=ls())
 snpco=20    # Preferred SNP threshold
@@ -91,7 +92,7 @@ daysco=45   # Time interval in days
 
 ```
 
-_* **Provide name of the configuration file saved in the conf folder**_
+_**b. Provide name of the configuration file saved in the conf folder**_
 
 ```
 conf_file="config_file_template.R"      
