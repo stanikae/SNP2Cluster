@@ -106,4 +106,4 @@ source("run_analysis.R")
 ```
 
 ## Reference (Citation)
-Kwenda, S., Shuping, L., Mashau, R., Ismail, H., & Govender, N. P. (2024). SNP2Cluster: A core SNP-based clustering method for enhanced transmission cluster detection in outbreak scenarios (v0.5.3). Zenodo. https://doi.org/10.5281/zenodo.13976253
+Kwenda, S., Shuping, L., Mashau, R., Ismail, H., & Govender, N. P. (2024). SNP2Cluster: A core SNP and K-means clustering-based tool for enhanced transmission cluster detection in outbreak scenarios (v0.5.3). Core SNP-based clustering for enhanced transmission cluster detection in outbreak scenarios (SNP2Cluster), Klebsiella Epidemiology and Biology Symposium 2024, Institut Pasteur, Paris, France. Zenodo. https://doi.org/10.5281/zenodo.13976253
