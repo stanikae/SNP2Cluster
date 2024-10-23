@@ -73,7 +73,7 @@ lubri_fmt <- "ymd"
 
 ```
 
->  _Save the configuration file in the **conf folder**__
+>  _Save the configuration file in the **conf folder**_
 
 
 **4. Set additional parameters in the execution file**
