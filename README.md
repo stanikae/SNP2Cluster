@@ -64,7 +64,6 @@ if(clust_type == "Transmission"){
 ```
 **3. Specify format of collection dates in the epi data file**
 
-  _Save the configuration file in the **conf folder**_
 ```
 # Specify format of collection dates --------------------------------------
 
@@ -73,6 +72,9 @@ lubri_fmt <- "ymd"
 # options include: dym, dmy, ymd, ydm, etc.. -- based on the lubridate package
 
 ```
+
+>  __Save the configuration file in the _conf folder___
+
 **4. Set additional parameters in the execution file**
 
 _* **Override the defaults for snp threshold and days interval and provide your preferred in intervals**_
