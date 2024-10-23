@@ -36,17 +36,17 @@
 
 # Set paths to files ------------------------------------------------------
 
-dates_path = ""
-filepath = ""
-moltenpath = ""
-mlst_profile = ""
-out_dir <- ""
+dates_path = "./example-data/example_metadata.csv"
+filepath = "./example-data/coreSNPmatrix.co.csv"
+mlst_profile = "./example-data/05.mlst.xlsx"
+out_dir <- "./example-output"
 
+out_dir <- normalizePath(out_dir)
 # Define variables --------------------------------------------------------
 
-Main_var = ""
-Var_01 =  ""
-Var_02 = ""
+Main_var = "FacilityName"
+Var_01 =  "WardType"
+Var_02 = "TakenDate"
 clust_type = "Transmission" # Core or Transmission
 snpco = 20 # set SNP cut-off     (Set to 20 by default)
 

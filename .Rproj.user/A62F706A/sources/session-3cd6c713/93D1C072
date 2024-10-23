@@ -3,7 +3,7 @@
     "path": "~/GitHub/SNP2Cluster/EDA_snp_analysis_v2.R",
     "project_path": "EDA_snp_analysis_v2.R",
     "type": "r_source",
-    "hash": "654020077",
+    "hash": "0",
     "contents": "",
     "dirty": false,
     "created": 1716987519882.0,
@@ -12,8 +12,8 @@
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "177,2",
-        "scrollLine": "0"
+        "cursorPosition": "74,57",
+        "scrollLine": "66"
     },
     "folds": "",
     "lastKnownWriteTime": 1728837341,

@@ -6,7 +6,7 @@ if (!require("tidyverse", quietly = TRUE)){
 }
 
 # NOTES -------------------------------------------------------------------
-rm(list=ls())
+# rm(list=ls())
 # Get path to conf file and set it under the "Source conf file" section below
 thisPath <- function() {
   cmdArgs <- commandArgs(trailingOnly = FALSE)
@@ -67,7 +67,7 @@ Var_02 <- "TakenDate"
 # # snpco=c(11,20,20,25,11)
 # # daysco=c(60,14,60,45,14)
 
-comparisons <- data.frame(snp=snp,days=days)
+comparisons <- data.frame(snp=snpco,days=daysco)
 
 for(i in 1:nrow(comparisons)){
   snpco=comparisons[i,1]

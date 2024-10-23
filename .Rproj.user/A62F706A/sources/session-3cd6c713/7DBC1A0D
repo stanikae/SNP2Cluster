@@ -3,7 +3,7 @@
     "path": "~/GitHub/SNP2Cluster/conf/config_file_template.R",
     "project_path": "conf/config_file_template.R",
     "type": "r_source",
-    "hash": "1069556286",
+    "hash": "144438005",
     "contents": "",
     "dirty": false,
     "created": 1720982769004.0,
@@ -13,15 +13,15 @@
         "tempName": "Untitled2",
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "6,0",
-        "scrollLine": "0"
+        "cursorPosition": "40,35",
+        "scrollLine": "29"
     },
     "folds": "",
-    "lastKnownWriteTime": 1729637982,
+    "lastKnownWriteTime": 1729703751,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1729637982625,
+    "last_content_update": 1729703751413,
     "read_only": false,
     "read_only_alternatives": []
 }
