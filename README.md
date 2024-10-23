@@ -90,7 +90,7 @@ daysco=45   # Time interval in days
 _* **Provide name of the configuration file saved in the conf folder**_
 
 ```
-conf_file="example_config.R"       
+conf_file="config_file_template.R"      
 source(paste0("./conf/",conf_file))
 
 ```
