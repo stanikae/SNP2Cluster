@@ -1,0 +1,46 @@
+library(tidyverse)
+
+datesDF <- datesDF %>%
+  dplyr::mutate({{Var_02}}:=lubridate::mdy(.data[[Var_02]]))
+
+lubri_fmt <- "mdy"
+
+lubri_date_fmts <- c("ymd","ydm","mdy","myd","dmy","dym")
+
+if(any(lubri_date_fmts %in% lubri_fmt)){
+  lubri_pos <- which(lubri_date_fmts %in% lubri_fmt)
+  lubri_match_fmt <- lubri_date_fmts[[lubri_pos]]
+  lubri_sym <- as.symbol(lubri_match_fmt)
+}else{
+  stop("Date format not found - your date should be in a date format recognized by lubridate functions",call. = FALSE)
+}
+
+
+eval(parse(text = "lubri_match_fmt"))
+
+
+
+# lubri_sym("2019-01-01")
+
+
+if(lubri_fmt == "ymd"){
+  datesDF <- datesDF %>%
+    dplyr::mutate({{Var_02}}:=lubridate::ymd(.data[[Var_02]]))
+}else if(lubri_fmt == "ydm"){
+  datesDF <- datesDF %>%
+    dplyr::mutate({{Var_02}}:=lubridate::ydm(.data[[Var_02]]))
+}else if((lubri_fmt == "mdy")){
+  datesDF <- datesDF %>%
+    dplyr::mutate({{Var_02}}:=lubridate::mdy(.data[[Var_02]]))
+}else if((lubri_fmt == "myd")){
+  datesDF <- datesDF %>%
+    dplyr::mutate({{Var_02}}:=lubridate::myd(.data[[Var_02]]))
+}else if((lubri_fmt == "dmy")){
+  datesDF <- datesDF %>%
+    dplyr::mutate({{Var_02}}:=lubridate::dmy(.data[[Var_02]]))
+}else if((lubri_fmt == "dym")){
+  datesDF <- datesDF %>%
+    dplyr::mutate({{Var_02}}:=lubridate::dym(.data[[Var_02]]))
+}else{
+ 
+}

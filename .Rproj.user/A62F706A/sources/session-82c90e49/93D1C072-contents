@@ -1,7 +1,5 @@
 
 # Set-up the environment --------------------------------------------------
-# src_path <- file.path(getwd())
-# src_path <- file.path("C:/Users/Stanfordk/Documents/GitHub/SNP2Cluster")
 source(file.path(src_path,"scripts","pacman_install_packages.R"))
 
 
@@ -15,70 +13,9 @@ source(file.path(src_path,"functions","load_custom_functions.R"))
 
 # Data load ---------------------------------------------------------------
 # data_paths <- file.path(src_path,"conf")
-# source(file.path(data_paths,"Richael_s_pneumo.R"))
-# source(file.path(data_paths,"BabyGERMS_kpn_temb.R"))
-# source(file.path(data_paths,"Thabo_p_aerogenosa.R"))
+
 # START ANALYSIS ----------------------------------------------------------
 
-# Set SNP cut-off and EPI-days
-# Run all steps using loop
-# for(i in 1:nrow(comparisons)){
-  # snpco=comparisons[i,1]
-  # daysco=comparisons[i,2]
-
-  # }
-
-  # snpco=20
-  # daysco=21
-  
-  
-  # # get metadata first -- 20240713 
-  # # The first 3 columns should have the following - in the order specified below:
-  # #   1. sample_id
-  # #   2. collection_date
-  # #   3. facility_name/hospital_name/community codes/regions/metros (Main_var)
-  # #   4. Ward_name (or ward type) if 3 is hospital (Var_01)
-  # 
-  # # get BabyGERMS metadata
-  # # metdata now included in the dates file: 2023-05-01
-  # mx <- read_csv(dates_path, col_names = F) %>% ncol()
-  # datesDF <- read_csv(dates_path, col_names = F) %>% dplyr::select(all_of(mx),4,1,3,2) #,1,2,3,4)
-  # names(datesDF) <- c("sampleID","TakenDate","Hospital","WardType","Ward")
-  # datesDF$Ward <- dplyr::coalesce(datesDF$Ward,"UNKNOWN")
-  # datesDF$WardType <- dplyr::coalesce(datesDF$WardType,"UNKNOWN")
-  # 
-  # 
-  # # # Richael's data
-  # # vec_incl_filt <- c("FILE","Sampling_date","Facility code","NAMEFACSCH","SEX","type_vaccine","Serotype","GPSC")
-  # # mx <- read_csv(dates_path, col_names = F) %>% ncol()
-  # # datesDF <- read_csv(dates_path, col_names = T) %>%
-  # #   # dplyr::select(all_of(mx),1,2,3,4)
-  # #   dplyr::select(any_of(vec_incl_filt))
-  # 
-  # 
-  # # # Thabo's metadata
-  # # # metdata now included in the dates file: 2023-05-01
-  # # var_sel <- c("sampleid","biosample","collection_year","collection_date","Country")
-  # # # var_sel <- c("biosample","collection_year","Country")
-  # # mx <- read_excel(dates_path) %>% dplyr::filter(Host=="Human") %>% ncol()
-  # # datesDF <- read_excel(dates_path) %>% 
-  # #   dplyr::filter(Host=="Human") %>% 
-  # #   dplyr::select(any_of(var_sel)) #%>%
-  # #   # dplyr::filter(collection_date != "Missing")
-  # # 
-  # # datesDF <- dplyr::select(datesDF,sampleid,collection_date,Country,collection_year,biosample)
-  # # 
-  # # names(datesDF) <- c("sampleID","TakenDate",Var_01,"Year","biosample") #,"Var_01","Ward")
-  # # 
-  # # 
-  # # # names(datesDF) <- c("sampleID","TakenDate","Var_00","Facility_name","SeX","Vaccine_type","Serotype","GPSC")
-  # # names(datesDF) <- c("sampleID","TakenDate",Main_var,Var_01,"Ward")
-  # # 
-  # # # datesDF$Ward <- dplyr::coalesce(datesDF$Ward,"UNKNOWN")
-  # # # datesDF$WardType <- dplyr::coalesce(datesDF$WardType,"UNKNOWN")
-  # 
-  
-  
   # Get snp pairwise data
   if(! file.exists(filepath)){
     # next
@@ -129,23 +66,28 @@ source(file.path(src_path,"functions","load_custom_functions.R"))
       tibble::column_to_rownames(var = "sampleID")
     
   }else{
-    # Fix dates - optional 2024-05-29
-    # 
-    if(lubri_fmt == "mdy"){
-      datesDF <- datesDF %>%
-        dplyr::mutate({{Var_02}}:=lubridate::mdy(.data[[Var_02]]))
-    }else if(lubri_fmt == "dmy"){
-      datesDF <- datesDF %>%
-        dplyr::mutate({{Var_02}}:=lubridate::dmy(.data[[Var_02]]))
-    }else if((lubri_fmt == "ydm")){
-       datesDF <- datesDF %>%
-        dplyr::mutate({{Var_02}}:=lubridate::ydm(.data[[Var_02]]))
-    }else{
+    # Fix dates 
+    if(lubri_fmt == "ymd"){
       datesDF <- datesDF %>%
         dplyr::mutate({{Var_02}}:=lubridate::ymd(.data[[Var_02]]))
+    }else if(lubri_fmt == "ydm"){
+      datesDF <- datesDF %>%
+        dplyr::mutate({{Var_02}}:=lubridate::ydm(.data[[Var_02]]))
+    }else if((lubri_fmt == "mdy")){
+      datesDF <- datesDF %>%
+        dplyr::mutate({{Var_02}}:=lubridate::mdy(.data[[Var_02]]))
+    }else if((lubri_fmt == "myd")){
+      datesDF <- datesDF %>%
+        dplyr::mutate({{Var_02}}:=lubridate::myd(.data[[Var_02]]))
+    }else if((lubri_fmt == "dmy")){
+      datesDF <- datesDF %>%
+        dplyr::mutate({{Var_02}}:=lubridate::dmy(.data[[Var_02]]))
+    }else if((lubri_fmt == "dym")){
+      datesDF <- datesDF %>%
+        dplyr::mutate({{Var_02}}:=lubridate::dym(.data[[Var_02]]))
+    }else{
+      stop("Date format not found - your date should be in a date format recognized by lubridate functions",call. = FALSE)
     }
-    #  to add more options
-    # as.integer(difftime(max(datesDF$TakenDate),min(datesDF$TakenDate),  unit="days"))
     
     
     epiwkDF <- datesDF %>% 

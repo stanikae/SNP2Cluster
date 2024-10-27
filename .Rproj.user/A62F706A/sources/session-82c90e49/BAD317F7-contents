@@ -35,12 +35,14 @@ src_path <- file.path(MainDirPath)
 setwd(src_path)
 
 
-
 # Source conf file --------------------------------------------------------
 
 # source("./conf/KPN_Temb_BabyGERMS_config.R")
-source(paste0("./conf/",conf_file))
-
+if(exists("conf_file")){
+  source(paste0("./conf/",conf_file))
+}else{
+  stop("Provide path to the config file, refer to Step 4b in usage instructions", call. = FALSE)
+}
 
 # Read data into data frames ----------------------------------------------
 
@@ -73,11 +75,6 @@ for(i in 1:nrow(comparisons)){
   snpco=comparisons[i,1]
   daysco=comparisons[i,2]
 
-  # source("~/GitHub/SNP2Cluster/conf/BabyGERMS_kpn_temb.R")
-
-  
-
-  # rm(list=ls())
   src_path <- file.path(MainDirPath)
   setwd(src_path)
   path_dir_main<-file.path(getwd())
