@@ -100,7 +100,7 @@ source(paste0("./conf/",conf_file))
 
 ```
 
-**4. Run the analysis**
+**5. Run the analysis**
 ```
 source("run_analysis.R")
 ```
