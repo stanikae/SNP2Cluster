@@ -95,8 +95,7 @@ daysco=45   # Time interval in days
 _**b. Provide name of the configuration file saved in the conf folder**_
 
 ```
-conf_file="config_file_template.R"      
-source(paste0("./conf/",conf_file))
+conf_file="config_file_template.R"  # config file should be saved in the conf folder    
 
 ```
 
