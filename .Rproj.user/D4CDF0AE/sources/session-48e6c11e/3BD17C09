@@ -1,24 +1,24 @@
 {
-    "id": "FA691A69",
+    "id": "3BD17C09",
     "path": "~/GitHub/SNP2Cluster/conf/config_file_template.R",
     "project_path": "conf/config_file_template.R",
     "type": "r_source",
-    "hash": "0",
+    "hash": "144438005",
     "contents": "",
     "dirty": false,
-    "created": 1730842422158.0,
-    "source_on_save": false,
-    "relative_order": 1,
+    "created": 1731079670643.0,
+    "source_on_save": true,
+    "relative_order": 7,
     "properties": {
         "source_window_id": "",
         "Source": "Source"
     },
     "folds": "",
-    "lastKnownWriteTime": 1730104489,
+    "lastKnownWriteTime": 1731164603,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1730104489,
+    "last_content_update": 1731164603331,
     "read_only": false,
     "read_only_alternatives": []
 }
