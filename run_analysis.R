@@ -49,6 +49,7 @@ if(exists("conf_file")){
 var_order <- c(Main_var,Var_01,Var_02)
 
 datesDF <- read_csv(dates_path, col_names = T) %>%
+  # dplyr::select(SampleID,any_of(var_order))
   dplyr::select(1,any_of(var_order))
 
 names(datesDF)[1] <- "sampleID"
