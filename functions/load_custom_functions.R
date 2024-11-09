@@ -178,13 +178,18 @@ get_core_snp_clusters <- function(m, k, max, dates=NULL, snpco, orig=TRUE){
   }
   
   # calculate kmeans and group closely related samples
-  res.km <- eclust(m, 
+  res.km <- factoextra::eclust(m,
                    FUNcluster = "kmeans",
                    k=k,
                    k.max = max,
                    nboot = 500,
                    nstart = 25) #nstart = 25,
   
+  # res.km <- eclust(m, 
+  #                  FUNcluster = "kmeans",
+  #                  k.max = max,
+  #                  nboot = 500,
+  #                  nstart = 25) #nstart = 25,
   
   # Get optimal clusters only
   vec_widths <- res.km$silinfo$clus.avg.widths
