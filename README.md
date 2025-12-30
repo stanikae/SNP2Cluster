@@ -106,3 +106,5 @@ source("run_analysis.R")
 
 ## Reference (Citation)
 Kwenda, S., Shuping, L., Mashau, R., Ismail, H., & Govender, N. P. (2024). SNP2Cluster: A core SNP and K-means clustering-based tool for enhanced transmission cluster detection in outbreak scenarios (v0.5.3). Klebsiella Epidemiology and Biology Symposium 2024 (KLEBS2024), Institut Pasteur, Paris, France. Zenodo. [https://zenodo.org/records/14060296](https://zenodo.org/records/14060296)
+
+Shuping, L., Ismail, H., Mashau, R., Kwenda, S., Holt, K. E., Magobo, R. E., Perovic, O., Meiring, S. T., Quan, V. C., & Govender, N. P. (2025). Enhanced detection of neonatal invasive infection clusters in South Africa using epidemiological and genomic surveillance data. medRxiv. https://doi.org/10.1101/2025.11.10.25339895
