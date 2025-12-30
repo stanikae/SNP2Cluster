@@ -1,0 +1,429 @@
+study_id	specimen_type	pathogen	hospital	hospital_admission_date	nicu_admission_date	ward_type	specimen_collection_date	age_at_specimen_collection	hiv_exposed	prior_antibiotic_exposure	gestational_age	breastfed	jaundice	hmd_rds	nec	cardiac_abnormality	other_conditions	weight_at_specimen_collection	sepsis_onset	outcome	finoutcome_date	ertapenem_interp	imipenem_interp	meropenem_interp	cefotaxime_interp	cefepime_interp	amikacin_interp	gentamicin_interp	ciprofloxacin_interp	levofloxacin_interp	minocycline_interp	colistin_interp	oxacillin_interpr	cefoxitin_interpr	vancomycin_interpr	cre	esbl	minocycline_resistant	mrsa	vre	mdr	ast_epi_cluster	in_ast_cluster	sampleid	st_type	SNP.EPI.cluster10.14	SNP.EPI.cluster11.14	SNP.EPI.cluster11.60	SNP.EPI.cluster14.14	SNP.EPI.cluster20.14	SNP.EPI.cluster14.60	SNP.EPI.cluster20.60	SNP.EPI.cluster25.45	new_in_snp_epi_cluster
+MA383-3	BLOOD CULTURE	K. pneumoniae	Hospital E			neonatal	2020-05-03	1	NA	NA	NA	No	0	0	0	0	0	NA	0	NA	NA	S	S	S	R	R	S	R	R	R	S	I				0	1	NA	NA	NA	yes	NA	0	BG916	377	NA	bg	2	NA	bg	NA	2	2	0
+QN013	BLOOD CULTURE	K. pneumoniae	Hospital F	2019-10-02	2019-10-02	neonatal	2019-10-08	6	No	No	26	No	0	1	0	0	0	<=1500g	1	1	2019-10-18	S	S	S	R	R	S	R	I	S	S	S				0	1	NA	NA	NA	yes	NA	0	BG72	3184	NA	NA	bg	NA	NA	NA	bg	bg	0
+KD228	BLOOD CULTURE	K. pneumoniae	Hospital B	2020-03-25		neonatal	2020-04-15	21	NA	NA	NA	No	0	0	0	0	0	NA	1	0	2020-07-15	S	S	S	S	S	S	S	S	S	S	I				0	0	NA	NA	NA	no	NA	0	BG780	542	NA	bg	bg	NA	bg	NA	bg	bg	0
+DN236	BLOOD CULTURE	K. pneumoniae	Hospital A	2020-01-17	2020-01-17	neonatal	2020-01-21	4	Yes	No	38	No	0	0	0	0	1	>=2500g	1	0	2020-02-06	S	S	S	R	R	S	R	R	S	S	I				0	1	NA	NA	NA	yes	NA	0	BG465	985	NA	bg	4	NA	bg	NA	4	5	0
+MA399-2	BLOOD CULTURE	K. pneumoniae	Hospital E			neonatal	2020-10-05	243	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA	S	S	S	R	R	S	R	S	S	S	I				0	1	NA	NA	NA	yes	NA	0	BG952	39	NA	bg	bg	NA	bg	NA	bg	bg	0
+RF065	BLOOD CULTURE	K. pneumoniae	Hospital D	2019-12-14		neonatal	2019-12-14	0	Yes	No	37	No	0	0	0	0	0	>=2500g	0	0	2019-12-25	S	S	S	R	R	S	R	S	S	S	I				0	1	NA	NA	NA	no	1	1	BG375	405	NA	1	2	NA	1	NA	2	1	1
+QN014	BLOOD CULTURE	K. pneumoniae	Hospital F	2019-10-01	2019-10-01	neonatal	2019-10-08	8	No	NA	31	No	0	0	0	0	0	<=1500g	1	1	2019-10-08	R	R	R	R	R	R	R	R	R	S	S				1	1	NA	NA	NA	yes	NA	0	BG74	101	NA	NA	bg	NA	NA	NA	bg	bg	0
+DN177-5	BLOOD CULTURE	K. pneumoniae	Hospital A			neonatal	2020-01-13	17	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA	S	S	S	R	R	S	S	S	S	S	I				0	1	NA	NA	NA	no	NA	0	BG454-2	464	NA	bg	bg	NA	bg	NA	bg	bg	0
+DN139-4	BLOOD CULTURE	K. pneumoniae	Hospital A			neonatal	2019-12-28	33	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA	S	S	S	R	R	S	R	R	S	S	I				0	1	NA	NA	NA	yes	NA	0	BG393	985	NA	bg	4	NA	bg	NA	4	5	0
+RF037	BLOOD CULTURE	K. pneumoniae	Hospital D		2019-11-25	neonatal	2019-11-27	2	Yes	Yes	32	No	0	0	0	0	0	<=1500g	0	1	2019-11-27	S	S	S	R	R	S	R	S	S	S	I				0	1	NA	NA	NA	no	NA	0	BG337	405	NA	1	2	NA	1	NA	2	1	1
+TM633-2	BLOOD CULTURE	K. pneumoniae	Hospital C			neonatal	2020-09-13	14	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA	R	I	R	R	R	S	R	I	S	S	S				1	1	NA	NA	NA	yes	NA	0	BG2170	39	NA	bg	bg	NA	bg	NA	2	2	0
+KD229	BLOOD CULTURE	K. pneumoniae	Hospital B			neonatal	2020-04-16	40	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA	R	S	S	R	R	S	R	R	R	S	I				1	1	NA	NA	NA	yes	NA	0	BG785	39	NA	6	5	NA	6	NA	5	5	1
+QN208	BLOOD CULTURE	K. pneumoniae	Hospital F	2020-01-19		neonatal	2020-01-27	8	No	Yes	33	No	0	0	0	0	1	1502-2499g	1	0	2020-02-05	S	S	S	S	S	S	S	S	S	R	I				0	0	NA	NA	NA	yes	NA	0	BG475	14	NA	NA	bg	NA	NA	NA	bg	bg	0
+QN559	BLOOD CULTURE	K. pneumoniae	Hospital F	2020-06-03	2020-06-03	neonatal	2020-06-03	7	Yes	NA	37	No	0	0	0	0	0	>=2500g	1	1	2020-06-04	S	S	S	R	S	S	R	R	R	S	I				0	1	NA	NA	NA	yes	NA	0	BG1315	307	NA	NA	bg	NA	NA	NA	bg	bg	0
+RF261	BLOOD CULTURE	K. pneumoniae	Hospital D	2020-08-13	2020-08-19	neonatal	2020-08-18	5	No	Yes	29	No	0	0	0	0	0	<=1500g	1	0	2020-10-07	S	S	S	R	R	S	R	I	S	S	S				0	1	NA	NA	NA	yes	NA	0	BG1969	607	NA	4	5	NA	4	NA	5	4	1
+KD208-2	BLOOD CULTURE	K. pneumoniae	Hospital B	2020-04-05		neonatal	2020-04-06	4	NA	NA	NA	No	0	0	0	0	0	NA	1	0	NA	R	S	R	R	R	S	R	R	R	S	I				1	1	NA	NA	NA	yes	NA	0	BG774	39	NA	6	5	NA	6	NA	5	5	1
+MA027-2	BLOOD CULTURE	K. pneumoniae	Hospital E			neonatal	2019-10-30	1	NA	NA	NA	No	0	0	0	0	0	NA	0	NA	NA	S	S	S	R	R	S	R	R	S	S	I				0	1	NA	NA	NA	yes	NA	0	BG310	17	NA	bg	bg	NA	bg	NA	bg	bg	0
+KD051	BLOOD CULTURE	K. pneumoniae	Hospital B	2019-10-17	2019-10-17	other	2019-10-19	2	No	Yes	34	Yes	0	0	1	0	0	1502-2499g	0	0	2019-11-02	R	R	R	R	R	R	R	R	R	S	R				1	1	NA	NA	NA	yes	NA	0	BG127	348	NA	4	4	NA	4	NA	4	4	1
+TM133	BLOOD CULTURE	K. pneumoniae	Hospital C	2019-11-27	2019-12-02	neonatal	2019-12-05	9	No	Yes	38	No	0	0	0	0	1	>=2500g	1	1	2019-12-09	R	S	R	R	R	S	R	R	R	S	S				1	1	NA	NA	NA	yes	NA	0	BG258	307	NA	2	3	NA	2	NA	4	4	1
+TM213	BLOOD CULTURE	K. pneumoniae	Hospital C	2020-01-10		neonatal	2020-01-10	0	No	No	30	Yes	0	0	0	0	0	<=1500g	0	0	2020-02-25	R	R	R	R	R	R	R	R	R	S	R				1	1	NA	NA	NA	yes	4	1	BG271	152	NA	1	2	NA	1	NA	3	3	1
+TM021	BLOOD CULTURE	K. pneumoniae	Hospital C	2019-10-28	2019-10-30	neonatal	2019-10-28	0	Yes	NA	42	Yes	0	0	0	0	1	>=2500g	0	0	2019-11-08	R	I	S	S	S	S	S	S	S	S	R				1	0	NA	NA	NA	no	NA	0	BG265	17	NA	bg	bg	NA	bg	NA	bg	bg	0
+MA032-1	BLOOD CULTURE	K. pneumoniae	Hospital E	2019-10-29	2019-11-06	other	2019-11-06	73	No	NA	NA	Yes	0	0	0	0	1	>=2500g	1	1	2019-11-07	S	S	S	S	S	S	S	S	S	S	I				0	0	NA	NA	NA	no	NA	0	BG246	113	NA	bg	bg	NA	bg	NA	bg	bg	0
+MA466	BLOOD CULTURE	K. pneumoniae	Hospital E	2020-06-05		neonatal	2020-06-10	5	No	Yes	29	No	1	1	0	0	1	<=1500g	1	1	2020-06-13	R	S	R	R	R	S	R	R	R	S	I				1	1	NA	NA	NA	yes	NA	0	BG1314	307	NA	2	3	NA	2	NA	3	4	1
+KD142-2	BLOOD CULTURE	K. pneumoniae	Hospital B			neonatal	2020-01-31	8	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA	R	I	R	R	R	S	R	R	R	S	R				1	1	NA	NA	NA	yes	3	1	BG443	17	NA	2	2	NA	2	NA	2	2	1
+DN265	BLOOD CULTURE	K. pneumoniae	Hospital A			other	2020-02-11	87	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA	S	S	S	R	R	S	R	S	S	S	I				0	1	NA	NA	NA	yes	NA	0	BG450	1552	NA	bg	bg	NA	bg	NA	bg	bg	0
+RF079	BLOOD CULTURE	K. pneumoniae	Hospital D	2019-12-19	2019-12-19	neonatal	2019-12-19	0	No	No	32	Yes	0	0	0	0	1	1502-2499g	0	0	2020-01-03	S	S	S	R	R	S	R	S	S	S	I				0	1	NA	NA	NA	no	2	1	BG381	405	NA	1	2	NA	1	NA	2	1	1
+TM145-1	BLOOD CULTURE	K. pneumoniae	Hospital C	2019-12-04	2019-12-04	neonatal	2019-12-11	7	No	Yes	26	Yes	1	1	0	0	1	<=1500g	1	0	2020-01-10	R	R	R	R	R	R	R	R	R	S	S				1	1	NA	NA	NA	yes	3	1	BG255	152	NA	1	2	NA	1	NA	3	3	1
+RF019-1	BLOOD CULTURE	K. pneumoniae	Hospital D	2019-10-03		neonatal	2019-10-15	12	Yes	Yes	32	Yes	0	0	0	0	1	1502-2499g	1	0	2019-11-05	S	S	S	R	R	S	S	S	S	S	I				0	1	NA	NA	NA	no	NA	0	BG83	1414	NA	3	4	NA	3	NA	4	3	1
+TM206	BLOOD CULTURE	K. pneumoniae	Hospital C	2020-01-03		neonatal	2020-01-03	0	No	No	33	Yes	0	0	0	0	0	1502-2499g	0	0	2020-01-16	R	R	R	R	R	R	R	R	R	S	I				1	1	NA	NA	NA	yes	4	1	BG272	152	NA	1	2	NA	1	NA	3	3	1
+MA410	BLOOD CULTURE	K. pneumoniae	Hospital E	2020-05-14	2020-05-20	neonatal	2020-05-20	6	No	Yes	26	No	0	0	0	0	0	<=1500g	1	0	2020-06-12	S	S	S	R	R	S	R	S	S	S	I				0	1	NA	NA	NA	yes	NA	0	BG1142	607	NA	bg	bg	NA	bg	NA	bg	bg	0
+KD180-1	BLOOD CULTURE	K. pneumoniae	Hospital B	2020-03-02	2020-03-02	neonatal	2020-03-11	10	No	No	34	No	0	0	1	0	1	1502-2499g	1	1	2020-03-27	S	S	S	R	R	S	S	S	S	S	I				0	1	NA	NA	NA	yes	NA	0	BG566	39	NA	bg	bg	NA	bg	NA	bg	bg	0
+DN379	BLOOD CULTURE	K. pneumoniae	Hospital A	2020-04-07	2020-04-07	neonatal	2020-04-11	4	No	Yes	34	Yes	1	1	0	0	1	<=1500g	1	0	2020-05-13	S	S	S	R	R	S	S	R	S	R	I				0	1	NA	NA	NA	yes	NA	0	BG678	14	NA	bg	bg	NA	bg	NA	bg	bg	0
+TM129-2	BLOOD CULTURE	K. pneumoniae	Hospital C			other	2019-12-10	23	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA	R	R	R	R	R	S	R	R	R	S	R				1	1	NA	NA	NA	yes	2	1	BG254	307	NA	2	3	NA	2	NA	4	4	1
+DN026	BLOOD CULTURE	K. pneumoniae	Hospital A	2019-10-13		other	2019-10-16	106	Yes	Yes	40	No	0	0	0	0	1	>=2500g	1	0	2019-10-25	S	S	S	R	R	S	S	R	R	S	I				0	1	NA	NA	NA	yes	NA	0	BG107	405	NA	bg	bg	NA	bg	NA	bg	bg	0
+RF267-1	BLOOD CULTURE	K. pneumoniae	Hospital D	2020-08-18		neonatal	2020-08-24	6	Yes	Yes	31	No	1	0	1	0	1	<=1500g	1	0	2020-10-05	S	S	S	R	R	S	R	R	S	S	S				0	1	NA	NA	NA	yes	3	1	BG2036	607	NA	4	5	NA	4	NA	5	4	1
+QN209	BLOOD CULTURE	K. pneumoniae	Hospital F	2020-01-19		neonatal	2020-01-28	9	No	Yes	33	No	0	1	0	0	0	1502-2499g	1	0	2020-02-06	S	S	S	R	R	S	R	S	S	S	I				0	1	NA	NA	NA	no	1	1	BG473	1119	NA	NA	bg	NA	NA	NA	bg	bg	0
+RF141-2	BLOOD CULTURE	K. pneumoniae	Hospital D	2020-02-24		neonatal	2020-02-29	6	NA	Yes	29	No	0	0	0	0	1	<=1500g	1	1	2020-03-01	S	S	S	S	S	S	S	S	S	S	R				0	0	NA	NA	NA	no	NA	0	BG515	2597	NA	bg	bg	NA	bg	NA	bg	bg	0
+RF107-1	BLOOD CULTURE	K. pneumoniae	Hospital D	2020-01-06	2020-01-06	neonatal	2020-01-15	9	Yes	Yes	36	No	0	0	0	0	1	>=2500g	1	0	2020-02-06	I	S	S	S	S	S	S	S	S	S	I				0	0	NA	NA	NA	no	NA	0	BG470	17	NA	bg	bg	NA	bg	NA	bg	bg	0
+TM238-1	BLOOD CULTURE	K. pneumoniae	Hospital C	2019-12-16	2019-12-22	neonatal	2019-12-24	8	No	No	28	No	0	0	0	0	0	<=1500g	1	1	2020-01-26	R	R	R	R	R	R	R	R	R	S	S				1	1	NA	NA	NA	yes	3	1	BG224	152	NA	1	2	NA	1	NA	3	3	1
+RF012-1	BLOOD CULTURE	K. pneumoniae	Hospital D	2019-10-14		neonatal	2019-10-14	0	Yes	No	35	No	0	0	0	0	0	1502-2499g	0	0	2019-11-08	S	S	S	S	S	S	S	S	S	S	S				0	0	NA	NA	NA	yes	NA	0	BG28	359	NA	bg	bg	NA	bg	NA	bg	bg	0
+TM123	BLOOD CULTURE	K. pneumoniae	Hospital C	2019-11-27	2019-12-02	neonatal	2019-12-02	5	Yes	NA	34	No	1	0	0	1	1	1502-2499g	1	1	2019-12-03	R	R	R	R	R	R	R	R	R	S	S				1	1	NA	NA	NA	yes	1	1	BG264	152	NA	1	2	NA	1	NA	3	3	1
+DN146	BLOOD CULTURE	K. pneumoniae	Hospital A	2019-12-14	2019-12-14	neonatal	2019-12-20	6	No	Yes	30	Yes	1	0	0	1	1	<=1500g	1	0	2020-01-03	S	S	S	R	R	S	R	R	S	S	I				0	1	NA	NA	NA	yes	2	1	BG383	17	NA	1	1	NA	1	NA	1	1	1
+RF059	BLOOD CULTURE	K. pneumoniae	Hospital D	2019-12-08		neonatal	2019-12-08	0	Yes	No	37	No	0	1	0	0	1	>=2500g	0	0	2019-12-20	R	S	R	R	R	S	R	R	R	S	I				1	1	NA	NA	NA	yes	NA	0	BG710	152	NA	bg	bg	NA	bg	NA	bg	bg	0
+KD197	BLOOD CULTURE	K. pneumoniae	Hospital B	2020-03-07	2020-03-07	neonatal	2020-03-29	22	Yes	Yes	32	No	0	0	0	0	0	1502-2499g	1	0	2020-04-17	R	S	S	R	R	S	R	R	R	S	I				1	1	NA	NA	NA	yes	NA	0	BG767	39	NA	6	5	NA	6	NA	5	5	1
+QN127-2	BLOOD CULTURE	K. pneumoniae	Hospital F			neonatal	2020-01-06	17	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA	S	S	S	R	R	S	R	R	S	S	I				0	1	NA	NA	NA	yes	NA	0	BG455	39	NA	NA	bg	NA	NA	NA	bg	bg	0
+KD020-1	BLOOD CULTURE	K. pneumoniae	Hospital B	2019-10-16	2019-10-16	neonatal	2019-11-15	30	Yes	Yes	30	No	0	0	1	1	0	<=1500g	1	NA	NA	R	R	R	R	R	S	R	R	R	S	I				1	1	NA	NA	NA	yes	1	1	BG305	17	NA	1	1	NA	1	NA	1	1	1
+KD306-1	BLOOD CULTURE	K. pneumoniae	Hospital B	2020-08-13	2020-08-13	neonatal	2020-08-18	5	No	Yes	41	No	0	0	0	1	1	>=2500g	1	0	2020-09-12	R	R	R	R	R	S	R	R	S	S	S				1	1	NA	NA	NA	yes	NA	0	BG2047	17	NA	3	3	NA	3	NA	3	3	1
+KD279	BLOOD CULTURE	K. pneumoniae	Hospital B	2020-06-01	2020-06-01	neonatal	2020-06-09	8	No	No	36	Yes	0	0	0	0	1	1502-2499g	1	1	2020-06-10	S	S	S	S	S	S	S	S	S	S	I				0	0	NA	NA	NA	no	NA	0	BG1519	76	NA	bg	bg	NA	bg	NA	bg	bg	0
+TM012	BLOOD CULTURE	K. pneumoniae	Hospital C	2019-09-27	2019-10-07	neonatal	2019-10-10	13	No	Yes	32	No	0	0	1	0	0	<=1500g	1	NA	NA	R	S	R	R	R	S	R	R	R	S	S				1	1	NA	NA	NA	yes	NA	0	BG32	307	NA	bg	3	NA	bg	NA	4	bg	0
+DN175-2	BLOOD CULTURE	K. pneumoniae	Hospital A			neonatal	2020-01-07	28	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA	I	I	S	R	R	S	R	S	S	S	I				0	1	NA	NA	NA	yes	NA	0	BG434	997	NA	2	2	NA	2	NA	2	2	1
+MA318	BLOOD CULTURE	K. pneumoniae	Hospital E			neonatal	2020-04-05	6	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA	S	S	R	R	R	S	R	R	R	S	R				1	1	NA	NA	NA	yes	NA	0	BG668	1414	NA	bg	bg	NA	bg	NA	bg	bg	0
+KD277	BLOOD CULTURE	K. pneumoniae	Hospital B	2020-06-09	2020-06-09	neonatal	2020-06-25	16	No	Yes	39	No	0	1	0	0	0	1502-2499g	1	0	2020-07-23	S	S	S	S	S	S	S	S	S	S	R				0	0	NA	NA	NA	no	NA	0	BG1517	76	NA	bg	bg	NA	bg	NA	bg	bg	0
+MA023	BLOOD CULTURE	K. pneumoniae	Hospital E	2020-10-17		neonatal	2019-10-29	12	NA	NA	NA	No	0	0	0	0	0	NA	1	1	2020-11-04	S	S	S	R	R	S	R	S	S	S	R				0	1	NA	NA	NA	yes	NA	0	BG353	29	NA	bg	bg	NA	bg	NA	bg	bg	0
+TM144-1	BLOOD CULTURE	K. pneumoniae	Hospital C	2019-12-04	2019-12-04	other	2019-11-30	2	NA	NA	NA	No	0	0	0	0	0	NA	0	1	NA	R	R	R	R	R	R	R	R	R	S	S				1	1	NA	NA	NA	yes	1	1	BG263	152	NA	1	2	NA	1	NA	3	3	1
+MA547	BLOOD CULTURE	K. pneumoniae	Hospital E	2020-07-18		neonatal	2020-08-03	16	Yes	Yes	25	Yes	1	0	1	0	1	<=1500g	1	1	2020-08-09	S	S	S	R	R	S	R	R	R	S	S				0	1	NA	NA	NA	yes	NA	0	BG1956	377	NA	bg	2	NA	bg	NA	2	3	0
+QN015-2	BLOOD CULTURE	K. pneumoniae	Hospital F	2019-10-31	2019-11-03	neonatal	2019-11-08	8	Yes	Yes	31	Yes	0	1	0	0	0	1502-2499g	1	0	2020-01-13	S	S	R	R	R	S	R	R	R	S	I				1	1	NA	NA	NA	yes	NA	0	BG361	307	NA	NA	1	NA	NA	NA	1	1	0
+TM159	BLOOD CULTURE	K. pneumoniae	Hospital C	2019-12-13	2019-12-17	neonatal	2019-12-17	4	No	No	39	Yes	1	0	0	0	1	NA	1	0	2019-12-27	R	R	R	R	R	R	R	R	R	S	S				1	1	NA	NA	NA	yes	3	1	BG213	152	NA	1	2	NA	1	NA	3	3	1
+RF148	BLOOD CULTURE	K. pneumoniae	Hospital D	2020-02-08		neonatal	2020-02-28	20	Yes	No	31	No	0	1	1	0	0	<=1500g	1	0	2020-04-22	S	S	S	R	R	S	R	S	S	S	I				0	1	NA	NA	NA	yes	NA	0	BG517	405	NA	bg	2	NA	bg	NA	2	1	0
+DN608-2	BLOOD CULTURE	K. pneumoniae	Hospital A			neonatal	2020-09-03	15	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA	R	I	S	R	R	S	S	I	I	S	S				1	1	NA	NA	NA	no	NA	0	BG2053	14	NA	bg	bg	NA	bg	NA	bg	bg	0
+DN218-1	BLOOD CULTURE	K. pneumoniae	Hospital A			neonatal	2020-01-15	0	NA	NA	NA	No	0	0	0	0	0	NA	0	NA	NA	S	S	S	S	S	S	S	S	S	S	I				0	0	NA	NA	NA	no	NA	0	BG453	1079	NA	bg	bg	NA	bg	NA	bg	bg	0
+MA241	BLOOD CULTURE	K. pneumoniae	Hospital E			neonatal	2020-03-09	14	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA	S	S	S	R	R	S	R	R	S	S	I				0	1	NA	NA	NA	yes	NA	0	BG555	307	NA	bg	bg	NA	bg	NA	bg	bg	0
+DN039-2	BLOOD CULTURE	K. pneumoniae	Hospital A	2019-10-20	2019-10-20	neonatal	2019-11-01	12	Yes	Yes	26	Yes	1	1	0	0	1	<=1500g	1	0	2019-12-17	R	R	R	R	R	S	R	R	R	R	R				1	1	NA	NA	NA	yes	1	1	BG164	152	NA	bg	bg	NA	bg	NA	bg	bg	0
+RF015-1	BLOOD CULTURE	K. pneumoniae	Hospital D	2019-10-22		neonatal	2019-10-22	0	Yes	No	36	No	1	0	0	0	1	<=1500g	0	0	2019-11-18	S	I	S	R	R	S	R	R	S	S	I				0	1	NA	NA	NA	no	NA	0	BG150	950	NA	2	3	NA	2	NA	3	2	1
+DN199-1	BLOOD CULTURE	K. pneumoniae	Hospital A	2020-01-07	2020-01-13	neonatal	2020-01-11	4	No	Yes	30	Yes	1	1	0	0	1	<=1500g	1	1	2020-01-14	I	I	S	R	R	S	R	S	S	S	I				0	1	NA	NA	NA	yes	NA	0	BG321	997	NA	2	2	NA	2	NA	2	2	1
+KD293-2	BLOOD CULTURE	K. pneumoniae	Hospital B			other	2020-02-10	18	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA	R	I	R	R	R	S	R	R	R	S	R				1	1	NA	NA	NA	yes	3	1	BG533	17	NA	2	2	NA	2	NA	2	2	1
+MA492	BLOOD CULTURE	K. pneumoniae	Hospital E	2020-07-01		neonatal	2020-07-01	21	NA	NA	NA	No	0	0	0	0	0	NA	1	0	2020-07-04	S	S	S	R	R	S	R	S	S	R	I				0	1	NA	NA	NA	yes	NA	0	BG1524	170	NA	bg	bg	NA	bg	NA	bg	bg	0
+TM182	BLOOD CULTURE	K. pneumoniae	Hospital C	2019-12-20	2019-12-22	neonatal	2019-12-23	3	No	No	29	Yes	0	0	0	0	0	<=1500g	1	1	2019-12-23	R	R	R	R	R	R	R	R	R	S	R				1	1	NA	NA	NA	yes	NA	0	BG215	152	NA	1	2	NA	1	NA	3	3	1
+TM041-2	BLOOD CULTURE	K. pneumoniae	Hospital C			other	2020-02-02	6	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA	R	R	R	R	R	R	R	R	R	S	S				1	1	NA	NA	NA	yes	NA	0	BG449	152	NA	1	2	NA	1	NA	3	3	1
+MA435-2	BLOOD CULTURE	K. pneumoniae	Hospital E	2020-05-14	2020-05-14	neonatal	2020-05-31	31	No	Yes	37	No	0	0	0	1	1	>=2500g	1	1	2020-06-20	R	S	R	R	R	S	R	R	R	S	I				1	1	NA	NA	NA	yes	1	1	BG1172	377	NA	1	2	NA	1	NA	2	2	1
+DN040-1	BLOOD CULTURE	K. pneumoniae	Hospital A	2019-10-20	2019-10-20	neonatal	2019-11-08	19	Yes	Yes	26	Yes	1	1	0	0	1	<=1500g	1	0	2019-12-23	R	R	R	R	R	S	R	R	R	R	R				1	1	NA	NA	NA	yes	1	1	BG354	152	NA	bg	bg	NA	bg	NA	bg	bg	0
+TM660	BLOOD CULTURE	K. pneumoniae	Hospital C	2020-09-21	2020-09-21	neonatal	2020-09-30	9	Yes	Yes	30	No	1	1	0	1	1	<=1500g	1	0	2020-10-30	I	S	S	R	R	S	R	I	I	S	S				0	1	NA	NA	NA	yes	NA	0	BG2144	39	NA	bg	bg	NA	bg	NA	2	2	0
+MA127	BLOOD CULTURE	K. pneumoniae	Hospital E	2019-12-27	2019-12-27	neonatal	2019-12-31	8	No	Yes	37	No	0	0	0	0	1	NA	1	0	2020-02-18	S	S	S	R	R	S	R	R	S	S	I				0	1	NA	NA	NA	yes	NA	0	BG458	607	NA	bg	1	NA	bg	NA	1	1	0
+DN387	BLOOD CULTURE	K. pneumoniae	Hospital A	2020-04-19		neonatal	2020-04-19	7	NA	NA	NA	No	0	0	0	0	0	NA	1	0	2020-05-20	S	S	S	R	R	S	R	R	S	S	I				0	1	NA	NA	NA	yes	NA	0	BG770	22	NA	bg	3	NA	bg	NA	3	3	0
+RF162-1	BLOOD CULTURE	K. pneumoniae	Hospital D	2020-03-15		neonatal	2020-03-16	1	No	No	37	Yes	0	0	0	0	1	>=2500g	0	0	2020-03-25	S	S	S	R	R	S	R	S	S	S	I				0	1	NA	NA	NA	yes	NA	0	BG562	1261	NA	bg	bg	NA	bg	NA	bg	bg	0
+RF063	BLOOD CULTURE	K. pneumoniae	Hospital D	2019-12-11		neonatal	2019-12-17	6	Yes	Yes	37	Yes	0	0	0	0	1	>=2500g	1	0	2019-12-24	S	S	S	R	R	S	R	S	S	S	I				0	1	NA	NA	NA	no	1	1	BG387	405	NA	1	2	NA	1	NA	2	1	1
+KD200	BLOOD CULTURE	K. pneumoniae	Hospital B	2020-03-25	2020-03-25	neonatal	2020-03-28	3	No	Yes	33	No	0	0	0	0	0	1502-2499g	1	1	2020-03-28	S	S	R	R	R	S	R	R	S	S	I				1	1	NA	NA	NA	yes	NA	0	BG662	39	NA	6	5	NA	6	NA	5	5	1
+RF103	BLOOD CULTURE	K. pneumoniae	Hospital D			other	2020-01-20	19	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA	S	S	S	R	R	S	R	R	S	S	I				0	1	NA	NA	NA	yes	NA	0	BG463	607	NA	bg	bg	NA	bg	NA	bg	bg	0
+DN460	BLOOD CULTURE	K. pneumoniae	Hospital A	2020-06-08		neonatal	2020-06-08	7	NA	NA	NA	No	0	0	0	0	0	NA	1	0	2020-08-03	S	S	S	R	R	S	R	R	S	S	I				0	1	NA	NA	NA	yes	3	1	BG1165	22	NA	3	3	NA	3	NA	3	4	1
+DN572-4	BLOOD CULTURE	K. pneumoniae	Hospital A			neonatal	2020-08-26	24	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA	S	S	S	R	R	S	R	I	S	R	S				0	1	NA	NA	NA	yes	NA	0	BG1997	1552	NA	bg	bg	NA	bg	NA	bg	bg	0
+RF001-2	BLOOD CULTURE	K. pneumoniae	Hospital D	2019-10-15		neonatal	2019-10-16	1	No	No	40	Yes	0	0	0	0	0	>=2500g	0	0	2019-10-23	S	S	S	R	R	S	S	R	S	S	R				0	1	NA	NA	NA	yes	NA	0	BG95	1414	NA	3	4	NA	3	NA	4	3	1
+KD059	BLOOD CULTURE	K. pneumoniae	Hospital B	2019-11-29		neonatal	2019-12-20	21	NA	NA	NA	No	0	0	0	0	0	NA	1	0	2020-01-19	S	S	S	R	R	S	R	S	S	S	I				0	1	NA	NA	NA	no	NA	0	BG392	348	NA	5	4	NA	5	NA	4	4	1
+RF080	BLOOD CULTURE	K. pneumoniae	Hospital D	2019-12-16	2019-12-16	neonatal	2019-12-20	4	Yes	NA	33	No	0	0	0	0	1	<=1500g	1	1	2019-12-20	S	S	S	R	R	S	R	S	S	S	I				0	1	NA	NA	NA	no	2	1	BG382	405	NA	1	2	NA	1	NA	2	1	1
+TM215-3	BLOOD CULTURE	K. pneumoniae	Hospital C			neonatal	2020-01-21	13	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA	R	R	R	R	S	S	S	R	R	S	R				1	1	NA	NA	NA	no	NA	0	BG317	307	NA	bg	3	NA	bg	NA	4	4	0
+DN229	BLOOD CULTURE	K. pneumoniae	Hospital A			other	2020-01-19	889	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA	S	S	S	S	S	S	S	S	S	S	I				0	0	NA	NA	NA	no	NA	0	BG464	643	NA	bg	bg	NA	bg	NA	bg	bg	0
+MA417	BLOOD CULTURE	K. pneumoniae	Hospital E			neonatal	2020-05-21	33	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA	R	S	R	R	R	S	R	R	R	S	I				1	1	NA	NA	NA	yes	1	1	BG1143	307	NA	2	3	NA	2	NA	3	4	1
+DN167-1	BLOOD CULTURE	K. pneumoniae	Hospital A	2019-12-29	2019-12-29	other	2019-12-28	22	Yes	NA	40	No	0	0	0	0	1	>=2500g	1	0	2020-01-10	S	S	S	S	S	S	S	S	S	S	S				0	0	NA	NA	NA	no	NA	0	BG402	870	NA	bg	bg	NA	bg	NA	bg	bg	0
+MA585	BLOOD CULTURE	K. pneumoniae	Hospital E	2020-08-12	2020-08-20	neonatal	2020-08-19	7	No	Yes	29	No	1	0	1	0	1	<=1500g	1	1	2020-08-21	S	S	S	R	R	S	R	R	R	S	S				0	1	NA	NA	NA	yes	NA	0	BG2000	377	NA	bg	2	NA	bg	NA	2	3	0
+DN456-2	BLOOD CULTURE	K. pneumoniae	Hospital A			neonatal	2020-06-14	6	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA	S	S	S	R	R	S	R	R	S	S	I				0	1	NA	NA	NA	yes	3	1	BG1527	22	NA	3	3	NA	3	NA	3	4	1
+QN022	BLOOD CULTURE	K. pneumoniae	Hospital F	2019-11-04		neonatal	2019-11-11	10	Yes	Yes	32	No	1	0	0	0	1	1502-2499g	1	0	2019-11-22	S	S	S	R	R	S	R	R	R	S	I				0	1	NA	NA	NA	yes	NA	0	BG309	152	NA	NA	bg	NA	NA	NA	bg	bg	0
+TM111-2	BLOOD CULTURE	K. pneumoniae	Hospital C			neonatal	2019-11-29	10	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA	S	S	S	S	S	S	S	S	S	S	I				0	0	NA	NA	NA	yes	NA	0	BG313	297	NA	bg	bg	NA	bg	NA	bg	bg	0
+QN203	BLOOD CULTURE	K. pneumoniae	Hospital F	2020-02-02	2020-02-02	other	2020-02-02	133	No	No	40	No	0	0	0	0	1	>=2500g	1	0	2020-02-10	S	S	S	S	S	S	S	S	S	S	R				0	0	NA	NA	NA	no	NA	0	BG452	950	NA	NA	bg	NA	NA	NA	bg	bg	0
+RF020	BLOOD CULTURE	K. pneumoniae	Hospital D	2019-10-04		neonatal	2019-10-15	11	No	Yes	26	Yes	0	0	0	0	0	<=1500g	1	0	2019-11-15	S	S	S	S	S	S	S	S	S	S	I				0	0	NA	NA	NA	no	NA	0	BG88	950	NA	2	3	NA	2	NA	3	2	1
+KD135-2	BLOOD CULTURE	K. pneumoniae	Hospital B			neonatal	2020-02-03	14	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA	R	R	R	R	R	S	R	R	R	S	I				1	1	NA	NA	NA	yes	NA	0	BG444	17	NA	2	2	NA	2	NA	2	2	1
+QN336	BLOOD CULTURE	K. pneumoniae	Hospital F	2020-03-23		neonatal	2020-03-29	6	No	No	31	Yes	0	0	0	0	0	1502-2499g	1	0	2020-04-05	S	S	S	S	S	S	S	S	S	S	I				0	0	NA	NA	NA	no	NA	0	BG580	36	NA	NA	bg	NA	NA	NA	bg	bg	0
+QN132	BLOOD CULTURE	K. pneumoniae	Hospital F	2020-01-06	2020-01-06	neonatal	2020-01-07	1	No	No	28	No	0	1	0	0	0	<=1500g	0	1	2020-01-08	S	S	S	R	R	S	S	R	S	R	I				0	1	NA	NA	NA	yes	NA	0	BG456	17	NA	NA	bg	NA	NA	NA	bg	bg	0
+RF219	BLOOD CULTURE	K. pneumoniae	Hospital D	2020-05-14		neonatal	2020-05-21	7	Yes	Yes	30	Yes	0	0	0	0	0	<=1500g	1	0	2020-06-12	S	S	S	R	R	S	R	S	S	S	I				0	1	NA	NA	NA	no	NA	0	BG984	17	NA	bg	1	NA	bg	NA	1	bg	0
+TM150-2	BLOOD CULTURE	K. pneumoniae	Hospital C			neonatal	2019-12-16	1	NA	NA	NA	No	0	0	0	0	0	NA	0	NA	NA	R	R	R	R	R	R	R	R	R	S	S				1	1	NA	NA	NA	yes	3	1	BG222	152	NA	1	2	NA	1	NA	3	3	1
+MA116	BLOOD CULTURE	K. pneumoniae	Hospital E	2019-12-05		neonatal	2019-12-11	6	NA	NA	NA	No	0	0	0	0	0	NA	1	0	2020-01-14	R	I	S	R	R	S	R	R	S	S	I				1	1	NA	NA	NA	yes	NA	0	BG374	607	NA	bg	1	NA	bg	NA	1	1	0
+KD167-2	BLOOD CULTURE	K. pneumoniae	Hospital B	2020-02-14	2020-02-14	neonatal	2020-02-18	4	No	Yes	33	Yes	0	0	0	0	0	1502-2499g	1	0	2020-03-09	R	R	R	R	R	R	R	R	R	S	I				1	1	NA	NA	NA	yes	NA	0	BG536	2621	NA	7	2	NA	2	NA	2	2	1
+QN006	BLOOD CULTURE	K. pneumoniae	Hospital F	2019-10-26		neonatal	2019-11-12	17	No	Yes	25	No	0	0	0	0	1	<=1500g	1	1	2019-12-05	R	S	R	R	R	S	R	R	R	S	R				1	1	NA	NA	NA	yes	NA	0	BG308	152	NA	NA	bg	NA	NA	NA	bg	bg	0
+RF042	BLOOD CULTURE	K. pneumoniae	Hospital D	2019-11-03		neonatal	2019-11-08	6	Yes	Yes	34	No	0	0	1	0	0	>=2500g	1	0	2019-11-19	S	S	S	R	R	S	S	S	S	S	I				0	1	NA	NA	NA	no	NA	0	BG249	1414	NA	bg	4	NA	bg	NA	4	3	0
+KD019	BLOOD CULTURE	K. pneumoniae	Hospital B	2019-10-16	2019-10-16	neonatal	2019-10-22	6	Yes	Yes	30	No	0	0	0	0	1	NA	1	NA	NA	S	S	S	R	R	S	R	S	S	S	I				0	1	NA	NA	NA	no	NA	0	BG243	348	NA	4	4	NA	4	NA	4	4	1
+TM598	BLOOD CULTURE	K. pneumoniae	Hospital C	2020-08-08	2020-08-08	neonatal	2020-08-29	21	Yes	NA	32	No	0	0	1	0	0	NA	1	0	2020-09-28	I	I	I	R	R	S	S	R	S	S	S				0	1	NA	NA	NA	no	NA	0	BG2048	25	NA	bg	bg	NA	bg	NA	bg	bg	0
+TM221-2	BLOOD CULTURE	K. pneumoniae	Hospital C			neonatal	2020-01-20	12	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA	R	R	R	R	R	R	R	R	R	S	I				1	1	NA	NA	NA	yes	NA	0	BG316	152	NA	1	2	NA	1	NA	3	3	1
+KD073	BLOOD CULTURE	K. pneumoniae	Hospital B			neonatal	2019-10-07	NA	NA	NA	NA	No	0	0	0	0	0	NA	NA	NA	NA	S	S	S	R	R	S	R	S	S	S	S				0	1	NA	NA	NA	no	NA	0	BG66	348	NA	4	4	NA	4	NA	4	4	1
+TM187	BLOOD CULTURE	K. pneumoniae	Hospital C	2019-12-24	2019-12-24	neonatal	2019-12-30	6	Yes	Yes	29	Yes	0	1	0	0	0	<=1500g	1	1	2019-12-30	S	S	S	S	S	S	S	S	S	S	I				0	0	NA	NA	NA	no	NA	0	BG442	25	NA	bg	bg	NA	bg	NA	bg	bg	0
+DN201	BLOOD CULTURE	K. pneumoniae	Hospital A	2020-01-07	2020-01-07	neonatal	2020-01-11	4	No	Yes	41	Yes	1	0	0	0	1	NA	1	0	2020-01-21	R	S	R	R	R	S	R	R	S	S	I				1	1	NA	NA	NA	yes	NA	0	BG435	17	NA	bg	1	NA	bg	NA	1	1	0
+QN187-1	BLOOD CULTURE	K. pneumoniae	Hospital F	2020-01-19	2020-01-19	neonatal	2020-01-26	7	No	Yes	33	Yes	0	1	0	0	0	1502-2499g	1	0	2020-02-05	S	S	S	R	R	S	R	S	S	S	I				0	1	NA	NA	NA	no	1	1	BG474	1119	NA	NA	bg	NA	NA	NA	bg	bg	0
+MA357	BLOOD CULTURE	K. pneumoniae	Hospital E			neonatal	2020-04-22	30	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA	R	S	R	R	R	S	R	R	R	S	S				1	1	NA	NA	NA	yes	NA	0	BG782	101	NA	bg	bg	NA	bg	NA	bg	bg	0
+DN288-2	BLOOD CULTURE	K. pneumoniae	Hospital A	2020-02-26		neonatal	2020-02-26	2	NA	NA	NA	No	0	0	0	0	0	NA	0	1	2020-02-26	S	S	S	S	S	S	S	S	S	S	R				0	0	NA	NA	NA	yes	NA	0	BG521	198	NA	bg	bg	NA	bg	NA	bg	bg	0
+RF029	BLOOD CULTURE	K. pneumoniae	Hospital D	2019-11-10		neonatal	2019-11-14	5	Yes	No	28	Yes	1	1	0	0	1	<=1500g	1	1	2019-11-15	S	S	S	R	R	S	R	S	S	S	I				0	1	NA	NA	NA	no	NA	0	BG307	17	NA	bg	bg	NA	bg	NA	bg	bg	0
+RF185-1	BLOOD CULTURE	K. pneumoniae	Hospital D	2020-04-02	2020-04-02	neonatal	2020-04-02	0	No	No	37	Yes	0	0	0	0	1	1502-2499g	0	0	2020-04-16	S	S	S	R	R	S	R	S	S	S	I				0	1	NA	NA	NA	no	NA	0	BG594	17	NA	bg	1	NA	bg	NA	1	bg	0
+MA427-4	BLOOD CULTURE	K. pneumoniae	Hospital E			neonatal	2020-06-08	22	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA	R	S	R	R	R	S	R	R	R	S	S				1	1	NA	NA	NA	yes	NA	0	BG1318	307	NA	2	3	NA	2	NA	3	4	1
+QN539-1	BLOOD CULTURE	K. pneumoniae	Hospital F	2020-05-10	2020-05-10	neonatal	2020-05-20	10	Yes	NA	37	No	0	0	0	0	1	>=2500g	1	0	2020-05-30	S	S	S	S	S	S	S	S	S	S	I				0	0	NA	NA	NA	no	NA	0	BG1133	36	NA	NA	bg	NA	NA	NA	bg	bg	0
+KD196-2	BLOOD CULTURE	K. pneumoniae	Hospital B			other	2020-04-07	33	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA	R	R	R	R	R	S	R	R	R	S	I				1	1	NA	NA	NA	yes	NA	0	BG777	39	NA	6	5	NA	6	NA	5	5	1
+DN016-1	BLOOD CULTURE	K. pneumoniae	Hospital A	2019-10-06	2019-10-06	neonatal	2019-10-12	6	No	Yes	28	No	0	1	0	1	1	<=1500g	1	1	2019-10-14	S	S	S	R	R	S	R	S	S	S	S				0	1	NA	NA	NA	yes	NA	0	BG64	985	NA	bg	bg	NA	bg	NA	bg	bg	0
+MA405	BLOOD CULTURE	K. pneumoniae	Hospital E			neonatal	2020-05-18	165	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA	S	S	S	R	R	S	R	R	S	S	I				0	1	NA	NA	NA	yes	NA	0	BG1144	985	NA	bg	bg	NA	bg	NA	bg	bg	0
+DN054-2	BLOOD CULTURE	K. pneumoniae	Hospital A			other	2019-11-15	145	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA	S	S	S	R	R	S	R	S	S	S	I				0	1	NA	NA	NA	yes	NA	0	BG295	17	NA	bg	bg	NA	bg	NA	1	1	0
+KD313	BLOOD CULTURE	K. pneumoniae	Hospital B	2020-08-19	2020-08-19	other	2020-08-28	9	Yes	No	35	No	0	0	0	0	1	1502-2499g	1	0	2020-09-02	R	R	R	R	R	S	R	R	S	S	S				1	1	NA	NA	NA	yes	NA	0	BG2046	17	NA	3	3	NA	3	NA	3	3	1
+TM244-1	BLOOD CULTURE	K. pneumoniae	Hospital C	2020-01-09		neonatal	2020-01-29	20	No	Yes	30	No	1	1	0	0	1	1502-2499g	1	1	2020-03-19	S	S	S	S	S	S	S	S	S	S	I				0	0	NA	NA	NA	yes	NA	0	BG405	45	NA	bg	bg	NA	bg	NA	bg	bg	0
+RF184	BLOOD CULTURE	K. pneumoniae	Hospital D	2020-02-25	2020-03-09	neonatal	2020-04-03	63	Yes	Yes	37	No	0	0	0	0	1	>=2500g	1	1	2020-04-04	S	S	S	R	R	S	R	R	S	S	I				0	1	NA	NA	NA	yes	NA	0	BG588	39	NA	bg	bg	NA	bg	NA	bg	bg	0
+TM164-2	BLOOD CULTURE	K. pneumoniae	Hospital C	2019-11-30		neonatal	2019-12-19	19	NA	NA	NA	No	0	0	0	0	0	NA	1	1	2019-12-23	R	R	R	R	R	R	R	R	R	S	S				1	1	NA	NA	NA	yes	3	1	BG223	152	NA	1	2	NA	1	NA	3	3	1
+KD017	BLOOD CULTURE	K. pneumoniae	Hospital B			other	2019-11-14	168	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA	R	I	R	R	R	S	R	R	R	S	R				1	1	NA	NA	NA	yes	NA	0	BG293	348	NA	bg	4	NA	bg	NA	4	4	0
+RF058-2	BLOOD CULTURE	K. pneumoniae	Hospital D			neonatal	2019-12-09	3	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA	R	R	R	R	R	R	R	R	R	S	I				1	1	NA	NA	NA	yes	NA	0	BG332	405	NA	1	2	NA	1	NA	2	1	1
+TM240	BLOOD CULTURE	K. pneumoniae	Hospital C	2019-12-24	2019-12-25	neonatal	2019-12-27	3	No	Yes	34	No	1	0	0	0	1	1502-2499g	1	0	2020-01-14	R	R	R	R	R	R	R	R	R	S	R				1	1	NA	NA	NA	yes	3	1	BG214	152	NA	1	2	NA	1	NA	3	3	1
+TM236-1	BLOOD CULTURE	K. pneumoniae	Hospital C	2020-01-06	2020-01-06	neonatal	2020-01-16	3	Yes	NA	30	No	0	0	0	0	1	<=1500g	1	0	2020-03-19	R	R	R	R	R	R	R	R	R	S	S				1	1	NA	NA	NA	yes	NA	0	BG273	45	NA	bg	bg	NA	bg	NA	bg	bg	0
+KD056-2	BLOOD CULTURE	K. pneumoniae	Hospital B			other	2019-11-17	4	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA	R	R	R	R	R	S	R	R	S	S	I				1	1	NA	NA	NA	yes	2	1	BG304	17	NA	1	1	NA	1	NA	1	1	1
+MA461	BLOOD CULTURE	K. pneumoniae	Hospital E			other	2020-06-15	0	NA	NA	NA	No	0	0	0	0	0	NA	0	NA	NA	I	I	R	R	R	S	R	I	S	S	S				1	1	NA	NA	NA	no	NA	0	BG1320	1207	NA	bg	bg	NA	bg	NA	bg	bg	0
+TM016-1	BLOOD CULTURE	K. pneumoniae	Hospital C	2019-09-22	2019-10-17	neonatal	2019-10-17	25	No	Yes	28	No	0	0	1	0	1	<=1500g	1	0	2019-12-10	R	I	S	S	S	S	S	S	S	S	S				1	0	NA	NA	NA	no	NA	0	BG113	17	NA	bg	bg	NA	bg	NA	bg	bg	0
+KD198-2	BLOOD CULTURE	K. pneumoniae	Hospital B			neonatal	2020-03-27	8	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA	R	R	R	I	S	S	S	R	R	S	R				1	1	NA	NA	NA	no	NA	0	BG661	39	NA	6	5	NA	6	NA	5	5	1
+MA452-1	BLOOD CULTURE	K. pneumoniae	Hospital E			neonatal	2020-06-04	14	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA	S	S	S	R	R	S	R	R	R	S	I				0	1	NA	NA	NA	yes	NA	0	BG1173	377	NA	1	2	NA	1	NA	2	2	1
+RF268-2	BLOOD CULTURE	K. pneumoniae	Hospital D	2020-08-20		neonatal	2020-08-24	4	Yes	Yes	32	No	0	0	0	0	0	<=1500g	1	0	2020-09-10	S	S	S	R	R	S	S	S	S	S	S				0	1	NA	NA	NA	no	NA	0	BG2032	1414	NA	bg	bg	NA	bg	NA	bg	bg	0
+TM095-2	BLOOD CULTURE	K. pneumoniae	Hospital C	2019-11-08	2019-11-12	other	2019-11-15	7	Yes	Yes	29	No	0	0	1	1	0	<=1500g	1	1	2019-11-16	R	R	R	R	R	R	R	R	R	S	I				1	1	NA	NA	NA	yes	NA	0	BG314	152	NA	bg	2	NA	bg	NA	3	3	0
+KD105	BLOOD CULTURE	K. pneumoniae	Hospital B	2019-12-13	2019-12-13	neonatal	2020-01-03	21	No	Yes	26	No	1	1	0	1	1	NA	1	NA	2020-01-18	R	S	S	R	R	S	R	R	R	I	I				1	1	NA	NA	NA	yes	NA	0	BG319	39	NA	bg	bg	NA	bg	NA	bg	bg	0
+TM179	BLOOD CULTURE	K. pneumoniae	Hospital C	2019-12-13		neonatal	2019-12-20	7	No	Yes	29	Yes	1	0	0	0	1	<=1500g	1	1	2019-12-23	R	R	R	R	R	R	R	R	R	S	S				1	1	NA	NA	NA	yes	3	1	BG219	152	NA	1	2	NA	1	NA	3	3	1
+MA293	BLOOD CULTURE	K. pneumoniae	Hospital E			neonatal	2020-03-28	5	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA	S	S	S	R	R	S	R	S	S	S	I				0	1	NA	NA	NA	no	NA	0	BG670	39	NA	bg	bg	NA	bg	NA	bg	bg	0
+TM112	BLOOD CULTURE	K. pneumoniae	Hospital C	2019-11-07	2019-11-07	neonatal	2019-11-27	20	No	Yes	28	Yes	1	1	0	1	1	<=1500g	1	0	2020-02-07	R	I	R	R	R	S	R	R	R	S	I				1	1	NA	NA	NA	yes	NA	0	BG315	307	NA	2	3	NA	2	NA	4	4	1
+DN317-2	BLOOD CULTURE	K. pneumoniae	Hospital A			neonatal	2020-03-15	6	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA	S	S	S	R	R	S	R	R	S	I	I				0	1	NA	NA	NA	yes	NA	0	BG564	22	NA	bg	3	NA	bg	NA	3	3	0
+MA460	BLOOD CULTURE	K. pneumoniae	Hospital E			neonatal	2020-06-12	7	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA	S	S	S	R	R	S	R	S	S	S	S				0	1	NA	NA	NA	yes	NA	0	BG1317	4872	NA	bg	bg	NA	bg	NA	bg	bg	0
+TM432	BLOOD CULTURE	K. pneumoniae	Hospital C	2020-04-24		neonatal	2020-05-18	21	NA	NA	NA	No	0	0	0	0	0	NA	1	1	2020-05-18	R	S	S	R	R	S	R	R	R	S	I				1	1	NA	NA	NA	yes	NA	0	BG987	39	NA	bg	bg	NA	bg	NA	bg	bg	0
+DN130-1	BLOOD CULTURE	K. pneumoniae	Hospital A	2019-12-10	2019-12-10	neonatal	2019-12-15	5	No	Yes	34	No	1	0	0	1	1	1502-2499g	1	0	2019-12-25	S	S	S	R	R	S	R	R	S	S	I				0	1	NA	NA	NA	yes	2	1	BG379	17	NA	1	1	NA	1	NA	1	1	1
+RF070-2	BLOOD CULTURE	K. pneumoniae	Hospital D	2019-12-15	2019-12-17	neonatal	2019-12-22	7	NA	Yes	37	No	0	0	0	0	1	>=2500g	1	0	2020-01-13	S	S	S	R	R	S	R	S	S	S	I				0	1	NA	NA	NA	no	1	1	BG421	405	NA	1	2	NA	1	NA	2	1	1
+DN492-3	BLOOD CULTURE	K. pneumoniae	Hospital A	2020-06-14	2020-06-14	neonatal	2020-06-19	5	Yes	No	35	Yes	0	0	0	0	1	>=2500g	1	0	2020-06-23	S	S	S	S	S	S	S	S	S	S	I				0	0	NA	NA	NA	no	NA	0	BG1679	997	NA	bg	bg	NA	bg	NA	bg	bg	0
+KD086	BLOOD CULTURE	K. pneumoniae	Hospital B	2019-12-03	2019-12-03	other	2019-12-06	3	Yes	Yes	27	No	0	0	0	0	1	<=1500g	1	1	2019-12-08	S	S	S	R	R	S	R	S	S	S	I				0	1	NA	NA	NA	no	NA	0	BG370	348	NA	5	4	NA	5	NA	4	4	1
+MA416	BLOOD CULTURE	K. pneumoniae	Hospital E	2020-05-16		neonatal	2020-05-20	7	NA	NA	NA	No	0	0	0	0	0	NA	1	1	2020-05-31	R	S	R	R	R	S	R	R	R	S	I				1	1	NA	NA	NA	yes	1	1	BG1138	307	NA	2	3	NA	2	NA	3	4	1
+KD088-1	BLOOD CULTURE	K. pneumoniae	Hospital B			neonatal	2019-12-03	31	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA	S	S	S	R	R	S	R	S	S	S	R				0	1	NA	NA	NA	no	NA	0	BG324	348	NA	5	4	NA	5	NA	4	4	1
+TM415-1	BLOOD CULTURE	K. pneumoniae	Hospital C	2020-05-13	2020-04-29	neonatal	2020-05-09	11	Yes	Yes	33	Yes	1	0	0	0	1	<=1500g	1	0	2020-07-02	S	S	S	S	S	S	S	S	S	S	I				0	0	NA	NA	NA	yes	NA	0	BG986	25	NA	bg	1	NA	bg	NA	1	1	0
+TM461	BLOOD CULTURE	K. pneumoniae	Hospital C	2020-05-24		neonatal	2020-06-08	15	NA	NA	NA	No	0	0	0	0	0	NA	1	1	2020-06-08	I	S	S	R	R	S	R	R	S	S	I				0	1	NA	NA	NA	yes	NA	0	BG1308	39	NA	bg	bg	NA	bg	NA	bg	bg	0
+TM526-1	BLOOD CULTURE	K. pneumoniae	Hospital C			neonatal	2020-07-17	4	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA	S	S	S	R	R	S	S	S	S	R	I				0	1	NA	NA	NA	yes	NA	0	BG1850	37	NA	bg	bg	NA	bg	NA	bg	bg	0
+DN109-3	BLOOD CULTURE	K. pneumoniae	Hospital A			neonatal	2019-12-12	41	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA	R	I	R	R	R	S	R	R	R	S	I				1	1	NA	NA	NA	yes	NA	0	BG331	48	NA	bg	bg	NA	bg	NA	bg	bg	0
+QN026	BLOOD CULTURE	K. pneumoniae	Hospital F	2019-11-11	2019-11-11	neonatal	2019-11-18	7	Yes	Yes	30	No	1	0	0	0	1	1502-2499g	1	0	2019-11-28	S	S	S	R	R	S	R	S	S	S	I				0	1	NA	NA	NA	no	NA	0	BG344	17	NA	NA	bg	NA	NA	NA	bg	bg	0
+TM146	BLOOD CULTURE	K. pneumoniae	Hospital C	2019-11-26	2019-11-26	other	2019-12-17	21	No	NA	34	Yes	1	1	0	0	1	1502-2499g	1	0	2019-12-17	R	R	R	R	R	R	R	R	R	S	S				1	1	NA	NA	NA	yes	3	1	BG218	152	NA	1	2	NA	1	NA	3	3	1
+KD160	BLOOD CULTURE	K. pneumoniae	Hospital B	2020-02-01		other	2020-02-01	46	Yes	No	38	No	0	0	0	0	0	>=2500g	1	0	2020-02-05	S	S	S	S	S	S	S	S	S	S	I				0	0	NA	NA	NA	no	NA	0	BG446	4527	NA	bg	bg	NA	bg	NA	bg	bg	0
+DN524	BLOOD CULTURE	K. pneumoniae	Hospital A		2020-08-05	neonatal	2020-07-15	13	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA	S	S	S	R	R	S	S	S	S	S	I				0	1	NA	NA	NA	no	NA	0	BG1723	13	NA	bg	bg	NA	bg	NA	bg	bg	0
+DN594-2	BLOOD CULTURE	K. pneumoniae	Hospital A			neonatal	2020-08-26	11	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA	S	S	S	R	R	S	S	S	S	S	S				0	1	NA	NA	NA	no	NA	0	BG1999	25	NA	bg	bg	NA	bg	NA	bg	bg	0
+TM132	BLOOD CULTURE	K. pneumoniae	Hospital C	2019-11-27		neonatal	2019-12-04	17	NA	NA	NA	No	0	0	0	0	0	NA	1	1	2019-12-27	R	R	R	R	R	S	R	R	R	S	S				1	1	NA	NA	NA	yes	2	1	BG259	307	NA	2	3	NA	2	NA	4	4	1
+TM469	BLOOD CULTURE	K. pneumoniae	Hospital C	2020-06-10	2020-06-10	neonatal	2020-06-17	7	No	Yes	29	No	0	0	0	0	0	<=1500g	1	1	2020-06-18	S	S	S	S	S	S	S	S	S	S	I				0	0	NA	NA	NA	yes	NA	0	BG1305	25	NA	bg	1	NA	bg	NA	1	1	0
+DN426-1	BLOOD CULTURE	K. pneumoniae	Hospital A	2020-05-07	2020-05-07	neonatal	2020-05-15	9	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA	S	S	S	R	R	S	R	S	S	S	I				0	1	NA	NA	NA	yes	NA	0	BG948	1552	NA	bg	bg	NA	bg	NA	bg	bg	0
+QN023	BLOOD CULTURE	K. pneumoniae	Hospital F	2019-09-26		other	2019-10-07	44	No	Yes	NA	Yes	0	0	0	0	1	NA	1	0	2019-10-23	S	S	S	R	R	S	R	R	R	S	S				0	1	NA	NA	NA	yes	NA	0	BG73	307	NA	NA	1	NA	NA	NA	1	1	0
+KD011-1	BLOOD CULTURE	K. pneumoniae	Hospital B	2019-09-27	2019-09-27	neonatal	2019-10-04	9	No	Yes	34	Yes	0	0	0	0	0	1502-2499g	1	0	2019-10-14	R	R	R	R	R	R	R	I	S	S	S				1	1	NA	NA	NA	yes	NA	0	BG65	711	NA	bg	bg	NA	bg	NA	bg	bg	0
+MA438-2	BLOOD CULTURE	K. pneumoniae	Hospital E			neonatal	2020-05-27	2	NA	NA	NA	No	0	0	0	0	0	NA	0	NA	NA	R	S	R	R	R	S	R	R	R	S	I				1	1	NA	NA	NA	yes	1	1	BG1153	307	NA	2	3	NA	2	NA	3	4	1
+RF263-1	BLOOD CULTURE	K. pneumoniae	Hospital D	2020-08-17		neonatal	2020-08-25	8	No	Yes	34	No	0	0	0	0	1	1502-2499g	1	0	2020-09-04	S	S	S	R	R	S	R	R	S	S	S				0	1	NA	NA	NA	yes	3	1	BG2035	607	NA	4	5	NA	4	NA	5	4	1
+MA028-2	BLOOD CULTURE	K. pneumoniae	Hospital E			neonatal	2019-10-30	1	NA	NA	NA	No	0	0	0	0	0	NA	0	NA	NA	I	S	S	R	R	S	R	R	S	S	I				0	1	NA	NA	NA	yes	NA	0	BG238	17	NA	bg	bg	NA	bg	NA	bg	bg	0
+DN296-1	BLOOD CULTURE	K. pneumoniae	Hospital A	2020-03-05	2020-03-08	neonatal	2020-03-07	2	No	Yes	38	No	1	0	0	0	1	>=2500g	0	1	2020-03-08	S	S	S	R	R	S	R	R	S	S	I				0	1	NA	NA	NA	yes	NA	0	BG541	39	NA	bg	bg	NA	bg	NA	bg	bg	0
+KD162-1	BLOOD CULTURE	K. pneumoniae	Hospital B	2020-02-04	2020-02-04	other	2020-02-12	8	NA	No	27	No	0	0	0	0	0	NA	1	NA	NA	R	I	R	R	R	S	R	R	R	S	R				1	1	NA	NA	NA	yes	NA	0	BG540	2621	NA	7	2	NA	2	NA	2	2	1
+RF100-1	BLOOD CULTURE	K. pneumoniae	Hospital D	2020-01-15	2020-01-15	other	2020-01-18	3	No	Yes	35	No	0	0	1	0	1	>=2500g	1	0	2020-02-06	S	S	S	R	R	S	R	S	S	S	I				0	1	NA	NA	NA	no	NA	0	BG441	405	NA	bg	2	NA	bg	NA	2	1	0
+MA392	BLOOD CULTURE	K. pneumoniae	Hospital E			neonatal	2020-05-04	NA	NA	NA	NA	No	0	0	0	0	0	NA	NA	NA	NA	S	S	S	R	R	S	R	S	S	R	I				0	1	NA	NA	NA	yes	NA	0	BG935	14	NA	bg	bg	NA	bg	NA	bg	bg	0
+KD030-1	BLOOD CULTURE	K. pneumoniae	Hospital B	2019-11-03	2019-11-03	neonatal	2019-11-11	8	No	Yes	27	Yes	0	0	0	0	0	<=1500g	1	1	2019-12-07	R	R	R	R	R	S	R	R	R	S	I				1	1	NA	NA	NA	yes	1	1	BG298	17	NA	1	1	NA	1	NA	1	1	1
+RF010	BLOOD CULTURE	K. pneumoniae	Hospital D	2019-09-27		neonatal	2019-10-14	18	No	Yes	30	No	1	0	1	0	1	<=1500g	1	0	2019-11-26	S	S	S	S	S	S	S	S	S	S	S				0	0	NA	NA	NA	no	NA	0	BG31	950	NA	2	3	NA	2	NA	3	2	1
+DN131-1	BLOOD CULTURE	K. pneumoniae	Hospital A	2019-12-13		neonatal	2019-12-15	9	No	Yes	36	No	1	0	0	0	1	1502-2499g	1	0	2019-12-23	S	S	S	R	R	S	R	S	S	S	R				0	1	NA	NA	NA	yes	NA	0	BG377	17	NA	1	1	NA	1	NA	1	1	1
+KD054-2	BLOOD CULTURE	K. pneumoniae	Hospital B	2019-11-01	2019-11-01	other	2019-11-18	17	Yes	Yes	28	No	0	1	1	1	1	<=1500g	1	0	2019-12-14	R	R	R	R	R	S	R	R	S	S	I				1	1	NA	NA	NA	yes	2	1	BG303	17	NA	1	1	NA	1	NA	1	1	1
+MA403	BLOOD CULTURE	K. pneumoniae	Hospital E	2020-05-10	2020-05-16	neonatal	2020-05-17	7	No	Yes	NA	No	0	0	0	0	1	1502-2499g	1	1	2020-05-17	R	S	R	R	R	S	R	R	R	S	I				1	1	NA	NA	NA	yes	NA	0	BG1141	307	NA	2	3	NA	2	NA	3	4	1
+MA524-1	BLOOD CULTURE	A. baumannii	Hospital E	2020-07-11	2020-07-12	neonatal	2020-07-15	5	No	Yes	27	No	1	1	0	0	1	<=1500g	1	1	2020-07-20		R	R	R	R	R	R	R	I	I					NA	NA	0	NA	NA	yes	NA	0	BG1896	1	3	NA	NA	3	NA	3	3	3	1
+TM599-1	BLOOD CULTURE	A. baumannii	Hospital C	2020-08-26	2020-08-26	neonatal	2020-08-27	1	No	No	36	No	1	1	0	0	1	>=2500g	0	0	2020-09-04		R	R	R	R	R	R	R	R	I					NA	NA	0	NA	NA	yes	NA	0	BG2049	2	bg	NA	NA	bg	NA	2	2	2	0
+QN533	BLOOD CULTURE	A. baumannii	Hospital F	2020-04-30	2020-04-30	neonatal	2020-05-21	21	Yes	No	27	No	0	1	0	0	0	<=1500g	1	1	2020-05-23		R	R	I	I	R	R	S	S	S					NA	NA	0	NA	NA	no	NA	0	BG1135	267	1	NA	NA	1	NA	1	1	1	1
+MA434-1	BLOOD CULTURE	A. baumannii	Hospital E			neonatal	2020-05-29	28	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA		R	R	R	R	S	R	S	S	S					NA	NA	0	NA	NA	yes	NA	0	BG1168	374	bg	NA	NA	bg	NA	bg	bg	bg	0
+DN162-7	BLOOD CULTURE	A. baumannii	Hospital A			neonatal	2020-01-11	17	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA		R	R	R	R	R	R	R	I	S					NA	NA	0	NA	NA	yes	NA	0	BG432	1	bg	NA	NA	bg	NA	1	1	1	0
+MA498	BLOOD CULTURE	A. baumannii	Hospital E			neonatal	2020-06-25	10	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA		R	R	R	R	R	R	R	I	R					NA	NA	1	NA	NA	yes	2	1	BG1512	1	3	NA	NA	3	NA	3	3	3	1
+RF068	BLOOD CULTURE	A. baumannii	Hospital D			other	2019-12-21	35	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA		R	S	S	S	S	S	S	S	S					NA	NA	0	NA	NA	no	NA	0	BG424	837	NA	NA	NA	NA	NA	bg	bg	bg	0
+KD278	BLOOD CULTURE	A. baumannii	Hospital B	2020-06-03	2020-06-03	other	2020-06-07	4	No	Yes	28	No	1	1	0	0	1	<=1500g	1	1	2020-06-07		R	R	R	R	R	R	R	R	I					NA	NA	0	NA	NA	yes	3	1	BG1518	2	3	NA	NA	3	NA	1	1	1	1
+DN546-3	BLOOD CULTURE	A. baumannii	Hospital A			neonatal	2020-07-24	38	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA		R	I	I	S	S	R	R	R	S					NA	NA	0	NA	NA	no	NA	0	BG1857	107	bg	NA	NA	bg	NA	bg	bg	bg	0
+DN534	BLOOD CULTURE	A. baumannii	Hospital A	2020-07-08	2020-07-08	neonatal	2020-07-20	12	No	Yes	32	No	1	0	1	0	1	<=1500g	1	1	2020-07-20		R	R	R	R	R	R	R	I	S					NA	NA	0	NA	NA	yes	1	1	BG1853	1	3	NA	NA	3	NA	2	2	2	1
+QN335	BLOOD CULTURE	A. baumannii	Hospital F	2020-03-26	2020-03-26	neonatal	2020-03-29	3	Yes	No	24	Yes	0	1	0	0	0	<=1500g	1	1	2020-03-29		R	R	R	R	R	R	R	R	R					NA	NA	1	NA	NA	yes	NA	0	BG581	2	2	NA	NA	2	NA	2	2	2	1
+KD274	BLOOD CULTURE	A. baumannii	Hospital B	2020-06-19	2020-06-19	other	2020-06-20	1	No	Yes	29	No	0	1	0	0	0	<=1500g	0	1	2020-06-22		R	R	R	R	R	R	R	R	I					NA	NA	0	NA	NA	yes	3	1	BG1526	2	3	NA	NA	3	NA	1	1	1	1
+MA516-1	BLOOD CULTURE	A. baumannii	Hospital E			neonatal	2020-07-09	35	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA		R	R	R	R	R	R	R	I	R					NA	NA	1	NA	NA	yes	2	1	BG1900	1	3	NA	NA	3	NA	3	3	3	1
+DN608-3	BLOOD CULTURE	A. baumannii	Hospital A			neonatal	2020-09-03	15	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA		R	R	R	R	S	R	S	S	S					NA	NA	0	NA	NA	no	NA	0	BG2101	374	bg	NA	NA	bg	NA	bg	bg	bg	0
+MA233	BLOOD CULTURE	A. baumannii	Hospital E	2020-02-24	2020-02-27	neonatal	2020-03-01	6	NA	Yes	29	Yes	1	1	0	0	1	<=1500g	1	0	2020-04-14		R	R	R	R	R	R	R	I	I					NA	NA	0	NA	NA	yes	NA	0	BG550	2	bg	NA	NA	bg	NA	1	1	1	0
+KD180-2	BLOOD CULTURE	A. baumannii	Hospital B			other	2020-03-14	13	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA		R	R	I	I	S	R	S	S	S					NA	NA	0	NA	NA	no	NA	0	BG569	107	bg	NA	NA	bg	NA	bg	bg	bg	0
+DN471-1	BLOOD CULTURE	A. baumannii	Hospital A	2020-06-06	2020-06-06	neonatal	2020-06-14	8	Yes	Yes	40	No	0	0	0	0	1	1502-2499g	1	0	2020-07-13		R	R	R	R	R	R	R	I	S					NA	NA	0	NA	NA	yes	NA	0	BG1312	1	bg	NA	NA	bg	NA	bg	2	2	0
+MA601-2	BLOOD CULTURE	A. baumannii	Hospital E			neonatal	2020-09-08	7	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA		R	R	R	R	R	R	R	R	I					NA	NA	0	NA	NA	yes	3	1	BG2179	2	1	NA	NA	1	NA	2	2	2	1
+DN572-2	BLOOD CULTURE	A. baumannii	Hospital A			neonatal	2020-08-17	15	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA		R	R	R	R	R	R	R	I	S					NA	NA	0	NA	NA	yes	NA	0	BG1942	1	bg	NA	NA	bg	NA	2	2	2	0
+QN489-1	BLOOD CULTURE	A. baumannii	Hospital F	2020-04-15	2020-04-15	neonatal	2020-04-21	6	No	Yes	28	No	0	0	0	0	1	<=1500g	1	0	2020-05-10		R	R	I	R	R	R	I	S	S					NA	NA	0	NA	NA	no	NA	0	BG905	267	bg	NA	NA	bg	NA	1	1	1	0
+QN534-1	BLOOD CULTURE	A. baumannii	Hospital F	2020-05-18	2020-05-18	neonatal	2020-05-21	3	No	No	34	No	0	1	0	0	0	1502-2499g	1	1	2020-05-24		R	R	I	R	R	R	I	S	S					NA	NA	0	NA	NA	no	NA	0	BG1164	267	1	NA	NA	1	NA	1	1	1	1
+KD237-1	BLOOD CULTURE	A. baumannii	Hospital B			other	2020-04-23	5	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA		R	R	R	R	R	R	R	R	I					NA	NA	0	NA	NA	yes	2	1	BG787	2	2	NA	NA	2	NA	1	1	1	1
+MA427-1	BLOOD CULTURE	A. baumannii	Hospital E	2020-05-17	2020-06-05	neonatal	2020-05-26	9	No	Yes	37	Yes	0	0	0	0	1	1502-2499g	1	0	2020-07-03		R	R	R	R	R	R	R	I	I					NA	NA	0	NA	NA	yes	1	1	BG1159	1	2	NA	NA	2	NA	3	3	3	1
+TM144-2	BLOOD CULTURE	A. baumannii	Hospital C			other	2019-11-30	2	NA	NA	NA	No	0	0	0	0	0	NA	0	1	NA		R	R	R	R	R	R	R	I	R					NA	NA	1	NA	NA	yes	1	1	BG260	1	1	NA	NA	1	NA	1	1	1	1
+MA436-1	BLOOD CULTURE	A. baumannii	Hospital E	2020-05-23	2020-05-26	neonatal	2020-05-27	4	No	Yes	30	No	1	1	0	0	1	<=1500g	1	1	2020-05-27		R	R	R	R	R	R	R	I	R					NA	NA	1	NA	NA	yes	NA	0	BG1154	1	2	NA	NA	2	NA	3	3	3	1
+MA519-2	BLOOD CULTURE	A. baumannii	Hospital E			neonatal	2020-06-29	7	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA		R	R	R	R	R	R	R	I	R					NA	NA	1	NA	NA	yes	2	1	BG1726	1	3	NA	NA	3	NA	3	3	3	1
+RF112-1	BLOOD CULTURE	A. baumannii	Hospital D	2020-01-16		neonatal	2020-01-24	8	Yes	Yes	37	Yes	0	0	0	0	1	>=2500g	1	0	2020-03-04		R	R	R	R	S	R	R	I	S					NA	NA	0	NA	NA	yes	NA	0	BG469	1	NA	NA	NA	NA	NA	bg	bg	bg	0
+TM234-1	BLOOD CULTURE	A. baumannii	Hospital C	2020-01-04	2020-01-04	neonatal	2020-01-14	11	Yes	Yes	28	No	1	0	0	0	1	<=1500g	1	0	2020-03-17		R	R	R	R	R	R	R	I	R					NA	NA	1	NA	NA	yes	NA	0	BG527	1	bg	NA	NA	bg	NA	1	1	1	0
+DN649	BLOOD CULTURE	A. baumannii	Hospital A	2020-09-16		neonatal	2020-09-18	3	NA	NA	NA	No	0	0	0	0	0	NA	1	1	2020-09-19		R	R	R	R	R	R	R	I	S					NA	NA	0	NA	NA	yes	NA	0	BG2188	1	4	NA	NA	4	NA	2	2	2	1
+KD230	BLOOD CULTURE	A. baumannii	Hospital B	2020-03-05	2020-03-05	other	2020-03-08	3	No	Yes	28	No	1	1	0	0	1	<=1500g	1	0	2020-04-07		R	R	R	R	R	R	R	R	I					NA	NA	0	NA	NA	yes	NA	0	BG766	2	bg	NA	NA	bg	NA	1	1	1	0
+KD246-1	BLOOD CULTURE	A. baumannii	Hospital B	2020-05-05	2020-05-05	neonatal	2020-05-08	3	Yes	Yes	32	No	0	1	0	0	0	<=1500g	1	1	2020-05-11		R	R	R	R	R	R	R	R	I					NA	NA	0	NA	NA	yes	2	1	BG1137	2	2	NA	NA	2	NA	1	1	1	1
+RF256	BLOOD CULTURE	A. baumannii	Hospital D	2020-07-15		neonatal	2020-07-19	4	No	Yes	31	No	1	0	1	0	1	1502-2499g	1	0	2020-08-14		R	R	R	R	R	R	R	R	S					NA	NA	0	NA	NA	yes	NA	0	BG1886	3	NA	NA	NA	NA	NA	bg	bg	bg	0
+KD261	BLOOD CULTURE	A. baumannii	Hospital B	2020-05-22	2020-05-22	neonatal	2020-05-26	4	Yes	Yes	30	No	1	1	1	0	1	1502-2499g	1	1	2020-05-27		R	R	R	R	R	R	R	R	I					NA	NA	0	NA	NA	yes	3	1	BG1148	2	3	NA	NA	3	NA	1	1	1	1
+MA546	BLOOD CULTURE	A. baumannii	Hospital E	2020-07-21		neonatal	2020-07-29	9	No	Yes	37	No	1	0	0	0	1	>=2500g	1	0	2020-09-04		I	S	R	S	S	R	R	S	S					NA	NA	0	NA	NA	no	NA	0	BG1899	267	bg	NA	NA	bg	NA	bg	bg	bg	0
+RF262-1	BLOOD CULTURE	A. baumannii	Hospital D	2020-08-17	2020-08-23	neonatal	2020-08-23	7	No	Yes	29	No	1	0	0	1	1	<=1500g	1	0	2020-09-23		R	R	R	R	R	R	R	R	S					NA	NA	0	NA	NA	yes	NA	0	BG2033	2	NA	NA	NA	NA	NA	bg	bg	bg	0
+QN631	BLOOD CULTURE	A. baumannii	Hospital F	2020-07-16	2020-07-16	neonatal	2020-07-25	9	Yes	NA	28	No	0	1	0	0	0	<=1500g	1	0	2020-07-27		R	R	R	R	R	R	R	R	R					NA	NA	1	NA	NA	yes	NA	0	BG1887	641	bg	NA	NA	bg	NA	3	3	3	0
+KD158	BLOOD CULTURE	A. baumannii	Hospital B	2020-02-08		neonatal	2020-02-08	12	No	No	38	Yes	0	0	1	0	0	>=2500g	1	0	2020-02-11		R	R	R	R	R	R	R	R	I					NA	NA	0	NA	NA	yes	1	1	BG532	2	1	NA	NA	1	NA	1	1	1	1
+RF126	BLOOD CULTURE	A. baumannii	Hospital D	2020-01-30		other	2020-01-30	1	No	No	38	No	1	0	0	0	1	1502-2499g	0	0	2020-02-07		R	R	R	R	R	R	R	I	I					NA	NA	0	NA	NA	yes	NA	0	BG478	1	NA	NA	NA	NA	NA	bg	bg	bg	0
+RF008	BLOOD CULTURE	A. baumannii	Hospital D	2019-09-28		other	2019-10-11	13	Yes	No	28	No	1	0	0	0	1	<=1500g	1	0	2019-12-12		R	R	R	R	R	R	R	R	S					NA	NA	0	NA	NA	yes	NA	0	BG70	2	NA	NA	NA	NA	NA	1	1	1	0
+DN070-1	BLOOD CULTURE	A. baumannii	Hospital A	2019-11-12	2019-11-12	neonatal	2019-11-19	8	No	Yes	37	Yes	0	0	0	1	0	>=2500g	1	0	2019-11-28		R	R	R	R	R	R	R	I	R					NA	NA	1	NA	NA	yes	NA	0	BG302	1	bg	NA	NA	bg	NA	bg	bg	bg	0
+QN276	BLOOD CULTURE	A. baumannii	Hospital F	2020-03-14	2020-03-14	neonatal	2020-03-19	5	Yes	No	33	No	0	1	0	0	0	<=1500g	1	1	2020-03-19		R	R	R	R	R	R	R	I	I					NA	NA	0	NA	NA	yes	NA	0	BG578	1	bg	NA	NA	bg	NA	bg	bg	bg	0
+TM414	BLOOD CULTURE	A. baumannii	Hospital C	2020-05-04	2020-05-04	other	2020-05-06	2	Yes	Yes	28	Yes	1	1	0	0	1	NA	0	1	2020-05-06		R	R	R	R	R	R	R	I	R					NA	NA	1	NA	NA	yes	NA	0	BG934	1	bg	NA	NA	bg	NA	bg	bg	bg	0
+DN581	BLOOD CULTURE	A. baumannii	Hospital A			neonatal	2020-07-29	18	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA		R	R	R	R	R	R	R	I	S					NA	NA	0	NA	NA	yes	1	1	BG1892	1	3	NA	NA	3	NA	2	2	2	1
+QN340	BLOOD CULTURE	A. baumannii	Hospital F	2020-03-18	2020-03-28	neonatal	2020-03-31	13	No	Yes	29	Yes	0	1	0	0	1	<=1500g	1	0	2020-04-21		R	R	R	R	R	R	R	R	I					NA	NA	0	NA	NA	yes	NA	0	BG593	2	2	NA	NA	2	NA	2	2	2	1
+MA385	BLOOD CULTURE	A. baumannii	Hospital E	2020-05-07		neonatal	2020-05-08	1	No	No	34	Yes	0	0	0	0	0	>=2500g	0	0	2020-05-11		I	I	R	S	S	S	S	S	S					NA	NA	0	NA	NA	no	NA	0	BG938	-	bg	NA	NA	bg	NA	bg	bg	bg	0
+KD225	BLOOD CULTURE	A. baumannii	Hospital B	2020-04-10		other	2020-04-13	3	NA	NA	NA	No	0	0	0	0	0	NA	1	1	2020-04-15		R	R	R	R	R	R	R	R	I					NA	NA	0	NA	NA	yes	2	1	BG786	2	2	NA	NA	2	NA	1	1	1	1
+MA558-1	BLOOD CULTURE	A. baumannii	Hospital E	2020-08-03	2020-08-10	neonatal	2020-08-11	8	No	Yes	28	Yes	1	1	1	0	1	<=1500g	1	1	2020-08-17		R	R	R	R	R	R	R	R	R					NA	NA	1	NA	NA	yes	NA	0	BG1954	1	4	NA	NA	4	NA	3	3	3	1
+DN620	BLOOD CULTURE	A. baumannii	Hospital A	2020-08-26	2020-09-09	neonatal	2020-09-09	14	Yes	Yes	26	No	1	1	0	0	1	<=1500g	1	0	2020-11-09		R	R	R	R	R	R	R	I	I					NA	NA	0	NA	NA	yes	NA	0	BG2102	1	4	NA	NA	4	NA	2	2	2	1
+DN348-1	BLOOD CULTURE	A. baumannii	Hospital A	2020-03-19	2020-03-19	neonatal	2020-03-24	5	Yes	Yes	29	No	1	1	0	1	1	<=1500g	1	0	2020-05-07		R	R	R	R	R	R	R	I	S					NA	NA	0	NA	NA	yes	NA	0	BG572	1	1	NA	NA	1	NA	1	1	1	1
+KD166	BLOOD CULTURE	A. baumannii	Hospital B	2020-01-25	2020-01-25	other	2020-01-29	4	No	Yes	29	No	1	1	0	0	1	<=1500g	1	0	2020-02-28		R	R	R	R	R	R	R	R	I					NA	NA	0	NA	NA	yes	1	1	BG448	2	1	NA	NA	1	NA	1	1	1	1
+RF024	BLOOD CULTURE	A. baumannii	Hospital D	2019-10-11	2019-10-27	neonatal	2019-10-27	16	Yes	Yes	32	No	0	0	0	0	1	<=1500g	1	0	2019-12-20		R	R	R	R	R	R	R	R	S					NA	NA	0	NA	NA	yes	NA	0	BG350	2	NA	NA	NA	NA	NA	1	1	1	0
+MA404	BLOOD CULTURE	A. baumannii	Hospital E	2020-05-19		neonatal	2020-05-18	4	NA	NA	NA	No	0	0	0	0	0	NA	1	1	2020-05-19		R	R	R	R	R	R	R	R	I					NA	NA	0	NA	NA	yes	NA	0	BG1139	2	bg	NA	NA	bg	NA	1	1	1	0
+QN536	BLOOD CULTURE	A. baumannii	Hospital F	2020-05-15	2020-05-15	neonatal	2020-05-23	8	Yes	No	26	No	0	1	0	0	0	<=1500g	1	1	2020-06-07		R	R	R	R	R	R	R	R	I					NA	NA	0	NA	NA	yes	NA	0	BG1132	2	bg	NA	NA	bg	NA	2	2	2	0
+KD260-1	BLOOD CULTURE	A. baumannii	Hospital B	2020-05-24		neonatal	2020-05-26	3	NA	NA	NA	No	0	0	0	0	0	NA	1	0	2020-07-14		R	R	R	R	R	R	R	R	I					NA	NA	0	NA	NA	yes	NA	0	BG1147	2	3	NA	NA	3	NA	1	1	1	1
+KD091	BLOOD CULTURE	A. baumannii	Hospital B	2019-11-22	2019-11-22	other	2019-11-27	5	Yes	Yes	31	Yes	0	1	0	0	0	<=1500g	1	1	2019-11-30		R	R	R	R	R	R	R	R	I					NA	NA	0	NA	NA	yes	NA	0	BG336	2	bg	NA	NA	bg	NA	1	1	bg	0
+KD203	BLOOD CULTURE	A. baumannii	Hospital B	2020-03-20		neonatal	2020-03-23	3	NA	NA	NA	No	0	0	0	0	0	NA	1	1	2020-03-23		R	R	R	R	R	R	R	R	I					NA	NA	0	NA	NA	yes	2	1	BG570	2	2	NA	NA	2	NA	1	1	1	1
+MA678-1	BLOOD CULTURE	A. baumannii	Hospital E	2020-09-30		neonatal	2020-09-30	0	Yes	No	33	No	0	0	0	0	0	1502-2499g	0	0	2020-10-06		R	R	I	R	S	S	S	S	S					NA	NA	0	NA	NA	no	NA	0	BG2225	79	bg	NA	NA	bg	NA	bg	bg	bg	0
+TM113	BLOOD CULTURE	A. baumannii	Hospital C	2019-11-27		neonatal	2019-12-01	4	NA	NA	NA	No	0	0	0	0	0	NA	1	1	2019-12-30	R	R	R	R	R	R	R	R	I	R					NA	NA	1	NA	NA	yes	1	1	BG268	1	1	NA	NA	1	NA	1	1	1	1
+QN649-3	BLOOD CULTURE	A. baumannii	Hospital F			neonatal	2020-08-25	40	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA		R	R	R	R	R	R	R	R	R					NA	NA	1	NA	NA	yes	NA	0	BG2051	641	bg	NA	NA	bg	NA	3	3	3	0
+MA620-1	BLOOD CULTURE	A. baumannii	Hospital E	2020-09-05	2020-09-05	neonatal	2020-09-09	4	Yes	No	27	Yes	1	0	0	0	1	<=1500g	1	0	2020-09-21		R	R	R	R	R	R	R	R	I					NA	NA	0	NA	NA	yes	3	1	BG2195	2	1	NA	NA	1	NA	2	2	2	1
+DN377-1	BLOOD CULTURE	A. baumannii	Hospital A			neonatal	2020-04-12	29	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA		R	R	R	R	R	R	R	R	I					NA	NA	0	NA	NA	yes	NA	0	BG679	107	bg	NA	NA	bg	NA	bg	bg	bg	0
+KD288	BLOOD CULTURE	A. baumannii	Hospital B	2020-07-12	2020-07-12	neonatal	2020-07-12	0	No	No	30	No	0	1	0	0	0	<=1500g	0	0	2020-08-04		R	R	R	R	R	R	R	R	I					NA	NA	0	NA	NA	yes	NA	0	BG1729	2	bg	NA	NA	bg	NA	1	1	1	0
+KD249	BLOOD CULTURE	A. baumannii	Hospital B	2020-04-30	2020-04-30	other	2020-05-07	7	No	Yes	27	No	1	1	0	1	1	<=1500g	1	1	2020-05-22		R	R	R	R	R	R	R	R	I					NA	NA	0	NA	NA	yes	2	1	BG937	2	2	NA	NA	2	NA	1	1	1	1
+DN001-1	BLOOD CULTURE	A. baumannii	Hospital A	2019-09-23	2019-09-23	neonatal	2019-10-03	10	No	Yes	28	No	1	1	0	1	1	<=1500g	1	0	2019-10-29		R	R	R	R	R	R	R	I	S					NA	NA	0	NA	NA	yes	NA	0	BG1	1	bg	NA	NA	bg	NA	bg	bg	bg	0
+MA490-1	BLOOD CULTURE	A. baumannii	Hospital E	2020-06-18		neonatal	2020-06-24	6	NA	NA	NA	No	0	0	0	0	0	NA	1	0	2020-07-03		R	R	R	R	R	R	R	I	R					NA	NA	1	NA	NA	yes	2	1	BG1697	1	3	NA	NA	3	NA	3	3	3	1
+MA381-1	BLOOD CULTURE	A. baumannii	Hospital E			neonatal	2020-04-29	4	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA		R	R	R	R	R	R	R	R	R					NA	NA	1	NA	NA	yes	NA	0	BG902	1	bg	NA	NA	bg	NA	3	3	3	0
+TM524	BLOOD CULTURE	A. baumannii	Hospital C	2020-07-17	2020-07-17	neonatal	2020-07-19	2	No	NA	29	No	1	1	0	1	1	<=1500g	0	0	2020-10-13		R	R	R	R	R	R	R	R	R					NA	NA	1	NA	NA	yes	NA	0	BG1849	2	bg	NA	NA	bg	NA	2	2	2	0
+DN228-3	BLOOD CULTURE	A. baumannii	Hospital A			neonatal	2020-01-28	45	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA		R	R	R	R	R	R	R	I	I					NA	NA	0	NA	NA	yes	NA	0	BG496	1	bg	NA	NA	bg	NA	1	1	1	0
+DN448	BLOOD CULTURE	A. baumannii	Hospital A	2020-05-07	2020-05-07	neonatal	2020-06-01	26	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA		R	R	R	R	R	R	R	R	S					NA	NA	0	NA	NA	yes	NA	0	BG1157	1	2	NA	NA	2	NA	2	2	2	1
+MA619	BLOOD CULTURE	A. baumannii	Hospital E	2020-09-08	2020-09-08	neonatal	2020-09-08	11	No	NA	36	Yes	0	0	0	0	1	<=1500g	1	0	2020-09-11		I	S	S	S	S	S	S	S	S					NA	NA	0	NA	NA	no	NA	0	BG2194	424	bg	NA	NA	bg	NA	bg	bg	bg	0
+DN322-2	BLOOD CULTURE	A. baumannii	Hospital A	2020-03-06		neonatal	2020-03-15	9	NA	NA	NA	No	0	0	0	0	0	NA	1	1	2020-03-19		R	R	R	R	R	R	R	I	S					NA	NA	0	NA	NA	yes	NA	0	BG563	1	1	NA	NA	1	NA	1	1	1	1
+RF244	BLOOD CULTURE	A. baumannii	Hospital D	2020-06-29		neonatal	2020-07-04	5	Yes	Yes	31	No	1	1	0	0	1	<=1500g	1	1	2020-07-05		R	R	R	R	R	R	R	R	S					NA	NA	0	NA	NA	yes	NA	0	BG1722	3	NA	NA	NA	NA	NA	bg	bg	bg	0
+KD128-1	BLOOD CULTURE	A. baumannii	Hospital B	2020-01-20	2020-01-20	neonatal	2020-01-22	3	No	Yes	30	Yes	1	1	0	0	1	1502-2499g	1	1	2020-01-24		R	R	R	R	R	R	R	R	I					NA	NA	0	NA	NA	yes	1	1	BG462	2	1	NA	NA	1	NA	1	1	1	1
+KD281	BLOOD CULTURE	A. baumannii	Hospital B	2020-06-04	2020-06-04	other	2020-06-04	0	No	No	35	No	0	0	0	0	1	>=2500g	0	0	2020-06-26		R	R	R	R	R	R	R	R	I					NA	NA	0	NA	NA	yes	3	1	BG1521	2	3	NA	NA	3	NA	1	1	1	1
+MA089-3	BLOOD CULTURE	A. baumannii	Hospital E			other	2019-12-24	90	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA		R	R	R	R	S	R	R	R	R					NA	NA	1	NA	NA	yes	NA	0	BG489	2	bg	NA	NA	bg	NA	bg	bg	bg	0
+MA503	BLOOD CULTURE	A. baumannii	Hospital E	2020-06-28		neonatal	2020-07-03	5	Yes	Yes	29	No	0	0	0	0	1	<=1500g	1	1	2020-07-06		R	R	R	R	R	R	R	I	R					NA	NA	1	NA	NA	yes	2	1	BG1725	1	3	NA	NA	3	NA	3	3	3	1
+TM624-1	BLOOD CULTURE	A. baumannii	Hospital C	2020-09-11		other	2020-09-15	4	NA	NA	NA	No	0	0	0	0	0	NA	1	0	2020-12-01		R	R	R	R	R	R	R	R	R					NA	NA	1	NA	NA	yes	NA	0	BG2182	2	bg	NA	NA	bg	NA	2	2	2	0
+DN270	BLOOD CULTURE	A. baumannii	Hospital A			other	2020-02-18	87	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA		R	R	R	R	R	R	S	S	S					NA	NA	0	NA	NA	no	NA	0	BG526	79	bg	NA	NA	bg	NA	bg	bg	bg	0
+MA613-2	BLOOD CULTURE	A. baumannii	Hospital E			neonatal	2020-09-09	10	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA		R	R	R	R	R	R	R	I	R					NA	NA	1	NA	NA	yes	NA	0	BG2172	1	5	NA	NA	5	NA	3	3	3	1
+MA378	BLOOD CULTURE	A. baumannii	Hospital E			neonatal	2020-05-03	24	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA		R	R	R	R	R	R	R	R	I					NA	NA	0	NA	NA	yes	NA	0	BG908	2	bg	NA	NA	bg	NA	1	1	1	0
+RF052-1	BLOOD CULTURE	A. baumannii	Hospital D	2019-11-30	2019-12-04	neonatal	2019-12-04	4	Yes	Yes	34	No	0	0	0	0	0	<=1500g	1	0	2020-02-20		R	R	I	R	S	R	S	S	S					NA	NA	0	NA	NA	no	NA	0	BG335	267	NA	NA	NA	NA	NA	bg	bg	bg	0
+MA581-1	BLOOD CULTURE	A. baumannii	Hospital E	2020-08-10	2020-08-10	neonatal	2020-08-24	15	Yes	Yes	31	No	0	0	0	0	1	1502-2499g	1	0	2020-09-09		R	R	R	R	R	R	R	I	R					NA	NA	1	NA	NA	yes	NA	0	BG2002	1	4	NA	NA	4	NA	3	3	3	1
+QN497	BLOOD CULTURE	A. baumannii	Hospital F	2020-04-21	2020-04-21	neonatal	2020-04-26	5	Yes	No	27	No	0	1	0	0	0	<=1500g	1	1	2020-04-27		R	R	R	R	R	R	R	R	I					NA	NA	0	NA	NA	yes	NA	0	BG904	2	bg	NA	NA	bg	NA	2	2	2	0
+DN654	BLOOD CULTURE	A. baumannii	Hospital A	2020-09-24		neonatal	2020-09-26	3	NA	NA	NA	No	0	0	0	0	0	NA	1	1	2020-09-27		R	R	R	R	R	R	R	I	I					NA	NA	0	NA	NA	yes	NA	0	BG2199	1	4	NA	NA	4	NA	2	2	2	1
+DN239	BLOOD CULTURE	A. baumannii	Hospital A	2019-12-18		neonatal	2019-12-25	7	NA	NA	NA	No	0	0	0	0	0	NA	1	1	2019-12-30		R	R	R	R	R	R	R	R	I					NA	NA	0	NA	NA	yes	NA	0	BG461	2	bg	NA	NA	bg	NA	bg	bg	bg	0
+DN276-2	BLOOD CULTURE	A. baumannii	Hospital A	2020-02-13	2020-02-13	neonatal	2020-02-19	6	No	Yes	36	No	0	0	0	1	1	NA	1	0	NA		R	R	R	R	R	R	R	R	S					NA	NA	0	NA	NA	yes	NA	0	BG509	1	bg	NA	NA	bg	NA	1	1	1	0
+MA515-1	BLOOD CULTURE	A. baumannii	Hospital E	2020-06-30	2020-07-04	neonatal	2020-07-06	6	No	Yes	32	No	0	0	0	0	1	1502-2499g	1	1	2020-07-09		R	R	R	R	R	R	R	R	R					NA	NA	1	NA	NA	yes	NA	0	BG1893	1	3	NA	NA	3	NA	3	3	3	1
+KD280	BLOOD CULTURE	A. baumannii	Hospital B	2020-06-25	2020-06-25	other	2020-06-25	0	No	No	28	No	0	1	0	0	0	<=1500g	0	1	2020-06-30		R	R	R	R	R	R	R	R	I					NA	NA	0	NA	NA	yes	3	1	BG1520	2	3	NA	NA	3	NA	1	1	1	1
+DN560-1	BLOOD CULTURE	A. baumannii	Hospital A			neonatal	2020-08-04	40	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA		R	I	I	S	S	R	R	R	S					NA	NA	0	NA	NA	no	NA	0	BG1925	107	bg	NA	NA	bg	NA	bg	bg	bg	0
+MA597-3	CSF	A. baumannii	Hospital E			neonatal	2020-09-18	50	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA		R	R	R	R	R	R	R	I	I					NA	NA	0	NA	NA	yes	NA	0	BG2192	1	5	NA	NA	5	NA	3	3	3	1
+MA443	BLOOD CULTURE	A. baumannii	Hospital E	2020-05-08	2020-05-21	neonatal	2020-05-28	20	No	Yes	33	No	0	0	0	0	1	<=1500g	1	1	2020-05-29		R	R	R	R	R	R	R	I	I					NA	NA	0	NA	NA	yes	1	1	BG1155	1	2	NA	NA	2	NA	3	3	3	1
+KD231-1	BLOOD CULTURE	A. baumannii	Hospital B	2020-04-12	2020-04-12	neonatal	2020-04-18	6	No	Yes	29	No	1	1	0	0	1	<=1500g	1	1	2020-04-20		R	R	R	R	R	R	R	R	I					NA	NA	0	NA	NA	yes	2	1	BG901	2	2	NA	NA	2	NA	1	1	1	1
+MA656-1	BLOOD CULTURE	A. baumannii	Hospital E	2020-09-21	2020-09-21	neonatal	2020-09-21	3	No	No	37	No	0	0	0	1	0	>=2500g	1	1	2020-09-23		R	R	R	R	R	I	R	I	I					NA	NA	0	NA	NA	yes	NA	0	BG2142	79	bg	NA	NA	bg	NA	bg	bg	bg	0
+MA359-1	BLOOD CULTURE	A. baumannii	Hospital E			neonatal	2020-04-18	3	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA		R	R	R	R	R	R	R	R	I					NA	NA	0	NA	NA	yes	NA	0	BG886	2	bg	NA	NA	bg	NA	1	1	1	0
+DN461-2	BLOOD CULTURE	A. baumannii	Hospital A			neonatal	2020-06-08	3	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA		R	R	R	R	R	R	R	I	S					NA	NA	0	NA	NA	yes	NA	0	BG1166	1	2	NA	NA	2	NA	2	2	2	1
+MA287	BLOOD CULTURE	A. baumannii	Hospital E	2020-03-23		neonatal	2020-03-25	2	NA	NA	NA	No	0	0	0	0	0	NA	0	1	2020-03-26		R	R	R	R	R	R	R	R	R					NA	NA	1	NA	NA	yes	NA	0	BG586	2	bg	NA	NA	bg	NA	bg	1	1	0
+DN177-4	BLOOD CULTURE	A. baumannii	Hospital A	2019-12-27	2019-12-27	neonatal	2020-01-13	17	No	Yes	26	Yes	1	1	0	1	1	<=1500g	1	0	2020-03-05		R	I	I	S	S	R	R	R	S					NA	NA	0	NA	NA	no	NA	0	BG454-1	107	bg	NA	NA	bg	NA	bg	bg	bg	0
+KD219-1	BLOOD CULTURE	A. baumannii	Hospital B			other	2020-04-06	34	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA		R	R	R	R	R	R	R	R	I					NA	NA	0	NA	NA	yes	2	1	BG773	2	2	NA	NA	2	NA	1	1	1	1
+QN178	BLOOD CULTURE	S. aureus	Hospital F	2020-01-08		other	2020-01-08	21	No	No	38	Yes	0	1	0	0	0	>=2500g	1	0	2020-01-11												S	NEG	S	NA	NA	NA	0	NA	NA	NA	0	BG1005	5	NA	bg	bg	NA	bg	NA	bg	bg	0
+KD235	BLOOD CULTURE	S. aureus	Hospital B			NA	2020-04-11	0	NA	NA	NA	No	0	0	0	0	0	NA	0	NA	NA												S	NEG	S	NA	NA	NA	0	NA	NA	NA	0	BG1461	NA	NA	NA	NA	NA	NA	NA	NA	NA	0
+KD156-1	BLOOD CULTURE	S. aureus	Hospital B			NA	2020-02-06	4	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA												S	NEG	S	NA	NA	NA	0	NA	NA	NA	0	BG1175	NA	NA	NA	NA	NA	NA	NA	NA	NA	0
+MA306-2	BLOOD CULTURE	S. aureus	Hospital E			NA	2020-04-03	12	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA												S	NEG	S	NA	NA	NA	0	NA	NA	1	1	BG1369	NA	NA	NA	NA	NA	NA	NA	NA	NA	0
+MA105-1	BLOOD CULTURE	S. aureus	Hospital E	2019-12-27		neonatal	2019-12-27	6	No	NA	37	Yes	0	0	0	0	1	>=2500g	1	0	2020-01-21												R	R	S	NA	NA	NA	1	NA	NA	NA	0	BG429-1	1	NA	bg	bg	NA	bg	NA	bg	bg	0
+QN526	BLOOD CULTURE	S. aureus	Hospital F	2020-05-14		neonatal	2020-05-15	1	Yes	No	40	Yes	0	0	0	0	1	>=2500g	0	0	2020-05-22												S	NEG	S	NA	NA	NA	0	NA	NA	NA	0	BG946	5	NA	bg	bg	NA	bg	NA	bg	bg	0
+QN486-2	BLOOD CULTURE	S. aureus	Hospital F	2020-04-20		neonatal	2020-04-22	5	No	No	38	Yes	1	0	0	0	1	>=2500g	1	0	2020-04-25												R	POS	S	NA	NA	NA	1	NA	NA	NA	0	BG1551	5	NA	bg	bg	NA	bg	NA	bg	bg	0
+KD338-1	BLOOD CULTURE	S. aureus	Hospital B	2020-09-09	2020-09-10	NA	2020-09-09	68	No	No	37	No	0	0	0	0	0	>=2500g	1	0	2020-09-21												S	S	S	NA	NA	NA	0	NA	NA	NA	0	BG2187	NA	NA	NA	NA	NA	NA	NA	NA	NA	0
+TM511	BLOOD CULTURE	S. aureus	Hospital C	2020-07-10		other	2020-07-10	10	No	No	38	Yes	0	0	0	0	0	>=2500g	1	0	2020-07-20												S	NEG	S	NA	NA	NA	0	NA	NA	NA	0	BG1845	152	NA	bg	bg	NA	bg	NA	bg	bg	0
+MA010	BLOOD CULTURE	S. aureus	Hospital E			neonatal	2019-10-15	1	NA	NA	NA	No	0	0	0	0	0	NA	0	NA	NA												S	NEG	S	NA	NA	NA	0	NA	NA	NA	0	BG89	152	NA	bg	bg	NA	bg	NA	bg	bg	0
+QN021	BLOOD CULTURE	S. aureus	Hospital F	2019-11-03		other	2019-11-03	41	No	NA	40	No	0	0	0	0	0	>=2500g	1	0	2019-11-12												S	NEG	S	NA	NA	NA	0	NA	NA	NA	0	BG360	5	NA	bg	bg	NA	bg	NA	bg	bg	0
+DN411-1	BLOOD CULTURE	S. aureus	Hospital A	2020-05-02		neonatal	2020-05-05	6	NA	NA	NA	No	0	0	0	0	0	NA	1	0	2020-07-20												R	R	S	NA	NA	NA	1	NA	NA	NA	0	BG914	5	NA	bg	bg	NA	bg	NA	2	bg	0
+QN066	BLOOD CULTURE	S. aureus	Hospital F	2019-09-28	2019-09-30	neonatal	2019-10-18	20	Yes	NA	36	No	0	0	0	0	0	>=2500g	1	0	2019-11-11												S	NEG	S	NA	NA	NA	0	NA	NA	NA	0	BG117	152	NA	bg	bg	NA	bg	NA	bg	bg	0
+MA174	BLOOD CULTURE	S. aureus	Hospital E			neonatal	2020-02-06	16	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA												S	NEG	S	NA	NA	NA	0	NA	NA	NA	0	BG1089	152	NA	bg	bg	NA	bg	NA	bg	bg	0
+MA335-2	BLOOD CULTURE	S. aureus	Hospital E			other	2020-04-09	3	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA												S	NEG	S	NA	NA	NA	0	NA	NA	NA	0	BG677	30	NA	bg	bg	NA	bg	NA	bg	bg	0
+TM621	BLOOD CULTURE	S. aureus	Hospital C	2020-08-20	2020-08-20	neonatal	2020-09-08	19	Yes	No	29	Yes	1	1	0	0	1	<=1500g	1	0	2020-10-30												S	S	R	NA	NA	NA	0	NA	NA	NA	0	BG2099	152	NA	bg	bg	NA	bg	NA	bg	bg	0
+DN074	BLOOD CULTURE	S. aureus	Hospital A	2019-10-22	2019-10-22	neonatal	2019-11-22	31	No	No	27	No	1	1	0	1	1	1502-2499g	1	0	2019-12-03												S	NEG	S	NA	NA	NA	0	NA	NA	NA	0	BG359	5	NA	bg	bg	NA	bg	NA	bg	bg	0
+KD043-1	BLOOD CULTURE	S. aureus	Hospital B	2019-09-06	2019-09-06	NA	2019-10-19	43	Yes	Yes	31	No	0	0	1	1	0	NA	1	0	2019-11-22												R	POS	S	NA	NA	NA	1	NA	NA	NA	0	BG145	NA	NA	NA	NA	NA	NA	NA	NA	NA	0
+TM312	BLOOD CULTURE	S. aureus	Hospital C	2020-03-01		neonatal	2020-03-01	0	No	No	40	Yes	0	0	0	0	1	>=2500g	0	0	2020-03-12												S	NEG	S	NA	NA	NA	0	NA	NA	NA	0	BG869	6	NA	bg	bg	NA	bg	NA	bg	bg	0
+RF239	BLOOD CULTURE	S. aureus	Hospital D			NA	2020-06-11	10	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA												R	POS	S	NA	NA	NA	1	NA	NA	NA	0	BG1751	NA	NA	NA	NA	NA	NA	NA	NA	NA	0
+KD275-1	BLOOD CULTURE	S. aureus	Hospital B	2020-06-26	2020-06-26	NA	2020-06-26	1	No	No	38	No	0	0	0	0	1	>=2500g	0	0	2020-07-01												S	NEG	S	NA	NA	NA	0	NA	NA	NA	0	BG1695	NA	NA	NA	NA	NA	NA	NA	NA	NA	0
+RF181	BLOOD CULTURE	S. aureus	Hospital D			NA	2020-03-24	51	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA												S	NEG	S	NA	NA	NA	0	NA	NA	NA	0	BG589	NA	NA	NA	NA	NA	NA	NA	NA	NA	0
+DN444	BLOOD CULTURE	S. aureus	Hospital A			other	2020-05-21	6	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA												S	POS	S	NA	NA	NA	1	NA	NA	NA	0	BG1594	152	NA	bg	bg	NA	bg	NA	bg	bg	0
+MA298	BLOOD CULTURE	S. aureus	Hospital E			neonatal	2020-03-31	3	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA												R	POS	R	NA	NA	NA	1	NA	NA	NA	0	BG674	152	NA	bg	bg	NA	bg	NA	bg	bg	0
+TM170-1	BLOOD CULTURE	S. aureus	Hospital C	2019-12-20		neonatal	2019-12-21	1	No	No	27	No	0	1	0	0	0	<=1500g	0	1	2019-12-21												R	R	I	NA	NA	NA	1	NA	NA	NA	0	BG426	239	NA	bg	bg	NA	bg	NA	bg	bg	0
+MA144	BLOOD CULTURE	S. aureus	Hospital E			neonatal	2020-01-26	24	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA												S	NEG	S	NA	NA	NA	0	NA	NA	NA	0	BG1042	152	NA	bg	bg	NA	bg	NA	bg	bg	0
+DN312	BLOOD CULTURE	S. aureus	Hospital A			other	2020-03-11	36	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA												S	NEG	S	NA	NA	NA	0	NA	NA	NA	0	BG547	5	NA	bg	bg	NA	bg	NA	bg	bg	0
+MA491-2	BLOOD CULTURE	S. aureus	Hospital E	2020-07-01	2020-07-01	neonatal	2020-07-01	22	No	NA	37	No	0	0	0	0	1	NA	1	1	2020-07-01												S	POS	S	NA	NA	NA	1	NA	NA	NA	0	BG1717	6	NA	bg	bg	NA	bg	NA	bg	bg	0
+RF092	BLOOD CULTURE	S. aureus	Hospital D	2020-01-02		NA	2020-01-02	0	Yes	No	33	Yes	0	0	0	0	1	>=2500g	0	0	2020-01-07												S	NEG	S	NA	NA	NA	0	NA	NA	NA	0	BG413	NA	NA	NA	NA	NA	NA	NA	NA	NA	0
+MA311	BLOOD CULTURE	S. aureus	Hospital E	2020-03-24		neonatal	2020-04-06	13	No	Yes	34	Yes	1	0	0	0	1	<=1500g	1	0	2020-05-04												S	NEG	I	NA	NA	NA	0	NA	NA	1	1	BG666	508	NA	bg	bg	NA	bg	NA	bg	bg	0
+MA657	BLOOD CULTURE	S. aureus	Hospital E	2020-09-01		neonatal	2020-09-26	25	NA	NA	NA	No	0	0	0	0	0	NA	1	0	NA												S	S	S	NA	NA	NA	0	NA	NA	NA	0	BG2197	152	NA	bg	bg	NA	bg	NA	bg	bg	0
+KD106	BLOOD CULTURE	S. aureus	Hospital B			NA	2019-12-24	44	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA												S	NEG	S	NA	NA	NA	0	NA	NA	NA	0	BG892	NA	NA	NA	NA	NA	NA	NA	NA	NA	0
+QN545	BLOOD CULTURE	S. aureus	Hospital F	2020-05-12	2020-05-12	neonatal	2020-05-21	9	Yes	No	32	No	0	0	0	0	0	>=2500g	1	1	2020-05-21												R	POS	S	NA	NA	NA	1	NA	NA	NA	0	BG1167	5	NA	bg	bg	NA	bg	NA	1	2	0
+DN368	BLOOD CULTURE	S. aureus	Hospital A			other	2020-04-03	62	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA												S	NEG	S	NA	NA	NA	0	NA	NA	NA	0	BG664	8	NA	bg	bg	NA	bg	NA	bg	bg	0
+TM194	BLOOD CULTURE	S. aureus	Hospital C			other	2019-12-02	24	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA												R	NEG	R	NA	NA	NA	1	NA	NA	NA	0	BG732	152	NA	bg	bg	NA	bg	NA	bg	bg	0
+MA355	BLOOD CULTURE	S. aureus	Hospital E			neonatal	2020-04-13	0	NA	NA	NA	No	0	0	0	0	0	NA	0	NA	NA												S	NEG	S	NA	NA	NA	0	NA	NA	NA	0	BG1466	121	NA	bg	bg	NA	bg	NA	bg	bg	0
+TM005	BLOOD CULTURE	S. aureus	Hospital C	2019-10-01	2019-10-01	other	2019-10-01	0	NA	NA	36	No	0	0	0	0	1	>=2500g	0	0	2019-10-14												S	S	S	NA	NA	NA	0	NA	NA	2	1	BG5	152	NA	bg	bg	NA	bg	NA	bg	bg	0
+TM008	BLOOD CULTURE	S. aureus	Hospital C			neonatal	2019-10-02	0	NA	NA	NA	No	0	0	0	0	0	NA	0	NA	NA												S	S	S	NA	NA	NA	0	NA	NA	NA	0	BG9	152	NA	bg	bg	NA	bg	NA	bg	bg	0
+RF003	BLOOD CULTURE	S. aureus	Hospital D			NA	2019-10-01	12	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA												R	R	S	NA	NA	NA	1	NA	NA	NA	0	BG4	NA	NA	NA	NA	NA	NA	NA	NA	NA	0
+MA155	BLOOD CULTURE	S. aureus	Hospital E	2020-01-10		neonatal	2020-01-17	7	NA	NA	NA	No	0	0	0	0	0	NA	1	0	2020-01-13												S	NEG	S	NA	NA	NA	0	NA	NA	NA	0	BG487	72	NA	bg	bg	NA	bg	NA	bg	bg	0
+MA425	BLOOD CULTURE	S. aureus	Hospital E	2020-05-25		neonatal	2020-05-26	12	No	NA	37	Yes	0	0	0	0	1	>=2500g	1	0	2020-06-08												S	NEG	S	NA	NA	NA	0	NA	NA	NA	0	BG1150	6	NA	bg	bg	NA	bg	NA	bg	bg	0
+QN356-2	BLOOD CULTURE	S. aureus	Hospital F	2020-02-28		neonatal	2020-02-29	2	NA	NA	NA	No	0	0	0	0	0	NA	0	0	2020-02-29												S	NEG	S	NA	NA	NA	0	NA	NA	NA	0	BG1272	-	NA	bg	bg	NA	bg	NA	bg	bg	0
+TM529	BLOOD CULTURE	S. aureus	Hospital C	2020-07-09		other	2020-07-09	12	No	No	37	Yes	0	0	0	0	0	>=2500g	1	0	2020-07-17												S	NEG	S	NA	NA	NA	0	NA	NA	NA	0	BG1846	152	NA	bg	bg	NA	bg	NA	bg	bg	0
+QN519-1	BLOOD CULTURE	S. aureus	Hospital F			other	2020-05-04	74	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA												R	POS	S	NA	NA	NA	1	NA	NA	NA	0	BG942	612	NA	bg	bg	NA	bg	NA	bg	bg	0
+DN325-1	BLOOD CULTURE	S. aureus	Hospital A			neonatal	2020-03-18	37	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA												R	POS	S	NA	NA	NA	1	NA	NA	NA	0	BG558	5	NA	bg	bg	NA	bg	NA	2	bg	0
+QN539-2	BLOOD CULTURE	S. aureus	Hospital F			other	2020-05-20	10	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA												R	POS	S	NA	NA	NA	1	NA	NA	NA	0	BG1735	-	NA	bg	bg	NA	bg	NA	bg	bg	0
+DN388	BLOOD CULTURE	S. aureus	Hospital A	2020-04-13	2020-04-14	neonatal	2020-04-18	5	No	Yes	37	Yes	0	0	0	1	1	NA	1	0	2020-04-20												R	POS	S	NA	NA	NA	1	NA	NA	NA	0	BG791	45	NA	bg	bg	NA	bg	NA	bg	bg	0
+QN630	BLOOD CULTURE	S. aureus	Hospital F	2020-07-19	2020-07-19	neonatal	2020-07-25	6	Yes	Yes	26	No	0	1	0	0	1	<=1500g	1	0	2020-08-09												R	POS	S	NA	NA	NA	1	NA	NA	NA	0	BG1842	5	NA	2	2	NA	2	NA	2	3	1
+QN102	BLOOD CULTURE	S. aureus	Hospital F	2019-12-05	2019-12-05	neonatal	2019-12-18	13	Yes	NA	30	No	0	1	0	0	0	<=1500g	1	0	2020-01-15												R	POS	S	NA	NA	NA	1	NA	NA	NA	0	BG389	5	NA	1	1	NA	1	NA	1	1	1
+MA601-3	BLOOD CULTURE	S. aureus	Hospital E			neonatal	2020-09-08	7	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA												S	S	S	NA	NA	NA	0	NA	NA	NA	0	BG2179-2	152	NA	1	1	NA	1	NA	1	1	1
+DN127-2	BLOOD CULTURE	S. aureus	Hospital A			neonatal	2019-12-14	25	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA												S	NEG	S	NA	NA	NA	0	NA	NA	2	1	BG384	45	NA	bg	bg	NA	bg	NA	bg	bg	0
+MA123	BLOOD CULTURE	S. aureus	Hospital E	2019-12-30		neonatal	2019-12-30	8	No	No	37	Yes	0	0	0	0	0	>=2500g	1	0	2020-01-09												S	NEG	S	NA	NA	NA	0	NA	NA	NA	0	BG417	152	NA	bg	bg	NA	bg	NA	bg	bg	0
+QN346	BLOOD CULTURE	S. aureus	Hospital F	2020-03-13		neonatal	2020-03-15	2	No	No	39	Yes	1	0	0	0	1	>=2500g	0	0	2020-03-19												R	POS	R	NA	NA	NA	1	NA	NA	NA	0	BG1279	5	NA	bg	bg	NA	bg	NA	1	2	0
+TM011	BLOOD CULTURE	S. aureus	Hospital C	2019-10-12	2019-10-14	other	2019-10-13	157	No	Yes	37	Yes	0	0	0	0	0	>=2500g	1	0	2019-10-22												S	S	S	NA	NA	NA	0	NA	NA	NA	0	BG29	5	NA	bg	bg	NA	bg	NA	bg	bg	0
+TM540	BLOOD CULTURE	S. aureus	Hospital C			neonatal	2020-07-29	31	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA												R	POS	S	NA	NA	NA	1	NA	NA	1	1	BG1929	239	NA	1	1	NA	1	NA	1	1	1
+MA230	BLOOD CULTURE	S. aureus	Hospital E			neonatal	2020-03-03	3	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA												S	NEG	S	NA	NA	NA	0	NA	NA	NA	0	BG545	5	NA	bg	bg	NA	bg	NA	bg	bg	0
+DN012-3	BLOOD CULTURE	S. aureus	Hospital A			neonatal	2019-10-18	22	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA												R	POS	S	NA	NA	NA	1	NA	NA	NA	0	BG121	5	NA	bg	bg	NA	bg	NA	bg	bg	0
+DN531-1	BLOOD CULTURE	S. aureus	Hospital A	2020-07-15		neonatal	2020-07-15	13	NA	NA	NA	No	0	0	0	0	0	NA	1	0	2020-08-05												S	NEG	S	NA	NA	NA	0	NA	NA	NA	0	BG1715	1865	NA	bg	bg	NA	bg	NA	bg	bg	0
+DN135	BLOOD CULTURE	S. aureus	Hospital A	2019-12-17		other	2019-12-17	3	No	No	37	Yes	1	0	0	0	1	>=2500g	1	0	2019-12-19												S	NEG	S	NA	NA	NA	0	NA	NA	NA	0	BG394	508	NA	bg	bg	NA	bg	NA	bg	bg	0
+QN008	BLOOD CULTURE	S. aureus	Hospital F	2019-11-17		other	2019-11-17	105	NA	NA	NA	No	0	0	0	0	0	NA	1	0	2019-11-27												S	POS	S	NA	NA	NA	1	NA	NA	NA	0	BG867	8	NA	bg	bg	NA	bg	NA	bg	bg	0
+QN629	BLOOD CULTURE	S. aureus	Hospital F			neonatal	2020-07-24	5	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA												R	POS	I	NA	NA	NA	1	NA	NA	NA	0	BG1841	5	NA	2	2	NA	2	NA	2	3	1
+DN209	BLOOD CULTURE	S. aureus	Hospital A	2019-12-24		neonatal	2019-12-26	3	NA	NA	NA	No	0	0	0	0	0	NA	1	1	2019-12-26												R	POS	S	NA	NA	NA	1	NA	NA	1	1	BG397	612	NA	1	1	NA	1	NA	1	1	1
+RF163	BLOOD CULTURE	S. aureus	Hospital D			NA	2020-03-13	NA	NA	NA	NA	No	0	0	0	0	0	NA	NA	NA	NA												S	NEG	S	NA	NA	NA	0	NA	NA	NA	0	BG1345	NA	NA	NA	NA	NA	NA	NA	NA	NA	0
+QN011	BLOOD CULTURE	S. aureus	Hospital F	2019-10-23	2019-10-23	neonatal	2019-10-23	5	No	No	38	Yes	1	0	0	0	1	>=2500g	1	0	2019-10-31												S	NEG	S	NA	NA	NA	0	NA	NA	NA	0	BG147	6	NA	bg	bg	NA	bg	NA	bg	bg	0
+DN064	BLOOD CULTURE	S. aureus	Hospital A			other	2019-11-14	133	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA												S	NEG	S	NA	NA	NA	0	NA	NA	NA	0	BG366	-	NA	bg	bg	NA	bg	NA	bg	bg	0
+QN216	BLOOD CULTURE	S. aureus	Hospital F	2019-12-29		other	2020-02-05	38	No	Yes	25	No	0	1	0	0	0	<=1500g	1	0	2020-02-26												R	POS	S	NA	NA	NA	1	NA	NA	NA	0	BG1112	5	NA	bg	1	NA	bg	NA	1	2	0
+DN158	BLOOD CULTURE	S. aureus	Hospital A			neonatal	2019-12-26	0	NA	NA	NA	No	0	0	0	0	0	NA	0	NA	NA												R	POS	S	NA	NA	NA	1	NA	NA	1	1	BG411	612	NA	1	1	NA	1	NA	1	1	1
+QN115	BLOOD CULTURE	S. aureus	Hospital F			neonatal	2019-12-08	6	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA												R	POS	S	NA	NA	NA	1	NA	NA	NA	0	BG741	5	NA	1	1	NA	1	NA	1	1	1
+TM006-1	BLOOD CULTURE	S. aureus	Hospital C	2019-10-02	2019-10-04	other	2019-10-02	174	No	Yes	37	No	0	0	0	0	0	>=2500g	1	0	2019-10-16												S	S	S	NA	NA	NA	0	NA	NA	NA	0	BG7	1865	NA	bg	bg	NA	bg	NA	bg	bg	0
+QN199	BLOOD CULTURE	S. aureus	Hospital F	2020-02-04		other	2020-02-05	30	No	No	40	Yes	0	0	0	0	0	>=2500g	1	0	2020-02-10												R	POS	S	NA	NA	NA	1	NA	NA	NA	0	BG500	152	NA	bg	bg	NA	bg	NA	bg	bg	0
+TM500	BLOOD CULTURE	S. aureus	Hospital C	2020-07-01	2020-07-01	neonatal	2020-07-08	7	No	Yes	26	No	1	1	0	0	1	<=1500g	1	0	2020-08-20												R	POS	S	NA	NA	NA	1	NA	NA	NA	0	BG1847	239	NA	bg	1	NA	bg	NA	1	1	0
+QN509	BLOOD CULTURE	S. aureus	Hospital F	2020-04-16	2020-04-16	neonatal	2020-04-24	8	No	Yes	31	No	1	1	0	0	1	<=1500g	1	0	2020-04-25												R	POS	S	NA	NA	NA	1	NA	NA	NA	0	BG1503	5	NA	bg	bg	NA	bg	NA	1	2	0
+MA527	BLOOD CULTURE	S. aureus	Hospital E			neonatal	2020-07-20	3	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA												S	NEG	S	NA	NA	NA	0	NA	NA	NA	0	BG1872	45	NA	bg	bg	NA	bg	NA	bg	bg	0
+RF023	CSF	S. aureus	Hospital D	2019-11-08		NA	2019-11-08	7	No	No	37	No	0	0	0	0	0	>=2500g	1	0	2019-11-11												S	NEG	S	NA	NA	NA	0	NA	NA	NA	0	BG253	NA	NA	NA	NA	NA	NA	NA	NA	NA	0
+DN458	BLOOD CULTURE	S. aureus	Hospital A	2020-05-23	2020-05-28	other	2020-06-08	5	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA												S	POS	S	NA	NA	NA	1	NA	NA	NA	0	BG1300	88	NA	bg	bg	NA	bg	NA	bg	bg	0
+DN280	BLOOD CULTURE	S. aureus	Hospital A			other	2020-02-09	122	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA												S	NEG	S	NA	NA	NA	0	NA	NA	NA	0	BG504	6	NA	bg	bg	NA	bg	NA	bg	bg	0
+QN010-1	BLOOD CULTURE	S. aureus	Hospital F			neonatal	2019-11-06	48	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA												R	POS	I	NA	NA	NA	1	NA	NA	NA	0	BG204	5	NA	bg	bg	NA	bg	NA	bg	bg	0
+MA434-2	BLOOD CULTURE	S. aureus	Hospital E			neonatal	2020-05-29	28	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA												R	POS	S	NA	NA	NA	1	NA	NA	NA	0	BG1759	152	NA	bg	bg	NA	bg	NA	bg	bg	0
+TM319-1	BLOOD CULTURE	S. aureus	Hospital C			neonatal	2020-03-06	8	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA												R	NEG	R	NA	NA	NA	1	NA	NA	NA	0	BG1348	243	NA	bg	bg	NA	bg	NA	bg	bg	0
+DN144	BLOOD CULTURE	S. aureus	Hospital A	2019-12-11	2019-12-11	neonatal	2019-12-22	11	No	Yes	37	Yes	1	0	0	0	1	>=2500g	1	0	2019-12-29												S	NEG	S	NA	NA	NA	0	NA	NA	2	1	BG400	5	NA	bg	bg	NA	bg	NA	bg	bg	0
+QN275	BLOOD CULTURE	S. aureus	Hospital F	2020-03-18		other	2020-03-18	14	No	No	34	Yes	0	0	0	0	0	>=2500g	1	0	2020-03-26												S	NEG	S	NA	NA	NA	0	NA	NA	NA	0	BG573	508	NA	bg	bg	NA	bg	NA	bg	bg	0
+DN065-1	BLOOD CULTURE	S. aureus	Hospital A	2019-11-14	2019-11-14	other	2019-11-14	7	No	No	34	Yes	1	0	0	0	1	>=2500g	1	0	2019-11-18												S	NEG	S	NA	NA	NA	0	NA	NA	NA	0	BG367	15	NA	bg	bg	NA	bg	NA	bg	bg	0
+QN610	BLOOD CULTURE	S. aureus	Hospital F			other	2020-02-07	33	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA												S	NEG	S	NA	NA	NA	0	NA	NA	NA	0	BG1714	152	NA	bg	bg	NA	bg	NA	bg	bg	0
+MA463	BLOOD CULTURE	S. aureus	Hospital E	2020-06-13		neonatal	2020-06-13	5	No	No	37	Yes	0	0	0	0	0	>=2500g	1	0	2020-06-17												S	NEG	S	NA	NA	NA	0	NA	NA	NA	0	BG1303	152	NA	bg	bg	NA	bg	NA	bg	bg	0
+DN356	BLOOD CULTURE	S. aureus	Hospital A	2020-03-21	2020-03-21	neonatal	2020-03-30	9	No	No	30	No	1	0	1	0	1	<=1500g	1	0	2020-04-17												S	NEG	S	NA	NA	NA	0	NA	NA	NA	0	BG591	650	NA	bg	bg	NA	bg	NA	bg	bg	0
+KD183	BLOOD CULTURE	S. aureus	Hospital B			NA	2020-03-03	0	NA	NA	NA	No	0	0	0	0	0	NA	0	NA	NA												S	NEG	S	NA	NA	NA	0	NA	NA	NA	0	BG1286	NA	NA	NA	NA	NA	NA	NA	NA	NA	0
+TM014-1	BLOOD CULTURE	S. aureus	Hospital C	2019-10-15		other	2019-10-15	42	No	No	34	Yes	0	0	0	0	1	>=2500g	1	0	2019-10-16												S	NEG	S	NA	NA	NA	0	NA	NA	NA	0	BG91	1865	NA	bg	bg	NA	bg	NA	bg	bg	0
+DN585	BLOOD CULTURE	S. aureus	Hospital A	2020-08-26		neonatal	2020-08-26	0	NA	NA	NA	No	0	0	0	0	0	NA	0	0	2020-09-02												S	S	S	NA	NA	NA	0	NA	NA	NA	0	BG1998	508	NA	bg	bg	NA	bg	NA	bg	bg	0
+TM124	BLOOD CULTURE	S. aureus	Hospital C			other	2019-10-03	3	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA												S	S	S	NA	NA	NA	0	NA	NA	2	1	BG11	152	NA	bg	bg	NA	bg	NA	bg	bg	0
+TM553	BLOOD CULTURE	S. aureus	Hospital C	2020-07-27	2020-07-27	neonatal	2020-07-30	3	No	Yes	35	Yes	1	0	0	0	1	1502-2499g	1	0	2020-09-03												R	POS	S	NA	NA	NA	1	NA	NA	1	1	BG1928	239	NA	1	1	NA	1	NA	1	1	1
+MA234	BLOOD CULTURE	E. coli	Hospital E			NA	2020-03-04	NA	NA	NA	NA	No	0	0	0	0	0	NA	NA	NA	NA	S	S	S	S	S	S	R	S	I	S	I				0	NA	NA	NA	NA	NA	NA	0	BG551	NA	NA	NA	NA	NA	NA	NA	NA	NA	0
+DN504-1	BLOOD CULTURE	E. coli	Hospital A	2020-06-30	2020-06-30	NA	2020-06-30	6	No	No	38	Yes	1	0	0	0	1	>=2500g	1	0	2020-07-08	S	S	S	I	S	I	S	S	I	S	I				0	NA	NA	NA	NA	NA	NA	0	BG1513	NA	NA	NA	NA	NA	NA	NA	NA	NA	0
+DN447-2	BLOOD CULTURE	E. coli	Hospital A			NA	2020-05-29	94	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA	S	S	S	R	R	S	R	S	I	S	I				0	NA	NA	NA	NA	NA	NA	0	BG1161	NA	NA	NA	NA	NA	NA	NA	NA	NA	0
+MA222-1	BLOOD CULTURE	E. coli	Hospital E			NA	2020-02-28	3	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA	S	S	S	S	S	S	R	S	I	S	I				0	NA	NA	NA	NA	NA	NA	0	BG530	NA	NA	NA	NA	NA	NA	NA	NA	NA	0
+KD089	BLOOD CULTURE	E. coli	Hospital B			NA	2019-10-30	100	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA	S	S	S	S	S	S	S	S	I	S	I				0	NA	NA	NA	NA	NA	NA	0	BG244	NA	NA	NA	NA	NA	NA	NA	NA	NA	0
+RF016	BLOOD CULTURE	E. coli	Hospital D	2019-11-09		NA	2019-11-09	57	Yes	No	37	No	0	0	0	0	1	>=2500g	1	0	2019-11-22	S	S	S	S	S	S	S	S	I	S	I				0	NA	NA	NA	NA	NA	NA	0	BG252	NA	NA	NA	NA	NA	NA	NA	NA	NA	0
+KD048-1	BLOOD CULTURE	E. coli	Hospital B			NA	2019-10-19	28	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA	S	S	S	S	S	S	S	S	I	R	I				0	NA	NA	NA	NA	NA	NA	0	BG128	NA	NA	NA	NA	NA	NA	NA	NA	NA	0
+TM317	BLOOD CULTURE	E. coli	Hospital C			NA	2020-03-09	83	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA	S	S	S	R	R	S	R	S	I	S	I				0	NA	NA	NA	NA	NA	NA	0	BG561	NA	NA	NA	NA	NA	NA	NA	NA	NA	0
+KD300	BLOOD CULTURE	E. coli	Hospital B	2020-07-29		NA	2020-07-29	2	No	No	36	Yes	1	0	0	0	1	>=2500g	0	0	2020-07-31	S	S	S	S	S	S	S	S	S	S	I				0	NA	NA	NA	NA	NA	NA	0	BG1993	NA	NA	NA	NA	NA	NA	NA	NA	NA	0
+MA451	BLOOD CULTURE	E. coli	Hospital E	2020-05-30	2020-06-02	NA	2020-06-01	2	Yes	Yes	37	No	0	0	0	0	1	1502-2499g	0	1	2020-06-03	S	S	S	S	S	S	S	S	I	S	I				0	NA	NA	NA	NA	NA	NA	0	BG1171	NA	NA	NA	NA	NA	NA	NA	NA	NA	0
+MA365	BLOOD CULTURE	E. coli	Hospital E			NA	2020-04-23	0	NA	NA	NA	No	0	0	0	0	0	NA	0	NA	NA	S	S	S	R	R	S	S	R	R	S	I				0	NA	NA	NA	NA	NA	NA	0	BG783	NA	NA	NA	NA	NA	NA	NA	NA	NA	0
+DN179-2	BLOOD CULTURE	E. coli	Hospital A			NA	2020-01-01	37	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA	S	S	S	R	R	I	S	R	R	S	R				0	NA	NA	NA	NA	NA	NA	0	BG414	NA	NA	NA	NA	NA	NA	NA	NA	NA	0
+QN233	BLOOD CULTURE	E. coli	Hospital F	2020-02-21	2020-02-21	NA	2020-02-21	3	Yes	Yes	35	No	0	1	0	0	0	1502-2499g	1	0	2020-03-10	S	S	S	R	R	S	R	R	R	R	I				0	NA	NA	NA	NA	NA	NA	0	BG525	NA	NA	NA	NA	NA	NA	NA	NA	NA	0
+MA306	BLOOD CULTURE	E. coli	Hospital E	2020-03-24		NA	2020-03-25	3	NA	NA	NA	No	0	0	0	0	0	NA	1	1	2020-05-02	S	S	S	S	S	S	S	R	R	I	I				0	NA	NA	NA	NA	NA	NA	0	BG584	NA	NA	NA	NA	NA	NA	NA	NA	NA	0
+RF260	CSF	E. coli	Hospital D	2020-08-06		NA	2020-08-06	28	No	No	37	Yes	0	0	0	0	0	>=2500g	1	0	2020-08-10	S	S	S	S	S	S	S	S	S	S	I				0	NA	NA	NA	NA	NA	NA	0	BG1940	NA	NA	NA	NA	NA	NA	NA	NA	NA	0
+DN161	BLOOD CULTURE	E. coli	Hospital A	2019-12-28	2019-12-28	NA	2019-12-28	3	No	No	40	Yes	1	0	0	0	1	>=2500g	1	0	2019-12-29	S	S	S	S	S	S	S	S	I	R	I				0	NA	NA	NA	NA	NA	NA	0	BG406	NA	NA	NA	NA	NA	NA	NA	NA	NA	0
+MA027-1	BLOOD CULTURE	E. coli	Hospital E	2019-10-29		NA	2019-10-30	1	No	No	30	Yes	1	0	0	0	1	<=1500g	0	0	2019-11-15	S	S	S	S	S	S	S	S	I	S	I				0	NA	NA	NA	NA	NA	NA	0	BG237	NA	NA	NA	NA	NA	NA	NA	NA	NA	0
+MA028-1	BLOOD CULTURE	E. coli	Hospital E	2019-10-29	2019-10-29	NA	2019-10-30	1	No	Yes	26	Yes	0	0	0	0	0	<=1500g	0	0	2019-11-15	S	S	S	S	S	S	S	S	S	S	I				0	NA	NA	NA	NA	NA	NA	0	BG348	NA	NA	NA	NA	NA	NA	NA	NA	NA	0
+DN011	BLOOD CULTURE	E. coli	Hospital A			NA	2019-11-14	91	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA	S	S	S	R	R	S	R	S	I	S	I				0	NA	NA	NA	NA	NA	NA	0	BG365	NA	NA	NA	NA	NA	NA	NA	NA	NA	0
+DN151	BLOOD CULTURE	E. coli	Hospital A	2019-12-25	2019-12-25	NA	2019-12-25	0	No	No	28	No	0	1	0	0	0	<=1500g	0	1	2019-12-25	S	S	S	S	S	S	S	S	I	R	I				0	NA	NA	NA	NA	NA	NA	0	BG409	NA	NA	NA	NA	NA	NA	NA	NA	NA	0
+KD294	BLOOD CULTURE	E. coli	Hospital B	2020-07-21		NA	2020-07-21	3	NA	NA	NA	No	0	0	0	0	0	NA	1	0	2020-07-22	S	S	S	S	S	S	S	S	I	S	I				0	NA	NA	NA	NA	NA	NA	0	BG1894	NA	NA	NA	NA	NA	NA	NA	NA	NA	0
+DN502-1	BLOOD CULTURE	E. coli	Hospital A			NA	2020-06-30	12	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA	S	S	S	R	R	S	S	S	I	S	I				0	NA	NA	NA	NA	NA	NA	0	BG1514	NA	NA	NA	NA	NA	NA	NA	NA	NA	0
+DN106	BLOOD CULTURE	E. coli	Hospital A	2019-12-03	2019-12-03	NA	2019-12-03	0	Yes	No	30	No	0	1	0	0	1	1502-2499g	0	1	2019-12-04	I	R	I	R	R	S	R	R	I	S	I				1	NA	NA	NA	NA	NA	NA	0	BG323	NA	NA	NA	NA	NA	NA	NA	NA	NA	0
+MA297	BLOOD CULTURE	E. coli	Hospital E			NA	2020-04-01	38	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA	R	R	R	R	R	S	S	R	R	S	R				1	NA	NA	NA	NA	NA	NA	0	BG673	NA	NA	NA	NA	NA	NA	NA	NA	NA	0
+KD172-1	BLOOD CULTURE	E. coli	Hospital B	2020-02-07		NA	2020-02-29	22	NA	NA	NA	No	0	0	0	0	0	NA	1	0	2020-06-23	S	S	S	S	S	S	S	R	R	S	I				0	NA	NA	NA	NA	NA	NA	0	BG538	NA	NA	NA	NA	NA	NA	NA	NA	NA	0
+DN196-2	BLOOD CULTURE	E. coli	Hospital A			NA	2020-01-08	0	NA	NA	NA	No	0	0	0	0	0	NA	0	NA	NA	S	S	S	R	R	S	R	S	I	S	I				0	NA	NA	NA	NA	NA	NA	0	BG436	NA	NA	NA	NA	NA	NA	NA	NA	NA	0
+TM068-1	BLOOD CULTURE	E. coli	Hospital C			NA	2020-02-03	30	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA	S	S	S	S	S	S	R	S	I	S	I				0	NA	NA	NA	NA	NA	NA	0	BG507	NA	NA	NA	NA	NA	NA	NA	NA	NA	0
+QN550	BLOOD CULTURE	E. faecalis	Hospital F	2020-06-07		NA	2020-06-07	1	No	NA	36	No	0	0	0	0	0	1502-2499g	0	0	2020-06-07														S	NA	NA	NA	NA	0	NA	NA	0	BG1298	NA	NA	NA	NA	NA	NA	NA	NA	NA	0
+QN270	BLOOD CULTURE	E. faecalis	Hospital F	2020-03-10		NA	2020-03-10	4	No	No	41	Yes	1	0	0	0	1	>=2500g	1	0	2020-03-17														S	NA	NA	NA	NA	0	NA	NA	0	BG579	NA	NA	NA	NA	NA	NA	NA	NA	NA	0
+RF107-3	BLOOD CULTURE	E. faecalis	Hospital D			NA	2020-01-27	21	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA														S	NA	NA	NA	NA	0	NA	NA	0	BG491	NA	NA	NA	NA	NA	NA	NA	NA	NA	0
+DN439	BLOOD CULTURE	E. faecalis	Hospital A	2020-05-17		NA	2020-05-17	3	NA	NA	NA	No	0	0	0	0	0	NA	1	0	2020-06-01														S	NA	NA	NA	NA	0	NA	NA	0	BG982	NA	NA	NA	NA	NA	NA	NA	NA	NA	0
+MA383-1	BLOOD CULTURE	E. faecalis	Hospital E	2020-05-03		NA	2020-05-06	4	NA	NA	NA	No	0	0	0	0	0	NA	1	0	2020-06-03														S	NA	NA	NA	NA	0	NA	NA	0	BG917-1	NA	NA	NA	NA	NA	NA	NA	NA	NA	0
+MA307	BLOOD CULTURE	E. faecalis	Hospital E	2020-03-26		NA	2020-03-26	0	No	No	31	Yes	1	0	0	0	1	1502-2499g	0	0	2020-03-30														S	NA	NA	NA	NA	0	NA	NA	0	BG585	NA	NA	NA	NA	NA	NA	NA	NA	NA	0
+DN001-3	BLOOD CULTURE	E. faecalis	Hospital A			NA	2019-10-05	12	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA														S	NA	NA	NA	NA	0	NA	NA	0	BG22-2	NA	NA	NA	NA	NA	NA	NA	NA	NA	0
+QN290-2	BLOOD CULTURE	E. faecalis	Hospital F	2020-03-12	2020-03-12	NA	2020-03-17	5	Yes	No	33	No	0	1	0	0	0	<=1500g	1	0	2020-04-08														S	NA	NA	NA	NA	0	NA	NA	0	BG1329	NA	NA	NA	NA	NA	NA	NA	NA	NA	0
+QN035	BLOOD CULTURE	E. faecalis	Hospital F	2019-10-28		NA	2019-10-28	7	No	No	39	No	0	0	0	0	0	>=2500g	1	0	2019-10-30														S	NA	NA	NA	NA	0	NA	NA	0	BG274	NA	NA	NA	NA	NA	NA	NA	NA	NA	0
+DN323-2	BLOOD CULTURE	E. faecalis	Hospital A			NA	2020-03-10	0	NA	NA	NA	No	0	0	0	0	0	NA	0	NA	NA														S	NA	NA	NA	NA	0	NA	NA	0	BG560	NA	NA	NA	NA	NA	NA	NA	NA	NA	0
+DN343-1	BLOOD CULTURE	E. faecalis	Hospital A	2020-03-20		NA	2020-03-23	27	NA	NA	NA	No	0	0	0	0	0	NA	1	0	NA														S	NA	NA	NA	NA	0	NA	NA	0	BG577	NA	NA	NA	NA	NA	NA	NA	NA	NA	0
+DN202	BLOOD CULTURE	E. faecalis	Hospital A	2020-01-10	2020-01-10	NA	2020-01-10	0	Yes	No	32	Yes	1	0	0	0	1	<=1500g	0	0	2020-01-27														S	NA	NA	NA	NA	0	NA	NA	0	BG433	NA	NA	NA	NA	NA	NA	NA	NA	NA	0
+DN509-2	BLOOD CULTURE	E. faecalis	Hospital A			NA	2020-07-03	10	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA														S	NA	NA	NA	NA	0	NA	NA	0	BG1701	NA	NA	NA	NA	NA	NA	NA	NA	NA	0
+MA360-2	BLOOD CULTURE	E. faecalis	Hospital E			NA	2020-04-24	2	NA	NA	NA	No	0	0	0	0	0	NA	0	NA	NA														S	NA	NA	NA	NA	0	NA	NA	0	BG911	NA	NA	NA	NA	NA	NA	NA	NA	NA	0
+MA030	BLOOD CULTURE	E. faecalis	Hospital E	2019-10-26		NA	2019-10-30	7	No	No	33	No	0	0	0	0	0	1502-2499g	1	0	2019-10-31														S	NA	NA	NA	NA	0	NA	NA	0	BG355	NA	NA	NA	NA	NA	NA	NA	NA	NA	0
+QN234	BLOOD CULTURE	E. faecalis	Hospital F	2020-02-22		NA	2020-02-22	1	No	No	41	No	0	0	0	0	1	NA	0	0	2020-02-24														S	NA	NA	NA	NA	0	NA	NA	0	BG511	NA	NA	NA	NA	NA	NA	NA	NA	NA	0
+KD198-1	BLOOD CULTURE	E. faecalis	Hospital B	2020-03-19	2020-03-19	NA	2020-03-27	8	Yes	Yes	38	No	1	0	0	0	1	>=2500g	1	0	2020-04-06														R	NA	NA	NA	NA	1	NA	NA	0	BG559	NA	NA	NA	NA	NA	NA	NA	NA	NA	0
+KD240	BLOOD CULTURE	E. faecalis	Hospital B	2020-04-18	2020-04-18	NA	2020-04-29	11	Yes	Yes	36	No	1	0	0	0	1	1502-2499g	1	0	2020-05-07														S	NA	NA	NA	NA	0	NA	NA	0	BG910	NA	NA	NA	NA	NA	NA	NA	NA	NA	0
+QN547-1	BLOOD CULTURE	E. faecalis	Hospital F	2020-05-19	2020-05-19	NA	2020-06-04	16	Yes	NA	28	No	0	1	0	0	0	<=1500g	1	0	2020-06-08														S	NA	NA	NA	NA	0	NA	NA	0	BG1299	NA	NA	NA	NA	NA	NA	NA	NA	NA	0
+TM190	BLOOD CULTURE	E. faecalis	Hospital C	2019-12-31		NA	2019-12-31	0	No	No	27	Yes	0	0	0	0	1	<=1500g	0	1	2020-01-04														S	NA	NA	NA	NA	0	NA	NA	0	BG427	NA	NA	NA	NA	NA	NA	NA	NA	NA	0
+DN287-1	BLOOD CULTURE	E. faecalis	Hospital A	2020-02-25	2020-02-26	NA	2020-02-25	1	No	No	40	Yes	0	0	1	0	0	>=2500g	0	1	2020-02-26														S	NA	NA	NA	NA	0	NA	NA	0	BG513	NA	NA	NA	NA	NA	NA	NA	NA	NA	0
+MA239	BLOOD CULTURE	E. faecium	Hospital E	2020-02-12		neonatal	2020-03-06	23	NA	NA	NA	No	0	0	0	0	0	NA	1	0	2020-03-12														S	NA	NA	NA	NA	0	NA	NA	0	BG544	546	NA	bg	bg	NA	bg	NA	bg	bg	0
+TM501-2	BLOOD CULTURE	E. faecium	Hospital C			NA	2020-07-01	6	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA														S	NA	NA	NA	NA	0	NA	NA	0	BG1719	NA	NA	NA	NA	NA	NA	NA	NA	NA	0
+MA438-1	BLOOD CULTURE	E. faecium	Hospital E	2020-05-25	2020-05-28	neonatal	2020-05-27	2	Yes	Yes	31	No	0	0	0	0	1	1502-2499g	0	1	2020-05-28														S	NA	NA	NA	NA	0	NA	NA	0	BG1151	546	NA	bg	bg	NA	1	NA	1	1	0
+RF194	BLOOD CULTURE	E. faecium	Hospital D	2020-04-18		NA	2020-04-18	0	No	No	37	Yes	0	0	0	0	1	>=2500g	0	0	2020-04-23														S	NA	NA	NA	NA	0	NA	NA	0	BG790	NA	NA	NA	NA	NA	NA	NA	NA	NA	0
+MA345-2	BLOOD CULTURE	E. faecium	Hospital E			neonatal	2020-04-16	0	NA	NA	NA	No	0	0	0	0	0	NA	0	NA	NA														S	NA	NA	NA	NA	0	NA	NA	0	BG795	-	NA	bg	bg	NA	bg	NA	bg	bg	0
+TM235-1	BLOOD CULTURE	E. faecium	Hospital C	2020-01-14		NA	2020-01-14	0	No	NA	35	Yes	0	0	0	0	0	>=2500g	0	NA	NA														S	NA	NA	NA	NA	0	NA	NA	0	BG490	NA	NA	NA	NA	NA	NA	NA	NA	NA	0
+MA445-2	BLOOD CULTURE	E. faecium	Hospital E			neonatal	2020-06-03	8	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA														R	NA	NA	NA	NA	1	NA	NA	0	BG1696	546	NA	1	1	NA	1	NA	1	1	1
+DN453-1	BLOOD CULTURE	E. faecium	Hospital A	2020-05-15	2020-05-18	neonatal	2020-06-07	23	No	Yes	36	No	1	1	0	1	1	<=1500g	1	0	2020-07-03														S	NA	NA	NA	NA	0	NA	NA	0	BG1301	80	NA	NA	1	NA	NA	NA	1	1	0
+DN428	BLOOD CULTURE	E. faecium	Hospital A	2020-05-15		neonatal	2020-05-18	14	NA	NA	NA	No	0	0	0	0	0	NA	1	0	2020-06-12														S	NA	NA	NA	NA	0	NA	NA	0	BG983	80	NA	NA	1	NA	NA	NA	1	1	0
+RF152	BLOOD CULTURE	E. faecium	Hospital D	2020-02-27		NA	2020-02-27	0	NA	No	36	No	0	0	0	0	0	1502-2499g	0	0	2020-03-09														S	NA	NA	NA	NA	0	NA	NA	0	BG514	NA	NA	NA	NA	NA	NA	NA	NA	NA	0
+TM314-2	BLOOD CULTURE	E. faecium	Hospital C	2020-02-29		NA	2020-03-02	2	No	No	42	Yes	1	0	0	0	1	>=2500g	0	0	2020-03-10														S	NA	NA	NA	NA	0	NA	NA	0	BG870	NA	NA	NA	NA	NA	NA	NA	NA	NA	0
+RF155	BLOOD CULTURE	E. faecium	Hospital D	2020-03-02		NA	2020-03-02	0	No	No	37	Yes	0	0	0	0	0	>=2500g	0	0	2020-03-03														S	NA	NA	NA	NA	0	NA	NA	0	BG546	NA	NA	NA	NA	NA	NA	NA	NA	NA	0
+DN186-1	BLOOD CULTURE	E. faecium	Hospital A	2019-12-29	2019-12-29	neonatal	2020-01-04	6	No	NA	34	Yes	0	0	0	0	1	1502-2499g	1	0	2020-02-10														S	NA	NA	NA	NA	0	NA	NA	0	BG412	-	NA	NA	bg	NA	NA	NA	bg	bg	0
+MA470	BLOOD CULTURE	E. faecium	Hospital E	2020-06-14		neonatal	2020-06-14	0	No	No	34	Yes	0	0	0	0	0	1502-2499g	0	0	2020-06-17														S	NA	NA	NA	NA	0	NA	NA	0	BG1302	546	NA	1	1	NA	1	NA	1	1	1
+DN131-2	BLOOD CULTURE	E. faecium	Hospital A			neonatal	2019-12-20	14	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA														S	NA	NA	NA	NA	0	NA	NA	0	BG399	80	NA	NA	bg	NA	NA	NA	bg	bg	0
+MA342-1	BLOOD CULTURE	E. faecium	Hospital E			neonatal	2020-04-12	0	NA	NA	NA	No	0	0	0	0	0	NA	0	NA	NA														S	NA	NA	NA	NA	0	NA	NA	0	BG794	761	NA	bg	bg	NA	bg	NA	bg	bg	0
+MA348-2	BLOOD CULTURE	E. faecium	Hospital E			neonatal	2020-04-20	15	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA														S	NA	NA	NA	NA	0	NA	NA	0	BG872	80	NA	bg	bg	NA	bg	NA	bg	bg	0
+KD218-2	BLOOD CULTURE	E. faecium	Hospital B			NA	2020-04-03	6	NA	NA	NA	No	0	0	0	0	0	NA	1	NA	NA														S	NA	NA	NA	NA	0	NA	NA	0	BG789	NA	NA	NA	NA	NA	NA	NA	NA	NA	0
+DN005-2	BLOOD CULTURE	E. faecium	Hospital A			neonatal	2019-10-05	1	NA	NA	NA	No	0	0	0	0	0	NA	0	NA	NA														S	NA	NA	NA	NA	0	NA	NA	0	BG21	761	NA	NA	bg	NA	NA	NA	bg	bg	0
+DN340	BLOOD CULTURE	E. faecium	Hospital A	2020-04-02	2020-04-18	neonatal	2020-04-18	16	NA	Yes	32	No	0	1	0	1	1	<=1500g	1	1	2020-04-19														S	NA	NA	NA	NA	0	NA	NA	0	BG868	80	NA	NA	1	NA	NA	NA	1	1	0
