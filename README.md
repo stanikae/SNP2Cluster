@@ -1,5 +1,5 @@
 <a href="https://github.com/stanikae/SNP2Cluster">
-  <img src="https://raw.githubusercontent.com/stanikae/SNP2Cluster/main/SNP2Cluster_image.jpeg" align="right" height="150" alt="SNP2Cluster Logo" />
+  <img src="https://raw.githubusercontent.com/stanikae/SNP2Cluster/main/SNP2Cluster_image.jpeg" align="right" height="250" alt="SNP2Cluster Logo" />
 </a>
 
 [![DOI](https://zenodo.org/badge/807615693.svg)](https://doi.org/10.5281/zenodo.13976252)
