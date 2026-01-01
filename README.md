@@ -2,7 +2,7 @@
 
 <div align="center">
   <a href="https://github.com/stanikae/SNP2Cluster">
-    <img src="https://raw.githubusercontent.com/stanikae/SNP2Cluster/main/SNP2Cluster_image.jpeg" height="350" alt="SNP2Cluster Logo" />
+    <img src="https://raw.githubusercontent.com/stanikae/SNP2Cluster/main/SNP2Cluster_image.jpeg" height="250" alt="SNP2Cluster Logo" />
   </a>
 </div>
 
