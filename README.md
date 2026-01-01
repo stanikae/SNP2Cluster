@@ -2,6 +2,8 @@
 
 # SNP2Cluster
 
+https://github.com/stanikae/SNP2Cluster/blob/main/SNP2Cluster_image.jpeg
+
 > ### Core SNP-based clustering for enhanced transmission cluster detection in outbreak scenarios
 
 SNP2Cluster is a K-means clustering-based method that identifies transmission clusters by integrating genomic and epidemiological data. 
