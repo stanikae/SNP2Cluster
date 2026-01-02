@@ -1,7 +1,7 @@
 # SNP2Cluster
 
 [![DOI](https://zenodo.org/badge/807615693.svg)](https://doi.org/10.5281/zenodo.13976252)
-<div align="right"><a href="https://github.com/stanikae/SNP2Cluster"><img src="https://raw.githubusercontent.com/stanikae/SNP2Cluster/main/SNP2Cluster_image.jpeg" height="250" alt="SNP2Cluster Logo" /></a></div>
+<div align="right"><a href="https://github.com/stanikae/SNP2Cluster"><img src="https://raw.githubusercontent.com/stanikae/SNP2Cluster/main/SNP2Cluster_image.jpeg" height="150" alt="SNP2Cluster Logo" /></a></div>
 
 > ### A Core SNP-based clustering for enhanced transmission cluster detection in outbreak scenarios
 
