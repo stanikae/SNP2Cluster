@@ -1,6 +1,5 @@
 # SNP2Cluster
 
-<img src="https://github.com/Terra-Informatix-Pty-Ltd/Intro-To-Linux/blob/main/BioInfoX-log.png?raw=true" align="right" width="150">
 <img src="https://raw.githubusercontent.com/stanikae/SNP2Cluster/main/SNP2Cluster_image.jpeg?raw=true" align="right" width="150">
 
 [![DOI](https://zenodo.org/badge/807615693.svg)](https://doi.org/10.5281/zenodo.13976252)
