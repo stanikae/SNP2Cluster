@@ -917,39 +917,51 @@ run_core_snp_cluster_analysis <- function(){
 # Function 06 -------------------------------------------------------------
 
 calculate_SNP_Epi_clusters <- function(snpClust,epiwkDF,mdf,excl_vec){
-  
   vec_clust <- snpClust %>% pull(cluster) %>% unique()
   
   episnp_list = list()
   for(k in vec_clust){
-    episnp_list[[k]] <- snpClust %>% dplyr::filter(cluster %in% k) %>%
-      inner_join(epiwkDF, by=c("name"="sampleID")) %>%
-      dplyr::arrange(TakenDate) %>%
-      mutate(ID2 = dplyr::lead(name,1)) %>%
-      mutate(Date2 = dplyr::lead(TakenDate,1)) %>%
-      dplyr::select(name,ID2,TakenDate,Date2,everything()) %>%
-      mutate(Days = as.numeric(difftime(Date2,TakenDate,units = "days"))) %>%
-      mutate(epicumsum = if_else(Days <= daysco,1,0)) %>%
-      mutate(epicumsum = if_else(is.na(epicumsum),0,epicumsum)) %>%
-      ungroup() %>%
-      inner_join(mdf,by=c("name"="X1","ID2"="X2")) %>%
-      mutate(CG = data.table::rleid(epicumsum)) %>%
-      dplyr::filter(epicumsum != 0) #%>%
-    # print(n=40)
     
+    # 1. Prepare data and define time-based links within ST
+    temp_df <- snpClust %>% 
+      dplyr::filter(cluster %in% k) %>%
+      inner_join(epiwkDF, by=c("name"="sampleID")) %>%
+      
+      # Group by ST to isolate chains
+      group_by(ST) %>% 
+      dplyr::arrange(TakenDate, .by_group = TRUE) %>% 
+      mutate(ID2 = dplyr::lead(name, 1)) %>%
+      mutate(Date2 = dplyr::lead(TakenDate, 1)) %>%
+      ungroup() %>%
+      
+      dplyr::select(name, ID2, TakenDate, Date2, ST, everything()) %>%
+      mutate(Days = as.numeric(difftime(Date2, TakenDate, units = "days"))) %>%
+      mutate(epicumsum = if_else(Days <= daysco, 1, 0)) %>%
+      mutate(epicumsum = if_else(is.na(epicumsum), 0, epicumsum)) 
+    
+    # 2. Join MDF and Identify Transmission Clusters
+    episnp_list[[k]] <- temp_df %>%
+      # Use LEFT JOIN to keep rows even if they don't match MDF (preserves breaks)
+      left_join(mdf, by=c("name"="X1", "ID2"="X2")) %>%
+      
+      # If link not found in MDF (X3 is NA), force break (0)
+      mutate(epicumsum = if_else(is.na(X3), 0, epicumsum)) %>%
+      
+      # Ensure strict sorting by ST and Date before calculating groups
+      arrange(ST, TakenDate) %>%
+      
+      # Calculate Cluster Group (CG)
+      mutate(CG = data.table::rleid(epicumsum)) %>%
+      dplyr::filter(epicumsum != 0) 
   }
   
-  
-  
-  # excl_vec <- c("TakenDate","Date2","epicumsum","CG","num","name","cluster","km_cluster",
-  #               "Hospital","Ward","WardType")
-  
   clusterSet3 <- bind_rows(episnp_list) %>%
-    mutate(num = as.numeric(paste0(cluster,CG))) %>%
+    # 3. Create Unique ID including ST to strictly prevent mixing
+    mutate(num = paste0(cluster, "_ST", ST, "_", CG)) %>%
     mutate(Clusters = data.table::rleid(num)) %>%
+    
     ungroup() %>%
-    pivot_longer(cols = c(name,ID2),values_to = "sampleID") %>%
-    # select(! all_of(excl_vec)) %>%  #20240529
+    pivot_longer(cols = c(name, ID2), values_to = "sampleID") %>%
     select(! any_of(excl_vec)) %>%
     group_by(Clusters) %>%
     dplyr::rename("SNPs"=X3) %>%
@@ -958,19 +970,16 @@ calculate_SNP_Epi_clusters <- function(snpClust,epiwkDF,mdf,excl_vec){
     mutate(Clusters=as.factor(as.character(Clusters))) %>%
     dplyr::rename("Cluster_Cases_count"=n_clusters)
   
-  
-  
   clusterSet3 <- clusterSet3 %>%
-    dplyr::select("sampleID","Days","SNPs","Clusters","Cluster_Cases_count")
+    dplyr::select("sampleID", "Days", "SNPs", "Clusters", "Cluster_Cases_count")
   
   if(nrow(clusterSet3) == 0){ 
     return(NULL) 
-  }else{
+  } else {
     return(clusterSet3)
   }
-  
+ 
 }
-
 
 
 # Function 07 -------------------------------------------------------------
